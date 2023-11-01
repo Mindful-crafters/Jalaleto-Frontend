@@ -1,0 +1,15 @@
+@font-face {
+  font-family: dana;
+  font-style: normal;
+  font-weight: 500;
+  src: url("fonts/woff2/dana-fanum-medium.woff2"),
+    url("fonts/woff2/dana-fanum-medium.woff2");
+}
+
+@font-face {
+  font-family: dana;
+  font-style: normal;
+  font-weight: bold;
+  src: url("fonts/woff2/dana-fanum-bold.woff2"),
+    url("fonts/woff2/dana-fanum-bold.woff2");
+}
