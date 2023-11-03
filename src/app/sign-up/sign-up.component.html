@@ -1,0 +1,28 @@
+<div [dir]="'rtl'" class="containor">
+    <form [formGroup]="signUpForm" class="sign-up-form">
+        <div class="sign-up-title">ساخت حساب کاربری</div>
+
+        <mat-form-field class="email-input" appearance="outline" hideRequiredMarker>
+            <mat-label>ایمیل</mat-label>
+            <input formControlName="email" matInput />
+            <mat-error>لطفا آدرس ایمیل معتبر وارد کنید.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="username-input" appearance="outline" hideRequiredMarker>
+            <mat-label>نام کاربری</mat-label>
+            <input formControlName="username" matInput />
+            <mat-error>لطفا نام کاربری را وارد کنید.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="password-input" appearance="outline" hideRequiredMarker>
+            <mat-label>کلمه ی عبور</mat-label>
+            <input [type]="passwordVisibility.checked ? 'text' : 'password'" formControlName="password" matInput />
+            <mat-error>گذرواژه شامل حداقل 8 کاراکتر یک حرف بزرگ و یک عدد است.</mat-error>
+        </mat-form-field>
+
+        <mat-checkbox disableRipple="true" #passwordVisibility></mat-checkbox>
+        <span class="show-password-text">نمایش گذرواژه</span>
+
+        <button mat-button class="register-button" [disabled]="!signUpForm.valid">ثبت نام</button>
+    </form>
+</div>
