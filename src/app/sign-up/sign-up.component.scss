@@ -22,7 +22,7 @@
 
     .sign-up-form {
         width: 25rem;
-        height: 30rem;
+        height: 31rem;
         background-color: #fff;
         margin: 7rem 0;
         border-radius: 8px;
@@ -50,9 +50,15 @@
             margin-top: 1rem;
         }
 
+        .show-password-checkbox {
+            position: relative;
+            inset-inline-start: -0.5rem;
+        }
+
         .show-password-text {
             position: relative;
             top: 1px;
+            inset-inline-start: -0.5rem;
         }
 
         .register-button {
@@ -64,6 +70,20 @@
             color: #fff;
             font-family: 'dana';
             margin-top: 2rem;
+        }
+
+        .redirect-to-login-text {
+            display: inline-block;
+            margin-top: 2rem;
+        }
+
+        .redirect-to-login-link {
+            margin-inline-start: 0.5rem;
+        }
+
+        .redirect-to-login-link {
+            font-family: 'dana';
+            color: #3a86ff;
         }
     }
 }

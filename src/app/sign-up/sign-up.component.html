@@ -20,9 +20,12 @@
             <mat-error>گذرواژه شامل حداقل 8 کاراکتر یک حرف بزرگ و یک عدد است.</mat-error>
         </mat-form-field>
 
-        <mat-checkbox disableRipple="true" #passwordVisibility></mat-checkbox>
+        <mat-checkbox class="show-password-checkbox" disableRipple="true" #passwordVisibility></mat-checkbox>
         <span class="show-password-text">نمایش گذرواژه</span>
 
         <button mat-button class="register-button" [disabled]="!signUpForm.valid">ثبت نام</button>
+
+        <span class="redirect-to-login-text">آیا حساب کاربری دارید؟</span>
+        <button mat-button class="redirect-to-login-link" href="">ورود با حساب کاربری</button>
     </form>
 </div>
