@@ -5,16 +5,15 @@
     display: flex;
     justify-content: center;
     background-color: #F7F7FF;
-    font-family: "dana";
 
-    mat-label {
-        font-family: 'dana';
-    }
+    // mat-label {
+    //     font-family: 'dana';
+    // }
 
-    mat-error {
-        font-size: 11px;
-        font-family: 'dana';
-    }
+    // mat-error {
+    //     font-size: 11px;
+    //     font-family: 'dana';
+    // }
 
     button:disabled {
         opacity: 0.6;
