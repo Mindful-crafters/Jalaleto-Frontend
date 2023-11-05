@@ -1,88 +1,86 @@
+@import "../../theme/common.styles.scss";
+
 .containor {
-    direction: rtl;
-    width: 100%;
-    min-height: 100%;
-    display: flex;
-    justify-content: center;
-    background-color: #F7F7FF;
+  direction: rtl;
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
 
-    // mat-label {
-    //     font-family: 'dana';
-    // }
+  button:disabled {
+    opacity: 0.6;
+  }
 
-    // mat-error {
-    //     font-size: 11px;
-    //     font-family: 'dana';
-    // }
+  .sign-up-form {
+    @include box-style();
+    width: 25rem;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 1rem 1rem;
 
-    button:disabled {
-        opacity: 0.6;
+    .sign-up-title {
+      font-size: 20px;
+      margin-inline-start: 25px;
+      margin-top: 25px;
     }
 
-    .sign-up-form {
-        width: 25rem;
-        height: 31rem;
-        background-color: #fff;
-        margin: 7rem 0;
-        border-radius: 8px;
-        box-shadow: 0 0 1rem grey;
-        padding: 0 1rem;
-
-        .sign-up-title {
-            font-size: 20px;
-            margin-inline-start: 25px;
-            margin-top: 25px;
-        }
-
-        .email-input {
-            width: 100%;
-            margin-top: 2rem;
-        }
-
-        .username-input {
-            width: 100%;
-            margin-top: 1rem;
-        }
-
-        .password-input {
-            width: 100%;
-            margin-top: 1rem;
-        }
-
-        .show-password-checkbox {
-            position: relative;
-            inset-inline-start: -0.5rem;
-        }
-
-        .show-password-text {
-            position: relative;
-            top: 1px;
-            inset-inline-start: -0.5rem;
-        }
-
-        .register-button {
-            width: 20rem;
-            height: 2.5rem;
-            background-color: #3a86ff;
-            border-radius: 7px;
-            margin-inline-start: 1.5rem;
-            color: #fff;
-            font-family: 'dana';
-            margin-top: 2rem;
-        }
-
-        .redirect-to-login-text {
-            display: inline-block;
-            margin-top: 2rem;
-        }
-
-        .redirect-to-login-link {
-            margin-inline-start: 0.5rem;
-        }
-
-        .redirect-to-login-link {
-            font-family: 'dana';
-            color: #3a86ff;
-        }
+    .email-input {
+      width: 100%;
+      margin-top: 2rem;
     }
+
+    .username-input {
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    .password-input {
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    .show-password-checkbox {
+      position: relative;
+      inset-inline-start: -0.5rem;
+    }
+
+    .show-password-text {
+      position: relative;
+      top: 1px;
+      inset-inline-start: -0.5rem;
+    }
+
+    .register-button {
+      width: 20rem;
+      height: 2.5rem;
+      background-color: #3a86ff;
+      border-radius: 7px;
+      margin-inline-start: 1.5rem;
+      color: #fff;
+      font-family: "dana";
+      margin-top: 2rem;
+    }
+
+    .redirect-to-login-text {
+      display: inline-block;
+      margin-top: 2rem;
+    }
+
+    .redirect-to-login-link {
+      margin-inline-start: 0.5rem;
+    }
+
+    .redirect-to-login-link {
+      font-family: "dana";
+      color: #3a86ff;
+    }
+  }
+}
+
+.email-verification-box {
+  @include box-style();
+  max-width: 25rem;
+  padding: 1rem;
 }

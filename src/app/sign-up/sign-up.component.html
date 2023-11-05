@@ -1,31 +1,78 @@
 <div [dir]="'rtl'" class="containor">
-    <form [formGroup]="signUpForm" class="sign-up-form">
-        <div class="sign-up-title">ساخت حساب کاربری</div>
+  <form *ngIf="!isSignedClicked" [formGroup]="signUpForm" class="sign-up-form">
+    <div class="sign-up-title">ساخت حساب کاربری</div>
 
-        <mat-form-field class="email-input" appearance="outline" hideRequiredMarker>
-            <mat-label>ایمیل</mat-label>
-            <input formControlName="email" matInput />
-            <mat-error>لطفا آدرس ایمیل معتبر وارد کنید.</mat-error>
-        </mat-form-field>
+    <mat-form-field class="email-input" appearance="outline" hideRequiredMarker>
+      <mat-label>ایمیل</mat-label>
+      <input formControlName="email" matInput />
+      <mat-error>لطفا آدرس ایمیل معتبر وارد کنید.</mat-error>
+    </mat-form-field>
 
-        <mat-form-field class="username-input" appearance="outline" hideRequiredMarker>
-            <mat-label>نام کاربری</mat-label>
-            <input formControlName="username" matInput />
-            <mat-error>لطفا نام کاربری را وارد کنید.</mat-error>
-        </mat-form-field>
+    <mat-form-field
+      class="username-input"
+      appearance="outline"
+      hideRequiredMarker
+    >
+      <mat-label>نام کاربری</mat-label>
+      <input formControlName="username" matInput />
+      <mat-error>لطفا نام کاربری را وارد کنید.</mat-error>
+    </mat-form-field>
 
-        <mat-form-field class="password-input" appearance="outline" hideRequiredMarker>
-            <mat-label>کلمه‌ی عبور</mat-label>
-            <input [type]="passwordVisibility.checked ? 'text' : 'password'" formControlName="password" matInput />
-            <mat-error>گذرواژه شامل حداقل 8 کاراکتر یک حرف بزرگ و یک عدد است.</mat-error>
-        </mat-form-field>
+    <mat-form-field
+      class="password-input"
+      appearance="outline"
+      hideRequiredMarker
+    >
+      <mat-label>کلمه‌ی عبور</mat-label>
+      <input
+        [type]="passwordVisibility.checked ? 'text' : 'password'"
+        formControlName="password"
+        matInput
+      />
+      <mat-error
+        >گذرواژه شامل حداقل 8 کاراکتر یک حرف بزرگ و یک عدد است.</mat-error
+      >
+    </mat-form-field>
 
-        <mat-checkbox class="show-password-checkbox" disableRipple="true" #passwordVisibility></mat-checkbox>
-        <span class="show-password-text">نمایش گذرواژه</span>
+    <mat-checkbox
+      class="show-password-checkbox"
+      disableRipple="true"
+      #passwordVisibility
+    ></mat-checkbox>
+    <span class="show-password-text">نمایش گذرواژه</span>
 
-        <button mat-button class="register-button" [disabled]="!signUpForm.valid">ثبت نام</button>
+    <button
+      mat-button
+      class="register-button"
+      [disabled]="!signUpForm.valid"
+      (click)="isSignedClicked = !isSignedClicked"
+    >
+      ثبت نام
+    </button>
 
-        <span class="redirect-to-login-text">آیا حساب کاربری دارید؟</span>
-        <button mat-button class="redirect-to-login-link" href="">ورود با حساب کاربری</button>
-    </form>
+    <span class="redirect-to-login-text">آیا حساب کاربری دارید؟</span>
+    <button mat-button class="redirect-to-login-link" href="">
+      ورود با حساب کاربری
+    </button>
+  </form>
+
+  <div *ngIf="!isSignedClicked" class="email-verification-box">
+    <span
+      >کد فعال‌سازی حساب کاربری به ایمیل شما ارسال شد. اگر ظرف چند دقیقه ایمیل
+      را دریافت نکردید، پوشه اسپم خود را بررسی کنید</span
+    >
+
+    <div>
+      <span>کد را وارد نمایید :</span>
+
+      <ng-otp-input [dir]="'ltr'" #ngOtpInput [config]="{length : 6}"></ng-otp-input>
+
+      <button
+      mat-button
+      class="register-button"
+    >
+      ثبت نام
+    </button>
+    </div>
+  </div>
 </div>

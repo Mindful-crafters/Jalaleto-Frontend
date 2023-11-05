@@ -1,0 +1,10 @@
+@mixin box-style(){
+    border-radius: 0.25rem;
+    border: 1px solid var(--gray);
+}
+
+@mixin text-style($text-color , $text-weight, $text-size){
+    color: $text-color;
+    font-weight: $text-weight;
+    font-size: $text-size;
+}
