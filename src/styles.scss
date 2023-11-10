@@ -189,3 +189,7 @@ mat-hint {
     margin-top: -14px !important;
     margin-inline-end: 5px !important;
 }
+
+.mat-body p, .mat-body-2 p, .mat-typography .mat-body p, .mat-typography .mat-body-2 p, .mat-typography p {
+  margin: 0;
+}
