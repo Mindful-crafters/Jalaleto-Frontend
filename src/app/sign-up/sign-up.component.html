@@ -1,5 +1,5 @@
 <div [dir]="'rtl'" class="containor">
-    <form [formGroup]="signUpForm" class="sign-up-form">
+    <form *ngIf="!isSignedClicked && !signUpSuccus && !signUpFail" [formGroup]="signUpForm" class="sign-up-form">
         <div class="sign-up-title">ساخت حساب کاربری</div>
 
         <mat-form-field class="first-name-input" appearance="outline" hideRequiredMarker>
@@ -49,9 +49,52 @@
             </mat-datepicker>
         </mat-form-field>
 
-        <button (click)="Submit()" mat-button class="register-button">ثبت نام</button>
+        <button (click)="Submit()" mat-button class="register-button primary-button">ثبت نام</button>
 
-        <span class="redirect-to-login-text">آیا حساب کاربری دارید؟</span>
-        <button type="button" mat-button class="redirect-to-login-link">ورود با حساب کاربری</button>
+        <div class="center redirect-to-signin">
+          <span class="redirect-to-login-text">آیا حساب کاربری دارید؟</span>
+          <button type="button" mat-button class="redirect-to-login-link">ورود با حساب کاربری</button>
+        </div>
     </form>
+
+    
+  <div *ngIf="isSignedClicked || signUpSuccus || signUpFail" class="email-verification-box">
+    <span class="desc">کد فعال‌سازی حساب کاربری به ایمیل شما ارسال شد. اگر ظرف چند دقیقه ایمیل
+      را دریافت نکردید، پوشه اسپم خود را بررسی کنید</span>
+
+    <div>
+      <p class="enter-code">کد را وارد نمایید :</p>
+
+      <ngx-otp-input [dir]="'ltr'" [config]="otpInputConfig" (otpChange)="handeOtpChange($event)" (fill)="handleFillEvent($event)">
+      </ngx-otp-input>
+
+      <button
+        (click)="verification()"
+        mat-button
+        class="primary-button verificate full-width-btn">
+        تایید
+      </button>
+    </div>
+  </div>
+
+  <div class="notif-box succus" *ngIf="signUpSuccus" [@fadeInOut]>
+    <span class="title">ثبت نام شما با موقفیت انجام شد</span>
+    <p class="message">در حال انتقال به صفحه ورود</p>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+
+  <div class="notif-box fail" *ngIf="signUpFail" [@fadeInOut]>
+    <span class="title">ثبت نام شما انجام نشد</span>
+
+    <p class="message">لطفا کد ارسال شده را به درستی وارد نمایید</p>
+
+    <div class="redirect-btn">
+      <button
+        mat-button
+        class="primary-button full-width-btn">
+        برگشت به صفحه ثبت نام
+      </button>
+    </div>
+  </div>
 </div>
+
