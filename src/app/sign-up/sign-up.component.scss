@@ -86,10 +86,46 @@
   }
 
   .enter-code {
-    padding: 1rem 0;
+    padding: 0.5rem 0;
   }
 
   .verificate{
     margin-top: 2rem;
+  }
+}
+
+.notif-box{
+  @include box-style();
+  position: absolute;;
+  top: 1rem;
+  inset-inline-start: 1rem;
+  width:fit-content;
+  padding-top: 1rem ;
+
+  .title{
+    @include text-style(black , bold , 1.25rem);
+    margin: 1rem;
+  }
+
+  .message{
+    margin: 0.5rem 1rem;
+
+  }
+
+  .redirect {
+    margin-top: 0.5rem;
+    @include text-style(black , bold , 1rem);
+
+  }
+}
+
+.succus{
+  background-color: rgb(174, 252, 191);
+}
+
+.fail{
+  background-color: rgb(247, 211, 211);
+  .redirect-btn {
+    margin: 1rem;
   }
 }

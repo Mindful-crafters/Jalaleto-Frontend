@@ -8,13 +8,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { AppRoutingModule } from '../app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgOtpInputModule } from 'ng-otp-input';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { NgxOtpInputModule } from 'ngx-otp-input';
 
 @NgModule({
     declarations: [
         SignUpComponent
     ],
     imports: [
+        MatProgressBarModule,
         MatFormFieldModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
@@ -24,7 +26,7 @@ import { NgOtpInputModule } from 'ng-otp-input';
         AppRoutingModule,
         MatInputModule,
         FormsModule,
-        NgOtpInputModule
+        NgxOtpInputModule
     ],
     exports: [
         SignUpComponent
