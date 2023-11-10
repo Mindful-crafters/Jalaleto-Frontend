@@ -6,24 +6,15 @@
     justify-content: center;
     background-color: #F7F7FF;
 
-    // mat-label {
-    //     font-family: 'dana';
-    // }
-
-    // mat-error {
-    //     font-size: 11px;
-    //     font-family: 'dana';
-    // }
-
     button:disabled {
         opacity: 0.6;
     }
 
     .sign-up-form {
         width: 25rem;
-        height: 31rem;
+        height: 42.5rem;
         background-color: #fff;
-        margin: 7rem 0;
+        margin: 2rem 0;
         border-radius: 8px;
         box-shadow: 0 0 1rem grey;
         padding: 0 1rem;
@@ -34,30 +25,31 @@
             margin-top: 25px;
         }
 
-        .email-input {
+        .first-name-input {
             width: 100%;
             margin-top: 2rem;
         }
 
-        .username-input {
+        .input-group {
             width: 100%;
-            margin-top: 1rem;
-        }
-
-        .password-input {
-            width: 100%;
-            margin-top: 1rem;
+            margin-top: 0.5rem;
         }
 
         .show-password-checkbox {
             position: relative;
             inset-inline-start: -0.5rem;
+            top: -6px;
         }
 
         .show-password-text {
             position: relative;
-            top: 1px;
+            top: -5px;
             inset-inline-start: -0.5rem;
+        }
+
+        .date-picker {
+            width: 100%;
+            margin-top: 0.5rem;
         }
 
         .register-button {
@@ -68,7 +60,7 @@
             margin-inline-start: 1.5rem;
             color: #fff;
             font-family: 'dana';
-            margin-top: 2rem;
+            margin-top: 1rem;
         }
 
         .redirect-to-login-text {
