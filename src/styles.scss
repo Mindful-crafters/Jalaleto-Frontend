@@ -161,3 +161,7 @@ input:focus {
 .mat-mdc-outlined-button.mat-mdc-button-base {
   width: 100% !important;
 }
+
+[dir=rtl] .mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field .mdc-notched-outline__notch {
+  border-right: none !important;
+}

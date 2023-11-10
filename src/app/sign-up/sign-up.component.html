@@ -49,11 +49,12 @@
     >
       ثبت نام
     </button>
-
-    <span class="redirect-to-login-text">آیا حساب کاربری دارید؟</span>
-    <button mat-button class="redirect-to-login-link" href="">
-      ورود با حساب کاربری
-    </button>
+    <div class="redirect-to-login">
+      <span class="redirect-to-login-text">آیا حساب کاربری دارید؟</span>
+      <button mat-button class="redirect-to-login-link" href="">
+        ورود با حساب کاربری
+      </button>      
+    </div>
   </form>
 
   <div *ngIf="!isSignedClicked" class="email-verification-box">
