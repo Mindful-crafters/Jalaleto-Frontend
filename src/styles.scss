@@ -151,6 +151,13 @@ body {
 }
 
 input:focus {
-    border: 2px solid var(--blue) !important;
-    outline: none !important;
+  border: 2px solid var(--blue) !important;
+  outline: none !important;
+}
+
+.full-width-btn.mat-mdc-button.mat-mdc-button-base,
+.mat-mdc-raised-button.mat-mdc-button-base,
+.mat-mdc-unelevated-button.mat-mdc-button-base,
+.mat-mdc-outlined-button.mat-mdc-button-base {
+  width: 100% !important;
 }

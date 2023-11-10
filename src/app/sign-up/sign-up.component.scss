@@ -1,4 +1,5 @@
 @import "../../theme/common.styles.scss";
+// @mixin text-style($text-color , $text-weight, $text-size){
 
 .containor {
   direction: rtl;
@@ -53,13 +54,7 @@
     }
 
     .register-button {
-      width: 20rem;
       height: 2.5rem;
-      background-color: #3a86ff;
-      border-radius: 7px;
-      margin-inline-start: 1.5rem;
-      color: #fff;
-      font-family: "dana";
       margin-top: 2rem;
     }
 
@@ -74,7 +69,7 @@
 
     .redirect-to-login-link {
       font-family: "dana";
-      color: #3a86ff;
+      color: var(--blue);
     }
   }
 }
@@ -83,4 +78,16 @@
   @include box-style();
   max-width: 25rem;
   padding: 1rem;
+
+  .desc {
+    @include text-style(black , normal , 1rem);
+  }
+
+  .enter-code {
+    padding: 1rem 0;
+  }
+
+  .verificate{
+    margin-top: 2rem;
+  }
 }

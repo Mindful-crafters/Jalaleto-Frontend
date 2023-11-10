@@ -43,7 +43,7 @@
 
     <button
       mat-button
-      class="register-button"
+      class="primary-button register-button full-width-btn"
       [disabled]="!signUpForm.valid"
       (click)="isSignedClicked = !isSignedClicked"
     >
@@ -57,19 +57,19 @@
   </form>
 
   <div *ngIf="!isSignedClicked" class="email-verification-box">
-    <span
+    <span class="desc"
       >کد فعال‌سازی حساب کاربری به ایمیل شما ارسال شد. اگر ظرف چند دقیقه ایمیل
       را دریافت نکردید، پوشه اسپم خود را بررسی کنید</span
     >
 
     <div>
-      <span>کد را وارد نمایید :</span>
+      <p class="enter-code">کد را وارد نمایید :</p>
 
       <ng-otp-input [dir]="'ltr'" #ngOtpInput [config]="{length : 6}"></ng-otp-input>
 
       <button
       mat-button
-      class="register-button"
+      class="primary-button verificate full-width-btn"
     >
       ثبت نام
     </button>

@@ -8,3 +8,9 @@
     font-weight: $text-weight;
     font-size: $text-size;
 }
+
+.primary-button {
+    background-color: var(--blue);
+    color: white !important;
+    border-radius: 7px;
+}
