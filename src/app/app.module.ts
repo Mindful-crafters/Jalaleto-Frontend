@@ -12,10 +12,19 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
+import { NewPasswordComponent } from './new-password/new-password.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { SignupModule } from './sign-up/sign-up.module';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { MatNativeDateModule } from '@angular/material/core';
+import { DatePipe } from '@angular/common';
+
 @NgModule({
   declarations: [
     AppComponent,
-    SignUpComponent,
+    ForgetPasswordComponent,
+    NewPasswordComponent,
     LoginComponent
   ],
   imports: [
@@ -28,9 +37,13 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     MatCheckboxModule,
     MatButtonModule,
-    HttpClientModule
+    MatDatepickerModule,
+    MatNativeDateModule,
+    SignupModule,
+    HttpClientModule,
+    DashboardModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

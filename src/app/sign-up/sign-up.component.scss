@@ -1,88 +1,128 @@
+@import "../../theme/common.styles.scss";
+// @mixin text-style($text-color , $text-weight, $text-size){
+
 .containor {
-    direction: rtl;
-    width: 100%;
-    min-height: 100%;
-    display: flex;
-    justify-content: center;
-    background-color: #F7F7FF;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  align-items: center;
+  background-color: #f7f7ff;
 
-    // mat-label {
-    //     font-family: 'dana';
-    // }
+  button:disabled {
+    opacity: 0.6;
+  }
 
-    // mat-error {
-    //     font-size: 11px;
-    //     font-family: 'dana';
-    // }
+  .sign-up-form {
+    @include box-style();
+    width: 22rem;
+    background-color: #fff;
+    margin: 1.5rem 0;
+    padding:1rem;
 
-    button:disabled {
-        opacity: 0.6;
+    .sign-up-title {
+      font-size: 20px;
     }
 
-    .sign-up-form {
-        width: 25rem;
-        height: 31rem;
-        background-color: #fff;
-        margin: 7rem 0;
-        border-radius: 8px;
-        box-shadow: 0 0 1rem grey;
-        padding: 0 1rem;
-
-        .sign-up-title {
-            font-size: 20px;
-            margin-inline-start: 25px;
-            margin-top: 25px;
-        }
-
-        .email-input {
-            width: 100%;
-            margin-top: 2rem;
-        }
-
-        .username-input {
-            width: 100%;
-            margin-top: 1rem;
-        }
-
-        .password-input {
-            width: 100%;
-            margin-top: 1rem;
-        }
-
-        .show-password-checkbox {
-            position: relative;
-            inset-inline-start: -0.5rem;
-        }
-
-        .show-password-text {
-            position: relative;
-            top: 1px;
-            inset-inline-start: -0.5rem;
-        }
-
-        .register-button {
-            width: 20rem;
-            height: 2.5rem;
-            background-color: #3a86ff;
-            border-radius: 7px;
-            margin-inline-start: 1.5rem;
-            color: #fff;
-            font-family: 'dana';
-            margin-top: 2rem;
-        }
-
-        .redirect-to-login-text {
-            display: inline-block;
-            margin-top: 2rem;
-        }
-
-        .redirect-to-login-link {
-            margin-inline-start: 0.5rem;
-        }
-
-        .redirect-to-login-link {
-            font-family: 'dana';
-            color: #3a86ff;
-        }
+    .first-name-input {
+      width: 100%;
+      margin-top: 1rem;
     }
+
+    .input-group {
+      width: 100%;
+    }
+
+    .show-password-checkbox {
+      position: relative;
+      inset-inline-start: -0.5rem;
+      top: -6px;
+    }
+
+    .show-password-text {
+      position: relative;
+      top: -5px;
+      inset-inline-start: -0.5rem;
+    }
+
+    .date-picker {
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+
+    .register-button {
+      height: 2.5rem;
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    .redirect-to-login-link {
+      color: var(--blue);
+    }
+  }
+
+  .redirect-to-login-link {
+    margin-inline-start: 0.5rem;
+  }
+
+  .redirect-to-login-link {
+    font-family: "dana";
+    color: var(--blue);
+  }
+
+  .center.redirect-to-signin {
+    margin-top: 0.5rem;
+  }
+}
+
+.email-verification-box {
+  @include box-style();
+  max-width: 25rem;
+  padding: 1rem;
+  background-color: white;
+
+  .desc {
+    @include text-style(black, normal, 1rem);
+  }
+
+  .enter-code {
+    padding-top: 0.5rem ;
+  }
+
+  .verificate {
+    margin-top: 2rem;
+  }
+}
+
+.notif-box {
+  @include box-style();
+  position: absolute;
+  top: 1rem;
+  inset-inline-start: 1rem;
+  width: fit-content;
+  padding-top: 1rem;
+
+  .title {
+    @include text-style(black, bold, 1.25rem);
+    margin: 1rem;
+  }
+
+  .message {
+    margin: 0.5rem 1rem;
+  }
+
+  .redirect {
+    margin-top: 0.5rem;
+    @include text-style(black, bold, 1rem);
+  }
+}
+
+.succus {
+  background-color: rgb(174, 252, 191);
+}
+
+.fail {
+  background-color: rgb(247, 211, 211);
+  .redirect-btn {
+    margin: 1rem;
+  }
 }
