@@ -13,14 +13,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { NewPasswordComponent } from './new-password/new-password.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { SignupModule } from './sign-up/sign-up.module';
+import { HttpClientModule } from '@angular/common/http';
+import { DashboardModule } from './dashboard/dashboard.module';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DatePipe } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignUpComponent,
     ForgetPasswordComponent,
     NewPasswordComponent
   ],
@@ -36,7 +37,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    HttpClientModule
+    SignupModule,
+    HttpClientModule,
+    DashboardModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
