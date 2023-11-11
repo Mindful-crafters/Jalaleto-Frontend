@@ -12,6 +12,11 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { NewPasswordComponent } from './new-password/new-password.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { DatePipe } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,9 +33,12 @@ import { NewPasswordComponent } from './new-password/new-password.component';
     FormsModule,
     ReactiveFormsModule,
     MatCheckboxModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,30 +2,56 @@
     <form [formGroup]="signUpForm" class="sign-up-form">
         <div class="sign-up-title">ساخت حساب کاربری</div>
 
-        <mat-form-field class="email-input" appearance="outline" hideRequiredMarker>
+        <mat-form-field class="first-name-input" appearance="outline" hideRequiredMarker>
+            <mat-label>نام</mat-label>
+            <input formControlName="firstName" matInput />
+            <mat-error>لطفا نام خود را وارد کنید.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="input-group" appearance="outline" hideRequiredMarker>
+            <mat-label>نام خانوادگی</mat-label>
+            <input formControlName="lastName" matInput />
+            <mat-error>لطفا نام خانوادگی خود را وارد کنید.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="input-group" appearance="outline" hideRequiredMarker>
+            <mat-label>نام کاربری</mat-label>
+            <input formControlName="userName" matInput />
+            <mat-error>نام کاربری شامل حداقل 3 کاراکتر است.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="input-group" appearance="outline" hideRequiredMarker>
             <mat-label>ایمیل</mat-label>
-            <input formControlName="email" matInput />
+            <input formControlName="mail" matInput />
             <mat-error>لطفا آدرس ایمیل معتبر وارد کنید.</mat-error>
         </mat-form-field>
 
-        <mat-form-field class="username-input" appearance="outline" hideRequiredMarker>
-            <mat-label>نام کاربری</mat-label>
-            <input formControlName="username" matInput />
-            <mat-error>لطفا نام کاربری را وارد کنید.</mat-error>
-        </mat-form-field>
-
-        <mat-form-field class="password-input" appearance="outline" hideRequiredMarker>
+        <mat-form-field class="input-group" appearance="outline" hideRequiredMarker>
             <mat-label>کلمه‌ی عبور</mat-label>
-            <input [type]="passwordVisibility.checked ? 'text' : 'password'" formControlName="password" matInput />
+            <input [type]="passwordVisibility.checked ? 'text':'password'" formControlName="password" matInput />
             <mat-error>گذرواژه شامل حداقل 8 کاراکتر یک حرف بزرگ و یک عدد است.</mat-error>
         </mat-form-field>
 
         <mat-checkbox class="show-password-checkbox" disableRipple="true" #passwordVisibility></mat-checkbox>
         <span class="show-password-text">نمایش گذرواژه</span>
 
-        <button mat-button class="register-button" [disabled]="!signUpForm.valid">ثبت نام</button>
+        <mat-form-field class="date-picker" appearance="outline" hideRequiredMarker>
+            <mat-label>تاریخ تولد خود را انتخاب کنید</mat-label>
+            <input formControlName="birthday" matInput [matDatepicker]="datepicker">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-error>لطفا تاریخ صحیح وارد کنید.</mat-error>
+            <mat-datepicker-toggle [disableRipple]="" matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+            <mat-datepicker #datepicker>
+                <mat-datepicker-actions>
+                    <button mat-button matDatepickerCancel>لغو</button>
+                    <button mat-raised-button color="primary" matDatepickerApply>انتخاب</button>
+                </mat-datepicker-actions>
+            </mat-datepicker>
+        </mat-form-field>
+
+        <button (click)="Submit()" mat-button class="register-button">ثبت نام</button>
 
         <span class="redirect-to-login-text">آیا حساب کاربری دارید؟</span>
-        <button mat-button class="redirect-to-login-link" href="">ورود با حساب کاربری</button>
+        <button type="button" mat-button class="redirect-to-login-link">ورود با حساب کاربری</button>
     </form>
 </div>
