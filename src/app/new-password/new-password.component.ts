@@ -1,3 +1,4 @@
+import { RestService } from './../shared/services/Rest.service';
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -7,22 +8,30 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./new-password.component.scss']
 })
 export class NewPasswordComponent {
-  
-  constructor(private formBuilder:FormBuilder)
-  {
+
+  constructor(private formBuilder: FormBuilder, private restService: RestService) {
 
   }
+  emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
   ngOnInit(): void {
     this.NewPasswoedForm = this.formBuilder.group(
       {
-        email: new FormControl('', [Validators.required, Validators.pattern('[a-z0-9]+@[a-z]+\.[a-z]{1,20}')]),
-        username:[null, Validators.required],
-        password : new FormControl('', [Validators.required, Validators.pattern('^(?=.*[A-Z])(?=.*[0-9]).{8,}$')])
+        email: new FormControl('', [Validators.required, Validators.pattern(this.emailRegex)]),
       }
     )
   }
 
-  NewPasswoedForm:FormGroup;
+  GetCode() {
+    const email = this.NewPasswoedForm.getRawValue();
+    this.restService.postData<any>('User/SendRestPasswordEmail', email).subscribe(
+      (response) => {
+        console.log(response);
+      }
+    )
+  }
+
+  NewPasswoedForm: FormGroup;
 
 
 }

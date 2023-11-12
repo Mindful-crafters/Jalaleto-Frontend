@@ -1,3 +1,4 @@
+import { RestService } from './../shared/services/Rest.service';
 import { AuthService } from './../shared/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -13,10 +14,8 @@ export class LoginComponent implements OnInit {
   logInForm: FormGroup;
   constructor(
     private Router: Router,
-    private http: HttpClient,
     private formBuilder: FormBuilder,
-    private authService: AuthService,
-    
+    private restService: RestService
   ) {
 
   }
@@ -32,18 +31,19 @@ export class LoginComponent implements OnInit {
   login(info: { username: string, password: string }) {
     console.log(info)
     // console.log(this.logInForm.controls['password'].value)
-    this.http.post('', info).subscribe((res: LoginResult) => {
-      if (res.success) {
-        this.authService.setToken(res.token);
-      } else {
 
+    this.restService.postData<any>('User/Login', info).subscribe(
+      (response) => {
+        console.log(response);
+        if (response['success']) {
+          this.Router.navigate(['dashboard']);
+        }
       }
-    });
+    )
 
   }
-  redirectforgetpassword()
-  {
-    this.Router.navigate( ['forgetpassword'] );
+  redirectforgetpassword() {
+    this.Router.navigate(['newpassword']);
   }
 }
 
