@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http'
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgxOtpInputConfig } from 'ngx-otp-input';
+import { RestService } from '../shared/services/Rest.service';
+import { UserModel } from '../shared/types/UserModel.type';
 
 @Component({
   selector: 'app-sign-up',
@@ -18,12 +20,15 @@ import { NgxOtpInputConfig } from 'ngx-otp-input';
 })
 export class SignUpComponent implements OnInit {
   signUpForm: FormGroup;
+  code = '';
+  hashString = '';
   isSignedClicked: boolean = false;
   signUpSuccus = false;
   signUpFail = false;
-  formControl : FormControl;
+  formControl: FormControl;
+  appearBtn = false;
 
-  constructor(private formBuilder: FormBuilder, private datePipe: DatePipe, private http: HttpClient) {
+  constructor(private formBuilder: FormBuilder, private datePipe: DatePipe, private http: HttpClient, private rest: RestService) {
 
   }
 
@@ -48,15 +53,23 @@ export class SignUpComponent implements OnInit {
       return;
     }
 
-    const newPerson = this.signUpForm.getRawValue();
-    newPerson.birthday = this.datePipe.transform(newPerson.birthday, 'yyyy-MM-dd').toString();
+    const email = {
+      "email": this.signUpForm.get('mail').value
+    }
 
-    this.http.post<any>('https://localhost:7117/api/User/SignUP', newPerson).subscribe(
+    console.log(email)
+
+    this.rest.postData('User/SendVerifyEmail', email).subscribe(
       (response) => {
-        console.log(response)
-        if(response['success']){
-          this.isSignedClicked = true;
+        console.log(response);
+        if (response['success']) {
+          this.isSignedClicked = true
+          this.hashString = response['hashString'];
+          console.log(this.hashString);
         }
+      },
+      (error) => {
+        console.log(error);
       }
     )
   }
@@ -66,14 +79,15 @@ export class SignUpComponent implements OnInit {
 
     return currentDate >= BirthDay;
   }
+
   validateAge(control: AbstractControl): ValidationErrors | null {
     const currentDate = new Date();
     const selectedDate = new Date(control.value);
 
     if (selectedDate <= currentDate) {
-      return null; 
+      return null;
     } else {
-      return { customError: true }; 
+      return { customError: true };
     }
   }
 
@@ -91,39 +105,39 @@ export class SignUpComponent implements OnInit {
   };
 
   handeOtpChange(value: string[]): void {
+    this.appearBtn = false;
     console.log(value);
   }
 
   handleFillEvent(value: string): void {
-    console.log(value);
+    console.log('fill',value);
+    this.appearBtn = true;
+    this.code = value;
   }
 
-  verification(){
-    let succus = true;
-    this.isSignedClicked = false;
-    //api
+  verification() {
+    const newPerson = this.signUpForm.getRawValue();
+    newPerson.hashString = this.hashString;
+    newPerson.code = this.code
 
-    if(!succus){
-      this.signUpFail = true;
-    }
-    else{
-      this.signUpSuccus = true;
-
-      setTimeout(()=>{
-        //navigate to login
-      },2000)
-    }
+    // this.rest.postData('User/SignUp',newPerson).subscribe(
+    //   (res)=>{
+    //     console.log(res)
+    //   }
+    // )
   }
 
 }
 
 export class SignUPPerson {
-  mail: string;
+  public mail: string;
   lastName: string;
   userName: string;
   firstName: string;
   password: string;
   birthday: string;
+  hashString : string;
+  code: number;
 
   constructor(person: any) {
     this.mail = person.mail || null;
