@@ -59,7 +59,9 @@
 
         .redirect-to-forgetPassword-text {
             display: inline-block;
-            margin-top: 2rem;
+            margin-inline-start: 5rem;
+            color: #3a86ff;
+            font-size: 13px;
         }
 
         .redirect-to-forgetPassword-link {
@@ -69,6 +71,15 @@
         .redirect-to-forgetPassword-link {
             font-family: 'dana';
             color: #3a86ff;
+        }
+
+        .redirect-to-signup {
+            margin-top: 2rem;
+
+            .redirect-to-login-link {
+                color: var(--blue);
+                margin-inline-start: 1rem;
+            }
         }
     }
 }

@@ -29,8 +29,8 @@ export class SignUpComponent implements OnInit {
   formControl: FormControl;
   appearBtn = false;
 
-  constructor(private formBuilder: FormBuilder, private datePipe: DatePipe, private http: HttpClient,private Router: Router ,
-    private rest : RestService) {}
+  constructor(private formBuilder: FormBuilder, private datePipe: DatePipe, private http: HttpClient, private Router: Router,
+    private rest: RestService) { }
 
   ngOnInit(): void {
     this.signUpForm = this.formBuilder.group(
@@ -59,7 +59,7 @@ export class SignUpComponent implements OnInit {
 
     console.log(email)
 
-    this.rest.postData('User/SendVerifyEmail', email).subscribe(
+    this.rest.postData<any>('User/SendVerifyEmail', email).subscribe(
       (response) => {
         console.log(response);
         if (response['success']) {
@@ -110,7 +110,7 @@ export class SignUpComponent implements OnInit {
   }
 
   handleFillEvent(value: string): void {
-    console.log('fill',value);
+    console.log('fill', value);
     this.appearBtn = true;
     this.code = value;
   }
@@ -119,17 +119,19 @@ export class SignUpComponent implements OnInit {
     const newPerson = this.signUpForm.getRawValue();
     newPerson.hashString = this.hashString;
     newPerson.code = this.code
+    newPerson.birthday = this.datePipe.transform(newPerson.birthday, 'yyyy-MM-dd').toString();
 
-    // this.rest.postData('User/SignUp',newPerson).subscribe(
-    //   (res)=>{
-    //     console.log(res)
-    //   }
-    // )
+    console.log(newPerson);
+
+    this.rest.postData<SignUPPerson>('User/SignUp', newPerson).subscribe(
+      (res) => {
+        console.log(res)
+      }
+    )
   }
-  
-  redirectToLogin()
-  {
-    this.Router.navigate( ['login'] );
+
+  redirectToLogin() {
+    this.Router.navigate(['login']);
   }
 
 }
@@ -141,7 +143,7 @@ export class SignUPPerson {
   firstName: string;
   password: string;
   birthday: string;
-  hashString : string;
+  hashString: string;
   code: number;
 
   constructor(person: any) {

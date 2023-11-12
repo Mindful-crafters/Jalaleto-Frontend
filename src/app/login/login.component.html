@@ -6,25 +6,31 @@
         <br>
         <mat-form-field class="username-input" appearance="outline" hideRequiredMarker>
             <mat-label>نام کاربری</mat-label>
-            <input formControlName="username" matInput name="username" ngModel/>
+            <input formControlName="username" matInput name="username" ngModel />
             <mat-error>لطفا نام کاربری را وارد کنید.</mat-error>
         </mat-form-field>
-        
+
         <mat-form-field class="password-input" appearance="outline" hideRequiredMarker>
             <mat-label>کلمه‌ی عبور</mat-label>
-            <input [type]="passwordVisibility.checked ? 'text' : 'password'" formControlName="password" matInput name="password" ngModel/>
+            <input [type]="passwordVisibility.checked ? 'text' : 'password'" formControlName="password" matInput
+                name="password" ngModel />
             <mat-error>گذرواژه شامل حداقل 8 کاراکتر یک حرف بزرگ و یک عدد است.</mat-error>
         </mat-form-field>
-        
+
         <mat-checkbox class="show-password-checkbox" disableRipple="true" #passwordVisibility></mat-checkbox>
         <span class="show-password-text">نمایش گذرواژه</span>
-        <button mat-button type="submit" class="register-button" [disabled]="!logInForm.valid" >ورود</button>
-        <h1 flex="10"></h1>
-        <br>
-        <br>
-        <span class="redirect-to-forgetPassword-text">رمز خود را فراموش کردید؟</span>
-        <button mat-button class="redirect-to-forgetPassword-link" href="" (click)="redirectforgetpassword()">فراموشی رمز</button>
+        <button mat-button class="redirect-to-forgetPassword-text" (click)="redirectforgetpassword()">رمز خود را فراموش
+            کردید؟</button>
+        <button mat-button type="submit" class="register-button" [disabled]="!logInForm.valid">ورود</button>
+
+        <div class="center redirect-to-signup">
+            <span class="redirect-to-login-text">حساب کاربری ندارید؟</span>
+            <button routerLink="/signup" type="button" mat-button class="redirect-to-login-link">
+                عضویت در جلالتو
+            </button>
+        </div>
+
     </form>
-        
-    
+
+
 </div>

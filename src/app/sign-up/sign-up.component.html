@@ -3,11 +3,7 @@
   <form *ngIf="!isSignedClicked && !signUpSuccus && !signUpFail" [formGroup]="signUpForm" class="sign-up-form">
     <div class="sign-up-title">ساخت حساب کاربری</div>
 
-    <mat-form-field
-      class="first-name-input"
-      appearance="outline"
-      hideRequiredMarker
-    >
+    <mat-form-field class="first-name-input" appearance="outline" hideRequiredMarker>
       <mat-label>نام</mat-label>
       <input formControlName="firstName" matInput />
       <mat-error>لطفا نام خود را وارد کنید.</mat-error>
@@ -33,21 +29,11 @@
 
     <mat-form-field class="input-group" appearance="outline" hideRequiredMarker>
       <mat-label>کلمه‌ی عبور</mat-label>
-      <input
-        [type]="passwordVisibility.checked ? 'text' : 'password'"
-        formControlName="password"
-        matInput
-      />
-      <mat-error
-        >گذرواژه شامل حداقل 8 کاراکتر یک حرف بزرگ و یک عدد است.</mat-error
-      >
+      <input [type]="passwordVisibility.checked ? 'text' : 'password'" formControlName="password" matInput />
+      <mat-error>گذرواژه شامل حداقل 8 کاراکتر یک حرف بزرگ و یک عدد است.</mat-error>
     </mat-form-field>
 
-    <mat-checkbox
-      class="show-password-checkbox"
-      disableRipple="true"
-      #passwordVisibility
-    ></mat-checkbox>
+    <mat-checkbox class="show-password-checkbox" disableRipple="true" #passwordVisibility></mat-checkbox>
     <span class="show-password-text">نمایش گذرواژه</span>
 
     <mat-form-field class="date-picker" appearance="outline" hideRequiredMarker>
@@ -55,11 +41,7 @@
       <input formControlName="birthday" matInput [matDatepicker]="datepicker" />
       <mat-hint>MM/DD/YYYY</mat-hint>
       <mat-error>لطفا تاریخ صحیح وارد کنید.</mat-error>
-      <mat-datepicker-toggle
-        [disableRipple]=""
-        matIconSuffix
-        [for]="datepicker"
-      ></mat-datepicker-toggle>
+      <mat-datepicker-toggle [disableRipple]="" matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
       <mat-datepicker #datepicker>
         <mat-datepicker-actions>
           <button mat-button matDatepickerCancel>لغو</button>
@@ -70,17 +52,13 @@
       </mat-datepicker>
     </mat-form-field>
 
-    <button
-      (click)="Submit()"
-      mat-button
-      class="register-button primary-button"
-    >
+    <button (click)="Submit()" mat-button class="register-button primary-button">
       ثبت نام
     </button>
 
     <div class="center redirect-to-signin">
       <span class="redirect-to-login-text">آیا حساب کاربری دارید؟</span>
-      <button type="button" mat-button class="redirect-to-login-link">
+      <button routerLink="/login" type="button" mat-button class="redirect-to-login-link">
         ورود با حساب کاربری
       </button>
     </div>
@@ -88,28 +66,17 @@
 
   <!-- isSignedClicked || signUpSuccus || signUpFail -->
   <div *ngIf="isSignedClicked || signUpSuccus || signUpFail" class="email-verification-box">
-    <span class="desc"
-      >کد فعال‌سازی حساب کاربری به ایمیل شما ارسال شد. اگر ظرف چند دقیقه ایمیل
-      را دریافت نکردید، پوشه اسپم خود را بررسی کنید</span
-    >
+    <span class="desc">کد فعال‌سازی حساب کاربری به ایمیل شما ارسال شد. اگر ظرف چند دقیقه ایمیل
+      را دریافت نکردید، پوشه اسپم خود را بررسی کنید</span>
 
     <div>
       <p class="enter-code">کد را وارد نمایید :</p>
 
-      <ngx-otp-input
-        [dir]="'ltr'"
-        [config]="otpInputConfig"
-        (otpChange)="handeOtpChange($event)"
-        (fill)="handleFillEvent($event)"
-      >
+      <ngx-otp-input [dir]="'ltr'" [config]="otpInputConfig" (otpChange)="handeOtpChange($event)"
+        (fill)="handleFillEvent($event)">
       </ngx-otp-input>
 
-      <button
-      *ngIf="appearBtn"
-        (click)="verification()"
-        mat-button
-        class="primary-button verificate full-width-btn"
-      >
+      <button *ngIf="appearBtn" (click)="verification()" mat-button class="primary-button verificate full-width-btn">
         تایید
       </button>
     </div>
@@ -127,7 +94,7 @@
     <p class="message">لطفا کد ارسال شده را به درستی وارد نمایید</p>
 
     <div class="redirect-btn">
-      <button mat-button class="primary-button full-width-btn">
+      <button routerLink="signup" mat-button class="primary-button full-width-btn">
         برگشت به صفحه ثبت نام
       </button>
     </div>
