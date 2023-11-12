@@ -115,6 +115,7 @@ export class SignUpComponent implements OnInit {
       },2000)
     }
   }
+  
   redirectToLogin()
   {
     this.Router.navigate( ['login'] );
