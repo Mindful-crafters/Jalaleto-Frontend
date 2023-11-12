@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http'
@@ -28,9 +29,8 @@ export class SignUpComponent implements OnInit {
   formControl: FormControl;
   appearBtn = false;
 
-  constructor(private formBuilder: FormBuilder, private datePipe: DatePipe, private http: HttpClient, private rest: RestService) {
-
-  }
+  constructor(private formBuilder: FormBuilder, private datePipe: DatePipe, private http: HttpClient,private Router: Router ,
+    private rest : RestService) {}
 
   ngOnInit(): void {
     this.signUpForm = this.formBuilder.group(
@@ -125,6 +125,11 @@ export class SignUpComponent implements OnInit {
     //     console.log(res)
     //   }
     // )
+  }
+  
+  redirectToLogin()
+  {
+    this.Router.navigate( ['login'] );
   }
 
 }

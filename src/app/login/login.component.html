@@ -1,0 +1,30 @@
+<div [dir]="'rtl'" class="containor">
+    <!-- <form [formGroup]="logInForm" class="log-in-form"> -->
+    <form #log="ngForm" (ngSubmit)="login(log.value)" class="log-in-form" [formGroup]="logInForm">
+        <div class="log-in-title">ورود به حساب کاربری</div>
+        <br>
+        <br>
+        <mat-form-field class="username-input" appearance="outline" hideRequiredMarker>
+            <mat-label>نام کاربری</mat-label>
+            <input formControlName="username" matInput name="username" ngModel/>
+            <mat-error>لطفا نام کاربری را وارد کنید.</mat-error>
+        </mat-form-field>
+        
+        <mat-form-field class="password-input" appearance="outline" hideRequiredMarker>
+            <mat-label>کلمه‌ی عبور</mat-label>
+            <input [type]="passwordVisibility.checked ? 'text' : 'password'" formControlName="password" matInput name="password" ngModel/>
+            <mat-error>گذرواژه شامل حداقل 8 کاراکتر یک حرف بزرگ و یک عدد است.</mat-error>
+        </mat-form-field>
+        
+        <mat-checkbox class="show-password-checkbox" disableRipple="true" #passwordVisibility></mat-checkbox>
+        <span class="show-password-text">نمایش گذرواژه</span>
+        <button mat-button type="submit" class="register-button" [disabled]="!logInForm.valid" >ورود</button>
+        <h1 flex="10"></h1>
+        <br>
+        <br>
+        <span class="redirect-to-forgetPassword-text">رمز خود را فراموش کردید؟</span>
+        <button mat-button class="redirect-to-forgetPassword-link" href="" (click)="redirectforgetpassword()">فراموشی رمز</button>
+    </form>
+        
+    
+</div>
