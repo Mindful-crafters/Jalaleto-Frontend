@@ -2,6 +2,7 @@ import { RestService } from './../shared/services/Rest.service';
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Shared } from '../shared/services/shared.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-password',
@@ -10,8 +11,13 @@ import { Shared } from '../shared/services/shared.service';
 })
 export class NewPasswordComponent {
   NewPasswoedForm: FormGroup;
-
-  constructor(private formBuilder: FormBuilder, private restService: RestService, private shared : Shared) {
+  errorText = false;
+  constructor(
+    private formBuilder: FormBuilder,
+    private restService: RestService,
+    private shared: Shared,
+    private router: Router
+  ) {
 
   }
   emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -25,11 +31,27 @@ export class NewPasswordComponent {
   }
 
   GetCode() {
-    const email = this.NewPasswoedForm.getRawValue();
-    this.restService.postData<any>('User/SendRestPasswordEmail', email).subscribe(
+    const email = {
+      "email": this.NewPasswoedForm.get('email').value
+    }
+
+    this.restService.postData<any>('User/CheckEmail', email).subscribe(
       (response) => {
-        this.shared.setEmail(this.NewPasswoedForm.get('email').value);
-        this.shared.setHashStringEmail(response['hashString']);
+        if (response['exists']) {
+          this.router.navigate(['forgetpassword']);
+          this.restService.postData<any>('User/SendRestPasswordEmail', email).subscribe(
+            (response) => {
+              this.shared.setEmail(this.NewPasswoedForm.get('email').value);
+              this.shared.setHashStringEmail(response['hashString']);
+            }
+          )
+        }
+        else {
+          this.errorText = true;
+        }
+      },
+      (error) => {
+        this.errorText = true;
       }
     )
   }
