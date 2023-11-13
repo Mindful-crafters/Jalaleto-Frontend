@@ -36,7 +36,7 @@ export class SignUpComponent implements OnInit {
     private http: HttpClient,
     private Router: Router,
     private rest: RestService,
-    private shared : Shared
+    private shared: Shared
   ) { }
 
   ngOnInit(): void {
@@ -132,10 +132,19 @@ export class SignUpComponent implements OnInit {
 
     this.rest.postData<SignUPPerson>('User/SignUp', newPerson).subscribe(
       (res) => {
-        this.signUpSuccus = true;
-        setTimeout(() => {
-          this.Router.navigate(['login'])
-        }, 1500)
+        if (res['success']) {
+          this.signUpSuccus = true;
+          setTimeout(() => {
+            this.Router.navigate(['login'])
+          }, 1500)
+        }
+        else {
+          this.signUpFail = true;
+
+          setTimeout(() => {
+            this.signUpFail = false;
+          }, 1500)
+        }
       },
       (error) => {
         this.signUpFail = true;
