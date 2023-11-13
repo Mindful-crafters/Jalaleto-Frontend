@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Shared } from '../shared/services/shared.service';
 
 @Component({
   selector: 'app-forget-password',
@@ -7,21 +8,30 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./forget-password.component.scss']
 })
 export class ForgetPasswordComponent {
-  constructor(private formBuilder: FormBuilder) {
+  ForgetPasswordform: FormGroup;
+
+  constructor(private formBuilder: FormBuilder,private shared : Shared) {
 
   }
+
   ngOnInit(): void {
     this.ForgetPasswordform = this.formBuilder.group(
       {
-        email: new FormControl('', [Validators.required, Validators.pattern('[a-z0-9]+@[a-z]+\.[a-z]{1,20}')]),
-        username: [null, Validators.required],
         password: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[A-Z])(?=.*[0-9]).{8,}$')]),
         code: [null, Validators.required]
       }
     )
   }
 
-  ForgetPasswordform: FormGroup;
 
+  resetPassword(){
+    const body = {
+      "mail":this.shared.getEmail,
+      "code": this.ForgetPasswordform.get('code').value,
+      "newPassword": this.ForgetPasswordform.get('password').value,
+      "hashString": this.shared.getHashStringEmail
+    }
 
+    console.log(body)
+  }
 }
