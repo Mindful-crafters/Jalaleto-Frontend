@@ -21,15 +21,40 @@ export class ForgetPasswordComponent {
 
   }
 
+
   ngOnInit(): void {
     this.ForgetPasswordform = this.formBuilder.group(
       {
         password: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[A-Z])(?=.*[0-9]).{8,}$')]),
-        code: [null, Validators.required]
+        code: [null, Validators.required],
+        confirmPassword: ['', Validators.required] 
+      },
+      {
+        validators: this.passwordMatchValidator.bind(this)
       }
-    )
-  }
+    );
 
+    this.ForgetPasswordform.get('confirmPassword').valueChanges.subscribe(() => {
+      this.ForgetPasswordform.updateValueAndValidity();
+    });
+  }
+  
+  passwordMatchValidator(formGroup: FormGroup) {
+    const password = formGroup.get('password').value;
+    const confirmPassword = formGroup.get('confirmPassword').value;
+
+    const isMismatch = confirmPassword !== '' && password !== confirmPassword;
+
+    const control = formGroup.get('confirmPassword');
+    if (isMismatch) {
+      control.setErrors({ passwordMismatch: true });
+    } else {
+      control.setErrors(null);
+    }
+
+    return isMismatch ? { passwordMismatch: true } : null;
+  }
+  
 
   resetPassword(){
     const body = {
