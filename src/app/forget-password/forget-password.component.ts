@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class ForgetPasswordComponent {
   ForgetPasswordform: FormGroup;
+  error = false;
 
   constructor(
     private rest : RestService,
@@ -42,8 +43,15 @@ export class ForgetPasswordComponent {
 
     this.rest.postData<any>('User/ResetPassword',body).subscribe(
       (response)=>{
-        console.log(response);
-        this.router.navigate(['login']);
+        if(response['success']){
+          this.router.navigate(['login']);
+        }
+        else{
+          this.error = true;
+        }
+      },
+      (error)=>{
+        this.error = true;
       }
     )
   }
