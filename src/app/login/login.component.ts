@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
       (response) => {
         console.log(response);
         if (response['success']) {
-          this.auth.setToken(this.shared.getHashString);
+          this.auth.setToken(response['token']);
           this.Router.navigate(['dashboard']);
         }
       }

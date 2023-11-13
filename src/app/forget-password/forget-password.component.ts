@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Shared } from '../shared/services/shared.service';
+import { RestService } from '../shared/services/Rest.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-forget-password',
@@ -10,7 +12,11 @@ import { Shared } from '../shared/services/shared.service';
 export class ForgetPasswordComponent {
   ForgetPasswordform: FormGroup;
 
-  constructor(private formBuilder: FormBuilder,private shared : Shared) {
+  constructor(
+    private rest : RestService,
+    private formBuilder: FormBuilder,
+    private shared : Shared,
+    private router : Router) {
 
   }
 
@@ -33,5 +39,12 @@ export class ForgetPasswordComponent {
     }
 
     console.log(body)
+
+    this.rest.postData<any>('User/ResetPassword',body).subscribe(
+      (response)=>{
+        console.log(response);
+        this.router.navigate(['login']);
+      }
+    )
   }
 }
