@@ -21,14 +21,6 @@ export class ForgetPasswordComponent {
 
   }
 
-  // ngOnInit(): void {
-  //   this.ForgetPasswordform = this.formBuilder.group(
-  //     {
-  //       password: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[A-Z])(?=.*[0-9]).{8,}$')]),
-  //       code: [null, Validators.required]
-  //     }
-  //   )
-  // }
 
   ngOnInit(): void {
     this.ForgetPasswordform = this.formBuilder.group(
