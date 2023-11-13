@@ -15,7 +15,7 @@
                 name="password" ngModel />
             <mat-error>گذرواژه شامل حداقل 8 کاراکتر یک حرف بزرگ و یک عدد است.</mat-error>
         </mat-form-field>
-
+        <p *ngIf="error" class="error">حساب کاربری موجود نیست لطفا ثبت نام کنید </p>
         <mat-checkbox class="show-password-checkbox" disableRipple="true" #passwordVisibility></mat-checkbox>
         <span class="show-password-text">نمایش گذرواژه</span>
         <button mat-button class="redirect-to-forgetPassword-text" (click)="redirectforgetpassword()">رمز خود را فراموش
@@ -28,6 +28,7 @@
                 عضویت در جلالتو
             </button>
         </div>
+        
 
     </form>
 

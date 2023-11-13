@@ -12,6 +12,7 @@ import { Shared } from '../shared/services/shared.service';
 })
 export class LoginComponent implements OnInit {
 
+  error = false;
   logInForm: FormGroup;
   constructor(
     private Router: Router,
@@ -38,6 +39,13 @@ export class LoginComponent implements OnInit {
           this.auth.setToken(response['token']);
           this.Router.navigate(['dashboard']);
         }
+        else
+        {
+          this.error = true;
+        }
+      },
+      (error)=>{
+        this.error = true;
       }
     )
   }
