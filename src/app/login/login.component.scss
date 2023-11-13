@@ -1,85 +1,76 @@
+@import "../../theme/common.styles.scss";
+
 .containor {
-    direction: rtl;
-    width: 100%;
-    min-height: 100%;
     display: flex;
     justify-content: center;
-    background-color: #F7F7FF;
+    min-height: 100vh;
+    align-items: center;
+    background-color: #f7f7ff;
 
-    button:disabled {
-        opacity: 0.6;
+  button:disabled {
+    opacity: 0.6;
+  }
+
+  .log-in-form {
+    @include box-style();
+    width: 22rem;
+    background-color: #fff;
+    margin: 1.5rem 0;
+    padding:1rem;
+
+    .log-in-title {
+      font-size: 1.25rem;
     }
 
-    .log-in-form {
-        width: 25rem;
-        height: 29rem;
-        background-color: #fff;
-        margin: 7rem 0;
-        border-radius: 8px;
-        box-shadow: 0 0 1rem grey;
-        padding: 0 1rem;
-
-        .log-in-title {
-            font-size: 20px;
-            margin-inline-start: 25px;
-            margin-top: 25px;
-        }
-
-        .username-input {
-            width: 100%;
-            margin-top: 1rem;
-        }
-
-        .password-input {
-            width: 100%;
-            margin-top: 1rem;
-        }
-
-        .show-password-checkbox {
-            position: relative;
-            inset-inline-start: -0.5rem;
-        }
-
-        .show-password-text {
-            position: relative;
-            top: 1px;
-            inset-inline-start: -0.5rem;
-        }
-
-        .register-button {
-            width: 20rem;
-            height: 2.5rem;
-            background-color: #3a86ff;
-            border-radius: 7px;
-            margin-inline-start: 1.5rem;
-            color: #fff;
-            font-family: 'dana';
-            margin-top: 2rem;
-        }
-
-        .redirect-to-forgetPassword-text {
-            display: inline-block;
-            margin-inline-start: 5rem;
-            color: #3a86ff;
-            font-size: 13px;
-        }
-
-        .redirect-to-forgetPassword-link {
-            margin-inline-start: 0.5rem;
-        }
-
-        .redirect-to-forgetPassword-link {
-            font-family: 'dana';
-            color: #3a86ff;
-        }
-
-        .redirect-to-signup {
-            margin-top: 2rem;
-
-            .redirect-to-login-link {
-                color: var(--blue);
-                margin-inline-start: 1rem;
-            }
-        }
+    .username-input {
+      width: 100%;
+      margin-top: 1rem;
     }
+
+    .password-input {
+      width: 100%;
+    }
+
+    .show-password-checkbox {
+      position: relative;
+      inset-inline-start: -0.5rem;
+    }
+
+    .show-password-text {
+      position: relative;
+      top: 1px;
+      inset-inline-start: -0.5rem;
+    }
+
+    .register-button {
+      height: 2.5rem;
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    .redirect-to-forgetPassword-text {
+      display: inline-block;
+      margin-inline-start: 5rem;
+      color: #3a86ff;
+      font-size: 13px;
+    }
+
+    .redirect-to-forgetPassword-link {
+      margin-inline-start: 0.5rem;
+    }
+
+    .redirect-to-forgetPassword-link {
+      font-family: "dana";
+      color: #3a86ff;
+    }
+
+    .redirect-to-signup {
+      margin-top: 1rem;
+
+      .redirect-to-login-link {
+        color: var(--blue);
+        margin-inline-start: 1rem;
+      }
+    }
+  }
 }

@@ -7,6 +7,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgxOtpInputConfig } from 'ngx-otp-input';
 import { RestService } from '../shared/services/Rest.service';
 import { UserModel } from '../shared/types/UserModel.type';
+import { Shared } from '../shared/services/shared.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -29,17 +30,23 @@ export class SignUpComponent implements OnInit {
   formControl: FormControl;
   appearBtn = false;
 
-  constructor(private formBuilder: FormBuilder, private datePipe: DatePipe, private http: HttpClient, private Router: Router,
-    private rest: RestService) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private datePipe: DatePipe,
+    private http: HttpClient,
+    private Router: Router,
+    private rest: RestService,
+    private shared : Shared
+  ) { }
 
   ngOnInit(): void {
     this.signUpForm = this.formBuilder.group(
       {
-        mail: [null, [Validators.required, Validators.pattern(this.emailRegex)]],
-        lastName: [null, Validators.required],
-        firstName: [null, Validators.required],
+        mail: ['hi@gmil.com', [Validators.required, Validators.pattern(this.emailRegex)]],
+        lastName: ['amir', Validators.required],
+        firstName: ['salim', Validators.required],
         userName: [null, Validators.required, Validators.minLength(3)],
-        password: [null, [Validators.required, Validators.pattern('^(?=.*[A-Z])(?=.*[0-9]).{8,}$')]],
+        password: ['abcdA456', [Validators.required, Validators.pattern('^(?=.*[A-Z])(?=.*[0-9]).{8,}$')]],
         birthday: [null, [Validators.required, this.validateAge]]
       }
     )
@@ -64,7 +71,7 @@ export class SignUpComponent implements OnInit {
         console.log(response);
         if (response['success']) {
           this.isSignedClicked = true
-          this.hashString = response['hashString'];
+          this.shared.setHashString(response['hashString']);
           console.log(this.hashString);
         }
       },
@@ -117,7 +124,7 @@ export class SignUpComponent implements OnInit {
 
   verification() {
     const newPerson = this.signUpForm.getRawValue();
-    newPerson.hashString = this.hashString;
+    newPerson.hashString = this.shared.getHashString;
     newPerson.code = this.code
     newPerson.birthday = this.datePipe.transform(newPerson.birthday, 'yyyy-MM-dd').toString();
 
@@ -125,7 +132,13 @@ export class SignUpComponent implements OnInit {
 
     this.rest.postData<SignUPPerson>('User/SignUp', newPerson).subscribe(
       (res) => {
-        console.log(res)
+        this.signUpSuccus = true;
+        setTimeout(() => {
+          this.Router.navigate(['login'])
+        }, 1500)
+      },
+      (error) => {
+        this.signUpFail = true;
       }
     )
   }

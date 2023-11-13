@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Shared } from '../shared/services/shared.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,10 +16,11 @@ export class LoginComponent implements OnInit {
   constructor(
     private Router: Router,
     private formBuilder: FormBuilder,
-    private restService: RestService
-  ) {
+    private restService: RestService,
+    private auth : AuthService,
+    private shared : Shared
+  ) {}
 
-  }
   ngOnInit(): void {
     this.logInForm = this.formBuilder.group(
       {
@@ -29,19 +31,17 @@ export class LoginComponent implements OnInit {
   }
 
   login(info: { username: string, password: string }) {
-    console.log(info)
-    // console.log(this.logInForm.controls['password'].value)
-
     this.restService.postData<any>('User/Login', info).subscribe(
       (response) => {
         console.log(response);
         if (response['success']) {
+          this.auth.setToken(this.shared.getHashString);
           this.Router.navigate(['dashboard']);
         }
       }
     )
-
   }
+
   redirectforgetpassword() {
     this.Router.navigate(['newpassword']);
   }

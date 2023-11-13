@@ -6,6 +6,7 @@
 .profile-section {
   display: flex;
   background-color: red;
+  cursor: pointer;
 
   .profile-icon {
     display: inline;
@@ -25,3 +26,4 @@
     justify-content: center;
   }
 }
+
