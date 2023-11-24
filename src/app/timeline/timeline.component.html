@@ -4,6 +4,8 @@
        [ngClass]="{'hidden': hoveredBox !== null && hoveredBox !== i}"
        (mouseover)="onBoxHover(i)"
        (mouseout)="onBoxHoverOut()">
-    {{ box }}
+
+       <span class="dateNum">{{timelineItems[i].dayNum}}</span>
+       <div class="dateName">{{timelineItems[i].dayName}}</div>
   </div>
 </div>
