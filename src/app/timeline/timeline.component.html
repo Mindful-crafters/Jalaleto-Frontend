@@ -1,0 +1,9 @@
+<div class="container">
+    <div *ngFor="let box of boxes; let i = index"
+       class="box"
+       [ngClass]="{'hidden': hoveredBox !== null && hoveredBox !== i}"
+       (mouseover)="onBoxHover(i)"
+       (mouseout)="onBoxHoverOut()">
+    {{ box }}
+  </div>
+</div>

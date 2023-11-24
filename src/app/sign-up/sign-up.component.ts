@@ -140,6 +140,7 @@ export class SignUpComponent implements OnInit {
         }
         else {
           this.signUpFail = true;
+          console.log('result',res)
 
           setTimeout(() => {
             this.signUpFail = false;

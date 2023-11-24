@@ -19,13 +19,14 @@ import { SignupModule } from './sign-up/sign-up.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DatePipe } from '@angular/common';
+import { TimelineComponent } from './timeline/timeline.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ForgetPasswordComponent,
     NewPasswordComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
