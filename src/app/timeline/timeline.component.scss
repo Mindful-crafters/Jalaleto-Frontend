@@ -1,22 +1,36 @@
 @import "../../theme/common.styles.scss";
 
 .container {
+  @include box-style();
+
   width: 100%;
-  height: 20rem;
-  background-color: gray;
+  height: fit-content;
   border-radius: 1rem;
   display: flex;
   justify-content: center;
   padding: 1rem;
 }
 
-.box {
-  width: 100%;
+.things {
+  flex: 1;
+}
+
+.timeline{
+  flex: 1;
   display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.box {
+  width: 20%;
+  margin: 0.25rem;
+  display: flex;
+  position: relative;
   flex-direction: column;
   height: 4rem;
   color: var(--primary-text-color);
-  background-color:white;
+  background-color: white;
   transition: all 1s ease-out;
   border-radius: 0.5rem;
   border: 1px solid #577399;
@@ -24,20 +38,44 @@
 }
 
 .box.hidden {
-    width: 20%;
-    margin: 0;
+  width: 20%;
+  margin: 0;
+}
+
+.box.friday{
+  background-color: rgb(251, 200, 200);
 }
 
 .box:hover {
-  width: 60%;
+  height: 20rem;
+  width: 100%;
+
+  .dateNum {
+    opacity: 0.2;
+  }
 }
 
-.dateNum { 
-    align-self: center;
-    @include text-style(var(--primary-text-color), bold, 2rem);
+.title{
+  @include text-style(var(--primary-text-color), bold, 1.5rem);
+  margin-bottom: 1rem;
 }
 
-.dateName { 
-    justify-self: start;
-    align-items: end;
+.dateNum {
+  @include text-style(var(--primary-text-color), bold, 2rem);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dateName {
+  align-self: flex-start;
+  margin-bottom: 0;
+  margin-top: auto;
+  margin-inline-start: 0.5rem;
+}
+
+.divider {
+   border: 1px solid var(--primary-background-color);
+   margin: 1rem;
 }

@@ -23,7 +23,7 @@ export class TimelineComponent implements OnInit {
   generateTimeline() {
     const today = new Date();
 
-    for (let i = 0; i < 7; i++) {
+    for (let i = 6; i>=0; i--) {
       const date = new Date(today);
       date.setDate(today.getDate() + i);
 
@@ -35,7 +35,7 @@ export class TimelineComponent implements OnInit {
   }
 
   getDayName(dayIndex: number): string {
-    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const daysOfWeek = ['یکشنبه', 'دوشنبه', 'سه شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه', 'شنبه'];
     return daysOfWeek[dayIndex];
   }
 
