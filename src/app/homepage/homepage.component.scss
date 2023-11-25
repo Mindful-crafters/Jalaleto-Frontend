@@ -1,0 +1,76 @@
+@import "../../theme/common.styles.scss";
+.containor
+{
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f7f7ff;
+    .main-form
+    {
+        @include box-style();
+        width: 120vh;
+        background-color: #fff;
+        margin: 1.5rem 0;
+
+        .navbar
+        {
+            width: 100%;
+            height: 50px;
+            border: 0px solid;
+            background-color: bisque;
+            position: relative;
+            .digitalClock
+            {
+                position: relative;
+                justify-content: left;
+                height: 100vh;
+                width: 100vw;
+                margin-inline-start: 90%;
+                text-transform: uppercase;
+                display: flex;
+                flex-direction: column;
+            
+            }
+            .dayTitle
+            {
+                align-content: left;
+                justify-content: left;
+                font-size: 12px;
+                margin-bottom: 10px;
+            }
+            .digitalTime
+            {
+                display: flex;
+                position: relative;
+            }
+            .appm 
+            {
+                margin-top: 10px;
+                font-size: 10px;
+            }
+        }
+        .body
+        {
+            display: flex;
+            .pic
+            {
+                position: relative;
+                img{
+                    margin-top: -10vh;
+                    width: 1500px;
+                    margin-right: -13vh;
+                }
+            }
+            .text
+            {
+                position: relative;
+                margin-top: 30vh;
+                margin-right: -6vh;
+            }
+        }
+        
+        
+        
+
+    }    
+}
