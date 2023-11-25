@@ -19,6 +19,12 @@ import { SignupModule } from './sign-up/sign-up.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DatePipe } from '@angular/common';
+import { MatMenuModule} from '@angular/material/menu';
+// import { NavbarComponent } from './navbar/navbar.component';
+// import { FooterComponent } from './footer/footer.component';
+
+
+
 import { HomepageComponent } from './homepage/homepage.component';
 
 @NgModule({
@@ -43,9 +49,11 @@ import { HomepageComponent } from './homepage/homepage.component';
     MatNativeDateModule,
     SignupModule,
     HttpClientModule,
-    DashboardModule
+    MatMenuModule,
+
+
   ],
   providers: [DatePipe],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

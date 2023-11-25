@@ -1,0 +1,45 @@
+<nav class="navbar">
+  <div class="navbar-content">
+    <div class="navbar-brand">
+      <a href="#" class="navbar-logo">جلالتو</a>
+    </div>
+
+
+    <span>
+      <ul class="navbar-menu-right">
+        <li><a routerLink="/services">خانه</a></li>
+        <li><a routerLink="/services">خدمات</a></li>
+        <li><a routerLink="/services">درباره ما</a></li>
+      </ul>
+    </span>
+
+    <span class="spacer"></span>
+
+
+    <div class="notification" id="notification">
+      <div class="notification-icon">
+        <img src="../../assets/icons/bell-notification.jpg" alt="Notification Icon">
+      </div>
+    </div>
+
+    <!-- <button onclick="showNotification()">Show Notification</button> -->
+
+
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <div class="profile-icon">
+        <img src="../../assets/icons/person.svg" alt="Profile Image">
+      </div>
+    </button>
+
+
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="viewProfile()">مشاهده پروفایل</button>
+      <button mat-menu-item (click)="Events()">رویدادها</button>
+      <button mat-menu-item (click)="openSettings()">تنظیمات</button>
+      <button mat-menu-item (click)="logout()">خروج</button>
+    </mat-menu>
+
+
+  </div>
+</nav>
+

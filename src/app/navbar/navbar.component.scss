@@ -1,0 +1,77 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 1rem;
+
+  .navbar-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  .navbar-brand {
+    font-size: 1.5rem;
+    color: white;
+
+    .navbar-logo {
+      color: #495867;
+      font-family: IRANYekan, Tahoma, Helvetica, sans-serif;
+      text-decoration: unset;
+    }
+  }
+
+  .navbar-menu-left,
+  .navbar-menu-right {
+    list-style-type: none;
+    display: flex;
+    gap: 2rem;
+  }
+
+  .navbar-menu-left {
+    margin-left: 1rem;
+  }
+
+  .navbar-menu-right {
+    margin-right: 2rem;
+  }
+
+  .navbar-menu-left li a,
+  .navbar-menu-right li a {
+    color: #495867;
+    text-decoration: none;
+
+    &:hover {
+      color: lightgray;
+    }
+  }
+
+  .notification-icon {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+    cursor: pointer;
+
+    img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+  }
+
+  // .profile-icon {
+  //   display: flex;
+  //   align-items: center;
+  //   margin-right: 1rem;
+  //   cursor: pointer;
+
+  //   img {
+  //     width: 60px;
+  //     height: 30px;
+  //     border-radius: 50%;
+
+  //   }
+  // }
+}
