@@ -26,7 +26,10 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-//mat-input styles
+.reverse{
+  transform:  rotate(180deg);
+}
+
 .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mat-mdc-form-field-infix {
   padding-top: 9px !important;
 }
@@ -163,57 +166,60 @@ input:focus {
   width: 100% !important;
 }
 
-[dir=rtl] .mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field .mdc-notched-outline__notch {
+[dir="rtl"]
+  .mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field
+  .mdc-notched-outline__notch {
   border-right: none !important;
 }
 
 mat-error {
-    font-size: 10px !important;
-    margin-top: -3px !important;
+  font-size: 10px !important;
+  margin-top: -3px !important;
 }
 
 mat-hint {
-    font-size: 10px !important;
+  font-size: 10px !important;
 }
 
 //datepicker
 
 .mat-mdc-icon-button svg {
-    position: relative !important;
-    top: -6px !important;
-    inset-inline-end: 7px !important;
+  position: relative !important;
+  top: -6px !important;
+  inset-inline-end: 7px !important;
 }
 
 .mat-mdc-icon-button.mat-mdc-button-base {
-    --mdc-icon-button-state-layer-size: 35px !important;
-    margin-top: -14px !important;
-    margin-inline-end: 5px !important;
+  --mdc-icon-button-state-layer-size: 35px !important;
+  margin-top: -14px !important;
+  margin-inline-end: 5px !important;
 }
-
 
 mat-error {
-    font-size: 10px !important;
-    margin-top: -3px !important;
+  font-size: 10px !important;
+  margin-top: -3px !important;
 }
 
 mat-hint {
-    font-size: 10px !important;
+  font-size: 10px !important;
 }
 
-//datepicker
-
 .mat-mdc-icon-button svg {
-    position: relative !important;
-    top: -6px !important;
-    inset-inline-end: 7px !important;
+  position: relative !important;
+  top: -6px !important;
+  inset-inline-end: 7px !important;
 }
 
 .mat-mdc-icon-button.mat-mdc-button-base {
-    --mdc-icon-button-state-layer-size: 35px !important;
-    margin-top: -14px !important;
-    margin-inline-end: 5px !important;
+  --mdc-icon-button-state-layer-size: 35px !important;
+  margin-top: -14px !important;
+  margin-inline-end: 5px !important;
 }
 
-.mat-body p, .mat-body-2 p, .mat-typography .mat-body p, .mat-typography .mat-body-2 p, .mat-typography p {
+.mat-body p,
+.mat-body-2 p,
+.mat-typography .mat-body p,
+.mat-typography .mat-body-2 p,
+.mat-typography p {
   margin: 0;
 }

@@ -19,6 +19,7 @@ import { MatButtonModule } from '@angular/material/button';
         BrowserAnimationsModule,
         BrowserModule,
         AppRoutingModule,
+        MatButtonModule
     ]
 })
 export class DashboardModule { }
