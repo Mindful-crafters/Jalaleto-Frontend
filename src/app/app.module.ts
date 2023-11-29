@@ -16,16 +16,11 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
 import { NewPasswordComponent } from './new-password/new-password.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { SignupModule } from './sign-up/sign-up.module';
-import { DashboardModule } from './dashboard/dashboard.module';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DatePipe } from '@angular/common';
 import { MatMenuModule} from '@angular/material/menu';
-// import { NavbarComponent } from './navbar/navbar.component';
-// import { FooterComponent } from './footer/footer.component';
-
-
-
-import { HomepageComponent } from './homepage/homepage.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
@@ -33,7 +28,7 @@ import { HomepageComponent } from './homepage/homepage.component';
     ForgetPasswordComponent,
     NewPasswordComponent,
     LoginComponent,
-    HomepageComponent
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -47,11 +42,10 @@ import { HomepageComponent } from './homepage/homepage.component';
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    SignupModule,
     HttpClientModule,
     MatMenuModule,
-
-
+    SignupModule,
+    DashboardModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],
