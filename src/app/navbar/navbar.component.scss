@@ -1,4 +1,7 @@
+@import "../../theme/common.styles.scss";
+
 .navbar {
+  // background-color: #F7F7F7;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -58,6 +61,7 @@
       height: 60px;
       border-radius: 50%;
       margin-right: 8px;
+      // background-color: #F7F7F7;
     }
   }
 
