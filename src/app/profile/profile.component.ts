@@ -9,6 +9,8 @@ import { RestService } from '../shared/services/Rest.service';
 import { UserModel } from '../shared/types/UserModel.type';
 import { Shared } from '../shared/services/shared.service';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
+
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -24,7 +26,7 @@ export class ProfileComponent implements OnInit {
     private Router: Router,
     private rest: RestService,
     private shared: Shared
-  ) { 
+  ) {
     this.ProfileForm = this.formBuilder.group({
         mail: [null, [Validators.required, Validators.pattern(this.emailRegex)]],
         lastName: [null, Validators.required],
@@ -69,4 +71,7 @@ export class ProfileComponent implements OnInit {
     const seconds = date.getSeconds();
     this.second = seconds < 10 ? '0' + seconds : seconds.toString();
   }
+
+
+
 }
