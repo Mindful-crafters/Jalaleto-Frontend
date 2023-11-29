@@ -21,7 +21,8 @@ import { DatePipe } from '@angular/common';
 import { MatMenuModule} from '@angular/material/menu';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DashboardModule } from './dashboard/dashboard.module';
-
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from "@angular/material/core";
+import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from "./shared/persion-date.adapter";
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +48,11 @@ import { DashboardModule } from './dashboard/dashboard.module';
     SignupModule,
     DashboardModule,
   ],
-  providers: [DatePipe],
-  bootstrap: [AppComponent],
+  providers: [
+    DatePipe,
+    { provide: DateAdapter, useClass: MaterialPersianDateAdapter, deps: [MAT_DATE_LOCALE] },
+    { provide: MAT_DATE_FORMATS, useValue: PERSIAN_DATE_FORMATS }
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

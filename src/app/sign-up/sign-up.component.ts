@@ -64,7 +64,6 @@ export class SignUpComponent implements OnInit {
       "email": this.signUpForm.get('mail').value
     }
 
-    console.log(email)
 
     this.rest.postData<any>('User/SendVerifyEmail', email).subscribe(
       (response) => {
