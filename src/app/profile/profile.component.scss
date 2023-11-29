@@ -1,0 +1,152 @@
+@import "../../theme/common.styles.scss";
+.containor
+{
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f7f7ff;
+    
+    
+    
+    .profile-form
+    {
+        
+        width: 120vh;
+        background-color: #fff;
+        margin: 0.3rem 0;
+        
+        
+        .navbar
+        {
+            
+            .digitalClock
+            {
+                position: relative;
+                justify-content: left;
+                height: 100vh;
+                width: 100vw;
+                margin-inline-start: 90%;
+                text-transform: uppercase;
+                display: flex;
+                flex-direction: column;
+            
+            }
+            .dayTitle
+            {
+                align-content: left;
+                justify-content: left;
+                font-size: 12px;
+                margin-bottom: 10px;
+            }
+            .digitalTime
+            {
+                display: flex;
+                position: relative;
+            }
+            .appm 
+            {
+                margin-top: 10px;
+                font-size: 10px;
+            }
+        }
+        
+        
+        .info
+        {
+            margin-top: -3vh;
+            position: relative;
+            top: 18%;
+            margin-right: 40vh;
+            inset-inline-start: 10rem;
+            .input
+            {
+                font-size: 20px;
+                height: 34px;
+                width: 500px;
+                padding: 0px 12px;
+                font-size: 14px;
+                line-height: 1.42857143;
+                color: #707070;
+                background-color: #f5f5f5;
+                background-image: none;
+                border: 1px solid #c9c9c9;
+                border-radius: 4px;
+            }
+            .title
+            {
+                font-size: 30px;
+                margin-right: -3vh;
+                margin-top: -2vh;
+            
+            }
+            .p
+            {
+                font-size: 18px;
+            }
+            .register-button {
+                margin-right: 0vh;
+                margin-top: 3vh;
+                padding: 0cap;
+                height: 35px;
+                width: 150px;
+                font-size: 18px;
+                border: #fff;
+                
+            }
+            .primary-button[_ngcontent-ng-c2135402762] {
+                height: 30px;
+                width: 150px;
+                background-color: var(--blue);
+                color: white !important;
+                border-radius: 7px;
+            }
+        }
+        .pic
+        {
+            
+            .profile
+            {
+                
+                width: 250px;
+                margin-top: -28vh;
+                margin-right: 25vh;
+            }
+            
+            #circle
+            {
+                // background: #614141;
+                // border-radius: 50%;
+                // width: 100px;
+                // height: 100px;
+                // margin-top: 50vh;
+                width: 65px;
+                height: 65px;
+                margin: 20px;
+                shape-outside: circle();
+                clip-path: circle();
+                background: #d7d7eb;
+                margin-right: 25vh;
+                margin-top: -6vh;
+                
+                .edit
+                {
+                    img{
+                        width: 80px;
+                        margin-right: -19vh;
+                    }
+                    width: 45px;
+                    box-sizing: border-box;
+                    margin: 0;
+                    padding: 0;
+                    letter-spacing: 0 !important;
+                    margin-right: 0.7vh;
+                    margin-top: 0.8vh
+                    
+                }
+                
+            }
+            
+        }
+        
+    }    
+}
