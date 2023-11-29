@@ -1,6 +1,5 @@
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http'
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -9,6 +8,10 @@ import { RestService } from '../shared/services/Rest.service';
 import { UserModel } from '../shared/types/UserModel.type';
 import { Shared } from '../shared/services/shared.service';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
+import { AuthService } from './../shared/services/auth.service';
+import { AbstractControl, ValidationErrors, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
