@@ -38,8 +38,8 @@
 
     <mat-form-field class="date-picker" appearance="outline" hideRequiredMarker>
       <mat-label>تاریخ تولد خود را انتخاب کنید</mat-label>
-      <input formControlName="birthday" matInput [matDatepicker]="datepicker" />
-      <mat-hint>MM/DD/YYYY</mat-hint>
+      <input style="margin-top: 0.25rem;" formControlName="birthday" matInput [matDatepicker]="datepicker" />
+      <mat-hint>YYYY/MM/DD</mat-hint>
       <mat-error>لطفا تاریخ صحیح وارد کنید.</mat-error>
       <mat-datepicker-toggle [disableRipple]="" matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
       <mat-datepicker #datepicker>
