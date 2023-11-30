@@ -1,10 +1,10 @@
+import { RestService } from './../shared/services/Rest.service';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http'
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgxOtpInputConfig } from 'ngx-otp-input';
-import { RestService } from '../shared/services/Rest.service';
 import { UserModel } from '../shared/types/UserModel.type';
 import { Shared } from '../shared/services/shared.service';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
@@ -18,23 +18,38 @@ import { AbstractControl, ValidationErrors, FormBuilder, FormControl, FormGroup,
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  tokenData: any;
+  tokenData: {
+    FirstName: string,
+    LastName: string,
+    UserName: string,
+    Birthday: string,
+    Email: string,
+    Image: string
+
+  } = {
+      FirstName: "",
+      LastName: "",
+      UserName: "",
+      Birthday: "",
+      Email: "",
+      Image: ""
+    }
   session: any;
   // dynamicLabel: string = 'نام';
   // change()
   // {
   //   this.dynamicLabel = 'احمد';
   // }
-  ProfileForm: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
     private datePipe: DatePipe,
     private http: HttpClient,
     private Router: Router,
     private rest: RestService,
-    private shared: Shared
-  ) { 
-    
+    private shared: Shared,
+    private restService: RestService,
+  ) {
+
   }
   emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   validateAge(control: AbstractControl): ValidationErrors | null {
@@ -56,41 +71,28 @@ export class ProfileComponent implements OnInit {
   public day: string;
   ngOnInit() {
     const token = '';
-    this.tokenData= {
-      FirstName: String,
-      LastName: String,
-      UserName: String,
-      Birthday: String,
-      Email: String,
 
-    }
-    this.ProfileForm = this.formBuilder.group(
-      {
-        lastName: [null, Validators.required],
-        firstName: [null, Validators.required],
-        userName: [null, Validators.required, Validators.minLength(3)],
-        birthday: [null, [Validators.required, this.validateAge]],
-        mail: [null, [Validators.required, Validators.pattern(this.emailRegex)]],
-      }
-    )
     //load data from local storage
-    this.tokenData = this.parseToken(token);
-    let data = localStorage.getItem('session')
-    this.session = JSON.parse(data);
+    // this.tokenData = this.parseToken(token);
+    // let data = localStorage.getItem('session')
+    // this.session = JSON.parse(data);
     setInterval(() => {
       const date = new Date();
       this.updateDate(date);
     }, 1000)
     this.day = this.dayArray[this.date.getDay()];
+    this.restService.postData("User/ProfileInfo", null).subscribe((res) => {
+      console.log(res);
+
+    })
   }
-  private parseToken(token: string): any{
-      const tokenParts = token.split('.');
-      if(tokenParts.length===3)
-      {
-        const decode = atob(tokenParts[1]);
-        return JSON.parse(decode);
-      }
-      return null;
+  private parseToken(token: string): any {
+    const tokenParts = token.split('.');
+    if (tokenParts.length === 3) {
+      const decode = atob(tokenParts[1]);
+      return JSON.parse(decode);
+    }
+    return null;
   }
   private updateDate(date: Date) {
     const hours = date.getHours();
