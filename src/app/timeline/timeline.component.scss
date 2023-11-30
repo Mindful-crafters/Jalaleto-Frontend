@@ -3,22 +3,39 @@
 .container {
   @include box-style();
 
-  width: 100%;
+  width: 60%;
   height: fit-content;
   border-radius: 1rem;
   display: flex;
   padding: 1rem;
+
+  ::-webkit-scrollbar {
+    width: 0.25rem;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 1rem rgb(200, 200, 200);
+    border-radius: 10px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: var(--blue);
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-text-color);
+  }
 }
 
 .timeline {
-  width: 30rem;
+  width: 100%;
   display: flex;
   flex-direction: column;
   height: 100%;
-}
-
-.add-event-btn {
-  display: none;
 }
 
 .box {
@@ -34,17 +51,21 @@
   border-radius: 0.5rem;
   border: 1px solid #577399;
   justify-content: center;
+
+  .hovered-box {
+    display: none;
+  }
+
+  .add-event-btn {
+    display: none;
+  }
 }
 
 .box.hidden {
   margin: 0;
 }
 
-.box.friday {
-  background-color: rgb(251, 200, 200);
-}
-
-.box:hover {
+.box.clicked {
   height: 20rem;
   width: 100%;
 
@@ -52,16 +73,36 @@
     opacity: 0.2;
   }
 
-  .add-event-btn {
-    width: fit-content;
-    align-self: flex-end;
-    margin: 0.5rem;
+  .hovered-box {
+    display: unset;
+
+    &.title {
+      margin: 1rem;
+    }
   }
 }
 
-.title {
+.box.big {
+  height: 20rem;
+  width: 100%;
+
+  .dateNum {
+    opacity: 0.2;
+  }
+
+  .hovered-box {
+    display: unset;
+
+    &.title {
+      margin: 1rem;
+    }
+  }
+}
+
+.things .title {
   @include text-style(var(--primary-text-color), bold, 1.5rem);
-  margin-bottom: 1rem;
+  margin: 1rem 0;
+  width: max-content;
 }
 
 .dateNum {
@@ -85,6 +126,11 @@
   margin: 1rem;
 }
 
+.historical-events {
+  height: 14rem;
+  overflow: auto;
+}
+
 .history-event-item {
   margin: 0.5rem 0;
   @include text-style(var(--primary-text-color), normal, 1rem);
@@ -99,4 +145,20 @@
   padding-top: 0.5rem;
   width: 4rem;
   height: 1.5rem;
+}
+
+.circle {
+  display: inline-block;
+  min-width: 0.5rem;
+  min-height: 0.5rem;
+  border-radius: 50%;
+  margin-inline-end: 0.5rem;
+
+  &.blue {
+    background-color: var(--blue);
+  }
+
+  &.green {
+    background-color: green;
+  }
 }

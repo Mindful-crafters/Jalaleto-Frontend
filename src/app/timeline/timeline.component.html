@@ -3,9 +3,24 @@
     <p class="title">رویداد های پیش رو</p>
 
     <div class="historical-events">
-      <div *ngFor="let event of historicalEvents;let i = index" class="history-event-item">
-        <span>{{event.dayNum}}</span>
-        <span>{{event.event}}</span>
+      <div
+        *ngFor="let event of historicalEvents; let i = index"
+        class="history-event-item"
+      >
+        <span>{{ event.dayNum }}</span>
+        <span>{{ event.event }}</span>
+      </div>
+    </div>
+
+    <p class="title">یادآوری های پیش رو</p>
+
+    <div class="historical-events">
+      <div
+        *ngFor="let event of historicalEvents; let i = index"
+        class="history-event-item"
+      >
+        <span>{{ event.dayNum }}</span>
+        <span>{{ event.event }}</span>
       </div>
     </div>
   </div>
@@ -13,30 +28,41 @@
   <div class="divider"></div>
 
   <div class="timeline">
-    <p class="this-week title">هفته پیش رو</p>
-
     <button (click)="updateTimeLine('up')" mat-button class="change-week-btn">
-      <img src="../../assets/icons/up-arrow.svg">
+      <img src="../../assets/icons/up-arrow.svg" />
     </button>
 
     <div
       *ngFor="let box of currentWeek; let i = index"
       class="box"
       [ngClass]="{
-        hidden: hoveredBox !== null && hoveredBox !== i,
-        friday: i === 6
+        'big' : i === selectedBox
       }"
-      (click)="onBoxHover(i)">
+      (click)="toggleSize(i)"
+      >
+      <div class="hovered-box title">
+        <div>
+          <span class="circle blue"></span>
+          <span>رویداد</span>
+        </div>
+        <div>
+          <span class="circle green"></span>
+          <span>یادآوری</span>
+        </div>
+      </div>
 
-      <button class="add-event-btn" mat-button>افزودن رویداد</button>
-      
       <span class="dateNum">{{ displayedTimeLine[i].dayNum }}</span>
+
+      <!-- <span class="hovered-box title">رویداد ها</span> -->
+
       <div class="dateName">{{ displayedTimeLine[i].dayName }}</div>
     </div>
 
-    <button (click)="updateTimeLine('down')" mat-button class="change-week-btn reverse down">
-      <img src="../../assets/icons/up-arrow.svg">
+    <button
+      (click)="updateTimeLine('down')"
+      mat-button
+      class="change-week-btn reverse down">
+      <img src="../../assets/icons/up-arrow.svg" />
     </button>
-
-  </div>  
+  </div>
 </div>

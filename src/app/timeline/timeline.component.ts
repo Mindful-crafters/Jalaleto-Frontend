@@ -1,10 +1,13 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { persiancalendarservice } from './../shared/services/persiancalendarservice.service';
+import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { Subject, debounceTime } from 'rxjs';
+
 
 @Component({
   selector: 'app-timeline',
   templateUrl: './timeline.component.html',
   styleUrls: ['./timeline.component.scss'],
+  providers: [persiancalendarservice]
 })
 
 export class TimelineComponent implements OnInit {
@@ -14,6 +17,7 @@ export class TimelineComponent implements OnInit {
   currentWeek = [1, 2, 3, 4, 5, 6, 7];
   hoveredBox: number | null = null;
   private hoverSubject = new Subject<number>();
+  selectedBox: number | null = null;
 
   historicalEvents: HistoricalEvent[] = [
     { dayNum: 1, event: 'آذر جشن' },
@@ -27,10 +31,30 @@ export class TimelineComponent implements OnInit {
     { dayNum: 29, event: 'روز بیمه' },
   ];
 
-  constructor() {
+  constructor(
+    private el : ElementRef,
+    public persiancalendarservice: persiancalendarservice) {
     this.hoverSubject.pipe(debounceTime(200)).subscribe(index => {
       this.hoveredBox = index;
     });
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    // Check if the click is outside of the big box
+    if (this.selectedBox !== null && !this.isClickInsideBigBox(event)) {
+      this.selectedBox = null;
+    }
+  }
+
+  toggleSize(index: number): void {
+    // Toggle the 'big' class for the clicked box
+    this.selectedBox = index;
+  }
+
+  private isClickInsideBigBox(event: MouseEvent): boolean {
+    const bigBox = this.el.nativeElement.querySelector('.box.big');
+    return bigBox ? bigBox.contains(event.target as Node) : false;
   }
 
   updateTimeLine(direction: string) {
@@ -44,7 +68,7 @@ export class TimelineComponent implements OnInit {
         const WeekItem: TimeLineItem = {
           date: pastDate,
           dayName: item.dayName,
-          dayNum: pastDate.getDate(),
+          dayNum: this.persiancalendarservice.returnPeaceOfDate(pastDate, 'day'),
         };
 
         updatedWeek.push(WeekItem)
@@ -58,7 +82,7 @@ export class TimelineComponent implements OnInit {
         const WeekItem: TimeLineItem = {
           date: pastDate,
           dayName: item.dayName,
-          dayNum: pastDate.getDate(),
+          dayNum: this.persiancalendarservice.returnPeaceOfDate(pastDate, 'day'),
         };
 
         updatedWeek.push(WeekItem)
@@ -66,7 +90,6 @@ export class TimelineComponent implements OnInit {
     }
 
     this.displayedTimeLine = updatedWeek;
-    console.log(this.displayedTimeLine)
   }
 
   ngOnInit() {
@@ -78,14 +101,19 @@ export class TimelineComponent implements OnInit {
 
   }
 
+  getJalaliDate(date: Date) {
+    return this.persiancalendarservice.persiancalendar(date);
+  }
+
   generateTimeline() {
     const today = new Date();
+    console.log(this.persiancalendarservice.returnPeaceOfDate(today, 'day'))
 
     for (let i = 0; i < 7; i++) {
       const date = new Date(today);
       date.setDate(today.getDate() + i);
 
-      const dayNum = date.getDate(); // Extract the day of the month
+      const dayNum = this.persiancalendarservice.returnPeaceOfDate(date, 'day')
       const dayName = this.getDayName(date.getDay());
 
       this.timelineItems.push({ date, dayName, dayNum });
