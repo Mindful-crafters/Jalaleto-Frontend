@@ -16,7 +16,6 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
 import { NewPasswordComponent } from './new-password/new-password.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { SignupModule } from './sign-up/sign-up.module';
-import { DashboardModule } from './dashboard/dashboard.module';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DatePipe } from '@angular/common';
 import { MatMenuModule} from '@angular/material/menu';
@@ -32,8 +31,9 @@ import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from "./shared/persi
     AppComponent,
     ForgetPasswordComponent,
     NewPasswordComponent,
-    LoginComponent
-
+    LoginComponent,
+    NavbarComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -47,17 +47,17 @@ import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from "./shared/persi
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    SignupModule,
     HttpClientModule,
     MatMenuModule,
-
-
+    SignupModule,
+    DashboardModule,
+    ProfileModule
   ],
   providers: [
     DatePipe,
     { provide: DateAdapter, useClass: MaterialPersianDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: PERSIAN_DATE_FORMATS }
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
