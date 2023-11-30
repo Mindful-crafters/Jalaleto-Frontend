@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(info: { username: string, password: string }) {
-    this.restService.postData<any>('User/Login', info).subscribe(
+    this.restService.postWithoutHeader<any>('User/Login', info).subscribe(
       (response) => {
         console.log(response);
         if (response['success']) {
