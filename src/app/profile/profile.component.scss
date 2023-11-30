@@ -10,15 +10,11 @@
     
     .profile-form
     {
-        
         width: 120vh;
         background-color: #fff;
         margin: 0.3rem 0;
-        
-        
         .navbar
         {
-            
             .digitalClock
             {
                 position: relative;
@@ -50,7 +46,6 @@
             }
         }
         
-        
         .info
         {
             margin-top: -3vh;
@@ -58,19 +53,26 @@
             top: 18%;
             margin-right: 40vh;
             inset-inline-start: 10rem;
-            .input
+            
+            .FirstName
             {
-                font-size: 20px;
-                height: 34px;
-                width: 500px;
-                padding: 0px 12px;
-                font-size: 14px;
-                line-height: 1.42857143;
-                color: #707070;
-                background-color: #f5f5f5;
-                background-image: none;
-                border: 1px solid #c9c9c9;
-                border-radius: 4px;
+                width: 50%; 
+            }
+            .LastName
+            {
+                width: 50%;
+            }
+            .Birthday
+            {
+                width: 50%;
+            }
+            .Email
+            {
+                width: 50%;
+            }
+            .Username
+            {
+                width: 50%;
             }
             .title
             {
@@ -91,7 +93,6 @@
                 width: 150px;
                 font-size: 18px;
                 border: #fff;
-                
             }
             .primary-button[_ngcontent-ng-c2135402762] {
                 height: 30px;
@@ -103,10 +104,8 @@
         }
         .pic
         {
-            
             .profile
             {
-                
                 width: 250px;
                 margin-top: -28vh;
                 margin-right: 25vh;
@@ -114,11 +113,6 @@
             
             #circle
             {
-                // background: #614141;
-                // border-radius: 50%;
-                // width: 100px;
-                // height: 100px;
-                // margin-top: 50vh;
                 width: 65px;
                 height: 65px;
                 margin: 20px;

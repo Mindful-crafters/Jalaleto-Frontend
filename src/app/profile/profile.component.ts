@@ -18,7 +18,13 @@ import { AbstractControl, ValidationErrors, FormBuilder, FormControl, FormGroup,
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-
+  tokenData: any;
+  session: any;
+  // dynamicLabel: string = 'نام';
+  // change()
+  // {
+  //   this.dynamicLabel = 'احمد';
+  // }
   ProfileForm: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
@@ -28,13 +34,7 @@ export class ProfileComponent implements OnInit {
     private rest: RestService,
     private shared: Shared
   ) { 
-    this.ProfileForm = this.formBuilder.group({
-        mail: [null, [Validators.required, Validators.pattern(this.emailRegex)]],
-        lastName: [null, Validators.required],
-        firstName: [null, Validators.required],
-        userName: [null, Validators.required, Validators.minLength(3)],
-        birthday: [null, [Validators.required, this.validateAge]]
-    })
+    
   }
   emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   validateAge(control: AbstractControl): ValidationErrors | null {
@@ -55,11 +55,42 @@ export class ProfileComponent implements OnInit {
   public ampm: string;
   public day: string;
   ngOnInit() {
+    const token = '';
+    this.tokenData= {
+      FirstName: String,
+      LastName: String,
+      UserName: String,
+      Birthday: String,
+      Email: String,
+
+    }
+    this.ProfileForm = this.formBuilder.group(
+      {
+        lastName: [null, Validators.required],
+        firstName: [null, Validators.required],
+        userName: [null, Validators.required, Validators.minLength(3)],
+        birthday: [null, [Validators.required, this.validateAge]],
+        mail: [null, [Validators.required, Validators.pattern(this.emailRegex)]],
+      }
+    )
+    //load data from local storage
+    this.tokenData = this.parseToken(token);
+    let data = localStorage.getItem('session')
+    this.session = JSON.parse(data);
     setInterval(() => {
       const date = new Date();
       this.updateDate(date);
     }, 1000)
     this.day = this.dayArray[this.date.getDay()];
+  }
+  private parseToken(token: string): any{
+      const tokenParts = token.split('.');
+      if(tokenParts.length===3)
+      {
+        const decode = atob(tokenParts[1]);
+        return JSON.parse(decode);
+      }
+      return null;
   }
   private updateDate(date: Date) {
     const hours = date.getHours();
@@ -71,5 +102,14 @@ export class ProfileComponent implements OnInit {
     this.minute = minutes < 10 ? '0' + minutes : minutes.toString();
     const seconds = date.getSeconds();
     this.second = seconds < 10 ? '0' + seconds : seconds.toString();
+
+    
   }
+}
+
+interface ProfileResult {
+  token?: string,
+  success: boolean,
+  code: number,
+  message: string,
 }

@@ -23,13 +23,17 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from "@angular/material/core";
 import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from "./shared/persion-date.adapter";
+import { ProfileComponent } from './profile/profile.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProfileModule } from './profile/profile.module';
 @NgModule({
   declarations: [
     AppComponent,
     ForgetPasswordComponent,
     NewPasswordComponent,
     LoginComponent,
-    NavbarComponent
+    NavbarComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -47,6 +51,7 @@ import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from "./shared/persi
     MatMenuModule,
     SignupModule,
     DashboardModule,
+    ProfileModule
   ],
   providers: [
     DatePipe,

@@ -1,5 +1,5 @@
 <div [dir]="'rtl'" class="containor">
-    <form class="profile-form">
+    <form class="profile-form" [formGroup]="ProfileForm">
         <!-- <div class="navbar">
             <div class="digitalClock">
                 <div class="dayTitle">
@@ -14,23 +14,50 @@
         <div class="info">
             
             <h1 class="title">درباره کاربر</h1>
-            <!-- <mat-form-field class="input" appearance="outline" hideRequiredMarker>
-                <mat-label>نام</mat-label>
-            </mat-form-field> -->
+            <br>
+            <div>
+                <p>نام</p>
+                <mat-form-field class="FirstName" appearance="outline" hideRequiredMarker>
+                    <mat-label>{{session.FirstName}}</mat-label>
+                    <input [(ngModel)]="tokenData.FirstName" formControlName="firstName" matInput/>
+                </mat-form-field>
+            </div>
+            <div>
+                <div class="p">
+                    <p>نام خانوادگی</p>
+                </div>
+                
+                <mat-form-field class="LastName" appearance="outline" hideRequiredMarker>
+                    <mat-label>{{session.LastName}}</mat-label>
+                    <input [(ngModel)]="tokenData.LastName" formControlName="firstName" matInput/>
+                </mat-form-field>
+            </div>
+            <div>
+                <div class="p">
+                    <p>نام کاربری</p>
+                </div>
+                
+                <mat-form-field class="Username" appearance="outline" hideRequiredMarker>
+                    <mat-label>{{session.UserName}}</mat-label>
+                    <input [(ngModel)]="tokenData.UserName" formControlName="firstName" matInput/>
+                </mat-form-field>
+            </div>
+            <div>
+                <p class="p">تاریخ تولد</p>
+                <mat-form-field class="Birthday" appearance="outline" hideRequiredMarker>
+                    <mat-label>{{session.Birthday}}</mat-label>
+                    <input [(ngModel)]="tokenData.Birthday" formControlName="firstName" matInput/>
+                </mat-form-field>
+            </div>
+            <div>
+                <p>ایمیل</p>
+                <mat-form-field class="Email" appearance="outline" hideRequiredMarker>
+                    <mat-label>{{session.Email}}</mat-label>
+                    <input [(ngModel)]="tokenData.Email" formControlName="firstName" matInput/>
+                </mat-form-field>
+            </div>
             
-            <input class="input" matInput>
-            <br><br>
-            <p class="p">نام خانوادگی</p>
-            <input class="input">
-            <br><br>
-            <p class="p">تاریخ تولد</p>
-            <input class="input">
-            <br><br>
-            <p class="p">ایمیل</p>
-            <input class="input">
-            <br><br>
-            <p class="p">کلمه عبور</p>
-            <input class="input">
+            
             <div>
                 <button type="button" mat-button class="register-button primary-button">
                     ثبت تغییرات
@@ -40,7 +67,7 @@
         <div class="pic">
             <img class="profile" src="/assets/SL_100820_36440_10-Recovered.svg">
             <div id="circle">
-                <button><img class="edit" src="/assets/icons8-camera-24.svg"></button>
+                <button><img [(ngModel)]="tokenData.Image" class="edit" src="/assets/icons8-camera-24.svg"></button>
             </div>
         </div>    
     </form>    
