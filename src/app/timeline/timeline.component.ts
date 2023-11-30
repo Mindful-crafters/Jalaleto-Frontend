@@ -11,6 +11,9 @@ import { Subject, debounceTime } from 'rxjs';
 })
 
 export class TimelineComponent implements OnInit {
+  displayedMonth: string = '';
+  displayedYear : string = '';
+
   timelineItems: TimeLineItem[] = [];
   displayedTimeLine: TimeLineItem[] = [];
   isContentVisible = false;
@@ -19,20 +22,17 @@ export class TimelineComponent implements OnInit {
   private hoverSubject = new Subject<number>();
   selectedBox: number | null = null;
 
-  events = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 24, 215, 65, 55, 4]
-
   timeObjects: PersonalTimeObject[] = [
-    { startTime: '12:15', endTime: '13:15', title: 'جلسه', type: 'event' },
-    { startTime: '8:15', endTime: '10:15', title: 'جلسه', type: 'remainder' },
-    { startTime: '12:15', endTime: '13:15', title: 'جلسه', type: 'event' },
-    { startTime: '12:15', endTime: '13:15', title: 'جلسه', type: 'remainder' },
-    { startTime: '12:15', endTime: '13:15', title: 'جلسه', type: 'remainder' },
-    { startTime: '12:15', endTime: '13:15', title: 'جلسه', type: 'event' },
-    { startTime: '12:15', endTime: '13:15', title: 'جلسه', type: 'event' },
-    { startTime: '12:15', endTime: '13:15', title: 'جلسه', type: 'event' },
-    { startTime: '12:15', endTime: '13:15', title: 'جلسه', type: 'event' },
-
-  ]
+    { startTime: '12:15', priority: 'بالا', title: 'جلسه', type: 'event' },
+    { startTime: '8:15', priority: 'عادی', title: 'جلسه', type: 'remainder' },
+    { startTime: '12:15', priority: 'کم', title: 'جلسه', type: 'event' },
+    { startTime: '12:15', priority: 'کم', title: 'جلسه', type: 'remainder' },
+    { startTime: '12:15', priority: 'عادی', title: 'جلسه', type: 'remainder' },
+    { startTime: '12:15', priority: 'عادی', title: 'جلسه', type: 'event' },
+    { startTime: '12:15', priority: 'عادی', title: 'جلسه', type: 'event' },
+    { startTime: '12:15', priority: 'عادی', title: 'جلسه', type: 'event' },
+    { startTime: '12:15', priority: 'عادی', title: 'جلسه', type: 'event' }
+  ];
 
   historicalEvents: HistoricalEvent[] = [
     { dayNum: 1, event: 'آذر جشن' },
@@ -56,14 +56,12 @@ export class TimelineComponent implements OnInit {
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {
-    // Check if the click is outside of the big box
     if (this.selectedBox !== null && !this.isClickInsideBigBox(event)) {
       this.selectedBox = null;
     }
   }
 
   toggleSize(index: number): void {
-    // Toggle the 'big' class for the clicked box
     this.selectedBox = index;
   }
 
@@ -147,6 +145,16 @@ export class TimelineComponent implements OnInit {
   onBoxHoverOut(): void {
     this.hoverSubject.next(null);
   }
+
+  diplayedDate(date : Date){
+    let result : string = '';
+
+    const day = this.persiancalendarservice.returnPeaceOfDate(date, 'day');
+    const month = this.persiancalendarservice.returnMonth(date);
+    const year = this.persiancalendarservice.returnPeaceOfDate(date, 'year');
+
+    return day + " " + month + " " + year;
+  }
 }
 
 export interface TimeLineItem {
@@ -162,7 +170,7 @@ export interface HistoricalEvent {
 
 export interface PersonalTimeObject {
   startTime: string;
-  endTime: string;
+  priority: string;
   title: string;
   type: string;
 }

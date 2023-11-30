@@ -51,6 +51,7 @@
   border-radius: 0.5rem;
   border: 1px solid #577399;
   justify-content: center;
+  cursor: pointer;
 
   .hovered-box {
     display: none;
@@ -64,6 +65,7 @@
 .box.big {
   height: 20rem;
   width: 100%;
+  cursor: unset;
 
   .dateNum {
     opacity: 0.2;
@@ -147,7 +149,7 @@
 }
 
 .things .title {
-  @include text-style(var(--primary-text-color), bold, 1.5rem);
+  @include text-style(var(--primary-text-color), bold, 1rem);
   margin: 1rem 0;
   width: max-content;
 }

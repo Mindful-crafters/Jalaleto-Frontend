@@ -4,6 +4,7 @@ export class persiancalendarservice {
   weekdaynames: string[] = ["شنبه", "یکشنبه", "دوشنبه",
     "سه شنبه", "چهارشنبه",
     "پنج شنبه", "جمعه"];
+    
   monthnames: string[] = [
     "فروردین",
     "اردیبهشت",
@@ -17,6 +18,7 @@ export class persiancalendarservice {
     "دی",
     "بهمن",
     "اسفند"];
+
   strweekday: string = null;
   strmonth: string = null;
   day: number = null;
@@ -43,6 +45,8 @@ export class persiancalendarservice {
     this.gregorianmonth = this.today.getMonth() + 1;
     this.gregoriandate = this.today.getDate();
     this.weekday = this.today.getDay();
+
+    console.log('gregorian month : ',this.gregorianmonth)
     this.topersian(gregoriandate);
     return this.strweekday + " " + this.day + " " + this.strmonth + " " + this.year;
   }
@@ -58,12 +62,24 @@ export class persiancalendarservice {
     if (name == 'day') {
       return this.day;
     } else if (name == 'month') {
-      return this.month
+      // console.log(this.month)
+      return this.month;
     } else if (name == 'year') {
       return this.year;
     }
 
     return 0;
+  }
+
+  returnMonth(gregoriandate: Date) {
+    this.today = gregoriandate;
+    this.gregorianyear = this.today.getFullYear();
+    this.gregorianmonth = this.today.getMonth() + 1;
+    this.gregoriandate = this.today.getDate();
+    this.weekday = this.today.getDay();
+    this.topersian(gregoriandate);
+
+    return this.strmonth;
   }
 
   topersian(gregoriandate) {

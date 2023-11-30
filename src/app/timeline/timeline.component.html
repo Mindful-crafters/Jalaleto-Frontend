@@ -63,7 +63,7 @@
 
         <div class="start-time">شروع</div>
 
-        <div class="end-time">پایان</div>
+        <div class="priority">الویت</div>
 
         <div class="more">بیشتر</div>
       </div>
@@ -81,8 +81,8 @@
             {{ item.startTime }}
           </div>
 
-          <div class="end-time">
-            {{ item.endTime }}
+          <div class="الویت">
+            {{ item.priority }}
           </div>
 
           <div class="more">
@@ -102,7 +102,16 @@
 
       <span class="dateNum">{{ displayedTimeLine[i].dayNum }}</span>
 
-      <div class="dateName">{{ displayedTimeLine[i].dayName }}</div>
+      <div class="dateName">
+        <!-- <span>
+          {{ displayedTimeLine[i].dayName }}
+        </span> -->
+        <span class="dateNumSmall">{{ displayedTimeLine[i].dayName }}</span>
+
+        <span class="hovered-box">
+          {{diplayedDate(displayedTimeLine[i].date)}}
+        </span>
+      </div>
     </div>
 
     <button
