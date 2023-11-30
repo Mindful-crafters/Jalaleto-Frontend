@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard.component';
 import { TimelineComponent } from '../timeline/timeline.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
 
 @NgModule({
     declarations: [
@@ -21,6 +22,7 @@ import { MatRippleModule } from '@angular/material/core';
         AppRoutingModule,
         MatButtonModule,
         MatRippleModule,
+        NzPopoverModule
     ]
 })
 export class DashboardModule { }

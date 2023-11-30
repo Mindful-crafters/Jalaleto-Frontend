@@ -135,6 +135,13 @@
       flex-direction: row;
       justify-content: space-around;
 
+      & .title {
+        span{
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
+
       & > div {
         flex: 1;
         text-align: center;

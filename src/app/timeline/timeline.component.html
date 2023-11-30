@@ -40,7 +40,6 @@
       }"
       (click)="toggleSize(i)"
     >
-
       <div class="hovered-box table-header">
         <div class="title">عنوان</div>
 
@@ -56,8 +55,23 @@
       <div class="hovered-box time-items">
         <div class="time-item" *ngFor="let item of timeObjects; let i = index">
           <div class="title">
-            {{ item.title }}
+            <span
+              nz-popover
+              nzPopoverTitle="یادداشت"
+              [nzPopoverContent]="contentTemplate"
+              nzPopoverPlacement="bottomRight"
+              >{{ item.title }}
+            </span>
           </div>
+
+          <!-- <button
+            nz-popover
+            nzPopoverTitle="Title"
+            [nzPopoverContent]="contentTemplate"
+            nzPopoverPlacement="bottom"
+          >
+            Bottom
+          </button> -->
 
           <div class="start-time">
             {{ item.startTime }}
@@ -84,11 +98,11 @@
 
       <div class="hovered-box title">
         <!-- <div> -->
-          <!-- <span class="circle blue"></span>
+        <!-- <span class="circle blue"></span>
           <span>رویداد</span> -->
-          <button mat-raised-button class="add-event">افزودن رویداد</button>
-          <button mat-raised-button class="add-remainder">افزودن یادآوری</button>
-          <!-- <button  class="add-btn">
+        <button mat-raised-button class="add-event">افزودن رویداد</button>
+        <button mat-raised-button class="add-remainder">افزودن یادآوری</button>
+        <!-- <button  class="add-btn">
             <img src="../../assets/icons/add-button.svg" />
           </button> -->
         <!-- </div> -->
@@ -102,7 +116,9 @@
         </div> -->
       </div>
 
-      <span class="remove-on-click dateNum">{{ displayedTimeLine[i].dayNum }}</span>
+      <span class="remove-on-click dateNum">{{
+        displayedTimeLine[i].dayNum
+      }}</span>
 
       <div class="dateName">
         <span class="remove-on-click">
@@ -124,3 +140,9 @@
     </button>
   </div>
 </div>
+
+<ng-template #contentTemplate>
+  <div>
+    <p>این یادداشتی درمورد این رویداد میباشد</p>
+  </div>
+</ng-template>
