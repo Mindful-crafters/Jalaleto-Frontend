@@ -20,6 +20,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { DatePipe } from '@angular/common';
 import { MatMenuModule} from '@angular/material/menu';
 import { NavbarComponent } from './navbar/navbar.component';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { ProfileModule } from './profile/profile.module';
 // import { FooterComponent } from './footer/footer.component';
 
 
