@@ -89,6 +89,12 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  removePhoto() {
+    this.selectedImage = undefined;
+    this.profilePicture = undefined; 
+  }
+
+
   onSubmit() {
     if (this.profilePicture) {
       const formData = new FormData();
