@@ -120,13 +120,17 @@
         displayedTimeLine[i].dayNum
       }}</span>
 
+      <span class="remove-on-click str-week-day">
+        {{ diplayedDate(displayedTimeLine[i].date, false, false, false, true) }}
+      </span>
+
       <div class="dateName">
         <span class="remove-on-click">
-          {{ diplayedDate(displayedTimeLine[i].date, true, true, false) }}
+          {{ diplayedDate(displayedTimeLine[i].date, true, true, false, false) }}
         </span>
 
         <span class="hovered-box date">
-          {{ diplayedDate(displayedTimeLine[i].date, true, true, true) }}
+          {{ diplayedDate(displayedTimeLine[i].date, true, true, true, true) }}
         </span>
       </div>
     </div>

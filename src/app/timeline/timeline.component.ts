@@ -152,12 +152,20 @@ export class TimelineComponent implements OnInit {
     this.hoverSubject.next(null);
   }
 
-  diplayedDate(date : Date , yyyy : boolean , mm : boolean , dd : boolean){
+  diplayedDate(date : Date , yyyy : boolean , mm : boolean , dd : boolean , dName : boolean){
     let result : string = '';
 
-    const day = this.persiancalendarservice.returnPeaceOfDate(date, 'day');
+    const day = this.persiancalendarservice.returnPeaceOfDate(date,'day');
+    const dayStr = this.getDayName(date.getDay());
     const month = this.persiancalendarservice.returnMonth(date);
     const year = this.persiancalendarservice.returnPeaceOfDate(date, 'year');
+
+    console.log('day',day)
+    console.log('dayStr',dayStr)
+
+    if(dName){
+      result += dayStr + ' ';
+    }
 
     if(dd){
       result+= day + ' ';

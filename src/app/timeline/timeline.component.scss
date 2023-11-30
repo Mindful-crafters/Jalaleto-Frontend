@@ -60,6 +60,12 @@
   .add-event-btn {
     display: none;
   }
+
+  .str-week-day{
+    font-size: 0.75rem;
+    margin-inline-start:0.25rem ;
+    margin-inline-end: auto;
+  }
 }
 
 .box.big {
@@ -190,7 +196,8 @@
   align-self: flex-start;
   margin-bottom: 0;
   margin-top: auto;
-  margin-inline-start: 0.5rem;
+  margin-inline-start: auto;
+  margin-inline-end: 0.5rem;
 }
 
 .divider {

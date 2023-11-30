@@ -82,6 +82,17 @@ export class persiancalendarservice {
     return this.strmonth;
   }
 
+  returnDayName(gregoriandate: Date) {
+    this.today = gregoriandate;
+    this.gregorianyear = this.today.getFullYear();
+    this.gregorianmonth = this.today.getMonth() + 1;
+    this.gregoriandate = this.today.getDate();
+    this.weekday = this.today.getDay();
+    this.topersian(gregoriandate);
+
+    return this.strweekday;
+  }
+
   topersian(gregoriandate) {
     if ((this.gregorianyear % 4) != 0)
       this.farsidate = this.func1();
