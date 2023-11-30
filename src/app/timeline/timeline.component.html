@@ -36,24 +36,71 @@
       *ngFor="let box of currentWeek; let i = index"
       class="box"
       [ngClass]="{
-        'big' : i === selectedBox
+        big: i === selectedBox
       }"
       (click)="toggleSize(i)"
-      >
+    >
       <div class="hovered-box title">
         <div>
           <span class="circle blue"></span>
           <span>رویداد</span>
+          <button class="add-btn">
+            <img src="../../assets/icons/add-button.svg" />
+          </button>
         </div>
+
         <div>
           <span class="circle green"></span>
           <span>یادآوری</span>
+          <button class="add-btn">
+            <img src="../../assets/icons/add-button.svg" />
+          </button>
+        </div>
+      </div>
+
+      <div class="hovered-box table-header">
+        <div class="title">عنوان</div>
+
+        <div class="start-time">شروع</div>
+
+        <div class="end-time">پایان</div>
+
+        <div class="more">بیشتر</div>
+      </div>
+
+      <div class="hovered-box divider"></div>
+
+      <div class="hovered-box time-items">
+
+        <div class="time-item" *ngFor="let item of timeObjects; let i = index">
+          <div class="title">
+            {{ item.title }}
+          </div>
+
+          <div class="start-time">
+            {{ item.startTime }}
+          </div>
+
+          <div class="end-time">
+            {{ item.endTime }}
+          </div>
+
+          <div class="more">
+            <span *ngIf="item.type == 'remainder'" class="circle blue"></span>
+            <span *ngIf="item.type == 'event'" class="circle green"></span>
+
+            <button class="edit-btn">
+              <img src="../../assets/icons/edit.svg">
+            </button>
+
+            <button class="delete-btn">
+              <img src="../../assets/icons/delete.svg">
+            </button>
+          </div>
         </div>
       </div>
 
       <span class="dateNum">{{ displayedTimeLine[i].dayNum }}</span>
-
-      <!-- <span class="hovered-box title">رویداد ها</span> -->
 
       <div class="dateName">{{ displayedTimeLine[i].dayName }}</div>
     </div>
@@ -61,7 +108,8 @@
     <button
       (click)="updateTimeLine('down')"
       mat-button
-      class="change-week-btn reverse down">
+      class="change-week-btn reverse down"
+    >
       <img src="../../assets/icons/up-arrow.svg" />
     </button>
   </div>

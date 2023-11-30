@@ -61,11 +61,7 @@
   }
 }
 
-.box.hidden {
-  margin: 0;
-}
-
-.box.clicked {
+.box.big {
   height: 20rem;
   width: 100%;
 
@@ -80,21 +76,72 @@
       margin: 1rem;
     }
   }
-}
 
-.box.big {
-  height: 20rem;
-  width: 100%;
+  .add-btn{
+    border: none;
+    background-color: transparent;
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
 
-  .dateNum {
-    opacity: 0.2;
+    img{
+      margin-bottom: -3px;
+    }
   }
 
-  .hovered-box {
-    display: unset;
+  .table-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 
-    &.title {
-      margin: 1rem;
+    &>div{
+      flex: 1;
+      text-align: center;
+    }
+  }
+
+  .hovered-box.divider{
+    margin: 0;
+    margin-top: 1rem;
+  }
+
+  .time-items{
+    display: flex;
+    flex-direction: column;
+    height: 15rem;
+    overflow: auto;
+    margin-bottom: 0.5rem;
+
+    .time-item , .table-header{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+
+      &>div{
+        flex: 1;
+        text-align: center;
+      }
+
+      &:hover{
+        background-color: rgb(240, 240, 240);
+      }
+    }
+    
+    .time-item{
+      padding: 0.5rem;
+    }
+
+    .more{
+      button{
+        cursor: pointer;
+        margin-inline-start: 0.5rem;
+        background-color: transparent;
+        border: none;
+
+        img{
+          margin-bottom: -0.3rem;
+        }
+      }
     }
   }
 }

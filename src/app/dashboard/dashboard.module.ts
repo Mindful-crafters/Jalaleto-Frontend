@@ -4,8 +4,8 @@ import { AppRoutingModule } from '../app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { DashboardComponent } from './dashboard.component';
 import { TimelineComponent } from '../timeline/timeline.component';
-import {MatMenuModule} from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import { MatRippleModule } from '@angular/material/core';
 
 @NgModule({
     declarations: [
@@ -19,7 +19,8 @@ import { MatButtonModule } from '@angular/material/button';
         BrowserAnimationsModule,
         BrowserModule,
         AppRoutingModule,
-        MatButtonModule
+        MatButtonModule,
+        MatRippleModule,
     ]
 })
 export class DashboardModule { }

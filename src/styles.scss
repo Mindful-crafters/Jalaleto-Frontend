@@ -27,8 +27,8 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.reverse{
-  transform:  rotate(180deg);
+.reverse {
+  transform: rotate(180deg);
 }
 
 .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mat-mdc-form-field-infix {
@@ -224,3 +224,23 @@ mat-hint {
 .mat-typography p {
   margin: 0;
 }
+
+// .more {
+//   .mat-mdc-button .mat-mdc-button-touch-target,
+//   .mat-mdc-unelevated-button .mat-mdc-button-touch-target,
+//   .mat-mdc-raised-button .mat-mdc-button-touch-target,
+//   .mat-mdc-outlined-button .mat-mdc-button-touch-target {
+//     height: unset !important;
+//   }
+
+//   .mat-mdc-button.mat-mdc-button-base,
+//   .mat-mdc-raised-button.mat-mdc-button-base,
+//   .mat-mdc-unelevated-button.mat-mdc-button-base,
+//   .mat-mdc-outlined-button.mat-mdc-button-base {
+//     height: unset !important;
+//   }
+
+//   .mdc-button {
+//     padding: 0 !important;
+//   }
+// }

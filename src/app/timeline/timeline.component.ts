@@ -19,6 +19,21 @@ export class TimelineComponent implements OnInit {
   private hoverSubject = new Subject<number>();
   selectedBox: number | null = null;
 
+  events = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 24, 215, 65, 55, 4]
+
+  timeObjects: PersonalTimeObject[] = [
+    { startTime: '12:15', endTime: '13:15', title: 'جلسه', type: 'event' },
+    { startTime: '8:15', endTime: '10:15', title: 'جلسه', type: 'remainder' },
+    { startTime: '12:15', endTime: '13:15', title: 'جلسه', type: 'event' },
+    { startTime: '12:15', endTime: '13:15', title: 'جلسه', type: 'remainder' },
+    { startTime: '12:15', endTime: '13:15', title: 'جلسه', type: 'remainder' },
+    { startTime: '12:15', endTime: '13:15', title: 'جلسه', type: 'event' },
+    { startTime: '12:15', endTime: '13:15', title: 'جلسه', type: 'event' },
+    { startTime: '12:15', endTime: '13:15', title: 'جلسه', type: 'event' },
+    { startTime: '12:15', endTime: '13:15', title: 'جلسه', type: 'event' },
+
+  ]
+
   historicalEvents: HistoricalEvent[] = [
     { dayNum: 1, event: 'آذر جشن' },
     { dayNum: 2, event: 'مبارزه غلیه زنان' },
@@ -32,7 +47,7 @@ export class TimelineComponent implements OnInit {
   ];
 
   constructor(
-    private el : ElementRef,
+    private el: ElementRef,
     public persiancalendarservice: persiancalendarservice) {
     this.hoverSubject.pipe(debounceTime(200)).subscribe(index => {
       this.hoveredBox = index;
@@ -143,4 +158,11 @@ export interface TimeLineItem {
 export interface HistoricalEvent {
   dayNum: number;
   event: string;
+}
+
+export interface PersonalTimeObject {
+  startTime: string;
+  endTime: string;
+  title: string;
+  type: string;
 }
