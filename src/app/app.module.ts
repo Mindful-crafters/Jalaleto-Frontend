@@ -21,7 +21,7 @@ import { DatePipe } from '@angular/common';
 import { MatMenuModule} from '@angular/material/menu';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DashboardModule } from './dashboard/dashboard.module';
-
+import { HomepageModule } from './homepage/homepage.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +46,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
     MatMenuModule,
     SignupModule,
     DashboardModule,
+    HomepageModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],

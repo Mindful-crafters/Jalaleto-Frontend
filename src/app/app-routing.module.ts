@@ -7,6 +7,7 @@ import { NewPasswordComponent } from './new-password/new-password.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './shared/services/auth.guard';
 import { ProfileComponent } from './profile/profile.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'forgetpassword', component: ForgetPasswordComponent },
   { path: 'newpassword', component: NewPasswordComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'profile', component: ProfileComponent}
+  { path: 'profile', component: ProfileComponent},
+  { path: 'homepage', component: HomepageComponent}
 ];
 
 @NgModule({
