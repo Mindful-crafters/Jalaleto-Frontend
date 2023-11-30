@@ -19,7 +19,7 @@ import { SignupModule } from './sign-up/sign-up.module';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DatePipe } from '@angular/common';
 import { MatMenuModule} from '@angular/material/menu';
-// import { NavbarComponent } from './navbar/navbar.component';
+import { NavbarComponent } from './navbar/navbar.component';
 // import { FooterComponent } from './footer/footer.component';
 
 
