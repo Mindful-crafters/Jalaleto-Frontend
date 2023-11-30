@@ -1,4 +1,10 @@
-:root{
-    --gray : #c9c9c9;
-    --blue : #3a86ff;
+:root {
+  --gray: #c9c9c9;
+  --blue: #3a86ff;
+  --dark-purple: #27446d;
+}
+
+body {
+  --primary-text-color: var(--dark-purple);
+  --primary-background-color : var(--gray);
 }

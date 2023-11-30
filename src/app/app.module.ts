@@ -21,12 +21,14 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { DatePipe } from '@angular/common';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from "@angular/material/core";
 import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from "./shared/persion-date.adapter";
+import { TimelineComponent } from './timeline/timeline.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     ForgetPasswordComponent,
     NewPasswordComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
