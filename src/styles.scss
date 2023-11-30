@@ -1,5 +1,6 @@
 @import "../src/assets/fontiran.css";
 @import "theme/default-theme.styles.scss";
+@import "app/shared/material.scss";
 
 * {
   box-sizing: border-box;
@@ -223,4 +224,17 @@ mat-hint {
 
 .mat-body p, .mat-body-2 p, .mat-typography .mat-body p, .mat-typography .mat-body-2 p, .mat-typography p {
   margin: 0;
+}
+
+//profile_navbar
+
+.mat-mdc-menu-panel
+{
+  background-color: #f44336;
+
+}
+
+mat-mdc-menu-contant, .mat-mdc-menu-contant .mat-mdc-menu-item .mat-mdc-menu-text
+{
+
 }
