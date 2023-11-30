@@ -44,6 +44,12 @@ export class TimelineComponent implements OnInit {
     { dayNum: 15, event: 'روز پژوهش' },
     { dayNum: 25, event: 'روز ایدز' },
     { dayNum: 29, event: 'روز بیمه' },
+    { dayNum: 29, event: 'روز بیمه' },
+    { dayNum: 29, event: 'روز بیمه' },
+    { dayNum: 29, event: 'روز بیمه' },
+    { dayNum: 29, event: 'روز بیمه' },
+    { dayNum: 29, event: 'روز بیمه' },
+    { dayNum: 29, event: 'روز بیمه' },
   ];
 
   constructor(

@@ -7,7 +7,7 @@
   height: fit-content;
   border-radius: 1rem;
   display: flex;
-  padding: 1rem;
+  padding: 1rem 1rem 1rem 1.5rem;
 
   ::-webkit-scrollbar {
     width: 0.25rem;
@@ -75,7 +75,16 @@
     display: unset;
 
     &.title {
-      margin: 1rem;
+      margin-inline-end: 0;
+      margin-inline-start: auto;
+
+      & button{
+        margin-inline-end: 0.5rem;
+      }
+    }
+
+    &.date{
+      font-weight: bold;
     }
   }
 
@@ -99,6 +108,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    margin-top: 1rem;
 
     & > div {
       flex: 1;
@@ -117,6 +127,7 @@
     height: 15rem;
     overflow: auto;
     margin-bottom: 0.5rem;
+    border-bottom: 4px solid var(--primary-background-color);
 
     .time-item,
     .table-header {
@@ -181,7 +192,7 @@
 }
 
 .historical-events {
-  height: 14rem;
+  height: 18rem;
   overflow: auto;
 }
 

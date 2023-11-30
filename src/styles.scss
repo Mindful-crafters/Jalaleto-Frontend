@@ -244,3 +244,19 @@ mat-hint {
 //     padding: 0 !important;
 //   }
 // }
+.hovered-box.title .full-width-btn.mat-mdc-button.mat-mdc-button-base,
+.mat-mdc-raised-button.mat-mdc-button-base,
+.mat-mdc-unelevated-button.mat-mdc-button-base,
+.mat-mdc-outlined-button.mat-mdc-button-base {
+  width: fit-content !important;
+}
+
+.add-event.mat-mdc-raised-button:not(:disabled) {
+  background-color: var(--blue) !important;
+  color: white;
+}
+
+.add-remainder.mat-mdc-raised-button:not(:disabled) {
+  background-color: green !important;
+  color: white;
+}

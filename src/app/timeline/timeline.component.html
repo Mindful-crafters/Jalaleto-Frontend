@@ -40,23 +40,6 @@
       }"
       (click)="toggleSize(i)"
     >
-      <div class="hovered-box title">
-        <div>
-          <span class="circle blue"></span>
-          <span>رویداد</span>
-          <button class="add-btn">
-            <img src="../../assets/icons/add-button.svg" />
-          </button>
-        </div>
-
-        <div>
-          <span class="circle green"></span>
-          <span>یادآوری</span>
-          <button class="add-btn">
-            <img src="../../assets/icons/add-button.svg" />
-          </button>
-        </div>
-      </div>
 
       <div class="hovered-box table-header">
         <div class="title">عنوان</div>
@@ -99,6 +82,26 @@
         </div>
       </div>
 
+      <div class="hovered-box title">
+        <!-- <div> -->
+          <!-- <span class="circle blue"></span>
+          <span>رویداد</span> -->
+          <button mat-raised-button class="add-event">افزودن رویداد</button>
+          <button mat-raised-button class="add-remainder">افزودن یادآوری</button>
+          <!-- <button  class="add-btn">
+            <img src="../../assets/icons/add-button.svg" />
+          </button> -->
+        <!-- </div> -->
+
+        <!-- <div>
+          <span class="circle green"></span>
+          <span>یادآوری</span>
+          <button class="add-btn">
+            <img src="../../assets/icons/add-button.svg" />
+          </button>
+        </div> -->
+      </div>
+
       <span class="remove-on-click dateNum">{{ displayedTimeLine[i].dayNum }}</span>
 
       <div class="dateName">
@@ -106,7 +109,7 @@
           {{ diplayedDate(displayedTimeLine[i].date, true, true, false) }}
         </span>
 
-        <span class="hovered-box">
+        <span class="hovered-box date">
           {{ diplayedDate(displayedTimeLine[i].date, true, true, true) }}
         </span>
       </div>
