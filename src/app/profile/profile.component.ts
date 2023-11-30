@@ -1,10 +1,10 @@
+import { RestService } from './../shared/services/Rest.service';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http'
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgxOtpInputConfig } from 'ngx-otp-input';
-import { RestService } from '../shared/services/Rest.service';
 import { UserModel } from '../shared/types/UserModel.type';
 import { Shared } from '../shared/services/shared.service';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
@@ -18,15 +18,24 @@ import { AbstractControl, ValidationErrors, FormBuilder, FormControl, FormGroup,
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  tokenData: any;
+  tokenData: {
+    FirstName: string,
+    LastName: string,
+    UserName: string,
+    Birthday: string,
+    Email: string,
+    Image: string
+
+  } = {
+      FirstName: "",
+      LastName: "",
+      UserName: "",
+      Birthday: "",
+      Email: "",
+      Image: ""
+    }
   session: any;
-  // dynamicLabel: string = 'نام';
-  // change()
-  // {
-  //   this.dynamicLabel = 'احمد';
-  // }
-  ProfileForm: FormGroup;
-  profilePicture: File | undefined; // New property for profile picture
+  profilePicture: File | undefined;
   selectedImage: string | undefined;
 
   constructor(
@@ -35,10 +44,11 @@ export class ProfileComponent implements OnInit {
     private http: HttpClient,
     private Router: Router,
     private rest: RestService,
-    private shared: Shared
-  ) {
+    private shared: Shared,
+    private restService: RestService,
+  ) {}
 
-  }
+
   emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   validateAge(control: AbstractControl): ValidationErrors | null {
     const currentDate = new Date();
@@ -50,73 +60,32 @@ export class ProfileComponent implements OnInit {
       return { customError: true };
     }
   }
-  private dayArray = ['یکشنبه', 'دوشنبه', 'سه شنبه', 'چهارشبه', 'پنجشنبه', 'جمعه', 'شنبه'];
-  private date = new Date();
-  public hour: any;
-  public minute: string;
-  public second: string;
-  public ampm: string;
-  public day: string;
+
 
 
   ngOnInit() {
     const token = '';
-    this.tokenData= {
-      FirstName: String,
-      LastName: String,
-      UserName: String,
-      Birthday: String,
-      Email: String,
 
-    }
-    this.ProfileForm = this.formBuilder.group(
-      {
-        lastName: [null, Validators.required],
-        firstName: [null, Validators.required],
-        userName: [null, Validators.required, Validators.minLength(3)],
-        birthday: [null, [Validators.required, this.validateAge]],
-        mail: [null, [Validators.required, Validators.pattern(this.emailRegex)]],
-      }
-    )
     //load data from local storage
-    this.tokenData = this.parseToken(token);
-    let data = localStorage.getItem('session')
-    this.session = JSON.parse(data);
-
-    setInterval(() => {
-      const date = new Date();
-      this.updateDate(date);
-    }, 1000)
-    this.day = this.dayArray[this.date.getDay()];
+    // this.tokenData = this.parseToken(token);
+    // let data = localStorage.getItem('session')
+    // this.session = JSON.parse(data);
   }
-
-  private parseToken(token: string): any{
-      const tokenParts = token.split('.');
-      if(tokenParts.length===3)
-      {
-        const decode = atob(tokenParts[1]);
-        return JSON.parse(decode);
-      }
-      return null;
-  }
-  private updateDate(date: Date) {
-    const hours = date.getHours();
-    this.ampm = hours >= 12 ? 'PM' : 'AM';
-    this.hour = hours % 12;
-    this.hour = this.hour ? this.hour : 12;
-    this.hour = this.hour < 10 ? '0' + this.hour : this.hour;
-    const minutes = date.getMinutes();
-    this.minute = minutes < 10 ? '0' + minutes : minutes.toString();
-    const seconds = date.getSeconds();
-    this.second = seconds < 10 ? '0' + seconds : seconds.toString();
+  private parseToken(token: string): any {
+    const tokenParts = token.split('.');
+    if (tokenParts.length === 3) {
+      const decode = atob(tokenParts[1]);
+      return JSON.parse(decode);
+    }
+    return null;
   }
 
   onFileSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
-      // Assuming 'URL.createObjectURL' generates a temporary URL for the selected image
+
       this.selectedImage = URL.createObjectURL(file);
-      this.profilePicture = file; // Assign the selected file to profilePicture for upload
+      this.profilePicture = file;
     }
   }
 
@@ -124,18 +93,8 @@ export class ProfileComponent implements OnInit {
     if (this.profilePicture) {
       const formData = new FormData();
       formData.append('profilePicture', this.profilePicture);
-
-      // Example: Make an API call to upload the profile picture
-      // this.http.post<ProfileResult>('YOUR_UPLOAD_URL', formData).subscribe(response => {
-      //   // Handle the response if needed
-      // });
     }
-
-    // Other form submission logic
-    // ...
   }
-
-  // ... Remaining component code ...
 }
 
 interface ProfileResult {

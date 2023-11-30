@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class RestService {
-  private apiUrl = 'https://localhost:7117/api';
+  private apiUrl = 'https://dev.jalaleto.ir/api';
 
   constructor(private http: HttpClient) { }
 

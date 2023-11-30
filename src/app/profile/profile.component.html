@@ -1,25 +1,14 @@
 <div [dir]="'rtl'" class="containor">
-    <form class="profile-form" [formGroup]="ProfileForm">
-        <!-- <div class="navbar">
-            <div class="digitalClock">
-                <div class="dayTitle">
-                    {{day}}
-                </div>
-                <div class="digitalTime>">
-                    <div> {{second}} : {{minute}} : {{hour}} </div>
-                </div>
-            </div>
-        </div> -->
+    <div class="profile-form">
 
         <div class="info">
 
             <h1 class="title">درباره کاربر</h1>
             <br>
             <div>
-                <p>نام</p>
                 <mat-form-field class="FirstName" appearance="outline" hideRequiredMarker>
-                    <mat-label>{{session.FirstName}}</mat-label>
-                    <input [(ngModel)]="tokenData.FirstName" formControlName="firstName" matInput/>
+                    <mat-label>نام</mat-label>
+                    <input [(ngModel)]="tokenData.FirstName" matInput/>
                 </mat-form-field>
             </div>
             <div>
@@ -27,9 +16,11 @@
                     <p>نام خانوادگی</p>
                 </div>
 
+
+
                 <mat-form-field class="LastName" appearance="outline" hideRequiredMarker>
-                    <mat-label>{{session.LastName}}</mat-label>
-                    <input [(ngModel)]="tokenData.LastName" formControlName="firstName" matInput/>
+                    <mat-label>نام خانوادگی</mat-label>
+                    <input [(ngModel)]="tokenData.LastName" matInput/>
                 </mat-form-field>
             </div>
             <div>
@@ -37,23 +28,23 @@
                     <p>نام کاربری</p>
                 </div>
 
+
                 <mat-form-field class="Username" appearance="outline" hideRequiredMarker>
-                    <mat-label>{{session.UserName}}</mat-label>
-                    <input [(ngModel)]="tokenData.UserName" formControlName="firstName" matInput/>
+                    <mat-label>نام کاربری</mat-label>
+                    <input [(ngModel)]="tokenData.UserName" matInput/>
                 </mat-form-field>
             </div>
             <div>
-                <p class="p">تاریخ تولد</p>
                 <mat-form-field class="Birthday" appearance="outline" hideRequiredMarker>
-                    <mat-label>{{session.Birthday}}</mat-label>
-                    <input [(ngModel)]="tokenData.Birthday" formControlName="firstName" matInput/>
+                    <mat-label>تاریخ تولد</mat-label>
+                    <input [(ngModel)]="tokenData.Birthday" matInput/>
                 </mat-form-field>
             </div>
             <div>
-                <p>ایمیل</p>
+
                 <mat-form-field class="Email" appearance="outline" hideRequiredMarker>
-                    <mat-label>{{session.Email}}</mat-label>
-                    <input [(ngModel)]="tokenData.Email" formControlName="firstName" matInput/>
+                    <mat-label>ایمیل</mat-label>
+                    <input [(ngModel)]="tokenData.Email" matInput/>
                 </mat-form-field>
             </div>
 
@@ -64,25 +55,11 @@
                 </button>
             </div>
         </div>
-        <!-- <div class="pic">
-            <img class="profile" src="/assets/SL_100820_36440_10-Recovered.svg">
-            <div id="circle">
-              <input type="file" (change)="onFileSelected($event)" accept="image/*">
-              <button><img class="edit" src="/assets/icons8-camera-24.svg"></button> -->
-                <!-- <button><img [(ngModel)]="tokenData.Image" class="edit" src="/assets/icons8-camera-24.svg"></button> -->
-            <!-- </div>
-        </div> -->
-
-        <div class="pic">
-          <img class="profile" [src]="selectedImage ? selectedImage : '/assets/SL_100820_36440_10-Recovered.svg'" alt="Profile Image">
-          <div id="circle">
-              <input type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none;" #fileInput>
-              <button (click)="fileInput.click()">
-                  <img class="edit" src="/assets/icons8-camera-24.svg" alt="Upload Image">
-              </button>
-          </div>
-      </div>
-    </form>
+    </div>
 </div>
+
+
+
+
 
 
