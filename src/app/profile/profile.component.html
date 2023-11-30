@@ -26,7 +26,7 @@
                 <div class="p">
                     <p>نام خانوادگی</p>
                 </div>
-                
+
                 <mat-form-field class="LastName" appearance="outline" hideRequiredMarker>
                     <mat-label>{{session.LastName}}</mat-label>
                     <input [(ngModel)]="tokenData.LastName" formControlName="firstName" matInput/>
@@ -36,7 +36,7 @@
                 <div class="p">
                     <p>نام کاربری</p>
                 </div>
-                
+
                 <mat-form-field class="Username" appearance="outline" hideRequiredMarker>
                     <mat-label>{{session.UserName}}</mat-label>
                     <input [(ngModel)]="tokenData.UserName" formControlName="firstName" matInput/>
@@ -56,20 +56,32 @@
                     <input [(ngModel)]="tokenData.Email" formControlName="firstName" matInput/>
                 </mat-form-field>
             </div>
-            
-            
+
+
             <div>
                 <button type="button" mat-button class="register-button primary-button">
                     ثبت تغییرات
                 </button>
             </div>
         </div>
-        <div class="pic">
+        <!-- <div class="pic">
             <img class="profile" src="/assets/SL_100820_36440_10-Recovered.svg">
             <div id="circle">
-                <button><img [(ngModel)]="tokenData.Image" class="edit" src="/assets/icons8-camera-24.svg"></button>
-            </div>
-        </div>
+              <input type="file" (change)="onFileSelected($event)" accept="image/*">
+              <button><img class="edit" src="/assets/icons8-camera-24.svg"></button> -->
+                <!-- <button><img [(ngModel)]="tokenData.Image" class="edit" src="/assets/icons8-camera-24.svg"></button> -->
+            <!-- </div>
+        </div> -->
+
+        <div class="pic">
+          <img class="profile" [src]="selectedImage ? selectedImage : '/assets/SL_100820_36440_10-Recovered.svg'" alt="Profile Image">
+          <div id="circle">
+              <input type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none;" #fileInput>
+              <button (click)="fileInput.click()">
+                  <img class="edit" src="/assets/icons8-camera-24.svg" alt="Upload Image">
+              </button>
+          </div>
+      </div>
     </form>
 </div>
 

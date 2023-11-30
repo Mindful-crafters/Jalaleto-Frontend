@@ -26,6 +26,9 @@ export class ProfileComponent implements OnInit {
   //   this.dynamicLabel = 'احمد';
   // }
   ProfileForm: FormGroup;
+  profilePicture: File | undefined; // New property for profile picture
+  selectedImage: string | undefined;
+
   constructor(
     private formBuilder: FormBuilder,
     private datePipe: DatePipe,
@@ -33,8 +36,8 @@ export class ProfileComponent implements OnInit {
     private Router: Router,
     private rest: RestService,
     private shared: Shared
-  ) { 
-    
+  ) {
+
   }
   emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   validateAge(control: AbstractControl): ValidationErrors | null {
@@ -54,6 +57,8 @@ export class ProfileComponent implements OnInit {
   public second: string;
   public ampm: string;
   public day: string;
+
+
   ngOnInit() {
     const token = '';
     this.tokenData= {
@@ -77,12 +82,14 @@ export class ProfileComponent implements OnInit {
     this.tokenData = this.parseToken(token);
     let data = localStorage.getItem('session')
     this.session = JSON.parse(data);
+
     setInterval(() => {
       const date = new Date();
       this.updateDate(date);
     }, 1000)
     this.day = this.dayArray[this.date.getDay()];
   }
+
   private parseToken(token: string): any{
       const tokenParts = token.split('.');
       if(tokenParts.length===3)
@@ -103,6 +110,32 @@ export class ProfileComponent implements OnInit {
     const seconds = date.getSeconds();
     this.second = seconds < 10 ? '0' + seconds : seconds.toString();
   }
+
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      // Assuming 'URL.createObjectURL' generates a temporary URL for the selected image
+      this.selectedImage = URL.createObjectURL(file);
+      this.profilePicture = file; // Assign the selected file to profilePicture for upload
+    }
+  }
+
+  onSubmit() {
+    if (this.profilePicture) {
+      const formData = new FormData();
+      formData.append('profilePicture', this.profilePicture);
+
+      // Example: Make an API call to upload the profile picture
+      // this.http.post<ProfileResult>('YOUR_UPLOAD_URL', formData).subscribe(response => {
+      //   // Handle the response if needed
+      // });
+    }
+
+    // Other form submission logic
+    // ...
+  }
+
+  // ... Remaining component code ...
 }
 
 interface ProfileResult {
