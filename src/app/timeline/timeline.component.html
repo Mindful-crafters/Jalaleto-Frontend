@@ -71,7 +71,6 @@
       <div class="hovered-box divider"></div>
 
       <div class="hovered-box time-items">
-
         <div class="time-item" *ngFor="let item of timeObjects; let i = index">
           <div class="title">
             {{ item.title }}
@@ -90,26 +89,25 @@
             <span *ngIf="item.type == 'event'" class="circle green"></span>
 
             <button class="edit-btn">
-              <img src="../../assets/icons/edit.svg">
+              <img src="../../assets/icons/edit.svg" />
             </button>
 
             <button class="delete-btn">
-              <img src="../../assets/icons/delete.svg">
+              <img src="../../assets/icons/delete.svg" />
             </button>
           </div>
         </div>
       </div>
 
-      <span class="dateNum">{{ displayedTimeLine[i].dayNum }}</span>
+      <span class="remove-on-click dateNum">{{ displayedTimeLine[i].dayNum }}</span>
 
       <div class="dateName">
-        <!-- <span>
-          {{ displayedTimeLine[i].dayName }}
-        </span> -->
-        <span class="dateNumSmall">{{ displayedTimeLine[i].dayName }}</span>
+        <span class="remove-on-click">
+          {{ diplayedDate(displayedTimeLine[i].date, true, true, false) }}
+        </span>
 
         <span class="hovered-box">
-          {{diplayedDate(displayedTimeLine[i].date)}}
+          {{ diplayedDate(displayedTimeLine[i].date, true, true, true) }}
         </span>
       </div>
     </div>

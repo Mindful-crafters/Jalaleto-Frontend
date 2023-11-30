@@ -39,8 +39,8 @@
 }
 
 .box {
-  width: 4rem;
-  height: 4rem;
+  width: 5rem;
+  height: 5rem;
   margin: 0.25rem;
   display: flex;
   position: relative;
@@ -79,68 +79,73 @@
     }
   }
 
-  .add-btn{
+  .remove-on-click {
+    display: none;
+  }
+
+  .add-btn {
     border: none;
     background-color: transparent;
     width: 1.5rem;
     height: 1.5rem;
     cursor: pointer;
 
-    img{
+    img {
       margin-bottom: -3px;
     }
   }
 
-  .table-header{
+  .table-header {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 
-    &>div{
+    & > div {
       flex: 1;
       text-align: center;
     }
   }
 
-  .hovered-box.divider{
+  .hovered-box.divider {
     margin: 0;
     margin-top: 1rem;
   }
 
-  .time-items{
+  .time-items {
     display: flex;
     flex-direction: column;
     height: 15rem;
     overflow: auto;
     margin-bottom: 0.5rem;
 
-    .time-item , .table-header{
+    .time-item,
+    .table-header {
       display: flex;
       flex-direction: row;
       justify-content: space-around;
 
-      &>div{
+      & > div {
         flex: 1;
         text-align: center;
       }
 
-      &:hover{
+      &:hover {
         background-color: rgb(240, 240, 240);
       }
     }
-    
-    .time-item{
+
+    .time-item {
       padding: 0.5rem;
     }
 
-    .more{
-      button{
+    .more {
+      button {
         cursor: pointer;
         margin-inline-start: 0.5rem;
         background-color: transparent;
         border: none;
 
-        img{
+        img {
           margin-bottom: -0.3rem;
         }
       }
@@ -163,7 +168,7 @@
 }
 
 .dateName {
-  font-size: 0.75rem;
+  font-size: 0.6rem;
   align-self: flex-start;
   margin-bottom: 0;
   margin-top: auto;
@@ -182,7 +187,7 @@
 
 .history-event-item {
   margin: 0.5rem 0;
-  @include text-style(var(--primary-text-color), normal, 1rem);
+  @include text-style(var(--primary-text-color), normal, 0.75rem);
 
   span:first-child {
     margin-left: 0.5rem;
