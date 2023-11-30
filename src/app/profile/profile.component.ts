@@ -102,8 +102,6 @@ export class ProfileComponent implements OnInit {
     this.minute = minutes < 10 ? '0' + minutes : minutes.toString();
     const seconds = date.getSeconds();
     this.second = seconds < 10 ? '0' + seconds : seconds.toString();
-
-    
   }
 }
 
