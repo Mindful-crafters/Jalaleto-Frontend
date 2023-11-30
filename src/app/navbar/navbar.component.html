@@ -18,7 +18,7 @@
 
     <div class="notification" id="notification">
       <div class="notification-icon">
-        <img src="../../assets/icons/bell-notification.jpg" alt="Notification Icon">
+        <img src="../../assets/icons/notification-image.svg" alt="Notification Icon">
       </div>
     </div>
 
@@ -32,14 +32,24 @@
     </button>
 
 
-    <mat-menu #menu="matMenu">
+    <!-- <mat-menu #menu="matMenu">
       <button mat-menu-item (click)="viewProfile()">مشاهده پروفایل</button>
       <button mat-menu-item (click)="Events()">رویدادها</button>
       <button mat-menu-item (click)="openSettings()">تنظیمات</button>
       <button mat-menu-item (click)="logout()">خروج</button>
-    </mat-menu>
+    </mat-menu> -->
 
+    <mat-menu #menu="matMenu" class="menu">
+      <ng-template matMenuContent>
+        <button mat-menu-item (click)="viewProfile()">مشاهده پروفایل</button>
+        <button mat-menu-item (click)="Events()">رویدادها</button>
+        <button mat-menu-item (click)="openSettings()">تنظیمات</button>
+        <button mat-menu-item (click)="logout()">خروج</button>
+      </ng-template>
+    </mat-menu>
 
   </div>
 </nav>
+
+<div class="separator-line"></div>
 
