@@ -35,11 +35,11 @@ export class NewPasswordComponent {
       "email": this.NewPasswoedForm.get('email').value
     }
 
-    this.restService.postData<any>('User/CheckEmail', email).subscribe(
+    this.restService.postWithoutHeader<any>('User/CheckEmail', email).subscribe(
       (response) => {
         if (response['exists']) {
           this.router.navigate(['forgetpassword']);
-          this.restService.postData<any>('User/SendRestPasswordEmail', email).subscribe(
+          this.restService.postWithoutHeader<any>('User/SendRestPasswordEmail', email).subscribe(
             (response) => {
               this.shared.setEmail(this.NewPasswoedForm.get('email').value);
               this.shared.setHashStringEmail(response['hashString']);

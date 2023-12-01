@@ -65,7 +65,7 @@ export class SignUpComponent implements OnInit {
     }
 
 
-    this.rest.postData<any>('User/SendVerifyEmail', email).subscribe(
+    this.rest.postWithoutHeader<any>('User/SendVerifyEmail', email).subscribe(
       (response) => {
         console.log(response);
         if (response['success']) {
@@ -129,7 +129,7 @@ export class SignUpComponent implements OnInit {
 
     console.log(newPerson);
 
-    this.rest.postData<SignUPPerson>('User/SignUp', newPerson).subscribe(
+    this.rest.postWithoutHeader<SignUPPerson>('User/SignUp', newPerson).subscribe(
       (res) => {
         if (res['success']) {
           this.signUpSuccus = true;
@@ -139,7 +139,7 @@ export class SignUpComponent implements OnInit {
         }
         else {
           this.signUpFail = true;
-          console.log('result',res)
+          console.log('result', res)
 
           setTimeout(() => {
             this.signUpFail = false;

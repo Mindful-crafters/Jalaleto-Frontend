@@ -1,0 +1,69 @@
+<div class="dialog">
+    <div class="header">
+        <button class="close-button" mat-button (click)="close()">
+            <img src="assets/icons/close.svg">
+        </button>
+        <span class="title">
+            {{title}}
+        </span>
+    </div>
+    <form [formGroup]="formGroup" class="content">
+        <mat-form-field class="input-group" appearance="outline" hideRequiredMarker>
+            <mat-label>عنوان</mat-label>
+            <input formControlName="title" matInput />
+            <mat-error>این قسمت را خالی نگذارید.</mat-error>
+        </mat-form-field>
+
+        <div class="priorty">اولویت</div>
+        <mat-chip-listbox aria-label="Fish selection">
+            <mat-chip-option style="width: 4rem;" #low [disabled]="low.selected">کم</mat-chip-option>
+            <mat-chip-option style="width: 4rem;" #medium selected [disabled]="medium.selected">عادی</mat-chip-option>
+            <mat-chip-option style="width: 4rem;" #high [disabled]="high.selected">بالا</mat-chip-option>
+        </mat-chip-listbox>
+
+        <div class="time-div">
+            <span>زمان شروع :</span>
+            <ngx-mat-timepicker #pickerA></ngx-mat-timepicker>
+            <mat-form-field style="margin-top: 1.5rem; width: 6rem;" appearance="outline" hideRequiredMarker>
+                <input formControlName="startTime" [format]="24" placeholder="12:00" style="text-align: center;"
+                    [dir]="'ltr'" matInput [ngxMatTimepicker]="pickerA" readonly />
+            </mat-form-field>
+        </div>
+
+        <mat-form-field style="width: 100%;" appearance="outline" hideRequiredMarker>
+            <mat-label>یادداشت</mat-label>
+            <textarea formControlName="notes" rows="4" matInput></textarea>
+        </mat-form-field>
+
+        <div class="checkbox-div">
+            <span>یادآوری قبل رویداد</span>
+            <label class="switch">
+                <input #check type="checkbox">
+                <span class="slider round"></span>
+            </label>
+        </div>
+
+        <div *ngIf="check.checked" class="reminder-days">
+            <span>چند روز قبل بهت یادآوری کنم:</span>
+            <mat-form-field class="days-input" appearance="outline" hideRequiredMarker>
+                <input [min]="0" type="number" formControlName="daysBeforeToRemind" style="text-align: center;"
+                    matInput />
+                <mat-error>این قسمت را خالی نگذارید.</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="checkbox-div" style="margin-top: 1rem;">
+            <span>یادآوری با ایمیل</span>
+            <label class="switch">
+                <input #email type="checkbox">
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </form>
+    <div class="footer">
+
+        <button class="save-button" mat-button (click)="Submit()">ذخیره</button>
+        <button class="cancel-button" mat-button (click)="close()">لغو</button>
+
+    </div>
+</div>

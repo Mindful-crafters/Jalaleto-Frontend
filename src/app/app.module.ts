@@ -22,13 +22,17 @@ import { DatePipe } from '@angular/common';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from "@angular/material/core";
 import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from "./shared/persion-date.adapter";
 import { TimelineComponent } from './timeline/timeline.component';
-
+import { AddNewEventReminderComponent } from './timeline/add-new-event-reminder/add-new-event-reminder.component';
+import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from '@angular/material/dialog';
+import { MatChipsModule } from '@angular/material/chips';
+import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
 @NgModule({
   declarations: [
     AppComponent,
     ForgetPasswordComponent,
     NewPasswordComponent,
     LoginComponent,
+    AddNewEventReminderComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +48,10 @@ import { TimelineComponent } from './timeline/timeline.component';
     MatNativeDateModule,
     SignupModule,
     HttpClientModule,
-    DashboardModule
+    DashboardModule,
+    MatDialogModule,
+    MatChipsModule,
+    NgxMatTimepickerModule
   ],
   providers: [
     DatePipe,

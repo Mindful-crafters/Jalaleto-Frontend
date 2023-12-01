@@ -6,10 +6,15 @@ html {
 //mat-input styles
 .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mat-mdc-form-field-infix {
     padding-top: 9px !important;
+    padding-bottom: 8px !important;
 }
 
-.mat-mdc-text-field-wrapper {
-    height: 40px !important;
+.mat-mdc-form-field-infix {
+    min-height: 40px !important;
+}
+
+[dir=rtl] .mat-mdc-text-field-wrapper {
+    padding-left: 8px !important;
 }
 
 .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above {
@@ -88,7 +93,7 @@ html {
 }
 
 input:focus {
-    border: 2px solid var(--blue) !important;
+    //border: 2px solid var(--blue) !important;
     outline: none !important;
 }
 
@@ -146,4 +151,94 @@ mat-hint {
 
 .mat-datepicker-toggle-active {
     color: #3a86ff !important;
+}
+
+.mat-mdc-button,
+.mat-mdc-outlined-button {
+    --mat-mdc-button-persistent-ripple-color: transparent !important;
+}
+
+//chips
+.mat-mdc-standard-chip.mdc-evolution-chip--with-primary-graphic .mdc-evolution-chip__graphic {
+    display: none !important;
+}
+
+.mat-mdc-chip—focus-overlay {
+    background: #F7F7FF !important;
+}
+
+.mat-mdc-standard-chip.mdc-evolution-chip--selected.mdc-evolution-chip--disabled {
+    background-color: #BDD5EA !important;
+    opacity: 100% !important;
+    border: solid 1px #3a86ff !important;
+}
+
+.mat-mdc-standard-chip.mat-mdc-chip-selected.mat-primary {
+    --mdc-chip-disabled-label-text-color: #3a86ff;
+}
+
+.mat-mdc-standard-chip.mdc-evolution-chip--selected.mdc-evolution-chip--disabled .mdc-evolution-chip_text-label {
+    margin-inline-start: 1px !important;
+    font-weight: 600 !important;
+}
+
+.mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled) {
+    background-color: #F7F7FF !important;
+    border: 1px solid #495867 !important;
+
+}
+
+
+.mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled) .mdc-evolution-chip_text-label {
+    margin-inline-start: 1px !important;
+    color: #ccc !important;
+    font-weight: 500 !important;
+
+}
+
+.mat-mdc-standard-chip .mdc-evolution-chip__cell--primary {
+    justify-content: center !important;
+}
+
+.mat-mdc-standard-chip.mat-mdc-chip-selected.mat-primary,
+.mat-mdc-standard-chip.mat-mdc-chip-highlighted.mat-primary {
+    --mdc-chip-focus-state-layer-color: none !important;
+}
+
+.mat-mdc-standard-chip {
+    --mdc-chip-focus-state-layer-color: none !important;
+}
+
+[dir=rtl] .mat-mdc-standard-chip.mdc-evolution-chip--with-primary-graphic .mdc-evolution-chip__action--primary,
+.mat-mdc-standard-chip.mdc-evolution-chip--with-primary-graphic .mdc-evolution-chip__action--primary[dir=rtl] {
+    padding-left: 0 !important;
+    width: 100% !important;
+}
+
+
+.timepicker-dial__container {
+    flex-direction: row-reverse !important;
+}
+
+.timepicker-dial__time {
+    flex-direction: row-reverse !important;
+}
+
+.timepicker-dial__control {
+    border: none !important;
+    width: 70px !important;
+    background-color: transparent !important;
+}
+
+.mat-toolbar.mat-primary {
+    --mat-toolbar-container-background-color: #3a86ff !important
+}
+
+.mat-mdc-fab.mat-primary,
+.mat-mdc-mini-fab.mat-primary {
+    --mdc-fab-container-color: #3a86ff !important;
+}
+
+.mat-mdc-button.mat-primary {
+    --mdc-text-button-label-text-color: #3a86ff !important;
 }

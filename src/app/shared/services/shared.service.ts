@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class Shared {
     private hashStringToken: string;
     private hashStringEmail: string;
-    private resetEmail : string;
+    private resetEmail: string;
 
     constructor() { }
 

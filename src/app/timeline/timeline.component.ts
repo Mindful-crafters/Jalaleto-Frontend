@@ -1,6 +1,9 @@
 import { persiancalendarservice } from './../shared/services/persiancalendarservice.service';
 import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { Subject, debounceTime } from 'rxjs';
+import { AddNewEventReminderComponent } from './add-new-event-reminder/add-new-event-reminder.component';
+import { DialogRef } from '@angular/cdk/dialog';
 
 
 @Component({
@@ -12,7 +15,7 @@ import { Subject, debounceTime } from 'rxjs';
 
 export class TimelineComponent implements OnInit {
   displayedMonth: string = '';
-  displayedYear : string = '';
+  displayedYear: string = '';
 
   timelineItems: TimeLineItem[] = [];
   displayedTimeLine: TimeLineItem[] = [];
@@ -23,15 +26,15 @@ export class TimelineComponent implements OnInit {
   selectedBox: number | null = null;
 
   timeObjects: PersonalTimeObject[] = [
-    { startTime: '12:15', priority: 'بالا', title: 'جلسه', type: 'event' },
-    { startTime: '8:15', priority: 'عادی', title: 'جلسه', type: 'remainder' },
-    { startTime: '12:15', priority: 'کم', title: 'جلسه', type: 'event' },
-    { startTime: '12:15', priority: 'کم', title: 'جلسه', type: 'remainder' },
-    { startTime: '12:15', priority: 'عادی', title: 'جلسه', type: 'remainder' },
-    { startTime: '12:15', priority: 'عادی', title: 'جلسه', type: 'event' },
-    { startTime: '12:15', priority: 'عادی', title: 'جلسه', type: 'event' },
-    { startTime: '12:15', priority: 'عادی', title: 'جلسه', type: 'event' },
-    { startTime: '12:15', priority: 'عادی', title: 'جلسه', type: 'event' }
+    { startTime: '12:15', priority: 'بالا', title: 'جلسه', type: 'event', notes: '', daysBeforeToRemind: 7, remindByEmail: true, priorityLevel: 2, dateTime: null },
+    { startTime: '8:15', priority: 'عادی', title: 'جلسه', type: 'remainder', notes: '', daysBeforeToRemind: 7, remindByEmail: true, priorityLevel: 1, dateTime: null },
+    { startTime: '12:15', priority: 'کم', title: 'جلسه', type: 'event', notes: '', daysBeforeToRemind: 7, remindByEmail: true, priorityLevel: 0, dateTime: null },
+    { startTime: '12:15', priority: 'کم', title: 'جلسه', type: 'remainder', notes: '', daysBeforeToRemind: 7, remindByEmail: true, priorityLevel: 0, dateTime: null },
+    { startTime: '12:15', priority: 'عادی', title: 'جلسه', type: 'remainder', notes: '', daysBeforeToRemind: 7, remindByEmail: true, priorityLevel: 1, dateTime: null },
+    { startTime: '12:15', priority: 'عادی', title: 'جلسه', type: 'event', notes: '', daysBeforeToRemind: 7, remindByEmail: true, priorityLevel: 1, dateTime: null },
+    { startTime: '12:15', priority: 'عادی', title: 'جلسه', type: 'event', notes: '', daysBeforeToRemind: 7, remindByEmail: true, priorityLevel: 1, dateTime: null },
+    { startTime: '12:15', priority: 'عادی', title: 'جلسه', type: 'event', notes: '', daysBeforeToRemind: 7, remindByEmail: true, priorityLevel: 1, dateTime: null },
+    { startTime: '12:15', priority: 'عادی', title: 'جلسه', type: 'event', notes: '', daysBeforeToRemind: 7, remindByEmail: true, priorityLevel: 1, dateTime: null }
   ];
 
   historicalEvents: HistoricalEvent[] = [
@@ -54,7 +57,8 @@ export class TimelineComponent implements OnInit {
 
   constructor(
     private el: ElementRef,
-    public persiancalendarservice: persiancalendarservice) {
+    public persiancalendarservice: persiancalendarservice,
+    private matDialog: MatDialog) {
     this.hoverSubject.pipe(debounceTime(200)).subscribe(index => {
       this.hoveredBox = index;
     });
@@ -126,7 +130,6 @@ export class TimelineComponent implements OnInit {
 
   generateTimeline() {
     const today = new Date();
-    console.log(this.persiancalendarservice.returnPeaceOfDate(today, 'day'))
 
     for (let i = 0; i < 7; i++) {
       const date = new Date(today);
@@ -152,33 +155,48 @@ export class TimelineComponent implements OnInit {
     this.hoverSubject.next(null);
   }
 
-  diplayedDate(date : Date , yyyy : boolean , mm : boolean , dd : boolean , dName : boolean){
-    let result : string = '';
+  diplayedDate(date: Date, yyyy: boolean, mm: boolean, dd: boolean, dName: boolean) {
+    let result: string = '';
 
-    const day = this.persiancalendarservice.returnPeaceOfDate(date,'day');
+    const day = this.persiancalendarservice.returnPeaceOfDate(date, 'day');
     const dayStr = this.getDayName(date.getDay());
     const month = this.persiancalendarservice.returnMonth(date);
     const year = this.persiancalendarservice.returnPeaceOfDate(date, 'year');
 
-    console.log('day',day)
-    console.log('dayStr',dayStr)
-
-    if(dName){
+    if (dName) {
       result += dayStr + ' ';
     }
 
-    if(dd){
-      result+= day + ' ';
+    if (dd) {
+      result += day + ' ';
     }
 
-    if(mm){
+    if (mm) {
       result += month + ' ';
     }
 
-    if(yyyy){
+    if (yyyy) {
       result += year;
     }
     return result;
+  }
+
+  AddNewReminder() {
+    const dialogRef: MatDialogRef<any, any> = this.matDialog.open(AddNewEventReminderComponent, {
+      data: new PersonalTimeObject({ dateTime: new Date() }),
+      disableClose: true,
+      hasBackdrop: true,
+      autoFocus: false
+    })
+
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res)
+        console.log(res);
+      //success
+      else
+        console.log();
+      //faile
+    })
   }
 }
 
@@ -193,9 +211,26 @@ export interface HistoricalEvent {
   event: string;
 }
 
-export interface PersonalTimeObject {
+export class PersonalTimeObject {
   startTime: string;
   priority: string;
   title: string;
   type: string;
+  notes: string;
+  daysBeforeToRemind: number;
+  remindByEmail: boolean;
+  priorityLevel: number;
+  dateTime: Date;
+
+  constructor(pto: any) {
+    this.startTime = pto.startTime || null;
+    this.priority = pto.priority || null;
+    this.title = pto.title || null;
+    this.type = pto.type || null;
+    this.notes = pto.notes || null;
+    this.daysBeforeToRemind = pto.daysBeforeToRemind || null;
+    this.remindByEmail = pto.remindByEmail || null;
+    this.priorityLevel = pto.priorityLevel || null;
+    this.dateTime = pto.dateTime || null;
+  }
 }

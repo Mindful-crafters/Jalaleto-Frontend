@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class AuthService {
   private tokenKey = 'auth_token';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   setToken(token: string): void {
     localStorage.setItem(this.tokenKey, token);
