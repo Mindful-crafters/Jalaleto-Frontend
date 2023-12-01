@@ -6,17 +6,26 @@ import { DashboardComponent } from './dashboard.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 
+import { TimelineComponent } from '../timeline/timeline.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatRippleModule } from '@angular/material/core';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
 
 @NgModule({
     declarations: [
         DashboardComponent,
         NavbarComponent,
-        FooterComponent
-
+        FooterComponent,
+        TimelineComponent
+    ],
+    exports: [
+        DashboardComponent,
+        MatButtonModule,
+        MatRippleModule,
+        NzPopoverModule
     ],
     imports: [
         BrowserAnimationsModule,
@@ -26,9 +35,6 @@ import { HttpClientModule } from '@angular/common/http';
         MatMenuModule,
         MatButtonModule,
         MatIconModule,
-    ],
-    exports: [
-        DashboardComponent
     ]
 })
 export class DashboardModule { }

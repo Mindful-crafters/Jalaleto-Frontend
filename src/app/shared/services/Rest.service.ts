@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class RestService {
   private apiUrl = 'https://dev.jalaleto.ir/api';
 
-  constructor(private http: HttpClient,private authService : AuthService) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   get customHeaders() {
     return new HttpHeaders({
@@ -28,3 +28,4 @@ export class RestService {
     return this.http.post<T>(`${this.apiUrl}/${url}`, data, options);
   }
 }
+
