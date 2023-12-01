@@ -1,3 +1,12 @@
+address,
+dl,
+ol,
+p,
+pre,
+ul {
+    margin-bottom: 0 !important;
+}
+
 html {
     --mat-datepicker-calendar-date-focus-state-background-color: #BDD5EA !important;
     --mat-datepicker-calendar-date-hover-state-background-color: #BDD5EA !important;
@@ -187,7 +196,7 @@ mat-hint {
 }
 
 .mat-mdc-standard-chip.mat-mdc-chip-selected.mat-primary {
-    --mdc-chip-disabled-label-text-color: #3a86ff;
+    --mdc-chip-disabled-label-text-color: #3a86ff !important;
 }
 
 .mat-mdc-standard-chip.mdc-evolution-chip--selected.mdc-evolution-chip--disabled .mdc-evolution-chip_text-label {
@@ -228,7 +237,7 @@ mat-hint {
     width: 100% !important;
 }
 
-
+//timepicker
 .timepicker-dial__container {
     flex-direction: row-reverse !important;
 }

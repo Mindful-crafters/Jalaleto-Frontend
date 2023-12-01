@@ -24,8 +24,8 @@ import { NzPopoverModule } from 'ng-zorro-antd/popover';
     exports: [
         DashboardComponent,
         MatButtonModule,
-        MatRippleModule,
-        NzPopoverModule
+        MatRippleModule
+
     ],
     imports: [
         BrowserAnimationsModule,
@@ -35,6 +35,7 @@ import { NzPopoverModule } from 'ng-zorro-antd/popover';
         MatMenuModule,
         MatButtonModule,
         MatIconModule,
+        NzPopoverModule
     ]
 })
 export class DashboardModule { }
