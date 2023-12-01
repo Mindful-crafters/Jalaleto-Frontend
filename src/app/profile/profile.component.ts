@@ -35,15 +35,9 @@ export class ProfileComponent implements OnInit {
       Image: ""
     }
   session: any;
-  // dynamicLabel: string = 'نام';
-  // change()
-  // {
-  //   this.dynamicLabel = 'احمد';
-  // }
-  ProfileForm: FormGroup;
-  profilePicture: File | undefined; // New property for profile picture
+  profilePicture: File | undefined;
   selectedImage: string | undefined;
-  isSignedClicked: boolean = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private datePipe: DatePipe,
@@ -52,9 +46,9 @@ export class ProfileComponent implements OnInit {
     private rest: RestService,
     private shared: Shared,
     private restService: RestService,
-  ) {
+  ) {}
 
-  }
+
   emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   validateAge(control: AbstractControl): ValidationErrors | null {
     const currentDate = new Date();
@@ -66,13 +60,7 @@ export class ProfileComponent implements OnInit {
       return { customError: true };
     }
   }
-  private dayArray = ['یکشنبه', 'دوشنبه', 'سه شنبه', 'چهارشبه', 'پنجشنبه', 'جمعه', 'شنبه'];
-  private date = new Date();
-  public hour: any;
-  public minute: string;
-  public second: string;
-  public ampm: string;
-  public day: string;
+
 
 
   ngOnInit() {

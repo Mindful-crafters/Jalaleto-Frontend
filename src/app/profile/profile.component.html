@@ -1,15 +1,5 @@
 <div [dir]="'rtl'" class="containor">
     <div class="profile-form">
-        <!-- <div class="navbar">
-            <div class="digitalClock">
-                <div class="dayTitle">
-                    {{day}}
-                </div>
-                <div class="digitalTime>">
-                    <div> {{second}} : {{minute}} : {{hour}} </div>
-                </div>
-            </div>
-        </div> -->
 
         <div class="info">
 
@@ -29,14 +19,28 @@
                 </mat-form-field>
             </div>
             <div>
-                
-                
+                <div class="p">
+                    <p>نام خانوادگی</p>
+                </div>
+
+
+
                 <mat-form-field class="LastName" appearance="outline" hideRequiredMarker>
                     <mat-label>نام خانوادگی</mat-label>
                     <input [(ngModel)]="data.LastName" matInput/>
                 </mat-form-field>
             </div>
-            
+            <div>
+                <div class="p">
+                    <p>نام کاربری</p>
+                </div>
+
+
+                <mat-form-field class="Username" appearance="outline" hideRequiredMarker>
+                    <mat-label>نام کاربری</mat-label>
+                    <input [(ngModel)]="tokenData.UserName" matInput/>
+                </mat-form-field>
+            </div>
             <div>
                 <mat-form-field class="Birthday" appearance="outline" hideRequiredMarker>
                     <mat-label>تاریخ تولد</mat-label>
@@ -44,7 +48,7 @@
                 </mat-form-field>
             </div>
             <div>
-                
+
                 <mat-form-field class="Email" appearance="outline" hideRequiredMarker>
                     <mat-label>ایمیل</mat-label>
                     <input [disabled]="true" [(ngModel)]="data.Email" matInput/>
@@ -59,6 +63,20 @@
             </div>
         </div>
 
+
+        <div class="pic">
+          <div class="profile-container">
+              <img class="profile" [src]="selectedImage ? selectedImage : '/assets/SL_100820_36440_10-Recovered.svg'" alt="Profile Image">
+              <div id="circle">
+                  <input type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none;" #fileInput>
+                  <button (click)="fileInput.click()">
+                      <img class="edit" src="/assets/icons8-camera-24.svg" alt="Upload Image">
+                  </button>
+              </div>
+          </div>
+      </div>
+
+
         <!-- <div class="pic">
           <img class="profile" [src]="selectedImage ? selectedImage : '/assets/SL_100820_36440_10-Recovered.svg'" alt="Profile Image">
           <div id="circle">
@@ -70,7 +88,7 @@
                 <img class="remove" src="/assets/icons8-camera-24.svg" alt="Remove Image">
             </button> -->
           <!-- </div>
-      </div> -->
+      </div>
 
       <div class="pic">
         <div class="profile-container" (click)="removePhoto()">
@@ -82,6 +100,71 @@
                 </button>
             </div>
         </div>
+    </div> -->
+
+
+      <!-- <div class="pic">
+        <div class="profile-picture" (click)="removePhoto()">
+            <img class="profile" [src]="selectedImage ? selectedImage : '/assets/SL_100820_36440_10-Recovered.svg'" alt="Profile Image">
+            <div id="circle">
+                <input type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none;" #fileInput>
+                <button (click)="fileInput.click()">
+                    <img class="edit" src="/assets/icons8-camera-24.svg" alt="Upload Image">
+                </button>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- <div class="pic">
+      <div class="profile-picture" (click)="removePhoto()">
+          <img class="profile" [src]="selectedImage ? selectedImage : '/assets/SL_100820_36440_10-Recovered.svg'" alt="Profile Image">
+          <div id="circle">
+              <input type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none;" #fileInput>
+              <button (click)="fileInput.click()">
+                  <img class="edit" src="/assets/icons8-camera-24.svg" alt="Upload Image">
+              </button>
+          </div>
+      </div>
+      <button *ngIf="selectedImage" class="remove-button" (click)="removePhoto()">
+          <img class="remove" src="../../assets/icons8-trash.svg" alt="Remove Image">
+      </button>
+  </div>
+
+-->
+
+    </div>
+
+
+      <!-- <div class="pic">
+        <div class="profile-picture" (click)="removePhoto()">
+            <img class="profile" [src]="selectedImage ? selectedImage : '/assets/SL_100820_36440_10-Recovered.svg'" alt="Profile Image">
+            <div id="circle">
+                <input type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none;" #fileInput>
+                <button (click)="fileInput.click()">
+                    <img class="edit" src="/assets/icons8-camera-24.svg" alt="Upload Image">
+                </button>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- <div class="pic">
+      <div class="profile-picture" (click)="removePhoto()">
+          <img class="profile" [src]="selectedImage ? selectedImage : '/assets/SL_100820_36440_10-Recovered.svg'" alt="Profile Image">
+          <div id="circle">
+              <input type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none;" #fileInput>
+              <button (click)="fileInput.click()">
+                  <img class="edit" src="/assets/icons8-camera-24.svg" alt="Upload Image">
+              </button>
+          </div>
+      </div>
+      <button *ngIf="selectedImage" class="remove-button" (click)="removePhoto()">
+          <img class="remove" src="../../assets/icons8-trash.svg" alt="Remove Image">
+      </button>
+  </div>
+-->
+
+
+
     </div>
 
 
@@ -117,5 +200,9 @@
 
     </div>
 </div>
+
+
+
+
 
 
