@@ -56,6 +56,20 @@
             </div>
         </div>
 
+
+        <div class="pic">
+          <div class="profile-container">
+              <img class="profile" [src]="selectedImage ? selectedImage : '/assets/SL_100820_36440_10-Recovered.svg'" alt="Profile Image">
+              <div id="circle">
+                  <input type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none;" #fileInput>
+                  <button (click)="fileInput.click()">
+                      <img class="edit" src="/assets/icons8-camera-24.svg" alt="Upload Image">
+                  </button>
+              </div>
+          </div>
+      </div>
+
+
         <!-- <div class="pic">
           <img class="profile" [src]="selectedImage ? selectedImage : '/assets/SL_100820_36440_10-Recovered.svg'" alt="Profile Image">
           <div id="circle">
@@ -67,7 +81,7 @@
                 <img class="remove" src="/assets/icons8-camera-24.svg" alt="Remove Image">
             </button> -->
           <!-- </div>
-      </div> -->
+      </div>
 
       <div class="pic">
         <div class="profile-container" (click)="removePhoto()">
@@ -79,7 +93,7 @@
                 </button>
             </div>
         </div>
-    </div>
+    </div> -->
 
 
       <!-- <div class="pic">
@@ -108,9 +122,8 @@
           <img class="remove" src="../../assets/icons8-trash.svg" alt="Remove Image">
       </button>
   </div>
+
 -->
-
-
 
     </div>
 </div>

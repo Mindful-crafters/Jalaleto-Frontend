@@ -89,10 +89,10 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  removePhoto() {
-    this.selectedImage = undefined;
-    this.profilePicture = undefined; 
-  }
+  // removePhoto() {
+  //   this.selectedImage = undefined;
+  //   this.profilePicture = undefined;
+  // }
 
 
   onSubmit() {
