@@ -18,11 +18,11 @@ import { AbstractControl, ValidationErrors, FormBuilder, FormControl, FormGroup,
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  tokenData: {
+  data: {
     FirstName: string,
     LastName: string,
     UserName: string,
-    Birthday: string,
+    Birthday: Date,
     Email: string,
     Image: string
 
@@ -30,7 +30,7 @@ export class ProfileComponent implements OnInit {
       FirstName: "",
       LastName: "",
       UserName: "",
-      Birthday: "",
+      Birthday: null,
       Email: "",
       Image: ""
     }
@@ -43,7 +43,7 @@ export class ProfileComponent implements OnInit {
   ProfileForm: FormGroup;
   profilePicture: File | undefined; // New property for profile picture
   selectedImage: string | undefined;
-
+  isSignedClicked: boolean = false;
   constructor(
     private formBuilder: FormBuilder,
     private datePipe: DatePipe,
@@ -87,8 +87,13 @@ export class ProfileComponent implements OnInit {
       this.updateDate(date);
     }, 1000)
     this.day = this.dayArray[this.date.getDay()];
-    this.restService.postData("User/ProfileInfo", null).subscribe((res) => {
-      console.log(res);
+    this.restService.post("User/ProfileInfo", null).subscribe((res: ProfileResult) => {
+      this.data.FirstName = res.firstName;
+      this.data.LastName = res.lastName;
+      this.data.UserName = res.userName;
+      this.data.Email = res.email;
+      this.data.Birthday = res.birthday;
+
 
     })
   }
@@ -123,10 +128,23 @@ export class ProfileComponent implements OnInit {
 
   removePhoto() {
     this.selectedImage = undefined;
-    this.profilePicture = undefined; 
+    this.profilePicture = undefined;
   }
 
-
+  submit()
+  {
+    this.rest.postWithoutHeader<any>('User/EditProfile', null).subscribe(
+      (response) => {
+        console.log(response);
+        if (response['success']) {
+          this.isSignedClicked = true
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    )
+  }
   onSubmit() {
     if (this.profilePicture) {
       const formData = new FormData();
@@ -146,8 +164,14 @@ export class ProfileComponent implements OnInit {
 }
 
 interface ProfileResult {
-  token?: string,
   success: boolean,
   code: number,
   message: string,
+
+  firstName: string,
+  lastName: string,
+  userName: string,
+  birthday: Date,
+  email: string,
+  // "image": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 }

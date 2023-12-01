@@ -16,9 +16,16 @@
             <h1 class="title">درباره کاربر</h1>
             <br>
             <div>
+                
+                <mat-form-field class="Username" appearance="outline" hideRequiredMarker>
+                    <mat-label>نام کاربری</mat-label>
+                    <input disabled="true" [(ngModel)]="data.UserName" matInput/>
+                </mat-form-field>
+            </div>
+            <div>
                 <mat-form-field class="FirstName" appearance="outline" hideRequiredMarker>
                     <mat-label>نام</mat-label>
-                    <input [(ngModel)]="tokenData.FirstName" matInput/>
+                    <input [(ngModel)]="data.FirstName" matInput/>
                 </mat-form-field>
             </div>
             <div>
@@ -26,33 +33,27 @@
                 
                 <mat-form-field class="LastName" appearance="outline" hideRequiredMarker>
                     <mat-label>نام خانوادگی</mat-label>
-                    <input [(ngModel)]="tokenData.LastName" matInput/>
+                    <input [(ngModel)]="data.LastName" matInput/>
                 </mat-form-field>
             </div>
-            <div>
-                
-                <mat-form-field class="Username" appearance="outline" hideRequiredMarker>
-                    <mat-label>نام کاربری</mat-label>
-                    <input [(ngModel)]="tokenData.UserName" matInput/>
-                </mat-form-field>
-            </div>
+            
             <div>
                 <mat-form-field class="Birthday" appearance="outline" hideRequiredMarker>
                     <mat-label>تاریخ تولد</mat-label>
-                    <input [(ngModel)]="tokenData.Birthday" matInput/>
+                    <input [(ngModel)]="data.Birthday" matInput/>
                 </mat-form-field>
             </div>
             <div>
                 
                 <mat-form-field class="Email" appearance="outline" hideRequiredMarker>
                     <mat-label>ایمیل</mat-label>
-                    <input [(ngModel)]="tokenData.Email" matInput/>
+                    <input [disabled]="true" [(ngModel)]="data.Email" matInput/>
                 </mat-form-field>
             </div>
 
 
             <div>
-                <button type="button" mat-button class="register-button primary-button">
+                <button (click)="submit()" type="button" mat-button class="register-button primary-button">
                     ثبت تغییرات
                 </button>
             </div>
