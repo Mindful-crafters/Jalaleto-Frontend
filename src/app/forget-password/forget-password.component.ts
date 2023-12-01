@@ -66,7 +66,7 @@ export class ForgetPasswordComponent {
 
     console.log(body)
 
-    this.rest.postData<any>('User/ResetPassword',body).subscribe(
+    this.rest.postWithoutHeader<any>('User/ResetPassword',body).subscribe(
       (response)=>{
         if(response['success']){
           this.router.navigate(['login']);
