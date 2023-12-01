@@ -41,10 +41,16 @@
 
     <mat-menu #menu="matMenu" class="menu">
       <ng-template matMenuContent>
+        <img src="../../assets/icons/icons8-test-account-48.png" alt="profile icon" class="Profile Image">
         <button mat-menu-item (click)="viewProfile()">مشاهده پروفایل</button>
-        <button mat-menu-item (click)="Events()">رویدادها</button>
         <button mat-menu-item (click)="openSettings()">تنظیمات</button>
-        <button mat-menu-item (click)="logout()">خروج</button>
+        <div class="line"></div>
+        <button mat-menu-item (click)="Events()">رویدادها</button>
+        <div class="line"></div>
+        <button mat-menu-item (click)="logout()" class="logout-button">
+          خروج
+          <!-- <img src="../../assets/icons/icons8-exit-48.png" alt="exit icon" class="exit-icon"> -->
+        </button>
       </ng-template>
     </mat-menu>
 
