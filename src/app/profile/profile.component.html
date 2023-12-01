@@ -2,56 +2,36 @@
     <div class="profile-form">
 
         <div class="info">
-
-            <h1 class="title">درباره کاربر</h1>
-            <br>
             <div>
-                
                 <mat-form-field class="Username" appearance="outline" hideRequiredMarker>
                     <mat-label>نام کاربری</mat-label>
-                    <input disabled="true" [(ngModel)]="data.UserName" matInput/>
+                    <input [disabled]="true" [(ngModel)]="data.UserName" matInput />
                 </mat-form-field>
             </div>
             <div>
                 <mat-form-field class="FirstName" appearance="outline" hideRequiredMarker>
                     <mat-label>نام</mat-label>
-                    <input [(ngModel)]="data.FirstName" matInput/>
+                    <input [(ngModel)]="data.FirstName" matInput />
                 </mat-form-field>
             </div>
             <div>
-                <div class="p">
-                    <p>نام خانوادگی</p>
-                </div>
-
-
 
                 <mat-form-field class="LastName" appearance="outline" hideRequiredMarker>
                     <mat-label>نام خانوادگی</mat-label>
-                    <input [(ngModel)]="data.LastName" matInput/>
-                </mat-form-field>
-            </div>
-            <div>
-                <div class="p">
-                    <p>نام کاربری</p>
-                </div>
-
-
-                <mat-form-field class="Username" appearance="outline" hideRequiredMarker>
-                    <mat-label>نام کاربری</mat-label>
-                    <input [(ngModel)]="tokenData.UserName" matInput/>
+                    <input [(ngModel)]="data.LastName" matInput />
                 </mat-form-field>
             </div>
             <div>
                 <mat-form-field class="Birthday" appearance="outline" hideRequiredMarker>
                     <mat-label>تاریخ تولد</mat-label>
-                    <input [(ngModel)]="data.Birthday" matInput/>
+                    <input [(ngModel)]="data.Birthday" matInput />
                 </mat-form-field>
             </div>
             <div>
 
                 <mat-form-field class="Email" appearance="outline" hideRequiredMarker>
                     <mat-label>ایمیل</mat-label>
-                    <input [disabled]="true" [(ngModel)]="data.Email" matInput/>
+                    <input [disabled]="true" [(ngModel)]="data.Email" matInput />
                 </mat-form-field>
             </div>
 
@@ -65,16 +45,18 @@
 
 
         <div class="pic">
-          <div class="profile-container">
-              <img class="profile" [src]="selectedImage ? selectedImage : '/assets/SL_100820_36440_10-Recovered.svg'" alt="Profile Image">
-              <div id="circle">
-                  <input type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none;" #fileInput>
-                  <button (click)="fileInput.click()">
-                      <img class="edit" src="/assets/icons8-camera-24.svg" alt="Upload Image">
-                  </button>
-              </div>
-          </div>
-      </div>
+            <div class="profile-container">
+                <img class="profile" [src]="selectedImage ? selectedImage : '/assets/SL_100820_36440_10-Recovered.svg'"
+                    alt="Profile Image">
+                <div id="circle">
+                    <input type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none;"
+                        #fileInput>
+                    <button (click)="fileInput.click()">
+                        <img class="edit" src="/assets/icons8-camera-24.svg" alt="Upload Image">
+                    </button>
+                </div>
+            </div>
+        </div>
 
 
         <!-- <div class="pic">
@@ -84,10 +66,10 @@
               <button (click)="fileInput.click()">
                   <img class="edit" src="/assets/icons8-camera-24.svg" alt="Upload Image">
               </button> -->
-              <!-- <button (click)="removePhoto()">
+        <!-- <button (click)="removePhoto()">
                 <img class="remove" src="/assets/icons8-camera-24.svg" alt="Remove Image">
             </button> -->
-          <!-- </div>
+        <!-- </div>
       </div>
 
       <div class="pic">
@@ -103,7 +85,7 @@
     </div> -->
 
 
-      <!-- <div class="pic">
+        <!-- <div class="pic">
         <div class="profile-picture" (click)="removePhoto()">
             <img class="profile" [src]="selectedImage ? selectedImage : '/assets/SL_100820_36440_10-Recovered.svg'" alt="Profile Image">
             <div id="circle">
@@ -115,7 +97,7 @@
         </div>
     </div> -->
 
-    <!-- <div class="pic">
+        <!-- <div class="pic">
       <div class="profile-picture" (click)="removePhoto()">
           <img class="profile" [src]="selectedImage ? selectedImage : '/assets/SL_100820_36440_10-Recovered.svg'" alt="Profile Image">
           <div id="circle">
@@ -129,13 +111,7 @@
           <img class="remove" src="../../assets/icons8-trash.svg" alt="Remove Image">
       </button>
   </div>
-
--->
-
-    </div>
-
-
-      <!-- <div class="pic">
+ <div class="pic">
         <div class="profile-picture" (click)="removePhoto()">
             <img class="profile" [src]="selectedImage ? selectedImage : '/assets/SL_100820_36440_10-Recovered.svg'" alt="Profile Image">
             <div id="circle">
@@ -147,7 +123,7 @@
         </div>
     </div> -->
 
-    <!-- <div class="pic">
+        <!-- <div class="pic">
       <div class="profile-picture" (click)="removePhoto()">
           <img class="profile" [src]="selectedImage ? selectedImage : '/assets/SL_100820_36440_10-Recovered.svg'" alt="Profile Image">
           <div id="circle">
@@ -161,14 +137,7 @@
           <img class="remove" src="../../assets/icons8-trash.svg" alt="Remove Image">
       </button>
   </div>
--->
-
-
-
-    </div>
-
-
-      <!-- <div class="pic">
+ <div class="pic">
         <div class="profile-picture" (click)="removePhoto()">
             <img class="profile" [src]="selectedImage ? selectedImage : '/assets/SL_100820_36440_10-Recovered.svg'" alt="Profile Image">
             <div id="circle">
@@ -178,9 +147,8 @@
                 </button>
             </div>
         </div>
-    </div> -->
-
-    <!-- <div class="pic">
+    </div> 
+     <div class="pic">
       <div class="profile-picture" (click)="removePhoto()">
           <img class="profile" [src]="selectedImage ? selectedImage : '/assets/SL_100820_36440_10-Recovered.svg'" alt="Profile Image">
           <div id="circle">
@@ -200,9 +168,3 @@
 
     </div>
 </div>
-
-
-
-
-
-

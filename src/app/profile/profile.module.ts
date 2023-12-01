@@ -35,7 +35,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler';
         MatIconModule,
     ],
     exports: [
-        ProfileComponent
+        ProfileComponent,
     ]
 })
 export class ProfileModule { }

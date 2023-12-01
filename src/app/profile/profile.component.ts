@@ -2,14 +2,9 @@ import { RestService } from './../shared/services/Rest.service';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http'
-import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgxOtpInputConfig } from 'ngx-otp-input';
-import { UserModel } from '../shared/types/UserModel.type';
 import { Shared } from '../shared/services/shared.service';
-import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
-import { AuthService } from './../shared/services/auth.service';
-import { AbstractControl, ValidationErrors, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, ValidationErrors, FormBuilder } from '@angular/forms';
 
 
 @Component({
@@ -39,12 +34,7 @@ export class ProfileComponent implements OnInit {
   selectedImage: string | undefined;
 
   constructor(
-    private formBuilder: FormBuilder,
-    private datePipe: DatePipe,
-    private http: HttpClient,
-    private Router: Router,
     private rest: RestService,
-    private shared: Shared,
     private restService: RestService,
   ) {}
 
@@ -64,17 +54,7 @@ export class ProfileComponent implements OnInit {
 
 
   ngOnInit() {
-    const token = '';
 
-    //load data from local storage
-    // this.tokenData = this.parseToken(token);
-    // let data = localStorage.getItem('session')
-    // this.session = JSON.parse(data);
-    setInterval(() => {
-      const date = new Date();
-      this.updateDate(date);
-    }, 1000)
-    this.day = this.dayArray[this.date.getDay()];
     this.restService.post("User/ProfileInfo", null).subscribe((res: ProfileResult) => {
       this.data.FirstName = res.firstName;
       this.data.LastName = res.lastName;
@@ -93,18 +73,6 @@ export class ProfileComponent implements OnInit {
     }
     return null;
   }
-  private updateDate(date: Date) {
-    const hours = date.getHours();
-    this.ampm = hours >= 12 ? 'PM' : 'AM';
-    this.hour = hours % 12;
-    this.hour = this.hour ? this.hour : 12;
-    this.hour = this.hour < 10 ? '0' + this.hour : this.hour;
-    const minutes = date.getMinutes();
-    this.minute = minutes < 10 ? '0' + minutes : minutes.toString();
-    const seconds = date.getSeconds();
-    this.second = seconds < 10 ? '0' + seconds : seconds.toString();
-  }
-
   onFileSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
@@ -125,7 +93,6 @@ export class ProfileComponent implements OnInit {
       (response) => {
         console.log(response);
         if (response['success']) {
-          this.isSignedClicked = true
         }
       },
       (error) => {
