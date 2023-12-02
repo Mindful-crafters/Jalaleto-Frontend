@@ -16,14 +16,14 @@ const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'signup', component: SignUpComponent },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   // { path: 'home' , component: HomepageComponent},
+  { path: 'home', component: HomepageComponent },
   { path: 'signup', component: SignUpComponent },
   { path: 'forgetpassword', component: ForgetPasswordComponent },
   { path: 'newpassword', component: NewPasswordComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'profile', component: ProfileComponent},
-  { path: 'home', component: HomepageComponent}
+  { path: 'profile', component: ProfileComponent },
+  { path: 'home', component: HomepageComponent }
 ];
 
 @NgModule({
