@@ -2,6 +2,7 @@
 @import "theme/default-theme.styles.scss";
 @import "theme/scrollbar.scss";
 @import "~ng-zorro-antd/ng-zorro-antd.css";
+@import "app/shared/material.scss";
 
 * {
   box-sizing: border-box;
@@ -191,6 +192,21 @@ mat-hint {
 .mat-typography .mat-body-2 p,
 .mat-typography p {
   margin: 0;
+}
+
+//profile_navbar
+
+.mat-mdc-menu-panel
+{
+    width: 50vh !important;;
+    height: 31vh !important;;
+    border-radius: 10px !important;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5) !important;
+}
+
+mat-mdc-menu-contant, .mat-mdc-menu-contant .mat-mdc-menu-item .mat-mdc-menu-text
+{
+
 }
 
 // .more {

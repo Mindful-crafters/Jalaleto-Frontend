@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -8,6 +9,8 @@ import { ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class NavbarComponent {
+
+  constructor(private router: Router) {}
 
   viewProfile() {
     console.log('View Profile');
@@ -24,7 +27,9 @@ export class NavbarComponent {
 
 
   logout() {
-    console.log('Logout');
+
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
   }
 
 }
