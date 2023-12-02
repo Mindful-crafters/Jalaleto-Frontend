@@ -19,7 +19,6 @@ export class ProfileComponent implements OnInit {
     UserName: string,
     Birthday: Date,
     Email: string,
-    Image: string
 
   } = {
       FirstName: "",
@@ -27,7 +26,14 @@ export class ProfileComponent implements OnInit {
       UserName: "",
       Birthday: null,
       Email: "",
-      Image: ""
+    }
+    requestData = {
+      FirstName: this.data.FirstName,
+      LastName: this.data.LastName,
+      UserName: this.data.UserName,
+      Birthday: this.data.Birthday,
+      
+      // Add other fields if needed
     }
   session: any;
   profilePicture: File | undefined;
@@ -86,10 +92,12 @@ export class ProfileComponent implements OnInit {
     this.selectedImage = undefined;
     this.profilePicture = undefined;
   }
-
+  
   submit()
   {
-    this.restService.post<any>('User/EditProfile', this.data).subscribe(
+    
+    console.log(this.requestData);
+    this.restService.post<any>('User/EditProfile', this.requestData).subscribe(
       (response) => {
         console.log(response);
         if (response['success']) {
@@ -100,15 +108,14 @@ export class ProfileComponent implements OnInit {
         console.log(error);
       }
     )
+    
   }
   updateData(){
-    this.data = {
+    this.requestData = {
       FirstName: "",
       LastName: "",
       UserName: "",
       Birthday: null,
-      Email: "",
-      Image: ""
     }
     this.selectedImage = undefined;
   }
