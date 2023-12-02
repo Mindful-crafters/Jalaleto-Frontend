@@ -14,10 +14,10 @@ export class ForgetPasswordComponent {
   error = false;
 
   constructor(
-    private rest : RestService,
+    private rest: RestService,
     private formBuilder: FormBuilder,
-    private shared : Shared,
-    private router : Router) {
+    private shared: Shared,
+    private router: Router) {
 
   }
 
@@ -27,7 +27,7 @@ export class ForgetPasswordComponent {
       {
         password: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[A-Z])(?=.*[0-9]).{8,}$')]),
         code: [null, Validators.required],
-        confirmPassword: ['', Validators.required] 
+        confirmPassword: ['', Validators.required]
       },
       {
         validators: this.passwordMatchValidator.bind(this)
@@ -38,7 +38,7 @@ export class ForgetPasswordComponent {
       this.ForgetPasswordform.updateValueAndValidity();
     });
   }
-  
+
   passwordMatchValidator(formGroup: FormGroup) {
     const password = formGroup.get('password').value;
     const confirmPassword = formGroup.get('confirmPassword').value;
@@ -54,11 +54,11 @@ export class ForgetPasswordComponent {
 
     return isMismatch ? { passwordMismatch: true } : null;
   }
-  
 
-  resetPassword(){
+
+  resetPassword() {
     const body = {
-      "mail":this.shared.getEmail,
+      "mail": this.shared.getEmail,
       "code": this.ForgetPasswordform.get('code').value,
       "newPassword": this.ForgetPasswordform.get('password').value,
       "hashString": this.shared.getHashStringEmail
@@ -66,16 +66,16 @@ export class ForgetPasswordComponent {
 
     console.log(body)
 
-    this.rest.postData<any>('User/ResetPassword',body).subscribe(
-      (response)=>{
-        if(response['success']){
+    this.rest.postWithoutHeader<any>('User/ResetPassword', body).subscribe(
+      (response) => {
+        if (response['success']) {
           this.router.navigate(['login']);
         }
-        else{
+        else {
           this.error = true;
         }
       },
-      (error)=>{
+      (error) => {
         this.error = true;
       }
     )

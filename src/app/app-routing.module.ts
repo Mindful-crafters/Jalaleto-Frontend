@@ -11,10 +11,11 @@ import { HomepageComponent } from './homepage/homepage.component';
 
 
 const routes: Routes = [
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'signup', component: SignUpComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  // { path: 'home' , component: HomepageComponent},
+  { path: 'home' , component: HomepageComponent},
   { path: 'signup', component: SignUpComponent },
   { path: 'forgetpassword', component: ForgetPasswordComponent },
   { path: 'newpassword', component: NewPasswordComponent },

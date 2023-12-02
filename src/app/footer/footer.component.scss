@@ -3,7 +3,6 @@
 .footer-container {
   background-color: #F7F7F7;
   color: #495867;
-  position: absolute;
   bottom: 0;
   width: 100%;
 
@@ -70,24 +69,23 @@
 
       }
 
-        a {
-          margin-right: 10px;
-          // margin-left: 10px;
+      a {
+        margin-right: 10px;
+        // margin-left: 10px;
 
-          img {
-            width: 30px;
-            height: 30px;
-            display: block;
-            transition: transform 0.3s ease;
-            // margin-left: 100px;
+        img {
+          width: 30px;
+          height: 30px;
+          display: block;
+          transition: transform 0.3s ease;
+          // margin-left: 100px;
 
 
-            &:hover {
-              transform: scale(1.2);
+          &:hover {
+            transform: scale(1.2);
           }
         }
       }
     }
   }
 }
-

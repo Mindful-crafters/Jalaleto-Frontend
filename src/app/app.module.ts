@@ -22,20 +22,24 @@ import { MatMenuModule} from '@angular/material/menu';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { ProfileModule } from './profile/profile.module';
+// import { NavbarComponent } from './navbar/navbar.component';
 // import { FooterComponent } from './footer/footer.component';
 import { HomepageModule } from './homepage/homepage.module';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from "@angular/material/core";
 import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from "./shared/persion-date.adapter";
 import { FooterComponent } from './footer/footer.component';
+import { TimelineComponent } from './timeline/timeline.component';
+import { AddNewEventReminderComponent } from './timeline/add-new-event-reminder/add-new-event-reminder.component';
+import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from '@angular/material/dialog';
+import { MatChipsModule } from '@angular/material/chips';
+import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
 @NgModule({
   declarations: [
     AppComponent,
     ForgetPasswordComponent,
     NewPasswordComponent,
-    LoginComponent,
-    NavbarComponent,
-    FooterComponent
-    
+    LoginComponent,    
+    AddNewEventReminderComponent
   ],
   imports: [
     BrowserModule,
@@ -52,9 +56,12 @@ import { FooterComponent } from './footer/footer.component';
     HttpClientModule,
     MatMenuModule,
     SignupModule,
-    DashboardModule,
     HomepageModule,
     ProfileModule,
+    DashboardModule,
+    MatDialogModule,
+    MatChipsModule,
+    NgxMatTimepickerModule
   ],
   providers: [
     DatePipe,

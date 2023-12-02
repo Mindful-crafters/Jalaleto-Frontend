@@ -18,9 +18,9 @@ export class LoginComponent implements OnInit {
     private Router: Router,
     private formBuilder: FormBuilder,
     private restService: RestService,
-    private auth : AuthService,
-    private shared : Shared
-  ) {}
+    private auth: AuthService,
+    private shared: Shared
+  ) { }
 
   ngOnInit(): void {
     this.logInForm = this.formBuilder.group(
@@ -32,19 +32,18 @@ export class LoginComponent implements OnInit {
   }
 
   login(info: { username: string, password: string }) {
-    this.restService.postData<any>('User/Login', info).subscribe(
+    this.restService.postWithoutHeader<any>('User/Login', info).subscribe(
       (response) => {
         console.log(response);
         if (response['success']) {
           this.auth.setToken(response['token']);
           this.Router.navigate(['dashboard']);
         }
-        else
-        {
+        else {
           this.error = true;
         }
       },
-      (error)=>{
+      (error) => {
         this.error = true;
       }
     )
