@@ -3,7 +3,7 @@
 .container {
   @include box-style();
 
-  width: 60%;
+  width: 100%;
   height: fit-content;
   border-radius: 1rem;
   display: flex;
