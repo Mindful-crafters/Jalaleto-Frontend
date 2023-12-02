@@ -3,7 +3,7 @@
 .container {
   @include box-style();
 
-  width: 60%;
+  width: 100%;
   height: fit-content;
   border-radius: 1rem;
   display: flex;
@@ -214,6 +214,7 @@
 
 .historical-events {
   height: 18rem;
+  margin-top: 1rem;
   overflow: auto;
 }
 

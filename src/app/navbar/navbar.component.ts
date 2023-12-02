@@ -1,6 +1,7 @@
+import { Router } from '@angular/router';
+import { AuthService } from './../shared/services/auth.service';
 import { Component } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -10,25 +11,29 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent {
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService) {
+
+  }
 
   viewProfile() {
     console.log('View Profile');
   }
 
-  openSettings(){
+  openSettings() {
 
   }
 
-  Events(){
+  Events() {
 
   }
 
 
 
   logout() {
+    this.authService.logout();
 
-    localStorage.removeItem('token');
     this.router.navigate(['/login']);
   }
 
