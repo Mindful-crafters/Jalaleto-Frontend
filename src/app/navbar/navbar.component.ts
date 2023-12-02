@@ -18,7 +18,7 @@ export class NavbarComponent {
   }
 
   viewProfile() {
-    console.log('View Profile');
+    this.router.navigate(['/profile'])
   }
 
   openSettings() {
