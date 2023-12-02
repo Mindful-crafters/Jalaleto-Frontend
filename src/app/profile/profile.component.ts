@@ -65,14 +65,14 @@ export class ProfileComponent implements OnInit {
 
     })
   }
-  private parseToken(token: string): any {
-    const tokenParts = token.split('.');
-    if (tokenParts.length === 3) {
-      const decode = atob(tokenParts[1]);
-      return JSON.parse(decode);
-    }
-    return null;
-  }
+  // private parseToken(token: string): any {
+  //   const tokenParts = token.split('.');
+  //   if (tokenParts.length === 3) {
+  //     const decode = atob(tokenParts[1]);
+  //     return JSON.parse(decode);
+  //   }
+  //   return null;
+  // }
   onFileSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
@@ -89,16 +89,28 @@ export class ProfileComponent implements OnInit {
 
   submit()
   {
-    this.rest.postWithoutHeader<any>('User/EditProfile', null).subscribe(
+    this.restService.post<any>('User/EditProfile', this.data).subscribe(
       (response) => {
         console.log(response);
         if (response['success']) {
+          this.updateData();
         }
       },
       (error) => {
         console.log(error);
       }
     )
+  }
+  updateData(){
+    this.data = {
+      FirstName: "",
+      LastName: "",
+      UserName: "",
+      Birthday: null,
+      Email: "",
+      Image: ""
+    }
+    this.selectedImage = undefined;
   }
   onSubmit() {
     if (this.profilePicture) {
