@@ -64,22 +64,6 @@ export class TimelineComponent implements OnInit {
     });
   }
 
-  @HostListener('document:click', ['$event'])
-  onDocumentClick(event: MouseEvent): void {
-    if (this.selectedBox !== null && !this.isClickInsideBigBox(event)) {
-      this.selectedBox = null;
-    }
-  }
-
-  toggleSize(index: number): void {
-    this.selectedBox = index;
-  }
-
-  private isClickInsideBigBox(event: MouseEvent): boolean {
-    const bigBox = this.el.nativeElement.querySelector('.box.big');
-    return bigBox ? bigBox.contains(event.target as Node) : false;
-  }
-
   updateTimeLine(direction: string) {
     const updatedWeek: TimeLineItem[] = [];
 
@@ -120,10 +104,6 @@ export class TimelineComponent implements OnInit {
     this.displayedTimeLine = this.timelineItems;
   }
 
-  isOpen() {
-
-  }
-
   getJalaliDate(date: Date) {
     return this.persiancalendarservice.persiancalendar(date);
   }
@@ -147,12 +127,12 @@ export class TimelineComponent implements OnInit {
     return daysOfWeek[dayIndex];
   }
 
-  onBoxHover(index: number): void {
-    this.hoverSubject.next(index);
+  openBox(index: number) {
+    this.selectedBox = index;
   }
 
-  onBoxHoverOut(): void {
-    this.hoverSubject.next(null);
+  closeBox(){
+    this.selectedBox = null;
   }
 
   diplayedDate(date: Date, yyyy: boolean, mm: boolean, dd: boolean, dName: boolean) {

@@ -47,7 +47,7 @@
   flex-direction: column;
   color: var(--primary-text-color);
   background-color: white;
-  transition: all 1s ease-out;
+  transition: all 0.3s ease-out;
   border-radius: 0.5rem;
   border: 1px solid #577399;
   justify-content: center;
@@ -66,6 +66,13 @@
     margin-inline-start:0.25rem ;
     margin-inline-end: auto;
   }
+}
+
+.touch-target{
+  position: fixed;
+  width: 5rem;
+  height: 5rem;
+  z-index: 1;
 }
 
 .box.big {

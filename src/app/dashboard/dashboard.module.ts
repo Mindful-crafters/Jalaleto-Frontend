@@ -10,7 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 
 import { TimelineComponent } from '../timeline/timeline.component';
-import { MatButtonModule } from '@angular/material/button';
+import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 
@@ -19,13 +19,10 @@ import { NzPopoverModule } from 'ng-zorro-antd/popover';
         DashboardComponent,
         NavbarComponent,
         FooterComponent,
-        TimelineComponent
+        TimelineComponent,
     ],
     exports: [
-        DashboardComponent,
-        MatButtonModule,
-        MatRippleModule
-
+      DashboardComponent
     ],
     imports: [
         BrowserAnimationsModule,
@@ -35,7 +32,9 @@ import { NzPopoverModule } from 'ng-zorro-antd/popover';
         MatMenuModule,
         MatButtonModule,
         MatIconModule,
-        NzPopoverModule
+        NzPopoverModule,
+        MatButtonModule,
+        MatRippleModule
     ]
 })
 export class DashboardModule { }

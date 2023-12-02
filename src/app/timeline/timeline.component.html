@@ -3,7 +3,10 @@
     <p class="title">رویداد های پیش رو</p>
 
     <div class="historical-events">
-      <div *ngFor="let event of historicalEvents; let i = index" class="history-event-item">
+      <div
+        *ngFor="let event of historicalEvents; let i = index"
+        class="history-event-item"
+      >
         <span>{{ event.dayNum }}</span>
         <span>{{ event.event }}</span>
       </div>
@@ -12,7 +15,10 @@
     <p class="title">یادآوری های پیش رو</p>
 
     <div class="historical-events">
-      <div *ngFor="let event of historicalEvents; let i = index" class="history-event-item">
+      <div
+        *ngFor="let event of historicalEvents; let i = index"
+        class="history-event-item"
+      >
         <span>{{ event.dayNum }}</span>
         <span>{{ event.event }}</span>
       </div>
@@ -26,9 +32,18 @@
       <img src="../../assets/icons/up-arrow.svg" />
     </button>
 
-    <div *ngFor="let box of currentWeek; let i = index" class="box" [ngClass]="{
+    <div
+      *ngFor="let box of currentWeek; let i = index"
+      class="box"
+      [ngClass]="{
         big: i === selectedBox
-      }" (click)="toggleSize(i)">
+      }"
+    >
+
+      <div class="touch-target" (click)="openBox(i)">
+
+      </div>
+
       <div class="hovered-box table-header">
         <div class="title">عنوان</div>
 
@@ -44,19 +59,14 @@
       <div class="hovered-box time-items">
         <div class="time-item" *ngFor="let item of timeObjects; let i = index">
           <div class="title">
-            <span nz-popover nzPopoverTitle="یادداشت" [nzPopoverContent]="contentTemplate"
-              nzPopoverPlacement="bottomRight">{{ item.title }}
+            <span
+              nz-popover
+              nzPopoverTitle="یادداشت"
+              [nzPopoverContent]="contentTemplate"
+              nzPopoverPlacement="bottomRight"
+              >{{ item.title }}
             </span>
           </div>
-
-          <!-- <button
-            nz-popover
-            nzPopoverTitle="Title"
-            [nzPopoverContent]="contentTemplate"
-            nzPopoverPlacement="bottom"
-          >
-            Bottom
-          </button> -->
 
           <div class="start-time">
             {{ item.startTime }}
@@ -82,28 +92,22 @@
       </div>
 
       <div class="hovered-box title">
-        <!-- <div> -->
-        <!-- <span class="circle blue"></span>
-          <span>رویداد</span> -->
-        <button mat-raised-button class="add-event">افزودن رویداد</button>
-        <button mat-raised-button (click)="AddNewReminder()" class="add-remainder">افزودن یادآوری</button>
-        <!-- <button  class="add-btn">
-            <img src="../../assets/icons/add-button.svg" />
-          </button> -->
-        <!-- </div> -->
+        <button mat-raised-button class="exit" (click)="closeBox()">خروج</button>
 
-        <!-- <div>
-          <span class="circle green"></span>
-          <span>یادآوری</span>
-          <button class="add-btn">
-            <img src="../../assets/icons/add-button.svg" />
-          </button>
-        </div> -->
+        <button mat-raised-button class="add-event">افزودن رویداد</button>
+
+        <button
+          mat-raised-button
+          (click)="AddNewReminder()"
+          class="add-remainder"
+        >
+          افزودن یادآوری
+        </button>
       </div>
 
       <span class="remove-on-click dateNum">{{
         displayedTimeLine[i].dayNum
-        }}</span>
+      }}</span>
 
       <span class="remove-on-click str-week-day">
         {{ diplayedDate(displayedTimeLine[i].date, false, false, false, true) }}
@@ -111,7 +115,9 @@
 
       <div class="dateName">
         <span class="remove-on-click">
-          {{ diplayedDate(displayedTimeLine[i].date, true, true, false, false) }}
+          {{
+            diplayedDate(displayedTimeLine[i].date, true, true, false, false)
+          }}
         </span>
 
         <span class="hovered-box date">
@@ -120,7 +126,11 @@
       </div>
     </div>
 
-    <button (click)="updateTimeLine('down')" mat-button class="change-week-btn reverse down">
+    <button
+      (click)="updateTimeLine('down')"
+      mat-button
+      class="change-week-btn reverse down"
+    >
       <img src="../../assets/icons/up-arrow.svg" />
     </button>
   </div>

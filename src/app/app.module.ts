@@ -19,19 +19,13 @@ import { SignupModule } from './sign-up/sign-up.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DatePipe } from '@angular/common';
-import { MatMenuModule } from '@angular/material/menu';
-// import { NavbarComponent } from './navbar/navbar.component';
-// import { FooterComponent } from './footer/footer.component';
-
-
-
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from "@angular/material/core";
 import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from "./shared/persion-date.adapter";
-import { TimelineComponent } from './timeline/timeline.component';
 import { AddNewEventReminderComponent } from './timeline/add-new-event-reminder/add-new-event-reminder.component';
-import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatChipsModule } from '@angular/material/chips';
 import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
+
 @NgModule({
   declarations: [
     AppComponent,

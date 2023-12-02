@@ -228,3 +228,8 @@ mat-hint {
   background-color: green !important;
   color: white;
 }
+
+.exit.mat-mdc-raised-button:not(:disabled) {
+  background-color: red !important;
+  color: white;
+}
