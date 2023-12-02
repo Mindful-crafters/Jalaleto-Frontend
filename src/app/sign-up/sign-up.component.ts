@@ -29,7 +29,7 @@ export class SignUpComponent implements OnInit {
   signUpFail = false;
   formControl: FormControl;
   appearBtn = false;
-
+  
   constructor(
     private formBuilder: FormBuilder,
     private datePipe: DatePipe,

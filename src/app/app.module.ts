@@ -16,16 +16,22 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
 import { NewPasswordComponent } from './new-password/new-password.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { SignupModule } from './sign-up/sign-up.module';
-import { DashboardModule } from './dashboard/dashboard.module';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DatePipe } from '@angular/common';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from "@angular/material/core";
-import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from "./shared/persion-date.adapter";
 import { AddNewEventReminderComponent } from './timeline/add-new-event-reminder/add-new-event-reminder.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatChipsModule } from '@angular/material/chips';
 import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
 
+import { MatMenuModule} from '@angular/material/menu';
+import { NavbarComponent } from './navbar/navbar.component';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { ProfileModule } from './profile/profile.module';
+// import { FooterComponent } from './footer/footer.component';
+import { HomepageModule } from './homepage/homepage.module';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from "@angular/material/core";
+import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from "./shared/persion-date.adapter";
+import { FooterComponent } from './footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +39,8 @@ import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
     NewPasswordComponent,
     LoginComponent,
     AddNewEventReminderComponent
+
+
   ],
   imports: [
     BrowserModule,
@@ -46,18 +54,22 @@ import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    SignupModule,
     HttpClientModule,
     DashboardModule,
     MatDialogModule,
     MatChipsModule,
-    NgxMatTimepickerModule
+    NgxMatTimepickerModule,
+    MatMenuModule,
+    SignupModule,
+    DashboardModule,
+    HomepageModule,
+    ProfileModule,
   ],
   providers: [
     DatePipe,
     { provide: DateAdapter, useClass: MaterialPersianDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: PERSIAN_DATE_FORMATS }
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
