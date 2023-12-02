@@ -81,7 +81,7 @@ export class ProfileComponent implements OnInit {
       this.updateDate(date);
     }, 1000)
     this.day = this.dayArray[this.date.getDay()];
-    this.restService.postData("User/ProfileInfo", null).subscribe((res) => {
+    this.restService.postWithoutHeader("User/ProfileInfo", null).subscribe((res) => {
       console.log(res);
 
     })
