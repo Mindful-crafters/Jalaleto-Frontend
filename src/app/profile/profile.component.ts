@@ -89,7 +89,7 @@ export class ProfileComponent implements OnInit {
 
   submit()
   {
-    this.restService.postWithoutHeader<any>('User/EditProfile', this.data).subscribe(
+    this.restService.post<any>('User/EditProfile', this.data).subscribe(
       (response) => {
         console.log(response);
         if (response['success']) {
