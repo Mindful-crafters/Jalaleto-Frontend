@@ -3,22 +3,14 @@
 .footer-container {
   background-color: #F7F7F7;
   color: #495867;
-  position: absolute;
   bottom: 0;
   width: 100%;
 
   footer {
     display: flex;
-    // justify-content: space-between;
-    // padding: 20px;
-    // width: 100%;
-    // margin: auto;
     padding: 1em 1em;
     flex-wrap: wrap;
     justify-content: center;
-    // overflow-x: hidden;
-    // margin: 485px;
-    // width: 100%;
 
     .footer-item {
       flex: 1;
@@ -62,32 +54,27 @@
 
       .image-container {
         display: flex;
-        // justify-content: space-between;
         align-items: center;
         flex-wrap: nowrap;
         overflow-x: auto;
-        padding: 20px;
 
       }
 
         a {
           margin-right: 10px;
-          // margin-left: 10px;
 
           img {
             width: 30px;
             height: 30px;
             display: block;
             transition: transform 0.3s ease;
-            // margin-left: 100px;
 
 
-            &:hover {
-              transform: scale(1.2);
+          &:hover {
+            transform: scale(1.2);
           }
         }
       }
     }
   }
 }
-

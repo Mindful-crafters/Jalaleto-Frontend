@@ -6,13 +6,15 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
 import { NewPasswordComponent } from './new-password/new-password.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './shared/services/auth.guard';
-import { ProfileComponent } from './profile/profile.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer/footer.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'signup', component: SignUpComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   // { path: 'home' , component: HomepageComponent},

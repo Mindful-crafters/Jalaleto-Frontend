@@ -1,0 +1,251 @@
+@import "../../theme/common.styles.scss";
+
+.container {
+  @include box-style();
+
+  width: 60%;
+  height: fit-content;
+  border-radius: 1rem;
+  display: flex;
+  padding: 1rem 1rem 1rem 1.5rem;
+
+  ::-webkit-scrollbar {
+    width: 0.25rem;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 1rem rgb(200, 200, 200);
+    border-radius: 10px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: var(--blue);
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-text-color);
+  }
+}
+
+.timeline {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.box {
+  width: 5rem;
+  height: 5rem;
+  margin: 0.25rem;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  color: var(--primary-text-color);
+  background-color: white;
+  transition: all 0.3s ease-out;
+  border-radius: 0.5rem;
+  border: 1px solid #577399;
+  justify-content: center;
+  cursor: pointer;
+
+  .hovered-box {
+    display: none;
+  }
+
+  .add-event-btn {
+    display: none;
+  }
+
+  .str-week-day{
+    font-size: 0.6rem;
+    margin-inline-start:0.25rem ;
+    margin-inline-end: auto;
+  }
+}
+
+.touch-target{
+  position: fixed;
+  width: 5rem;
+  height: 5rem;
+  z-index: 1;
+}
+
+.box.big {
+  height: 20rem;
+  width: 100%;
+  cursor: unset;
+
+  .dateNum {
+    opacity: 0.2;
+  }
+
+  .hovered-box {
+    display: unset;
+
+    &.title {
+      margin-inline-end: 0;
+      margin-inline-start: auto;
+
+      & button{
+        margin-inline-end: 0.5rem;
+      }
+    }
+
+    &.date{
+      font-weight: bold;
+    }
+  }
+
+  .remove-on-click {
+    display: none;
+  }
+
+  .add-btn {
+    border: none;
+    background-color: transparent;
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+
+    img {
+      margin-bottom: -3px;
+    }
+  }
+
+  .table-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 1rem;
+
+    & > div {
+      flex: 1;
+      text-align: center;
+    }
+  }
+
+  .hovered-box.divider {
+    margin: 0;
+    margin-top: 1rem;
+  }
+
+  .time-items {
+    display: flex;
+    flex-direction: column;
+    height: 15rem;
+    overflow: auto;
+    margin-bottom: 0.5rem;
+    border-bottom: 4px solid var(--primary-background-color);
+
+    .time-item,
+    .table-header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+
+      & .title {
+        span{
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
+
+      & > div {
+        flex: 1;
+        text-align: center;
+      }
+
+      &:hover {
+        background-color: rgb(240, 240, 240);
+      }
+    }
+
+    .time-item {
+      padding: 0.5rem;
+    }
+
+    .more {
+      button {
+        cursor: pointer;
+        margin-inline-start: 0.5rem;
+        background-color: transparent;
+        border: none;
+
+        img {
+          margin-bottom: -0.3rem;
+        }
+      }
+    }
+  }
+}
+
+.things .title {
+  @include text-style(var(--primary-text-color), bold, 1rem);
+  margin: 1rem 0;
+  width: max-content;
+}
+
+.dateNum {
+  @include text-style(var(--primary-text-color), bold, 2rem);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dateName {
+  font-size: 0.6rem;
+  align-self: flex-start;
+  margin-bottom: 0;
+  margin-top: auto;
+  margin-inline-start: auto;
+  margin-inline-end: 0.5rem;
+}
+
+.divider {
+  border: 1px solid var(--primary-background-color);
+  margin: 1rem;
+}
+
+.historical-events {
+  height: 18rem;
+  margin-top: 1rem;
+  overflow: auto;
+}
+
+.history-event-item {
+  margin: 0.5rem 0;
+  @include text-style(var(--primary-text-color), normal, 0.75rem);
+
+  span:first-child {
+    margin-left: 0.5rem;
+  }
+}
+
+.change-week-btn {
+  margin: 0.25rem;
+  padding-top: 0.5rem;
+  width: 4rem;
+  height: 1.5rem;
+}
+
+.circle {
+  display: inline-block;
+  min-width: 0.5rem;
+  min-height: 0.5rem;
+  border-radius: 50%;
+  margin-inline-end: 0.5rem;
+
+  &.blue {
+    background-color: var(--blue);
+  }
+
+  &.green {
+    background-color: green;
+  }
+}

@@ -3,14 +3,25 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from '../app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { DashboardComponent } from './dashboard.component';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { FooterComponent } from '../footer/footer.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { HttpClientModule } from '@angular/common/http';
+
+import { TimelineComponent } from '../timeline/timeline.component';
+import { MatButton, MatButtonModule } from '@angular/material/button';
+import { MatRippleModule } from '@angular/material/core';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
+
 @NgModule({
     declarations: [
         DashboardComponent,
+        NavbarComponent,
+        TimelineComponent,
+        FooterComponent
     ],
     imports: [
         BrowserAnimationsModule,
@@ -22,7 +33,9 @@ import { MatInputModule } from '@angular/material/input';
         MatButtonModule,
         FormsModule,
         ReactiveFormsModule,
-        MatInputModule
+        MatInputModule,
+        MatMenuModule,
+        NzPopoverModule
     ],
     exports: [
         DashboardComponent

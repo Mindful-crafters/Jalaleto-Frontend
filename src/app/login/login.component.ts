@@ -18,9 +18,9 @@ export class LoginComponent implements OnInit {
     private Router: Router,
     private formBuilder: FormBuilder,
     private restService: RestService,
-    private auth : AuthService,
-    private shared : Shared
-  ) {}
+    private auth: AuthService,
+    private shared: Shared
+  ) { }
 
   ngOnInit(): void {
     this.logInForm = this.formBuilder.group(
@@ -39,12 +39,11 @@ export class LoginComponent implements OnInit {
           this.auth.setToken(response['token']);
           this.Router.navigate(['dashboard']);
         }
-        else
-        {
+        else {
           this.error = true;
         }
       },
-      (error)=>{
+      (error) => {
         this.error = true;
       }
     )
