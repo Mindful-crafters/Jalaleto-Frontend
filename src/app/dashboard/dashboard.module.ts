@@ -8,9 +8,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { FooterComponent } from '../footer/footer.component';
+import { MatMenuModule } from '@angular/material/menu';
 @NgModule({
     declarations: [
         DashboardComponent,
+        NavbarComponent,
+        FooterComponent,
     ],
     imports: [
         BrowserAnimationsModule,
@@ -22,7 +27,8 @@ import { MatInputModule } from '@angular/material/input';
         MatButtonModule,
         FormsModule,
         ReactiveFormsModule,
-        MatInputModule
+        MatInputModule,
+        MatMenuModule
     ],
     exports: [
         DashboardComponent

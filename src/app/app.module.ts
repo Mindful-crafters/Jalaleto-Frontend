@@ -33,9 +33,8 @@ import { FooterComponent } from './footer/footer.component';
     ForgetPasswordComponent,
     NewPasswordComponent,
     LoginComponent,
-    NavbarComponent,
-    FooterComponent
     
+
   ],
   imports: [
     BrowserModule,
