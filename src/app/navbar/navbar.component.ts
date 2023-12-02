@@ -14,9 +14,9 @@ export class NavbarComponent {
   constructor(
     private router: Router,
     private authService: AuthService) {
-    this.authService.logout();
 
   }
+
   viewProfile() {
     console.log('View Profile');
   }
@@ -32,8 +32,9 @@ export class NavbarComponent {
 
 
   logout() {
-    console.log('Logout');
-    this.router.navigate['/login']
+    this.authService.logout();
+
+    this.router.navigate(['/login']);
   }
 
 }
