@@ -14,12 +14,11 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { FooterComponent } from '../footer/footer.component';
 @NgModule({
     declarations: [
         ProfileComponent,
-        // NavbarComponent,
-        // FooterComponent
-
     ],
     imports: [
         BrowserModule,

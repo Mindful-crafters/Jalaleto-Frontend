@@ -22,10 +22,10 @@ import { MatMenuModule } from '@angular/material/menu';
 @NgModule({
     declarations: [
         DashboardComponent,
-        NavbarComponent,
         TimelineComponent,
         FooterComponent,
-        TimelineComponent
+        NavbarComponent,
+        TimelineComponent,
     ],
     imports: [
         BrowserAnimationsModule,

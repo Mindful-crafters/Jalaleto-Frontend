@@ -1,42 +1,50 @@
-<div *ngIf="!isLoggedIn" class="body">
-    <app-navbar></app-navbar>
-  <div class="pic">
-      <img src="/assets/3956379-Recovered.png">
-  </div>
-  <div>
-      <div class="text">
-          <p>به جلالتو خوش آمدید</p>
+<div *ngIf="!isLoggedIn" class="dashboard">
+  <app-navbar></app-navbar>
+
+  <div class="mbody">
+    <div class="pic">
+        <img src="/assets/3956379-Recovered.png" />
       </div>
       <div>
-          <button type="button" routerLink="/login" mat-button class="register-button primary-button">
-              ورود
+        <div class="text">
+          <p>به جلالتو خوش آمدید</p>
+        </div>
+        <div>
+          <button
+            type="button"
+            routerLink="/login"
+            mat-button
+            class="register-button primary-button"
+          >
+            ورود
           </button>
+        </div>
       </div>
   </div>
+  
   <app-footer></app-footer>
 </div>
-
 
 <div *ngIf="isLoggedIn">
   <app-navbar></app-navbar>
 
   <div class="th-container">
-      <div class="content timeline">
-          <app-timeline></app-timeline>
-      </div>
+    <div class="content timeline">
+      <app-timeline></app-timeline>
+    </div>
 
-      <div [dir]="'rtl'" class="clock containor">
-          <div class="body">
-              <div class="digitalClock">
-                  <div class="digitalTime>">
-                      <div> {{hour}} : {{minute}} : {{second}} </div>
-                  </div>
-                  <div class="dayTitle">
-                      {{day}} {{jalaliDay}} {{jalaliMonth}} {{jalaliYear}}
-                  </div>
-              </div>
+    <div [dir]="'rtl'" class="clock containor">
+      <div class="body">
+        <div class="digitalClock">
+          <div class="digitalTime>">
+            <div>{{ hour }} : {{ minute }} : {{ second }}</div>
           </div>
+          <div class="dayTitle">
+            {{ day }} {{ jalaliDay }} {{ jalaliMonth }} {{ jalaliYear }}
+          </div>
+        </div>
       </div>
+    </div>
   </div>
 
   <app-footer></app-footer>
