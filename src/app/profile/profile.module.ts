@@ -1,3 +1,4 @@
+
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { ProfileComponent } from './profile.component';
 import { NgModule } from '@angular/core';
@@ -14,6 +15,9 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler';
+import { MatDatepickerModule} from '@angular/material/datepicker';
+import { NavbarFooterModule } from '../navbar-footer.module';
+
 @NgModule({
     declarations: [
         ProfileComponent,
@@ -33,6 +37,8 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler';
         MatMenuModule,
         MatButtonModule,
         MatIconModule,
+        MatDatepickerModule,
+        NavbarFooterModule,
     ],
     exports: [
         ProfileComponent,
