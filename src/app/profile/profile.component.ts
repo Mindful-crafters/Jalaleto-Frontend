@@ -6,7 +6,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Shared } from '../shared/services/shared.service';
 import { AbstractControl, ValidationErrors, FormBuilder } from '@angular/forms';
 
-
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -17,23 +16,21 @@ export class ProfileComponent implements OnInit {
     FirstName: string,
     LastName: string,
     UserName: string,
-    Birthday: Date,
+    Birthday: string,
     Email: string,
 
   } = {
       FirstName: "",
       LastName: "",
       UserName: "",
-      Birthday: null,
+      Birthday: "",
       Email: "",
     }
     requestData = {
       FirstName: this.data.FirstName,
       LastName: this.data.LastName,
       UserName: this.data.UserName,
-      Birthday: this.data.Birthday,
-      
-      // Add other fields if needed
+      Birthday: this.data.Birthday, 
     }
   session: any;
   profilePicture: File | undefined;
@@ -42,8 +39,8 @@ export class ProfileComponent implements OnInit {
   constructor(
     private rest: RestService,
     private restService: RestService,
+    private datePipe : DatePipe
   ) {}
-
 
   emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   validateAge(control: AbstractControl): ValidationErrors | null {
@@ -56,7 +53,7 @@ export class ProfileComponent implements OnInit {
       return { customError: true };
     }
   }
-
+  
 
 
   ngOnInit() {
@@ -69,7 +66,18 @@ export class ProfileComponent implements OnInit {
       this.data.UserName = res.userName;
       this.data.Email = res.email;
       this.data.Birthday = res.birthday;
-    })
+      const parts = res.birthday.split('/');
+      if (parts.length === 3) {
+        const day = parseInt(parts[0], 10);
+        const month = parseInt(parts[1], 10) - 1; // Months are 0-indexed
+        const year = parseInt(parts[2], 10);
+      
+        const format = this.datePipe.transform(new Date(year, month, day), 'yyyy-MM-dd');
+        this.data.Birthday = format;
+      }
+    });
+    
+
   }
   // private parseToken(token: string): any {
   //   const tokenParts = token.split('.');
@@ -95,18 +103,21 @@ export class ProfileComponent implements OnInit {
   
   submit()
   {
-    
-    console.log(this.requestData);
+    this.requestData = {
+      FirstName: this.data.FirstName,
+      LastName: this.data.LastName,
+      UserName: this.data.UserName,
+      Birthday: this.data.Birthday,
+    };
+    //this.requestData.Birthday = this.datePipe.transform(this.data.Birthday, 'yyyy-MM-dd').toString();
+    // console.log(this.requestData);
     this.restService.post<any>('User/EditProfile', this.requestData).subscribe(
       (response) => {
-        console.log(response);
+        
         if (response['success']) {
           this.updateData();
         }
       },
-      (error) => {
-        console.log(error);
-      }
     )
     
   }
@@ -119,6 +130,7 @@ export class ProfileComponent implements OnInit {
     }
     this.selectedImage = undefined;
   }
+  
   onSubmit() {
     if (this.profilePicture) {
       const formData = new FormData();
@@ -145,7 +157,7 @@ interface ProfileResult {
   firstName: string,
   lastName: string,
   userName: string,
-  birthday: Date,
+  birthday: string,
   email: string,
   // "image": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 }

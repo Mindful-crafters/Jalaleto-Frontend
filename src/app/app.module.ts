@@ -43,6 +43,8 @@ import { TimelineComponent } from './timeline/timeline.component';
     NewPasswordComponent,
     LoginComponent,
     AddNewEventReminderComponent,
+
+
   ],
   imports: [
     BrowserModule,
