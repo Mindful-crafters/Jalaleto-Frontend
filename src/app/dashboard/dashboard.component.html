@@ -1,5 +1,5 @@
 <div *ngIf="!isLoggedIn" class="dashboard">
-  <app-navbar></app-navbar>
+
 
   <div class="mbody">
     <div class="pic">
@@ -22,11 +22,11 @@
       </div>
   </div>
   
-  <app-footer></app-footer>
+
 </div>
 
 <div *ngIf="isLoggedIn">
-
+  <app-navbar></app-navbar>
 
   <div class="th-container">
     <div class="content timeline">
@@ -47,6 +47,5 @@
     </div>
   </div>
 
-
+  <app-footer></app-footer>
 </div>
-<app-footer></app-footer>
