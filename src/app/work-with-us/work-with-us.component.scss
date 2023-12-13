@@ -1,0 +1,24 @@
+@import "../../theme/common.styles.scss";
+.containor
+{
+    display: flex;
+    justify-content: center;
+    min-height: 73%;
+    background-color: #f7f7ff;
+    .text-form
+    {
+        width: 120vh;
+        background-color: #fff;
+        margin: 0rem ;
+        padding:1rem;
+    }
+    .title
+    {
+        font-size: 30px;
+        color: #577399;
+    }
+    .text
+    {
+        font-size: 18px;
+    }
+}

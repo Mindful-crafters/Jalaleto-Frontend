@@ -22,11 +22,11 @@ import { AddNewEventReminderComponent } from './timeline/add-new-event-reminder/
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatChipsModule } from '@angular/material/chips';
 import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
-
 import { MatMenuModule} from '@angular/material/menu';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { ProfileModule } from './profile/profile.module';
+import { AboutUsModule } from './about-us/about-us.module';
 // import { NavbarComponent } from './navbar/navbar.component';
 // import { FooterComponent } from './footer/footer.component';
 import { HomepageModule } from './homepage/homepage.module';
@@ -34,6 +34,9 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from "@angular/materia
 import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from "./shared/persion-date.adapter";
 import { FooterComponent } from './footer/footer.component';
 import { TimelineComponent } from './timeline/timeline.component';
+import { ContactUsModule } from './contact-us/contact-us.module';
+import { RulesModule } from './rules/rules.module';
+import { WorkWithUsModule } from './work-with-us/work-with-us.module';
 
 
 @NgModule({
@@ -70,7 +73,11 @@ import { TimelineComponent } from './timeline/timeline.component';
     DashboardModule,
     MatDialogModule,
     MatChipsModule,
-    NgxMatTimepickerModule
+    NgxMatTimepickerModule,
+    AboutUsModule,
+    ContactUsModule,
+    RulesModule,
+    WorkWithUsModule,
   ],
   providers: [
     DatePipe,
