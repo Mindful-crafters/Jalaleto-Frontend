@@ -1,26 +1,26 @@
 <div class="container">
   <div class="things">
-    <p class="title">رویداد های پیش رو</p>
+    <p class="title">رویداد های هفته</p>
 
     <div class="historical-events">
-      <div
+      <!-- <div
         *ngFor="let event of historicalEvents; let i = index"
         class="history-event-item"
       >
         <span>{{ event.dayNum }}</span>
         <span>{{ event.event }}</span>
-      </div>
+      </div> -->
     </div>
 
-    <p class="title">یادآوری های پیش رو</p>
+    <p class="title">یادآوری های هفته</p>
 
     <div class="historical-events">
       <div
-        *ngFor="let event of historicalEvents; let i = index"
+        *ngFor="let reminder of weekReminders; let i = index"
         class="history-event-item"
       >
-        <span>{{ event.dayNum }}</span>
-        <span>{{ event.event }}</span>
+        <span> {{ MiladiToShamsi(reminder.dateTime)}}</span>
+        <span>{{ reminder.title }}</span>
       </div>
     </div>
   </div>
@@ -28,9 +28,19 @@
   <div class="divider"></div>
 
   <div class="timeline">
-    <button (click)="updateTimeLine('up')" mat-button class="change-week-btn">
-      <img src="../../assets/icons/up-arrow.svg" />
-    </button>
+    <div class="quick-create-container">
+
+      <button (click)="updateTimeLine('up')" mat-button class="change-week-btn">
+        <img src="../../assets/icons/up-arrow.svg" />
+      </button>
+
+      <button [matMenuTriggerFor]="menu" mat-raised-button class="quick-make">افزودن سریع</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>افزودن رویداد</button>
+        <button mat-menu-item (click)="AddNewReminder('quick')">افزودن یادآوری</button>
+      </mat-menu>
+
+    </div>
 
     <div
       *ngFor="let box of currentWeek; let i = index"
@@ -39,10 +49,7 @@
         big: i === selectedBox
       }"
     >
-
-      <div class="remove-on-click touch-target" (click)="openBox(i)">
-
-      </div>
+      <div class="remove-on-click touch-target" (click)="openBox(i)"></div>
 
       <div class="hovered-box table-header">
         <div class="title">عنوان</div>
@@ -57,7 +64,7 @@
       <div class="hovered-box divider"></div>
 
       <div class="hovered-box time-items">
-        <div class="time-item" *ngFor="let item of timeObjects; let i = index">
+        <div class="time-item" *ngFor="let item of selectedDayReminders; let i = index">
           <div class="title">
             <span
               nz-popover
@@ -69,16 +76,14 @@
           </div>
 
           <div class="start-time">
-            {{ item.startTime }}
+            {{ hourAndMinute(item.dateTime) }}
           </div>
 
           <div class="الویت">
-            {{ item.priority }}
+            {{ item.priorityLevel }}
           </div>
 
           <div class="more">
-            <span *ngIf="item.type == 'remainder'" class="circle blue"></span>
-            <span *ngIf="item.type == 'event'" class="circle green"></span>
 
             <button class="edit-btn">
               <img src="../../assets/icons/edit.svg" />
@@ -92,13 +97,15 @@
       </div>
 
       <div class="hovered-box title">
-        <button mat-raised-button class="exit" (click)="closeBox()">خروج</button>
+        <button mat-raised-button class="exit" (click)="closeBox()">
+          خروج
+        </button>
 
         <button mat-raised-button class="add-event">افزودن رویداد</button>
 
         <button
           mat-raised-button
-          (click)="AddNewReminder()"
+          (click)="AddNewReminder('normal')"
           class="add-remainder"
         >
           افزودن یادآوری

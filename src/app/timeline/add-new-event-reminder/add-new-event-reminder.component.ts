@@ -22,10 +22,16 @@ export class AddNewEventReminderComponent implements OnInit {
   @ViewChild('high') high: MatChipOption;
   @ViewChild('check') reminde: ElementRef;
   @ViewChild('email') emailReminder: ElementRef;
+  data: any;
+  type: string;
 
   constructor(public dialogRef: MatDialogRef<AddNewEventReminderComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: PersonalTimeObject,
+    @Inject(MAT_DIALOG_DATA) public input: any,
     private formBuilder: FormBuilder, private restService: RestService) {
+
+    this.data = input.data;
+    this.type = input.type;
+    console.log(this.data, this.type);
 
   }
   ngOnInit(): void {
@@ -79,8 +85,5 @@ export class AddNewEventReminderComponent implements OnInit {
       if (res['success'])
         this.dialogRef.close(v);
     })
-
-
   }
-
 }

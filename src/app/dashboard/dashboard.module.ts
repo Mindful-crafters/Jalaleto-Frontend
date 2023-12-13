@@ -7,7 +7,6 @@ import { DashboardComponent } from './dashboard.component';
 
 
 import { TimelineComponent } from '../timeline/timeline.component';
-import { MatButton } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
 
 import { MatButtonModule } from '@angular/material/button';

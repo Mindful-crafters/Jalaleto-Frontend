@@ -24,6 +24,7 @@ export class DashboardComponent {
   public jalaliMonth;
   public jalaliYear;
   public jalaliDay;
+
   ngOnInit() {
     const token = '';
     setInterval(() => {
@@ -36,6 +37,7 @@ export class DashboardComponent {
     this.jalaliYear = jalali.jYear();
     this.jalaliDay = jalali.date();
   }
+  
   private updateDate(date: Date) {
     const hours = date.getHours();
     this.ampm = hours >= 12 ? 'PM' : 'AM';
