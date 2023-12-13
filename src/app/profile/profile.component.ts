@@ -18,6 +18,7 @@ export class ProfileComponent implements OnInit {
     UserName: string,
     Birthday: string,
     Email: string,
+    Image: string,
 
   } = {
       FirstName: "",
@@ -25,12 +26,15 @@ export class ProfileComponent implements OnInit {
       UserName: "",
       Birthday: "",
       Email: "",
+      Image: "",
     }
     requestData = {
       FirstName: this.data.FirstName,
       LastName: this.data.LastName,
       UserName: this.data.UserName,
-      Birthday: this.data.Birthday, 
+      Birthday: this.data.Birthday,
+      Image: this.data.Image,
+      
     }
   session: any;
   profilePicture: File | undefined;
@@ -39,6 +43,7 @@ export class ProfileComponent implements OnInit {
   constructor(
     private rest: RestService,
     private restService: RestService,
+    private http: HttpClient,
     private datePipe : DatePipe
   ) {}
 
@@ -54,7 +59,7 @@ export class ProfileComponent implements OnInit {
     }
   }
   
-
+  uploadedImageUrl: string | undefined;
 
   ngOnInit() {
 
@@ -64,6 +69,7 @@ export class ProfileComponent implements OnInit {
       this.data.UserName = res.userName;
       this.data.Email = res.email;
       this.data.Birthday = res.birthday;
+      this.data.Image = res.image;
       const parts = res.birthday.split('/');
       if (parts.length === 3) {
         const day = parseInt(parts[0], 10);
@@ -101,11 +107,24 @@ export class ProfileComponent implements OnInit {
   
   submit()
   {
+    if(this.profilePicture)
+    {
+      const formData = new FormData();
+      formData.append('profilePicture', this.profilePicture);
+      this.http.post<any>('',formData).subscribe(respone =>{
+        if(respone.success)
+        {
+          this.uploadedImageUrl = respone.imageUrl;
+          console.log(this.uploadedImageUrl);
+        }
+      })
+    }
     this.requestData = {
       FirstName: this.data.FirstName,
       LastName: this.data.LastName,
       UserName: this.data.UserName,
       Birthday: this.data.Birthday,
+      Image: this.data.Image,
     };
     //this.requestData.Birthday = this.datePipe.transform(this.data.Birthday, 'yyyy-MM-dd').toString();
     // console.log(this.requestData);
@@ -125,6 +144,7 @@ export class ProfileComponent implements OnInit {
       LastName: "",
       UserName: "",
       Birthday: null,
+      Image: "",
     }
     this.selectedImage = undefined;
   }
@@ -157,5 +177,6 @@ interface ProfileResult {
   userName: string,
   birthday: string,
   email: string,
+  image: string,
   // "image": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 }
