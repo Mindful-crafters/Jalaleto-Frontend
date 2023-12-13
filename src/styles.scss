@@ -202,12 +202,6 @@ mat-hint {
   inset-inline-end: 7px !important;
 }
 
-.mat-mdc-icon-button.mat-mdc-button-base {
-  --mdc-icon-button-state-layer-size: 35px !important;
-  margin-top: -14px !important;
-  margin-inline-end: 5px !important;
-}
-
 mat-error {
   font-size: 10px !important;
   margin-top: -3px !important;
@@ -215,18 +209,6 @@ mat-error {
 
 mat-hint {
   font-size: 10px !important;
-}
-
-.mat-mdc-icon-button svg {
-  position: relative !important;
-  top: -6px !important;
-  inset-inline-end: 7px !important;
-}
-
-.mat-mdc-icon-button.mat-mdc-button-base {
-  --mdc-icon-button-state-layer-size: 35px !important;
-  margin-top: -14px !important;
-  margin-inline-end: 5px !important;
 }
 
 .mat-body p,
@@ -269,4 +251,15 @@ mat-hint {
 .exit.mat-mdc-raised-button:not(:disabled) {
   background-color: red !important;
   color: white !important;
+}
+
+.mat-mdc-icon-button .mat-mdc-button-touch-target {
+  top: 68% !important;
+  left: 37% !important;
+}
+
+.mat-mdc-icon-button svg {
+  position: relative !important;
+  top: 0px !important;
+  inset-inline-end: 0 !important;
 }

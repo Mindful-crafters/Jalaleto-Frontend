@@ -4,7 +4,7 @@ import {
   MatDialogRef
 } from '@angular/material/dialog';
 import { PersonalTimeObject } from '../timeline.component';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { MatChipOption } from '@angular/material/chips';
 import { RestService } from 'src/app/shared/services/Rest.service';
 
@@ -48,11 +48,27 @@ export class AddNewEventReminderComponent implements OnInit {
       {
         title: [this.data?.title || null, Validators.required],
         notes: [this.data?.notes || null],
+        datePicker :  [null, [Validators.required, this.validateDate]],
         daysBeforeToRemind: [this.data?.daysBeforeToRemind || 7],
         startTime: [this.data?.startTime || '12:00']
       }
     )
+  }
 
+  validateDate(control: AbstractControl): ValidationErrors | null {
+    const currentDate = new Date();
+    const selectedDate = new Date(control.value);
+
+    currentDate.setHours(0,0,0,0);
+    
+    console.log('c d',currentDate)
+    console.log('s d',selectedDate)
+
+    if (selectedDate < currentDate) {
+      return { customError: true };
+    } else {
+      return null;
+    }
   }
 
   close() {

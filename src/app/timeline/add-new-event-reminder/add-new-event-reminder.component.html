@@ -14,6 +14,21 @@
             <mat-error>این قسمت را خالی نگذارید.</mat-error>
         </mat-form-field>
 
+        <mat-form-field *ngIf="type=='quick'" class="date-picker" appearance="outline" hideRequiredMarker>
+            <mat-label>تاریخ را انتخاب کنید</mat-label>
+            <input style="margin-top: 0.25rem;" formControlName="datePicker" matInput [matDatepicker]="datepicker" />
+            <mat-error>لطفا تاریخ صحیح وارد کنید.</mat-error>
+            <mat-datepicker-toggle [disableRipple]="" matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+            <mat-datepicker #datepicker>
+              <mat-datepicker-actions>
+                <button mat-button matDatepickerCancel>لغو</button>
+                <button mat-raised-button color="primary" matDatepickerApply>
+                  انتخاب
+                </button>
+              </mat-datepicker-actions>
+            </mat-datepicker>
+          </mat-form-field>
+
         <div class="priorty">اولویت</div>
         <mat-chip-listbox aria-label="Fish selection">
             <mat-chip-option style="width: 4rem;" #low [disabled]="low.selected">کم</mat-chip-option>
