@@ -19,13 +19,18 @@
     }
   }
 
-  .text {
+  .title {
     font-size: 40px;
     position: relative;
     margin-top: 30vh;
     margin-right: 20vh;
   }
-
+  .text
+  {
+    margin-top: 10%;
+    margin-right: 20%;
+    text-align: center;
+  }
   .register-button {
     margin-right: 35vh;
     margin-top: 3vh;
