@@ -27,14 +27,14 @@ export class ProfileComponent implements OnInit {
       Birthday: null,
       Email: "",
     }
-    requestData = {
-      FirstName: this.data.FirstName,
-      LastName: this.data.LastName,
-      UserName: this.data.UserName,
-      Birthday: this.data.Birthday,
-      
-      // Add other fields if needed
-    }
+  requestData = {
+    FirstName: this.data.FirstName,
+    LastName: this.data.LastName,
+    UserName: this.data.UserName,
+    Birthday: this.data.Birthday,
+
+    // Add other fields if needed
+  }
   session: any;
   profilePicture: File | undefined;
   selectedImage: string | undefined;
@@ -42,7 +42,7 @@ export class ProfileComponent implements OnInit {
   constructor(
     private rest: RestService,
     private restService: RestService,
-  ) {}
+  ) { }
 
 
   emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -62,7 +62,6 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
 
     this.restService.post("User/ProfileInfo", null).subscribe((res: ProfileResult) => {
-      console.log(res);
 
       this.data.FirstName = res.firstName;
       this.data.LastName = res.lastName;
@@ -92,25 +91,20 @@ export class ProfileComponent implements OnInit {
     this.selectedImage = undefined;
     this.profilePicture = undefined;
   }
-  
-  submit()
-  {
-    
-    console.log(this.requestData);
+
+  submit() {
     this.restService.post<any>('User/EditProfile', this.requestData).subscribe(
       (response) => {
-        console.log(response);
         if (response['success']) {
           this.updateData();
         }
       },
       (error) => {
-        console.log(error);
       }
     )
-    
+
   }
-  updateData(){
+  updateData() {
     this.requestData = {
       FirstName: "",
       LastName: "",

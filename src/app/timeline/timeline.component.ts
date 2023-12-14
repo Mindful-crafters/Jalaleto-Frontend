@@ -6,7 +6,7 @@ import { AddNewEventReminderComponent } from './add-new-event-reminder/add-new-e
 import { DialogRef } from '@angular/cdk/dialog';
 import { RestService } from '../shared/services/Rest.service';
 import { AuthService } from '../shared/services/auth.service';
-import { Reminder } from '../shared/types/Remider';
+import { ReminderObject } from '../shared/types/ReminderObject';
 
 
 @Component({
@@ -30,9 +30,9 @@ export class TimelineComponent implements OnInit {
   private hoverSubject = new Subject<number>();
   selectedBox: number | null = null;
 
-  weekReminders: Reminder[];
+  weekReminders: ReminderObject[];
 
-  selectedDayReminders: Reminder[];
+  selectedDayReminders: ReminderObject[];
 
   constructor(
     private el: ElementRef,
@@ -102,14 +102,12 @@ export class TimelineComponent implements OnInit {
     currentDate.setHours(3, 30, 0, 0);
 
     const firstday = currentDate.toISOString();
-    console.log(firstday);
 
     const lastDay = new Date(firstDate)
     lastDay.setDate(firstDate.getDate() + 7);
     lastDay.setHours(3, 29, 59, 999);
 
     const lastday = lastDay.toISOString();
-    console.log(lastday);
 
     const body = {
       "from": firstday,
@@ -118,7 +116,6 @@ export class TimelineComponent implements OnInit {
 
     this.restService.post('Reminder/Info', body).subscribe(res => {
       this.weekReminders = res['data'];
-      console.log(this.weekReminders)
     })
   }
 
@@ -154,14 +151,12 @@ export class TimelineComponent implements OnInit {
     currentDate.setHours(3, 30, 0, 0);
 
     const firstday = currentDate.toISOString();
-    console.log(firstday);
 
     const endOfDay = new Date(this.firstDayOfTimeline)
     endOfDay.setDate(this.firstDayOfTimeline.getDate() + 1 + index);
     endOfDay.setHours(3, 29, 59, 999);
 
     const lasOftday = endOfDay.toISOString();
-    console.log('endOfDay', lasOftday);
 
     const body = {
       "from": firstday,
@@ -170,7 +165,6 @@ export class TimelineComponent implements OnInit {
 
     this.restService.post('Reminder/Info', body).subscribe(res => {
       this.selectedDayReminders = res['data'];
-      console.log(this.selectedDayReminders)
     })
   }
 
@@ -219,17 +213,23 @@ export class TimelineComponent implements OnInit {
 
     const dialogRef: MatDialogRef<any, any> = this.matDialog.open(AddNewEventReminderComponent, {
       data: {
-      data : new PersonalTimeObject({ dateTime: selectedDay }),
-      type : type
-    },
+        data: new ReminderObject({ dateTime: selectedDay }),
+        type: type
+      },
+
       disableClose: true,
       hasBackdrop: true,
       autoFocus: false
     })
 
     dialogRef.afterClosed().subscribe((res) => {
-      if (res)
+      if (res) {
         console.log(res);
+
+        this.getWeekReminders(this.firstDayOfTimeline);
+        this.openBox(this.selectedBox);
+      }
+
       else
         console.log();
     })
@@ -244,34 +244,10 @@ export interface TimeLineItem {
   date: Date;
   dayName: string;
   dayNum: number;
-  reminders?: Reminder[];
+  reminders?: ReminderObject[];
 }
 
 export interface HistoricalEvent {
   dayNum: number;
   event: string;
-}
-
-export class PersonalTimeObject {
-  startTime: string;
-  priority: string;
-  title: string;
-  type: string;
-  notes: string;
-  daysBeforeToRemind: number;
-  remindByEmail: boolean;
-  priorityLevel: number;
-  dateTime: Date;
-
-  constructor(pto: any) {
-    this.startTime = pto.startTime || null;
-    this.priority = pto.priority || null;
-    this.title = pto.title || null;
-    this.type = pto.type || null;
-    this.notes = pto.notes || null;
-    this.daysBeforeToRemind = pto.daysBeforeToRemind || null;
-    this.remindByEmail = pto.remindByEmail || null;
-    this.priorityLevel = pto.priorityLevel || null;
-    this.dateTime = pto.dateTime || null;
-  }
 }
