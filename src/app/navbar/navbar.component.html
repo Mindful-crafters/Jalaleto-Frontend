@@ -17,7 +17,7 @@
 
 
     <div class="notification" id="notification">
-      <div class="notification-icon">
+      <div class="notification-icon" *ngIf="isLoggedIn">
         <img src="../../assets/icons/notification-image.svg" alt="Notification Icon">
       </div>
     </div>
@@ -35,12 +35,12 @@
     <mat-menu #menu="matMenu" class="menu">
       <ng-template matMenuContent>
         <!-- <img src="../../assets/icons/icons8-test-account-48.png" alt="profile icon" class="Profile Image"> -->
-        <button mat-menu-item (click)="viewProfile()">مشاهده پروفایل</button>
+        <button mat-menu-item (click)="viewProfile()" *ngIf="isLoggedIn">مشاهده پروفایل</button>
         <button mat-menu-item (click)="openSettings()">تنظیمات</button>
-        <div class="line"></div>
-        <button mat-menu-item (click)="Events()">رویدادها</button>
-        <div class="line"></div>
-        <button mat-menu-item (click)="logout()" class="logout-button">
+        <div class="line" *ngIf="isLoggedIn"></div>
+        <button mat-menu-item (click)="Events()" *ngIf="isLoggedIn">رویدادها</button>
+        <div class="line" *ngIf="isLoggedIn"></div>
+        <button mat-menu-item (click)="logout()" class="logout-button" *ngIf="isLoggedIn">
           خروج
           <!-- <img src="../../assets/icons/icons8-exit-48.png" alt="exit icon" class="exit-icon"> -->
         </button>
