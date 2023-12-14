@@ -1,0 +1,46 @@
+<div class="dialog">
+    <div class="header">
+        <button class="close-button" mat-button (click)="close()">
+            <img src="assets/icons/close.svg">
+        </button>
+        <span class="title">
+            ایجاد گروه جدید
+        </span>
+    </div>
+    <form [formGroup]="formGroup" class="content create-group">
+        <mat-form-field class="input-group" appearance="outline" hideRequiredMarker>
+            <mat-label>نام گروه</mat-label>
+            <input formControlName="name" matInput />
+            <mat-error>این قسمت را خالی نگذارید.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="input-group" appearance="outline" hideRequiredMarker>
+            <mat-label>ایمیل اعضا</mat-label>
+            <mat-chip-grid #chipGrid formControlName="emails">
+                <mat-chip-row *ngFor="let email of emails" (removed)="remove(email)">
+                    {{email}}
+                    <button matChipRemove>
+                        <img src="assets/icons/remove-chip.svg" alt="">
+                    </button>
+                </mat-chip-row>
+                <input matInput placeholder="ایمیل را وارد کنید" [matChipInputFor]="chipGrid"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                    (matChipInputTokenEnd)="add($event)" />
+            </mat-chip-grid>
+            <mat-error
+                *ngIf="formGroup.get('emails')?.hasError('required') && !formGroup.get('emails')?.hasError('customErrorKey')">این
+                قسمت را خالی نگذارید.</mat-error>
+            <mat-error *ngIf="formGroup.get('emails')?.hasError('customErrorKey')">ایمیل با فرمت صحیح وارد
+                نمایید.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="input-group" appearance="outline" hideRequiredMarker>
+            <mat-label>توضیحات</mat-label>
+            <textarea formControlName="description" matInput></textarea>
+        </mat-form-field>
+    </form>
+    <div class="footer">
+        <button class="save-button" mat-button (click)="Submit()">ایجاد</button>
+        <button class="cancel-button" mat-button (click)="close()">لغو</button>
+    </div>
+</div>

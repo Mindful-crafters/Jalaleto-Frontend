@@ -23,7 +23,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatChipsModule } from '@angular/material/chips';
 import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
 
-import { MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { ProfileModule } from './profile/profile.module';
@@ -34,6 +34,8 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from "@angular/materia
 import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from "./shared/persion-date.adapter";
 import { FooterComponent } from './footer/footer.component';
 import { TimelineComponent } from './timeline/timeline.component';
+import { CreateGroupDialogComponent } from './create-group-dialog/create-group-dialog.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -43,6 +45,7 @@ import { TimelineComponent } from './timeline/timeline.component';
     NewPasswordComponent,
     LoginComponent,
     AddNewEventReminderComponent,
+    CreateGroupDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,7 +71,8 @@ import { TimelineComponent } from './timeline/timeline.component';
     DashboardModule,
     MatDialogModule,
     MatChipsModule,
-    NgxMatTimepickerModule
+    NgxMatTimepickerModule,
+    MatIconModule
   ],
   providers: [
     DatePipe,

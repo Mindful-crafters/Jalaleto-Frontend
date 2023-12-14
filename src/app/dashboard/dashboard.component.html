@@ -3,25 +3,20 @@
 
   <div class="mbody">
     <div class="pic">
-        <img src="/assets/3956379-Recovered.png" />
+      <img src="/assets/3956379-Recovered.png" />
+    </div>
+    <div>
+      <div class="text">
+        <p>به جلالتو خوش آمدید</p>
       </div>
       <div>
-        <div class="text">
-          <p>به جلالتو خوش آمدید</p>
-        </div>
-        <div>
-          <button
-            type="button"
-            routerLink="/login"
-            mat-button
-            class="register-button primary-button"
-          >
-            ورود
-          </button>
-        </div>
+        <button type="button" routerLink="/login" mat-button class="register-button primary-button">
+          ورود
+        </button>
       </div>
+    </div>
   </div>
-  
+
   <app-footer></app-footer>
 </div>
 
@@ -32,15 +27,17 @@
     <div class="content timeline">
       <app-timeline></app-timeline>
     </div>
-
-    <div [dir]="'rtl'" class="clock containor">
-      <div class="body">
-        <div class="digitalClock">
-          <div class="digitalTime>">
-            <div>{{ hour }} : {{ minute }} : {{ second }}</div>
-          </div>
-          <div class="dayTitle">
-            {{ day }} {{ jalaliDay }} {{ jalaliMonth }} {{ jalaliYear }}
+    <div>
+      <button (click)="CreateGroup()" mat-button class="add-group">افزودن گروه</button>
+      <div [dir]="'rtl'" class="clock containor">
+        <div class="body">
+          <div class="digitalClock">
+            <div class="digitalTime>">
+              <div>{{ hour }} : {{ minute }} : {{ second }}</div>
+            </div>
+            <div class="dayTitle">
+              {{ day }} {{ jalaliDay }} {{ jalaliMonth }} {{ jalaliYear }}
+            </div>
           </div>
         </div>
       </div>
