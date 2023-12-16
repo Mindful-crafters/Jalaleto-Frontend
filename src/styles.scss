@@ -238,13 +238,9 @@ mat-hint {
   color: white !important;
 }
 
-.add-event.mat-mdc-raised-button:not(:disabled) {
-  background-color: var(--blue) !important;
-  color: white !important;
-}
-
+.add-event.mat-mdc-raised-button:not(:disabled),
 .add-remainder.mat-mdc-raised-button:not(:disabled) {
-  background-color: green !important;
+  background-color: var(--blue) !important;
   color: white !important;
 }
 

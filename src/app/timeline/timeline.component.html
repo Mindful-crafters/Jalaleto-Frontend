@@ -83,8 +83,8 @@
 
     <div class="selected-day">
       <div class="time-item-title">
-        <span>یادآوری ها</span>
         <span>رویداد ها</span>
+        <span>یادآوری ها</span>
       </div>
 
       <div class="panels">
@@ -92,9 +92,38 @@
 
         <div class="divider"></div>
 
-        <div class="reminder-panel">bye</div>
+        <div class="reminder-panel">
+          <!-- <div class="reminder-object-container" *ngFor="let item of selectedDayReminders; let i = index"> -->
+
+          <!-- </div> -->
+
+          <div class="reminder-object-container">
+            <div class="top-info">
+              <span class="title">تولد بهنام</span>
+
+              <span class="priority">کم </span>
+            </div>
+
+            <div class="bottom-info">
+              <div class="notes">بهناااااااااااااااااام با تو ام</div>
+
+              <div class="clock">12:00</div>
+            </div>
+          </div>
+        </div>
       </div>
 
+      <div class="btn-container">
+        <button mat-raised-button class="add-event">افزودن رویداد</button>
+
+        <button
+          mat-raised-button
+          (click)="AddNewReminder('normal')"
+          class="add-remainder"
+        >
+          افزودن یادآوری
+        </button>
+      </div>
       <!-- <div class="hovered-box time-items">
         <div
           class="time-item"

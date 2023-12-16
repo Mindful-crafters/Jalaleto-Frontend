@@ -121,6 +121,41 @@
     margin: 0;
     margin-top: 1rem;
   }
+
+  .reminder-object-container{
+    @include box-style();
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    .top-info{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      
+      .title {
+        font-size: 1.2rem;
+      }
+    }
+
+    .bottom-info{
+      margin-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .clock { 
+      text-align: left;
+    }
+  }
+}
+
+.btn-container {
+  margin-left: 1rem;
+  text-align: left;
+  margin-top: 0.75rem;
+
+  & button{
+    margin-right: 0.5rem;
+  }
 }
 
 .quick-create-container {
