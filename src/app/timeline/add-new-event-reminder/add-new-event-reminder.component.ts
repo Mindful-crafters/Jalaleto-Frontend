@@ -50,7 +50,7 @@ export class AddNewEventReminderComponent implements OnInit {
       {
         title: [this.data?.title || null, Validators.required],
         notes: [this.data?.notes || null],
-        datePicker: [this.data.dateTime],
+        datePicker: [this.data.dateTime , Validators.required],
         daysBeforeToRemind: [this.data?.daysBeforeToRemind || 7],
         startTime: ['12:00']
       }
@@ -77,6 +77,10 @@ export class AddNewEventReminderComponent implements OnInit {
   }
 
   Submit() {
+    if(this.formGroup.get('datePicker') == null){
+
+    }
+
     if (this.formGroup.invalid) {
       this.formGroup.markAllAsTouched();
 
@@ -118,8 +122,6 @@ export class AddNewEventReminderComponent implements OnInit {
       gmtDateTime.setDate(gmtDateTime.getDate() + 1);
 
     v.dateTime = gmtDateTime;
-    v.repeatInterval = 1;
-
     console.log('all', v.dateTime);
 
     this.restService.post('Reminder/Create', v).subscribe((res) => {

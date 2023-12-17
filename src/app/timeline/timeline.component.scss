@@ -31,7 +31,7 @@
   }
 }
 
-.week-reminder-title{
+.week-reminder-title {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -88,7 +88,7 @@
   z-index: 1;
 }
 
-.selected-box{
+.selected-box {
   position: absolute;
   width: 5rem;
   height: 5rem;
@@ -132,7 +132,9 @@
   .event-panel,
   .reminder-panel {
     width: 50%;
+    padding: 0.5rem;
     margin: 1rem;
+    margin-bottom: 0;
     overflow-y: auto;
     overflow-x: hidden;
     scroll-behavior: smooth;
@@ -143,45 +145,50 @@
     margin-top: 1rem;
   }
 
-  .reminder-object-container{
+  .reminder-object-container {
     @include box-style();
     box-shadow: none;
     padding: 1rem;
     margin-bottom: 0.5rem;
-    margin-left: 0.25rem;
 
-    .top-info{
+    &:hover{
+      background-color: rgb(233, 233, 233);
+      cursor: pointer;
+    }
+
+    .top-info {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      
+
       .title {
         font-size: 1.2rem;
       }
     }
 
-    .bottom-info{
+    .bottom-info {
       margin-top: 1rem;
       display: flex;
       justify-content: space-between;
     }
 
-    .clock { 
+    .clock {
       text-align: left;
     }
 
-    .priority{
+    .priority {
       width: 1rem;
     }
   }
 }
 
 .btn-container {
-  margin-left: 1rem;
+  padding-left: 1rem;
   text-align: left;
-  margin-top: 0.75rem;
+  border-top: 4px solid gray;
+  padding-top: 0.75rem;
 
-  & button{
+  & button {
     margin-right: 0.5rem;
   }
 }
@@ -220,7 +227,7 @@
 
 .historical-events {
   height: 18rem;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   overflow: auto;
 }
 

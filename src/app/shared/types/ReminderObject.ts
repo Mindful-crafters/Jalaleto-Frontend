@@ -3,7 +3,6 @@ export class ReminderObject {
   dateTime: Date;
   daysBeforeToRemind: number;
   remindByEmail: boolean;
-  repeatInterval: number;
   priorityLevel: number;
   notes: string;
 
@@ -12,7 +11,6 @@ export class ReminderObject {
     this.dateTime = pto.dateTime || null;
     this.daysBeforeToRemind = pto.daysBeforeToRemind || null;
     this.remindByEmail = pto.remindByEmail || null;
-    this.repeatInterval = pto.repeatInterval || null;
     this.priorityLevel = pto.priorityLevel || null;
     this.notes = pto.notes || null;
   }
