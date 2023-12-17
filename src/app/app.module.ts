@@ -36,6 +36,8 @@ import { FooterComponent } from './footer/footer.component';
 import { TimelineComponent } from './timeline/timeline.component';
 import { CreateGroupDialogComponent } from './create-group-dialog/create-group-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
+import { ShowGroupsComponent } from './show-groups/show-groups.component';
+import { ToastrModule } from 'ngx-toastr'
 
 
 @NgModule({
@@ -72,7 +74,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatDialogModule,
     MatChipsModule,
     NgxMatTimepickerModule,
-    MatIconModule
+    MatIconModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     DatePipe,

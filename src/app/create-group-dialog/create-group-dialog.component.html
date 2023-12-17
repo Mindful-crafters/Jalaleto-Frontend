@@ -8,6 +8,23 @@
         </span>
     </div>
     <form [formGroup]="formGroup" class="content create-group">
+        <div class="pic">
+            <div class="profile-container">
+                <img class="profile" [src]="
+                  selectedImage
+                    ? selectedImage
+                    : '/assets/icons/group-icon.svg'
+                " alt="Profile Image" />
+                <div id="circle">
+                    <input type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none"
+                        #fileInput />
+                    <button type="button" (click)="fileInput.click()">
+                        <!-- <img class="edit" src="/assets/icons8-camera-24.svg" alt="Upload Image"> -->
+                        <img class="edit" src="../../assets/icons/icons8-camera-48.png" alt="Upload Image" />
+                    </button>
+                </div>
+            </div>
+        </div>
         <mat-form-field class="input-group" appearance="outline" hideRequiredMarker>
             <mat-label>نام گروه</mat-label>
             <input formControlName="name" matInput />
@@ -16,8 +33,8 @@
 
         <mat-form-field class="input-group" appearance="outline" hideRequiredMarker>
             <mat-label>ایمیل اعضا</mat-label>
-            <mat-chip-grid #chipGrid formControlName="emails">
-                <mat-chip-row *ngFor="let email of emails" (removed)="remove(email)">
+            <mat-chip-grid #chipGrid formControlName="invitedEmails">
+                <mat-chip-row *ngFor="let email of invitedEmails" (removed)="remove(email)">
                     {{email}}
                     <button matChipRemove>
                         <img src="assets/icons/remove-chip.svg" alt="">
@@ -28,9 +45,9 @@
                     (matChipInputTokenEnd)="add($event)" />
             </mat-chip-grid>
             <mat-error
-                *ngIf="formGroup.get('emails')?.hasError('required') && !formGroup.get('emails')?.hasError('customErrorKey')">این
+                *ngIf="formGroup.get('invitedEmails')?.hasError('required') && !formGroup.get('invitedEmails')?.hasError('customErrorKey')">این
                 قسمت را خالی نگذارید.</mat-error>
-            <mat-error *ngIf="formGroup.get('emails')?.hasError('customErrorKey')">ایمیل با فرمت صحیح وارد
+            <mat-error *ngIf="formGroup.get('invitedEmails')?.hasError('customErrorKey')">ایمیل با فرمت صحیح وارد
                 نمایید.</mat-error>
         </mat-form-field>
 
@@ -40,7 +57,7 @@
         </mat-form-field>
     </form>
     <div class="footer">
-        <button class="save-button" mat-button (click)="Submit()">ایجاد</button>
-        <button class="cancel-button" mat-button (click)="close()">لغو</button>
+        <button class="save-button" mat-button (click)="Submit()" [disabled]="isRequesting">ایجاد</button>
+        <button class="cancel-button" mat-button (click)="close()" [disabled]="isRequesting">لغو</button>
     </div>
 </div>

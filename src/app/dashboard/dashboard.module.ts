@@ -1,3 +1,4 @@
+import { ShowGroupsComponent } from './../show-groups/show-groups.component';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,6 +19,7 @@ import { MatInputModule } from '@angular/material/input';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
     declarations: [
@@ -26,6 +28,7 @@ import { MatMenuModule } from '@angular/material/menu';
         FooterComponent,
         NavbarComponent,
         TimelineComponent,
+        ShowGroupsComponent
     ],
     imports: [
         BrowserAnimationsModule,
@@ -44,6 +47,7 @@ import { MatMenuModule } from '@angular/material/menu';
         ReactiveFormsModule,
         MatInputModule,
         MatMenuModule,
+        MatExpansionModule
     ],
     exports: [
         DashboardComponent

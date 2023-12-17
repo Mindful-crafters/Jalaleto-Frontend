@@ -53,8 +53,7 @@ export class DashboardComponent {
   constructor(
     private restService: RestService,
     private auth: AuthService, private router: Router,
-    private authService: AuthService,
-    private matDialog: MatDialog) {
+    private authService: AuthService) {
     this.isLoggedIn = authService.isLoggedIn();
 
     console.log(this.authService.getToken())
@@ -63,22 +62,5 @@ export class DashboardComponent {
   logOut() {
     this.auth.logout();
     this.router.navigate(['login']);
-  }
-
-  CreateGroup() {
-    const dialogRef: MatDialogRef<any, any> = this.matDialog.open(CreateGroupDialogComponent, {
-      disableClose: true,
-      hasBackdrop: true,
-      autoFocus: false
-    })
-
-    dialogRef.afterClosed().subscribe((res) => {
-      if (res)
-        console.log(res);
-      //success
-      else
-        console.log();
-      //faile
-    })
   }
 }

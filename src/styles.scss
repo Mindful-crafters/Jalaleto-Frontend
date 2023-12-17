@@ -3,6 +3,7 @@
 @import "theme/scrollbar.scss";
 @import "~ng-zorro-antd/ng-zorro-antd.css";
 @import "app/shared/material.scss";
+@import 'ngx-toastr/toastr';
 
 * {
   box-sizing: border-box;
@@ -196,12 +197,13 @@ mat-hint {
 
 //profile_navbar
 
-.mat-mdc-menu-panel
-{
-    width: 50vh !important;;
-    height: 31vh !important;;
-    border-radius: 10px !important;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5) !important;
+.mat-mdc-menu-panel {
+  width: 50vh !important;
+  ;
+  height: 31vh !important;
+  ;
+  border-radius: 10px !important;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5) !important;
 }
 
 

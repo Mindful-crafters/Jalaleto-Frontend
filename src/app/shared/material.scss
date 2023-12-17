@@ -281,3 +281,9 @@ mat-hint {
 .mat-mdc-button.mat-primary {
     --mdc-text-button-label-text-color: #3a86ff !important;
 }
+
+//expansion-panel
+
+.mat-expansion-panel-body {
+    padding: 0 !important;
+}

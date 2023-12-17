@@ -27,8 +27,7 @@
     <div class="content timeline">
       <app-timeline></app-timeline>
     </div>
-    <div>
-      <button (click)="CreateGroup()" mat-button class="add-group">افزودن گروه</button>
+    <div style="width: 30vw; min-width: 20.5rem; padding-inline-end: 1rem;">
       <div [dir]="'rtl'" class="clock containor">
         <div class="body">
           <div class="digitalClock">
@@ -41,6 +40,7 @@
           </div>
         </div>
       </div>
+      <app-show-groups></app-show-groups>
     </div>
   </div>
 
