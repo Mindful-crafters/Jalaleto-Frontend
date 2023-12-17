@@ -37,6 +37,8 @@
     <div *ngFor="let box of currentWeek; let i = index" class="box">
       <div class="remove-on-click touch-target" (click)="openBox(i)"></div>
 
+      <div class="selected-box" *ngIf="selectedBox == i"></div>
+
       <span class="remove-on-click dateNum">{{
         displayedTimeLine[i].dayNum
       }}</span>
@@ -88,26 +90,27 @@
       </div>
 
       <div class="panels">
-        <div class="event-panel">hi</div>
+        <div class="event-panel"></div>
 
         <div class="divider"></div>
 
         <div class="reminder-panel">
-          <!-- <div class="reminder-object-container" *ngFor="let item of selectedDayReminders; let i = index"> -->
-
-          <!-- </div> -->
-
-          <div class="reminder-object-container">
+          <div
+            class="reminder-object-container"
+            *ngFor="let reminder of selectedDayReminders; let i = index"
+          >
             <div class="top-info">
-              <span class="title">تولد بهنام</span>
+              <span class="title">{{ reminder.title }}</span>
 
-              <span class="priority">کم </span>
+              <div>
+                <img class="priority" src="../../assets/Blue-Star.svg" *ngFor="let star of starsArray(reminder.priorityLevel)">
+              </div>
             </div>
 
             <div class="bottom-info">
-              <div class="notes">بهناااااااااااااااااام با تو ام</div>
+              <div class="notes">{{ reminder.notes }}</div>
 
-              <div class="clock">12:00</div>
+              <div class="clock">{{ hourAndMinute(reminder.dateTime) }}</div>
             </div>
           </div>
         </div>

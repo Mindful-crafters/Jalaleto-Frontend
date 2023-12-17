@@ -95,19 +95,11 @@ export class AddNewEventReminderComponent implements OnInit {
     if (!this.reminde.nativeElement.checked)
       v.daysBeforeToRemind = 0;
 
-    const d: Date = this.data.dateTime;
-    v.dateTime = this.data.dateTime;
-
     v.remindByEmail = this.emailReminder.nativeElement.checked;
-
-    // const [h, m] = this.formGroup.get('startTime').value.split(":");
-    // v.dateTime = new Date(d.setHours(Number(h), Number(m)))
-    // v.repeatInterval = 1;
-    // console.log(v);
 
     const startTimeValue = this.formGroup.get('startTime').value;
     const [h, m] = startTimeValue.split(":");
-    const localDateTime = new Date();
+    const localDateTime = new Date(this.data.dateTime);
     const localTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
     const gmtDateTimeString = this.datePipe.transform(localDateTime, 'yyyy-MM-dd HH:mm:ss', 'GMT');

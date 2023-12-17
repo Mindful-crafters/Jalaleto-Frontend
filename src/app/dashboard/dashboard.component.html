@@ -1,4 +1,4 @@
-<div *ngIf="isLoggedIn" class="dashboard">
+<div *ngIf="!isLoggedIn" class="dashboard">
   <app-navbar></app-navbar>
 
   <div class="mbody">
@@ -25,7 +25,7 @@
   <app-footer></app-footer>
 </div>
 
-<div *ngIf="!isLoggedIn">
+<div *ngIf="isLoggedIn">
   <app-navbar></app-navbar>
 
   <div class="th-container">

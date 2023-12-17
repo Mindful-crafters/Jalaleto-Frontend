@@ -80,6 +80,16 @@
   z-index: 1;
 }
 
+.selected-box{
+  position: absolute;
+  width: 5rem;
+  height: 5rem;
+  border: 1px solid var(--blue);
+  z-index: 1;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0.5rem var(--blue);
+}
+
 .left-pannel {
   width: 100%;
 }
@@ -144,6 +154,10 @@
 
     .clock { 
       text-align: left;
+    }
+
+    .priority{
+      width: 1rem;
     }
   }
 }

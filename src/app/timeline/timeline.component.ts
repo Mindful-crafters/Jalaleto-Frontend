@@ -28,7 +28,7 @@ export class TimelineComponent implements OnInit {
 
   hoveredBox: number | null = null;
   private hoverSubject = new Subject<number>();
-  selectedBox: number | null = null;
+  selectedBox: number | null = 0;
 
   weekReminders: ReminderObject[];
 
@@ -93,8 +93,8 @@ export class TimelineComponent implements OnInit {
 
     const today = new Date();
     this.firstDayOfTimeline = today;
-
     this.getWeekReminders(today);
+    this.openBox(0);
   }
 
   getWeekReminders(firstDate: Date) {
@@ -211,6 +211,8 @@ export class TimelineComponent implements OnInit {
     const selectedDay = new Date(this.firstDayOfTimeline);
     selectedDay.setDate(this.firstDayOfTimeline.getDate() + this.selectedBox)
 
+    console.log(selectedDay);
+
     const dialogRef: MatDialogRef<any, any> = this.matDialog.open(AddNewEventReminderComponent, {
       data: {
         data: new ReminderObject({ dateTime: selectedDay }),
@@ -237,6 +239,14 @@ export class TimelineComponent implements OnInit {
 
   reminderQuickCreate() {
 
+  }
+
+  starsArray(num : number): number[] {
+    const array = [1];
+    for (let index = 0; index < num; index++) {
+      array.push(1)
+    }
+    return array;
   }
 }
 
