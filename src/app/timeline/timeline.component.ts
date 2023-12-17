@@ -46,12 +46,12 @@ export class TimelineComponent implements OnInit {
   }
 
   updateTimeLine(direction: string) {
-    this.closeBox();
     const updatedWeek: TimeLineItem[] = [];
 
     if (direction == 'up') {
       this.firstDayOfTimeline.setDate(this.firstDayOfTimeline.getDate() - 7);
-      this.getWeekReminders(this.firstDayOfTimeline)
+      this.openBox(0);
+      this.getWeekReminders(this.firstDayOfTimeline);
 
       for (const item of this.displayedTimeLine) {
         const pastDate = new Date(item.date);
@@ -68,7 +68,8 @@ export class TimelineComponent implements OnInit {
     }
     else {
       this.firstDayOfTimeline.setDate(this.firstDayOfTimeline.getDate() + 7);
-      this.getWeekReminders(this.firstDayOfTimeline)
+      this.openBox(0);
+      this.getWeekReminders(this.firstDayOfTimeline);
 
       for (const item of this.displayedTimeLine) {
         const pastDate = new Date(item.date);
@@ -241,7 +242,7 @@ export class TimelineComponent implements OnInit {
 
   }
 
-  starsArray(num : number): number[] {
+  starsArray(num: number): number[] {
     const array = [1];
     for (let index = 0; index < num; index++) {
       array.push(1)

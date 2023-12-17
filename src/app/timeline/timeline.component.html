@@ -19,8 +19,7 @@
         *ngFor="let reminder of weekReminders; let i = index"
         class="history-event-item"
       >
-        <span> {{ MiladiToShamsi(reminder.dateTime) }}</span>
-        <span>{{ reminder.title }}</span>
+        <span class="week-reminder-title">{{ MiladiToShamsi(reminder.dateTime) }} {{ reminder.title }}</span>
       </div>
     </div>
   </div>

@@ -31,6 +31,14 @@
   }
 }
 
+.week-reminder-title{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 15ch;
+  display: table-caption;
+}
+
 .timeline {
   display: flex;
   flex-direction: column;
