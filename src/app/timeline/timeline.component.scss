@@ -133,6 +133,9 @@
   .reminder-panel {
     width: 50%;
     margin: 1rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
   }
 
   .divider {
@@ -142,8 +145,11 @@
 
   .reminder-object-container{
     @include box-style();
+    box-shadow: none;
     padding: 1rem;
     margin-bottom: 0.5rem;
+    margin-left: 0.25rem;
+
     .top-info{
       display: flex;
       flex-direction: row;

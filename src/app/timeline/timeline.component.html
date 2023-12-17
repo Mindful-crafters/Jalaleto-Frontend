@@ -107,7 +107,8 @@
             </div>
 
             <div class="bottom-info">
-              <div class="notes">{{ reminder.notes }}</div>
+              <div *ngIf="reminder.notes != null" class="notes">{{ reminder.notes }}</div>
+              <div *ngIf="reminder.notes == null" class="notes">یادداشتی موجود نمی باشد.</div>
 
               <div class="clock">{{ hourAndMinute(reminder.dateTime) }}</div>
             </div>

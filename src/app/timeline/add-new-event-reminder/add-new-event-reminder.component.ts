@@ -61,13 +61,12 @@ export class AddNewEventReminderComponent implements OnInit {
     const currentDate = new Date();
     const selectedDate = new Date(control.value);
 
-    console.log(selectedDate)
-
     currentDate.setHours(0, 0, 0, 0);
 
     if (selectedDate < currentDate) {
       return { customError: true };
     } else {
+      console.log('selected date : ', selectedDate)
       this.data.dateTime = selectedDate;
       return null;
     }
@@ -99,16 +98,29 @@ export class AddNewEventReminderComponent implements OnInit {
 
     const startTimeValue = this.formGroup.get('startTime').value;
     const [h, m] = startTimeValue.split(":");
-    const localDateTime = new Date(this.data.dateTime);
+
+    let date: Date = new Date(this.data.dateTime);
+
+    if (this.type == 'quick') {
+      date = this.formGroup.get('datePicker').value;
+    }
+
+    console.log('date', date);
+
+    const localDateTime = new Date(date);
     const localTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
     const gmtDateTimeString = this.datePipe.transform(localDateTime, 'yyyy-MM-dd HH:mm:ss', 'GMT');
     const gmtDateTime = new Date(gmtDateTimeString);
     gmtDateTime.setUTCHours(Number(h), Number(m));
 
+    if (this.type == 'quick')
+      gmtDateTime.setDate(gmtDateTime.getDate() + 1);
+
     v.dateTime = gmtDateTime;
     v.repeatInterval = 1;
-    console.log(v);
+
+    console.log('all', v.dateTime);
 
     this.restService.post('Reminder/Create', v).subscribe((res) => {
       if (res['success'])
