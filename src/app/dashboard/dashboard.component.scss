@@ -1,40 +1,22 @@
 @import "../../theme/common.styles.scss";
 
-.header {
-  height: 4rem;
-  background-color: blue;
-}
-
-.dashboard {
-  display: flex;
+.first-page {
   flex-direction: column;
-  height: 100%;
+  display: flex;
+  min-height: 100vh;
+
+  .preview {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
 
   .pic {
     position: relative;
 
-    img {
-      margin-top: 0%;
-      width: 65vh;
-      margin-right: 3%;
+    & img {
+      width: 550px !important;
     }
-  }
-
-  .title {
-    font-size: 40px;
-    position: relative;
-    margin-top: 30%;
-    margin-right: 18vh;
-  }
-  .text
-  {
-    margin-top: 10%;
-    margin-right: 14vh;
-    text-align: center;
-  }
-  .register-button {
-    margin-right: 35vh;
-    margin-top: 3vh;
   }
 }
 
@@ -68,7 +50,6 @@
   }
 }
 
-
 .timeline {
   margin: 1rem;
 }
@@ -84,8 +65,4 @@
 
 .content.timeline {
   width: 65%;
-}
-
-.body {
-  margin-top: 6rem;
 }
