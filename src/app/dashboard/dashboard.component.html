@@ -1,5 +1,6 @@
-<app-navbar></app-navbar>
+
 <div *ngIf="!isLoggedIn" class="body">
+  <app-navbar></app-navbar>
   <div class="pic">
       <img src="/assets/3956379-Recovered.png">
   </div>
@@ -14,10 +15,9 @@
         </button>
       </div>
     </div>
-  </div>
 
   <app-footer></app-footer>
-</div>
+</div>  
 
 <div *ngIf="isLoggedIn">
   <app-navbar></app-navbar>
