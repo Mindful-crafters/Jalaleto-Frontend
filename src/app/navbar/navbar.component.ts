@@ -14,7 +14,7 @@ export class NavbarComponent {
     private router: Router,
     private authService: AuthService) {
   }
-
+  isLoggedIn = true;
   viewProfile() {
     this.router.navigate(['/profile'])
   }

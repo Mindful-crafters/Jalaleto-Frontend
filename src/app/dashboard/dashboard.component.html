@@ -1,14 +1,13 @@
-<div *ngIf="!isLoggedIn" class="dashboard">
-  <app-navbar></app-navbar>
-
-  <div class="mbody">
-    <div class="pic">
-      <img src="/assets/3956379-Recovered.png" />
-    </div>
-    <div>
-      <div class="text">
-        <p>به جلالتو خوش آمدید</p>
+<app-navbar></app-navbar>
+<div *ngIf="!isLoggedIn" class="body">
+  <div class="pic">
+      <img src="/assets/3956379-Recovered.png">
+  </div>
+  <div>
+      <div class="title">
+          <p>به جلالتو خوش آمدید</p>
       </div>
+      <h2 class="text">برای ثبت رویداد ها و به اشتراک گذاری آنها با دوستان<br> به صفحه ی شخصی خود وارد شوید.</h2>
       <div>
         <button type="button" routerLink="/login" mat-button class="register-button primary-button">
           ورود
