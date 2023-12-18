@@ -24,8 +24,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
         DashboardComponent,
         //NavbarComponent,
         TimelineComponent,
-        FooterComponent,
-        NavbarComponent,
         TimelineComponent,
         ShowGroupsComponent
     ],
@@ -47,7 +45,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
         MatInputModule,
         MatMenuModule,
         NavbarFooterModule,
-        MatExpansionModule
+        MatExpansionModule,
+        NavbarFooterModule,
     ],
     exports: [
         DashboardComponent
