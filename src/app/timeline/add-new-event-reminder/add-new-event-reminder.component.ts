@@ -7,6 +7,9 @@ import { PersonalTimeObject } from '../timeline.component';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatChipOption } from '@angular/material/chips';
 import { RestService } from 'src/app/shared/services/Rest.service';
+import { ToastrService } from 'ngx-toastr';
+import { HttpErrorResponse } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-add-new-event-reminder',
@@ -25,7 +28,8 @@ export class AddNewEventReminderComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<AddNewEventReminderComponent>,
     @Inject(MAT_DIALOG_DATA) public data: PersonalTimeObject,
-    private formBuilder: FormBuilder, private restService: RestService) {
+    private formBuilder: FormBuilder, private restService: RestService,
+    private toastr: ToastrService) {
 
   }
   ngOnInit(): void {
@@ -76,9 +80,18 @@ export class AddNewEventReminderComponent implements OnInit {
     v.remindByEmail = this.emailReminder.nativeElement.checked;
 
     this.restService.post('Reminder/Create', v).subscribe((res) => {
-      if (res['success'])
+      if (res['success']) {
+        this.toastr.success('رویداد با موفقیت ایجاد شد', 'موفقیت');
         this.dialogRef.close(v);
-    })
+      }
+      else {
+        this.toastr.error('مشکلی پیش آمده دوباره تلاش کنید', 'خطا');
+      }
+    },
+      (error: HttpErrorResponse) => {
+        this.toastr.error('مشکلی پیش آمده دوباره تلاش کنید', 'خطا');
+
+      })
 
 
   }

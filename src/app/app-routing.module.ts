@@ -10,6 +10,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ShowGroupsComponent } from './show-groups/show-groups.component';
 
 
 const routes: Routes = [

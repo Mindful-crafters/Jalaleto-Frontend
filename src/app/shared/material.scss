@@ -181,60 +181,77 @@ mat-hint {
 }
 
 //chips
-.mat-mdc-standard-chip.mdc-evolution-chip--with-primary-graphic .mdc-evolution-chip__graphic {
-    display: none !important;
+.new-reminder {
+    .mat-mdc-standard-chip.mdc-evolution-chip--with-primary-graphic .mdc-evolution-chip__graphic {
+        display: none !important;
+    }
+
+    .mat-mdc-chip—focus-overlay {
+        background: #F7F7FF !important;
+    }
+
+    .mat-mdc-standard-chip.mdc-evolution-chip--selected.mdc-evolution-chip--disabled {
+        background-color: #BDD5EA !important;
+        opacity: 100% !important;
+        border: solid 1px #3a86ff !important;
+    }
+
+    .mat-mdc-standard-chip.mat-mdc-chip-selected.mat-primary {
+        --mdc-chip-disabled-label-text-color: #3a86ff !important;
+    }
+
+    .mat-mdc-standard-chip.mdc-evolution-chip--selected.mdc-evolution-chip--disabled .mdc-evolution-chip_text-label {
+        margin-inline-start: 1px !important;
+        font-weight: 600 !important;
+    }
+
+    .mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled) {
+        background-color: #F7F7FF !important;
+        border: 1px solid #495867 !important;
+
+    }
+
+
+    .mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled) .mdc-evolution-chip_text-label {
+        margin-inline-start: 1px !important;
+        color: #ccc !important;
+        font-weight: 500 !important;
+
+    }
+
+    .mat-mdc-standard-chip .mdc-evolution-chip__cell--primary {
+        justify-content: center !important;
+    }
+
+    .mat-mdc-standard-chip.mat-mdc-chip-selected.mat-primary,
+    .mat-mdc-standard-chip.mat-mdc-chip-highlighted.mat-primary {
+        --mdc-chip-focus-state-layer-color: none !important;
+    }
+
+    .mat-mdc-standard-chip {
+        --mdc-chip-focus-state-layer-color: none !important;
+    }
+
+    [dir=rtl] .mat-mdc-standard-chip.mdc-evolution-chip--with-primary-graphic .mdc-evolution-chip__action--primary,
+    .mat-mdc-standard-chip.mdc-evolution-chip--with-primary-graphic .mdc-evolution-chip__action--primary[dir=rtl] {
+        padding-left: 0 !important;
+        width: 100% !important;
+    }
 }
 
-.mat-mdc-chip—focus-overlay {
-    background: #F7F7FF !important;
-}
+//chips
+.create-group {
 
-.mat-mdc-standard-chip.mdc-evolution-chip--selected.mdc-evolution-chip--disabled {
-    background-color: #BDD5EA !important;
-    opacity: 100% !important;
-    border: solid 1px #3a86ff !important;
-}
+    .mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled) {
+        background-color: #BDD5EA !important;
+        opacity: 100% !important;
+        border: solid 1px #3a86ff !important;
+    }
 
-.mat-mdc-standard-chip.mat-mdc-chip-selected.mat-primary {
-    --mdc-chip-disabled-label-text-color: #3a86ff !important;
-}
+    .mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled) .mdc-evolution-chip__text-label {
+        color: #3a86ff !important;
+    }
 
-.mat-mdc-standard-chip.mdc-evolution-chip--selected.mdc-evolution-chip--disabled .mdc-evolution-chip_text-label {
-    margin-inline-start: 1px !important;
-    font-weight: 600 !important;
-}
-
-.mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled) {
-    background-color: #F7F7FF !important;
-    border: 1px solid #495867 !important;
-
-}
-
-
-.mat-mdc-standard-chip:not(.mdc-evolution-chip--disabled) .mdc-evolution-chip_text-label {
-    margin-inline-start: 1px !important;
-    color: #ccc !important;
-    font-weight: 500 !important;
-
-}
-
-.mat-mdc-standard-chip .mdc-evolution-chip__cell--primary {
-    justify-content: center !important;
-}
-
-.mat-mdc-standard-chip.mat-mdc-chip-selected.mat-primary,
-.mat-mdc-standard-chip.mat-mdc-chip-highlighted.mat-primary {
-    --mdc-chip-focus-state-layer-color: none !important;
-}
-
-.mat-mdc-standard-chip {
-    --mdc-chip-focus-state-layer-color: none !important;
-}
-
-[dir=rtl] .mat-mdc-standard-chip.mdc-evolution-chip--with-primary-graphic .mdc-evolution-chip__action--primary,
-.mat-mdc-standard-chip.mdc-evolution-chip--with-primary-graphic .mdc-evolution-chip__action--primary[dir=rtl] {
-    padding-left: 0 !important;
-    width: 100% !important;
 }
 
 //timepicker
@@ -263,4 +280,10 @@ mat-hint {
 
 .mat-mdc-button.mat-primary {
     --mdc-text-button-label-text-color: #3a86ff !important;
+}
+
+//expansion-panel
+
+.mat-expansion-panel-body {
+    padding: 0 !important;
 }

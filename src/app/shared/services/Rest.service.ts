@@ -14,7 +14,7 @@ export class RestService {
 
   get customHeaders() {
     return new HttpHeaders({
-      'Content-Type': 'application/json',
+      // 'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + this.authService.getToken(),
     })
   }
