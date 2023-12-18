@@ -10,11 +10,9 @@ import { ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class NavbarComponent {
-
   constructor(
     private router: Router,
     private authService: AuthService) {
-
   }
 
   viewProfile() {
