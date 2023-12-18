@@ -7,9 +7,9 @@
     <span>
       <ul class="navbar-menu-right">
         <li><a routerLink="/">خانه</a></li>
-        <li><a routerLink="/services">تبدیل تاریخ</a></li>
+        <li><a routerLink="/services" href="./dashboard">تبدیل تاریخ</a></li>
         <li><a routerLink="/services">اوقات شرعی</a></li>
-        <li><a routerLink="/services">دسترسی سریع</a></li>
+        <li><a routerLink="/services" href="./about">دسترسی سریع</a></li>
       </ul>
     </span>
 
@@ -67,6 +67,7 @@
         </div>
 
         <button mat-menu-item (click)="viewProfile()">مشاهده پروفایل</button>
+        <div class="line"></div>
         <button mat-menu-item (click)="openSettings()">تنظیمات</button>
         <div class="line"></div>
         <button mat-menu-item (click)="Events()">رویدادها</button>
@@ -80,3 +81,4 @@
 </nav>
 
 <div class="separator-line"></div>
+

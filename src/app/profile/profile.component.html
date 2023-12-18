@@ -1,94 +1,81 @@
+<app-navbar></app-navbar>
 <div [dir]="'rtl'" class="containor">
-  <div class="profile-form">
-    <div class="info">
-      <div>
-        <mat-form-field
-          class="Username"
-          appearance="outline"
-          hideRequiredMarker
-        >
-          <mat-label>نام کاربری</mat-label>
-          <input [disabled]="true" [(ngModel)]="data.UserName" matInput />
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field
-          class="FirstName"
-          appearance="outline"
-          hideRequiredMarker
-        >
-          <mat-label>نام</mat-label>
-          <input [(ngModel)]="data.FirstName" matInput />
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field
-          class="LastName"
-          appearance="outline"
-          hideRequiredMarker
-        >
-          <mat-label>نام خانوادگی</mat-label>
-          <input [(ngModel)]="data.LastName" matInput />
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field
-          class="Birthday"
-          appearance="outline"
-          hideRequiredMarker
-        >
-          <mat-label>تاریخ تولد</mat-label>
-          <input [(ngModel)]="data.Birthday" matInput />
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field class="Email" appearance="outline" hideRequiredMarker>
-          <mat-label>ایمیل</mat-label>
-          <input [disabled]="true" [(ngModel)]="data.Email" matInput />
-        </mat-form-field>
-      </div>
+    <div class="profile-form">
 
-      <div>
-        <button
-          (click)="submit()"
-          type="button"
-          mat-button
-          class="register-button primary-button"
-        >
-          ثبت تغییرات
-        </button>
-      </div>
-    </div>
+        <div class="info">
+            <div>
+                <mat-form-field class="Username" appearance="outline" hideRequiredMarker>
+                    <mat-label>نام کاربری</mat-label>
+                    <input [disabled]="false" [(ngModel)]="data.UserName" matInput />
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="FirstName" appearance="outline" hideRequiredMarker>
+                    <mat-label>نام</mat-label>
+                    <input [(ngModel)]="data.FirstName" matInput />
+                </mat-form-field>
+            </div>
+            <div>
 
-    <div class="pic">
-      <div class="profile-container">
-        <img
-          class="profile"
-          [src]="
-            selectedImage
-              ? selectedImage
-              : '/assets/SL_100820_36440_10-Recovered.svg'
-          "
-          alt="Profile Image"
-        />
-        <div id="circle">
-          <input
-            type="file"
-            (change)="onFileSelected($event)"
-            accept="image/*"
-            style="display: none"
-            #fileInput
-          />
-          <button (click)="fileInput.click()">
-            <!-- <img class="edit" src="/assets/icons8-camera-24.svg" alt="Upload Image"> -->
-            <img
-              class="edit"
-              src="../../assets/icons/icons8-camera-48.png"
-              alt="Upload Image"
-            />
-          </button>
+                <mat-form-field class="LastName" appearance="outline" hideRequiredMarker>
+                    <mat-label>نام خانوادگی</mat-label>
+                    <input [(ngModel)]="data.LastName" matInput />
+                </mat-form-field>
+            </div>
+            <div>
+
+                <mat-form-field class="LastName" appearance="outline" hideRequiredMarker>
+                    <mat-label>تاریخ تولد</mat-label>
+                    <input [(ngModel)]="data.Birthday" matInput />
+                    <!-- <mat-hint>YYYY/MM/DD</mat-hint> -->
+                </mat-form-field>
+            </div>
+            <!-- <div>
+                <mat-form-field class="Birthday" appearance="outline" hideRequiredMarker>
+                    <mat-label>تاریخ تولد</mat-label>
+                    <input [(ngModel)]="data.Birthday" matInput [matDatepicker]="datepicker" [value]="data.Birthday" />
+                    <mat-datepicker-toggle [disableRipple]="" matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+                    <mat-datepicker #datepicker>
+                    <mat-datepicker-actions>
+                    <button mat-button matDatepickerCancel>لغو</button>
+                    <button mat-raised-button color="primary" matDatepickerApply>
+                        انتخاب
+                    </button>
+                    </mat-datepicker-actions>
+                    </mat-datepicker>
+                </mat-form-field>
+                
+            </div> -->
+            <div>
+
+                <mat-form-field class="Email" appearance="outline" hideRequiredMarker>
+                    <mat-label>ایمیل</mat-label>
+                    <input [disabled]="true" [(ngModel)]="data.Email" matInput />
+                </mat-form-field>
+            </div>
+
+
+            <div>
+                <button (click)="submit()" type="button" mat-button class="register-button primary-button">
+                    ثبت تغییرات
+                </button>
+            </div>
+            <div class="pic">
+                <div class="profile-container">
+                    <img class="profile" [src]="data.imagePath!='' ? data.imagePath : '/assets/SL_100820_36440_10-Recovered.svg'"
+                        alt="Profile Image">           
+                    <input type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none;" #fileInput>
+                    <div class="example-button-row">
+                        <button mat-stroked-button color="primary" (click)="fileInput.click()">ویرایش پروفایل</button>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+
+
+        
+
+
     </div>
-  </div>
 </div>
+<app-footer></app-footer>

@@ -1,0 +1,34 @@
+@import "../../theme/common.styles.scss";
+.containor
+{
+    display: flex;
+    justify-content: center;
+    min-height: 73%;
+    background-color: #f7f7ff;
+    .text-form
+    {
+        width: 120vh;
+        background-color: #fff;
+        margin: 0rem ;
+        padding:1rem;
+        .img
+        {
+            margin-right: 20rem;
+            margin-top: 10rem;
+        }
+    }
+    .rule
+    {
+        margin-right: 2%;
+    }
+    .title
+    {
+        font-size: 30px;
+        color: #577399;
+    }
+    .text
+    {
+        margin-right: 1%;
+    }
+    
+}

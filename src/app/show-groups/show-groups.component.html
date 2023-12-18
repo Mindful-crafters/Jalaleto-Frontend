@@ -1,0 +1,42 @@
+<mat-accordion>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                گروه ها
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div class="divider"></div>
+
+        <div style="background-color: #e0e1dd; padding-top: 10px;">
+            <button (click)="CreateGroup()" mat-button class="add-group">افزودن گروه</button>
+        </div>
+        <div class="groups">
+            <div class="group" *ngFor="let group of groups">
+                <div style="display: flex; flex-direction: column;">
+                    <!-- <div class="name">{{group.name}}</div> -->
+                    <div class="name">
+                        <span nz-popover nzPopoverTitle="توضیحات" [nzPopoverContent]="group.description"
+                            nzPopoverPlacement="bottomRight">{{ group.name }}
+                        </span>
+                    </div>
+                    <div class="members">
+                        <span class="member" *ngFor="let member of group.members.slice(0,3)">
+                            {{member}}
+                        </span>
+                        <span class="more-member" *ngIf="group.members.length>3">{{ (group.members.length - 3) +
+                            '+'}}</span>
+                    </div>
+                </div>
+                <div *ngIf="!group.imageFile" class="prof">
+                    <img *ngIf="!group.imageUrl || group.imageUrl =='' " src="assets/icons/group-icon.svg" alt="">
+                    <img *ngIf="group.imageUrl && group.imageUrl !='' " #prof [src]="group.imageUrl" alt="">
+                </div>
+                <div *ngIf="group.imageFile" class="prof">
+                    <img [src]="group.imageFile" alt="">
+                </div>
+            </div>
+        </div>
+
+    </mat-expansion-panel>
+</mat-accordion>

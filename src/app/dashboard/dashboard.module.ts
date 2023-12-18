@@ -1,15 +1,14 @@
+import { ShowGroupsComponent } from './../show-groups/show-groups.component';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from '../app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { DashboardComponent } from './dashboard.component';
-
-
 import { TimelineComponent } from '../timeline/timeline.component';
 import { MatButton } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
-
+import { NavbarFooterModule } from '../navbar-footer.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
@@ -18,15 +17,16 @@ import { MatInputModule } from '@angular/material/input';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
     declarations: [
         DashboardComponent,
+        //NavbarComponent,
         TimelineComponent,
-        FooterComponent,
-        NavbarComponent,
         TimelineComponent,
+        ShowGroupsComponent
     ],
     imports: [
         BrowserAnimationsModule,
@@ -45,6 +45,9 @@ import { RouterModule } from '@angular/router';
         ReactiveFormsModule,
         MatInputModule,
         MatMenuModule,
+        NavbarFooterModule,
+        MatExpansionModule,
+        NavbarFooterModule,
         RouterModule
     ],
     exports: [

@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { RestService } from '../shared/services/Rest.service';
 import * as moment from 'jalali-moment';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { CreateGroupDialogComponent } from '../create-group-dialog/create-group-dialog.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -51,10 +53,10 @@ export class DashboardComponent {
   constructor(
     private restService: RestService,
     private auth: AuthService, private router: Router,
-    private authService : AuthService) {
-      this.isLoggedIn = authService.isLoggedIn();
+    private authService: AuthService) {
+    this.isLoggedIn = authService.isLoggedIn();
 
-      console.log(this.authService.getToken())
+    console.log(this.authService.getToken())
   }
 
   logOut() {

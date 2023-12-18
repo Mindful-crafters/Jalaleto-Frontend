@@ -21,7 +21,6 @@ export class NavbarComponent implements OnInit {
 
   userProfile: UserProfile | null = null;
   notifications: Notification[] = [];
-
   constructor(
     private restService: RestService,
     private router: Router,

@@ -1,6 +1,5 @@
-
 import { MatFormFieldModule} from '@angular/material/form-field';
-import { ProfileComponent } from './profile.component';
+import { RulesComponent } from './rules.component';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from '../app-routing.module';
@@ -16,9 +15,10 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler';
 import { MatDatepickerModule} from '@angular/material/datepicker';
 import { NavbarFooterModule } from '../navbar-footer.module';
 
+
 @NgModule({
     declarations: [
-        ProfileComponent,
+        RulesComponent,
     ],
     imports: [
         BrowserModule,
@@ -36,7 +36,7 @@ import { NavbarFooterModule } from '../navbar-footer.module';
         NavbarFooterModule,
     ],
     exports: [
-        ProfileComponent,
+        RulesComponent,
     ]
 })
-export class ProfileModule { }
+export class RulesModule { }
