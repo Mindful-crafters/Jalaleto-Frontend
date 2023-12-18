@@ -18,6 +18,7 @@ import { MatInputModule } from '@angular/material/input';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     declarations: [
@@ -44,6 +45,7 @@ import { MatMenuModule } from '@angular/material/menu';
         ReactiveFormsModule,
         MatInputModule,
         MatMenuModule,
+        RouterModule
     ],
     exports: [
         DashboardComponent

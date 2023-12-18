@@ -22,7 +22,6 @@ import { AddNewEventReminderComponent } from './timeline/add-new-event-reminder/
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatChipsModule } from '@angular/material/chips';
 import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
-
 import { MatMenuModule} from '@angular/material/menu';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DashboardModule } from './dashboard/dashboard.module';
@@ -68,7 +67,8 @@ import { TimelineComponent } from './timeline/timeline.component';
     DashboardModule,
     MatDialogModule,
     MatChipsModule,
-    NgxMatTimepickerModule
+    NgxMatTimepickerModule,
+
   ],
   providers: [
     DatePipe,
