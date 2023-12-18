@@ -1,5 +1,16 @@
 @import "../../theme/common.styles.scss";
 
+@keyframes slideIn{
+  from{
+    opacity: 0;
+    transform: translateX(-100%)
+  }
+  to{
+    opacity: 100%;
+    transform: translateX(0);
+  }
+}
+
 .container {
   @include box-style();
 
@@ -150,6 +161,8 @@
     box-shadow: none;
     padding: 1rem;
     margin-bottom: 0.5rem;
+    opacity: 0;
+    animation: slideIn 0.2s ease-out forwards;
 
     &:hover{
       background-color: rgb(233, 233, 233);

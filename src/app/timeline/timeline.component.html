@@ -97,6 +97,7 @@
           <div
             class="reminder-object-container"
             *ngFor="let reminder of selectedDayReminders; let i = index"
+            [style.animation-delay]="i*0.3 + 's'"
           >
             <div class="top-info">
               <span class="title">{{ reminder.title }}</span>
