@@ -5,8 +5,6 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from '../app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
-// import { NavbarComponent } from '../navbar/navbar.component';
-// import { FooterComponent } from '../footer/footer.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -21,9 +19,6 @@ import { NavbarFooterModule } from '../navbar-footer.module';
 @NgModule({
     declarations: [
         ProfileComponent,
-        // NavbarComponent,
-        // FooterComponent
-
     ],
     imports: [
         BrowserModule,

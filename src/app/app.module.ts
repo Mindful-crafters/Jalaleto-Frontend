@@ -34,6 +34,7 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from "@angular/materia
 import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from "./shared/persion-date.adapter";
 import { FooterComponent } from './footer/footer.component';
 import { TimelineComponent } from './timeline/timeline.component';
+import { NavbarFooterModule } from './navbar-footer.module';
 
 
 @NgModule({
@@ -70,7 +71,7 @@ import { TimelineComponent } from './timeline/timeline.component';
     DashboardModule,
     MatDialogModule,
     MatChipsModule,
-    NgxMatTimepickerModule
+    NgxMatTimepickerModule,
   ],
   providers: [
     DatePipe,

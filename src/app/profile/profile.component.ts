@@ -19,6 +19,7 @@ export class ProfileComponent implements OnInit {
     Birthday: string,
     Email: string,
     image: File,
+    imagePath: string,
 
   } = {
       FirstName: "",
@@ -26,7 +27,8 @@ export class ProfileComponent implements OnInit {
       UserName: "",
       Birthday: "",
       Email: "",
-      image: null
+      image: null,
+      imagePath: ""
     }
     requestData = {
       FirstName: this.data.FirstName,
@@ -62,19 +64,17 @@ export class ProfileComponent implements OnInit {
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0] as File;
-    this.imageLink = this.selectedFile ? URL.createObjectURL(this.selectedFile) : null;
-    console.log(this.imageLink);
     // const input = this.fileInput.nativeElement;
     // if (input.files && input.files.length > 0) {
     //   this.selectedFile = input.files[0];
     //   this.convertFileToLink();
     // }
   }
-  convertFileToLink() {
-    if (this.selectedFile) {
-      this.imageLink = URL.createObjectURL(this.selectedFile);
-    }
-  }
+  // convertFileToLink() {
+  //   if (this.selectedFile) {
+  //     this.imageLink = URL.createObjectURL(this.selectedFile);
+  //   }
+  // }
   ngOnInit() {
 
     this.restService.post("User/ProfileInfo", null).subscribe((res: ProfileResult) => {
@@ -83,7 +83,7 @@ export class ProfileComponent implements OnInit {
       this.data.UserName = res.userName;
       this.data.Email = res.email;
       this.data.Birthday = res.birthday;
-      this.imageLink = res.image;
+      this.data.imagePath = res.imagePath;
       const parts = res.birthday.split('/');
       if (parts.length === 3) {
         const day = parseInt(parts[0], 10);
@@ -116,7 +116,6 @@ export class ProfileComponent implements OnInit {
         }
       },
     )
-    console.log(this.imageLink)
   }
   
   updateData(){
@@ -149,6 +148,6 @@ interface ProfileResult {
   userName: string,
   birthday: string,
   email: string,
-  image: string,
+  imagePath: string,
   
 }
