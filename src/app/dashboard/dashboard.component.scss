@@ -20,49 +20,32 @@
   }
 }
 
-.mbody {
+.timeline-container {
+  padding: 1rem;
+  gap: 1rem;
   display: flex;
-  justify-content: center;
-}
 
-.clock.containor {
-  width: 35%;
-
-  .digitalClock {
-    direction: ltr;
-    font-size: 54px;
-    color: #3f51b5;
-    color: var(--primary, #3f51b5);
-    line-height: 70px;
-    letter-spacing: 5px;
-    width: max-content;
-    margin: 0 auto;
+  .timeline {
+    width: 65%;
   }
 
-  .dayTitle {
-    font-size: 1.5rem;
-    justify-content: center;
-    margin-left: 1em;
+  .left-panel {
+    width: 35%;
+  }
+
+  .digitalClock{
+    margin: 5rem 0;
+    color: var(--primary-text-color);
   }
 
   .digitalTime {
-    font-size: 1rem;
+    text-align: center;
+    font-size: 3rem;
   }
-}
 
-.timeline {
-  margin: 1rem;
-}
-
-.header {
-  height: 4rem;
-  background-color: blue;
-}
-
-.th-container {
-  display: flex;
-}
-
-.content.timeline {
-  width: 65%;
+  .dayTitle {
+    margin: 2rem;
+    text-align: center;
+    font-size: 1.5rem;
+  }
 }

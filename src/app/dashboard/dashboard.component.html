@@ -1,11 +1,11 @@
 <div *ngIf="!isLoggedIn" class="first-page">
   <app-navbar></app-navbar>
-  
+
   <div class="preview">
     <div class="pic">
       <img class="calendar-pic" src="/assets/3956379-Recovered.png" />
     </div>
-  
+
     <div>
       <div class="title">
         <p>به جلالتو خوش آمدید</p>
@@ -14,7 +14,7 @@
           به صفحه ی شخصی خود وارد شوید.
         </h2>
       </div>
-  
+
       <div>
         <button
           type="button"
@@ -36,23 +36,22 @@
 <div *ngIf="isLoggedIn">
   <app-navbar></app-navbar>
 
-  <div class="th-container">
-    <div class="content timeline">
+  <div class="timeline-container">
+    <div class="timeline">
       <app-timeline></app-timeline>
     </div>
-    <div style="width: 30vw; min-width: 20.5rem; padding-inline-end: 1rem">
-      <div [dir]="'rtl'" class="clock containor">
-        <div class="body">
-          <div class="digitalClock">
-            <div class="digitalTime>">
-              <div>{{ hour }} : {{ minute }} : {{ second }}</div>
-            </div>
-            <div class="dayTitle">
-              {{ day }} {{ jalaliDay }} {{ jalaliMonth }} {{ jalaliYear }}
-            </div>
-          </div>
+
+    <div class="left-panel">
+      <div class="digitalClock">
+        <div  class="digitalTime">
+          <div>{{ second }} : {{ minute }} : {{ hour }}</div>
+        </div>
+
+        <div class="dayTitle">
+          {{ day }} {{ jalaliDay }} {{ jalaliMonth }} {{ jalaliYear }}
         </div>
       </div>
+
       <app-show-groups></app-show-groups>
     </div>
   </div>

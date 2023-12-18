@@ -1,7 +1,7 @@
 @mixin box-style(){
     border-radius: 0.5rem;
     border: 1px solid var(--gray);
-    box-shadow: 0 0 1rem grey;
+    box-shadow: 0 0 0.5rem grey;
 }
 
 @mixin text-style($text-color , $text-weight, $text-size){
