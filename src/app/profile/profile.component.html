@@ -60,19 +60,20 @@
                     ثبت تغییرات
                 </button>
             </div>
-        </div>
-
-
-        <div class="pic">
-            <div class="profile-container">
-                <img class="profile" [src]="selectedImage ? selectedImage : '/assets/SL_100820_36440_10-Recovered.svg'"
-                    alt="Profile Image">           
-                <input type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none;" #fileInput>
-                <div class="example-button-row">
-                    <button mat-stroked-button color="primary" (click)="fileInput.click()">ویرایش پروفایل</button>
+            <div class="pic">
+                <div class="profile-container">
+                    <img class="profile" [src]="imageLink ? imageLink : '/assets/SL_100820_36440_10-Recovered.svg'"
+                        alt="Profile Image">           
+                    <input type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none;" #fileInput>
+                    <div class="example-button-row">
+                        <button mat-stroked-button color="primary" (click)="fileInput.click()">ویرایش پروفایل</button>
+                    </div>
                 </div>
             </div>
         </div>
+
+
+        
 
 
     </div>

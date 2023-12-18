@@ -2,7 +2,7 @@ import { RestService } from './../shared/services/Rest.service';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http'
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Shared } from '../shared/services/shared.service';
 import { AbstractControl, ValidationErrors, FormBuilder } from '@angular/forms';
 
@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit {
     UserName: string,
     Birthday: string,
     Email: string,
-    Image: string,
+    image: File,
 
   } = {
       FirstName: "",
@@ -26,20 +26,21 @@ export class ProfileComponent implements OnInit {
       UserName: "",
       Birthday: "",
       Email: "",
-      Image: "",
+      image: null
     }
     requestData = {
       FirstName: this.data.FirstName,
       LastName: this.data.LastName,
       UserName: this.data.UserName,
       Birthday: this.data.Birthday,
-      Image: this.data.Image,
-      
+      image: this.data.image,
     }
   session: any;
   profilePicture: File | undefined;
-  selectedImage: string | undefined;
-
+  @ViewChild('fileInput') fileInput:any;
+  selectedImage: string | null = null;
+  selectedFile: File | null = null;
+  imageLink: string | null = null;
   constructor(
     private rest: RestService,
     private restService: RestService,
@@ -58,9 +59,22 @@ export class ProfileComponent implements OnInit {
       return { customError: true };
     }
   }
-  
-  uploadedImageUrl: string | undefined;
 
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0] as File;
+    this.imageLink = this.selectedFile ? URL.createObjectURL(this.selectedFile) : null;
+    console.log(this.imageLink);
+    // const input = this.fileInput.nativeElement;
+    // if (input.files && input.files.length > 0) {
+    //   this.selectedFile = input.files[0];
+    //   this.convertFileToLink();
+    // }
+  }
+  convertFileToLink() {
+    if (this.selectedFile) {
+      this.imageLink = URL.createObjectURL(this.selectedFile);
+    }
+  }
   ngOnInit() {
 
     this.restService.post("User/ProfileInfo", null).subscribe((res: ProfileResult) => {
@@ -69,7 +83,7 @@ export class ProfileComponent implements OnInit {
       this.data.UserName = res.userName;
       this.data.Email = res.email;
       this.data.Birthday = res.birthday;
-      this.data.Image = res.image;
+      this.imageLink = res.image;
       const parts = res.birthday.split('/');
       if (parts.length === 3) {
         const day = parseInt(parts[0], 10);
@@ -83,88 +97,46 @@ export class ProfileComponent implements OnInit {
     
 
   }
-  // private parseToken(token: string): any {
-  //   const tokenParts = token.split('.');
-  //   if (tokenParts.length === 3) {
-  //     const decode = atob(tokenParts[1]);
-  //     return JSON.parse(decode);
-  //   }
-  //   return null;
-  // }
-  onFileSelected(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      // Assuming 'URL.createObjectURL' generates a temporary URL for the selected image
-      this.selectedImage = URL.createObjectURL(file);
-      this.profilePicture = file; // Assign the selected file to profilePicture for upload
-    }
-  }
 
-  removePhoto() {
-    this.selectedImage = undefined;
-    this.profilePicture = undefined;
-  }
   
   submit()
   {
-    if(this.profilePicture)
-    {
-      const formData = new FormData();
-      formData.append('profilePicture', this.profilePicture);
-      this.http.post<any>('',formData).subscribe(respone =>{
-        if(respone.success)
-        {
-          this.uploadedImageUrl = respone.imageUrl;
-          console.log(this.uploadedImageUrl);
-        }
-      })
-    }
-    this.requestData = {
-      FirstName: this.data.FirstName,
-      LastName: this.data.LastName,
-      UserName: this.data.UserName,
-      Birthday: this.data.Birthday,
-      Image: this.data.Image,
-    };
-    //this.requestData.Birthday = this.datePipe.transform(this.data.Birthday, 'yyyy-MM-dd').toString();
-    // console.log(this.requestData);
-    this.restService.post<any>('User/EditProfile', this.requestData).subscribe(
+    console.log(this.selectedFile);
+    const formData = new FormData;
+    formData.append('FirstName',this.data.FirstName);
+    formData.append('LastName',this.data.LastName);
+    formData.append('UserName',this.data.UserName);
+    formData.append('BirthDay',this.data.Birthday);
+    formData.append('Image',this.selectedFile);
+    
+    this.restService.post<any>('User/EditProfile', formData).subscribe(
       (response) => {
-        
         if (response['success']) {
           this.updateData();
         }
       },
     )
-    
+    console.log(this.imageLink)
   }
+  
   updateData(){
     this.requestData = {
       FirstName: "",
       LastName: "",
       UserName: "",
       Birthday: null,
-      Image: "",
+      image: null,
     }
     this.selectedImage = undefined;
+    this.selectedFile = null;
   }
   
   onSubmit() {
     if (this.profilePicture) {
       const formData = new FormData();
       formData.append('profilePicture', this.profilePicture);
-
-      // Example: Make an API call to upload the profile picture
-      // this.http.post<ProfileResult>('YOUR_UPLOAD_URL', formData).subscribe(response => {
-      //   // Handle the response if needed
-      // });
     }
-
-    // Other form submission logic
-    // ...
   }
-
-  // ... Remaining component code ...
 }
 
 interface ProfileResult {
@@ -178,5 +150,5 @@ interface ProfileResult {
   birthday: string,
   email: string,
   image: string,
-  // "image": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+  
 }
