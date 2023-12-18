@@ -46,7 +46,6 @@ export class persiancalendarservice {
     this.gregoriandate = this.today.getDate();
     this.weekday = this.today.getDay();
 
-    console.log('gregorian month : ',this.gregorianmonth)
     this.topersian(gregoriandate);
     return this.strweekday + " " + this.day + " " + this.strmonth + " " + this.year;
   }
@@ -62,7 +61,6 @@ export class persiancalendarservice {
     if (name == 'day') {
       return this.day;
     } else if (name == 'month') {
-      // console.log(this.month)
       return this.month;
     } else if (name == 'year') {
       return this.year;
@@ -144,7 +142,6 @@ export class persiancalendarservice {
   }
 
   func2(): string {
-    //console.log("entered func2");
     this.day = this.buf2[this.gregorianmonth - 1] + this.gregoriandate;
     this.ld = this.gregorianyear >= 1996 ? 79 : 80;
     if (this.day > this.ld) {

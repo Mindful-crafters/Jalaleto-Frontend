@@ -4,6 +4,9 @@ import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dial
 import { Subject, debounceTime } from 'rxjs';
 import { AddNewEventReminderComponent } from './add-new-event-reminder/add-new-event-reminder.component';
 import { DialogRef } from '@angular/cdk/dialog';
+import { RestService } from '../shared/services/Rest.service';
+import { AuthService } from '../shared/services/auth.service';
+import { ReminderObject } from '../shared/types/ReminderObject';
 
 
 @Component({
@@ -16,47 +19,25 @@ import { DialogRef } from '@angular/cdk/dialog';
 export class TimelineComponent implements OnInit {
   displayedMonth: string = '';
   displayedYear: string = '';
-
   timelineItems: TimeLineItem[] = [];
   displayedTimeLine: TimeLineItem[] = [];
   isContentVisible = false;
+
   currentWeek = [1, 2, 3, 4, 5, 6, 7];
+  firstDayOfTimeline: Date;
+
   hoveredBox: number | null = null;
   private hoverSubject = new Subject<number>();
-  selectedBox: number | null = null;
+  selectedBox: number | null = 0;
 
-  timeObjects: PersonalTimeObject[] = [
-    { startTime: '12:15', priority: 'بالا', title: 'جلسه', type: 'event', notes: '', daysBeforeToRemind: 7, remindByEmail: true, priorityLevel: 2, dateTime: null },
-    { startTime: '8:15', priority: 'عادی', title: 'جلسه', type: 'remainder', notes: '', daysBeforeToRemind: 7, remindByEmail: true, priorityLevel: 1, dateTime: null },
-    { startTime: '12:15', priority: 'کم', title: 'جلسه', type: 'event', notes: '', daysBeforeToRemind: 7, remindByEmail: true, priorityLevel: 0, dateTime: null },
-    { startTime: '12:15', priority: 'کم', title: 'جلسه', type: 'remainder', notes: '', daysBeforeToRemind: 7, remindByEmail: true, priorityLevel: 0, dateTime: null },
-    { startTime: '12:15', priority: 'عادی', title: 'جلسه', type: 'remainder', notes: '', daysBeforeToRemind: 7, remindByEmail: true, priorityLevel: 1, dateTime: null },
-    { startTime: '12:15', priority: 'عادی', title: 'جلسه', type: 'event', notes: '', daysBeforeToRemind: 7, remindByEmail: true, priorityLevel: 1, dateTime: null },
-    { startTime: '12:15', priority: 'عادی', title: 'جلسه', type: 'event', notes: '', daysBeforeToRemind: 7, remindByEmail: true, priorityLevel: 1, dateTime: null },
-    { startTime: '12:15', priority: 'عادی', title: 'جلسه', type: 'event', notes: '', daysBeforeToRemind: 7, remindByEmail: true, priorityLevel: 1, dateTime: null },
-    { startTime: '12:15', priority: 'عادی', title: 'جلسه', type: 'event', notes: '', daysBeforeToRemind: 7, remindByEmail: true, priorityLevel: 1, dateTime: null }
-  ];
+  weekReminders: ReminderObject[];
 
-  historicalEvents: HistoricalEvent[] = [
-    { dayNum: 1, event: 'آذر جشن' },
-    { dayNum: 2, event: 'مبارزه غلیه زنان' },
-    { dayNum: 3, event: 'نیروی دریایی' },
-    { dayNum: 4, event: 'مجلس' },
-    { dayNum: 5, event: 'روز دانشجو' },
-    { dayNum: 10, event: 'روز حسابدار' },
-    { dayNum: 15, event: 'روز پژوهش' },
-    { dayNum: 25, event: 'روز ایدز' },
-    { dayNum: 29, event: 'روز بیمه' },
-    { dayNum: 29, event: 'روز بیمه' },
-    { dayNum: 29, event: 'روز بیمه' },
-    { dayNum: 29, event: 'روز بیمه' },
-    { dayNum: 29, event: 'روز بیمه' },
-    { dayNum: 29, event: 'روز بیمه' },
-    { dayNum: 29, event: 'روز بیمه' },
-  ];
+  selectedDayReminders: ReminderObject[];
 
   constructor(
     private el: ElementRef,
+    private restService: RestService,
+    private auth: AuthService,
     public persiancalendarservice: persiancalendarservice,
     private matDialog: MatDialog) {
     this.hoverSubject.pipe(debounceTime(200)).subscribe(index => {
@@ -68,6 +49,10 @@ export class TimelineComponent implements OnInit {
     const updatedWeek: TimeLineItem[] = [];
 
     if (direction == 'up') {
+      this.firstDayOfTimeline.setDate(this.firstDayOfTimeline.getDate() - 7);
+      this.openBox(0);
+      this.getWeekReminders(this.firstDayOfTimeline);
+
       for (const item of this.displayedTimeLine) {
         const pastDate = new Date(item.date);
         pastDate.setDate(item.date.getDate() - 7);
@@ -82,6 +67,10 @@ export class TimelineComponent implements OnInit {
       }
     }
     else {
+      this.firstDayOfTimeline.setDate(this.firstDayOfTimeline.getDate() + 7);
+      this.openBox(0);
+      this.getWeekReminders(this.firstDayOfTimeline);
+
       for (const item of this.displayedTimeLine) {
         const pastDate = new Date(item.date);
         pastDate.setDate(item.date.getDate() + 7);
@@ -102,10 +91,33 @@ export class TimelineComponent implements OnInit {
   ngOnInit() {
     this.generateTimeline();
     this.displayedTimeLine = this.timelineItems;
+
+    const today = new Date();
+    this.firstDayOfTimeline = today;
+    this.getWeekReminders(today);
+    this.openBox(0);
   }
 
-  getJalaliDate(date: Date) {
-    return this.persiancalendarservice.persiancalendar(date);
+  getWeekReminders(firstDate: Date) {
+    const currentDate = new Date(firstDate);
+    currentDate.setHours(3, 30, 0, 0);
+
+    const firstday = currentDate.toISOString();
+
+    const lastDay = new Date(firstDate)
+    lastDay.setDate(firstDate.getDate() + 7);
+    lastDay.setHours(3, 29, 59, 999);
+
+    const lastday = lastDay.toISOString();
+
+    const body = {
+      "from": firstday,
+      "to": lastDay
+    }
+
+    this.restService.post('Reminder/Info', body).subscribe(res => {
+      this.weekReminders = res['data'];
+    })
   }
 
   generateTimeline() {
@@ -122,6 +134,11 @@ export class TimelineComponent implements OnInit {
     }
   }
 
+  MiladiToShamsi(date: Date) {
+    const dateObject = new Date(date);
+    return (this.persiancalendarservice.returnPeaceOfDate(dateObject, 'day'));
+  }
+
   getDayName(dayIndex: number): string {
     const daysOfWeek = ['یکشنبه', 'دوشنبه', 'سه شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه', 'شنبه'];
     return daysOfWeek[dayIndex];
@@ -129,9 +146,42 @@ export class TimelineComponent implements OnInit {
 
   openBox(index: number) {
     this.selectedBox = index;
+
+    const currentDate = new Date(this.firstDayOfTimeline);
+    currentDate.setDate(this.firstDayOfTimeline.getDate() + index)
+    currentDate.setHours(3, 30, 0, 0);
+
+    const firstday = currentDate.toISOString();
+
+    const endOfDay = new Date(this.firstDayOfTimeline)
+    endOfDay.setDate(this.firstDayOfTimeline.getDate() + 1 + index);
+    endOfDay.setHours(3, 29, 59, 999);
+
+    const lasOftday = endOfDay.toISOString();
+
+    const body = {
+      "from": firstday,
+      "to": lasOftday
+    }
+
+    console.log(body)
+
+    this.restService.post('Reminder/Info', body).subscribe(res => {
+      this.selectedDayReminders = res['data'];
+      console.log(res)
+    })
   }
 
-  closeBox(){
+  hourAndMinute(IsoDate) {
+    const date = new Date(IsoDate);
+
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+
+    return `${hour}:${minute}`;
+  }
+
+  closeBox() {
     this.selectedBox = null;
   }
 
@@ -161,22 +211,46 @@ export class TimelineComponent implements OnInit {
     return result;
   }
 
-  AddNewReminder() {
+  AddNewReminder(type: string) {
+    const selectedDay = new Date(this.firstDayOfTimeline);
+    selectedDay.setDate(this.firstDayOfTimeline.getDate() + this.selectedBox)
+
+    console.log(selectedDay);
+
     const dialogRef: MatDialogRef<any, any> = this.matDialog.open(AddNewEventReminderComponent, {
-      data: new PersonalTimeObject({ dateTime: new Date() }),
+      data: {
+        data: new ReminderObject({ dateTime: selectedDay }),
+        type: type
+      },
+
       disableClose: true,
       hasBackdrop: true,
       autoFocus: false
     })
 
     dialogRef.afterClosed().subscribe((res) => {
-      if (res)
+      if (res) {
         console.log(res);
-      //success
+
+        this.getWeekReminders(this.firstDayOfTimeline);
+        this.openBox(this.selectedBox);
+      }
+
       else
         console.log();
-      //faile
     })
+  }
+
+  reminderQuickCreate() {
+
+  }
+
+  starsArray(num: number): number[] {
+    const array = [1];
+    for (let index = 0; index < num; index++) {
+      array.push(1)
+    }
+    return array;
   }
 }
 
@@ -184,33 +258,10 @@ export interface TimeLineItem {
   date: Date;
   dayName: string;
   dayNum: number;
+  reminders?: ReminderObject[];
 }
 
 export interface HistoricalEvent {
   dayNum: number;
   event: string;
-}
-
-export class PersonalTimeObject {
-  startTime: string;
-  priority: string;
-  title: string;
-  type: string;
-  notes: string;
-  daysBeforeToRemind: number;
-  remindByEmail: boolean;
-  priorityLevel: number;
-  dateTime: Date;
-
-  constructor(pto: any) {
-    this.startTime = pto.startTime || null;
-    this.priority = pto.priority || null;
-    this.title = pto.title || null;
-    this.type = pto.type || null;
-    this.notes = pto.notes || null;
-    this.daysBeforeToRemind = pto.daysBeforeToRemind || null;
-    this.remindByEmail = pto.remindByEmail || null;
-    this.priorityLevel = pto.priorityLevel || null;
-    this.dateTime = pto.dateTime || null;
-  }
 }

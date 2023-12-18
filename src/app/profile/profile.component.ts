@@ -78,7 +78,6 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
 
     this.restService.post("User/ProfileInfo", null).subscribe((res: ProfileResult) => {
-      console.log(res);
 
       this.data.FirstName = res.firstName;
       this.data.LastName = res.lastName;

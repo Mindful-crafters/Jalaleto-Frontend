@@ -6,7 +6,6 @@ import { AppRoutingModule } from '../app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { DashboardComponent } from './dashboard.component';
 import { TimelineComponent } from '../timeline/timeline.component';
-import { MatButton } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
 import { NavbarFooterModule } from '../navbar-footer.module';
 import { MatButtonModule } from '@angular/material/button';
