@@ -122,7 +122,8 @@ export class AddNewEventReminderComponent implements OnInit {
     const gmtDateTime = new Date(gmtDateTimeString);
     gmtDateTime.setUTCHours(Number(h), Number(m));
 
-    gmtDateTime.setDate(gmtDateTime.getDate() + 1);
+    if(this.type == 'quick')
+      gmtDateTime.setDate(gmtDateTime.getDate() + 1);
 
     v.dateTime = gmtDateTime;
     console.log('all', v.dateTime);

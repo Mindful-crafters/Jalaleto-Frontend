@@ -49,8 +49,8 @@
         <a routerLink="/notifications">مشاهده همه اعلان ها</a>
       </ng-template>
     </ng-template>
-
-    <button mat-icon-button [matMenuTriggerFor]="menu" class="profile-button">
+ 
+    <button [disabled]="!isLoggedIn" mat-icon-button [matMenuTriggerFor]="menu" class="profile-button">
       <div class="profile-icon">
         <img src="../../assets/icons/profile2.png" alt="Profile Icon">
       </div>

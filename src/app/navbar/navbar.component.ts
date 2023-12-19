@@ -19,19 +19,21 @@ const routes: Routes = [
   encapsulation: ViewEncapsulation.None
 })
 export class NavbarComponent implements OnInit {
-
+  isLoggedIn = false;
   userProfile: UserProfile | null = null;
   notifications: Notification[] = [];
+
   constructor(
     private restService: RestService,
+    private auth: AuthService,
     private router: Router,
     private authService: AuthService) {
+    this.isLoggedIn = authService.isLoggedIn();
   }
 
 
   ngOnInit() {
     this.fetchUserProfile();
-
   }
 
 

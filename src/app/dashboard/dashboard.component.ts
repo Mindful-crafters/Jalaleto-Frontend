@@ -62,6 +62,6 @@ export class DashboardComponent {
 
   logOut() {
     this.auth.logout();
-    this.router.navigate(['login']);
+    this.isLoggedIn = false;
   }
 }
