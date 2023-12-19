@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler';
 import { MatDatepickerModule} from '@angular/material/datepicker';
 import { NavbarFooterModule } from '../navbar-footer.module';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
 
 
 @NgModule({
@@ -34,6 +35,8 @@ import { NavbarFooterModule } from '../navbar-footer.module';
         MatIconModule,
         MatDatepickerModule,
         NavbarFooterModule,
+        NzPopoverModule,
+
     ],
     exports: [
         ContactUsComponent,

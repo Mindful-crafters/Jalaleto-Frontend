@@ -6,10 +6,10 @@
 
     <span>
       <ul class="navbar-menu-right">
-        <li><a routerLink="/">خانه</a></li>
-        <li><a routerLink="/services" href="./dashboard">تبدیل تاریخ</a></li>
+        <li><a routerLink="/" href="./dashboard">خانه</a></li>
+        <li><a routerLink="/services">تبدیل تاریخ</a></li>
         <li><a routerLink="/services">اوقات شرعی</a></li>
-        <li><a routerLink="/services" href="./about">دسترسی سریع</a></li>
+        <li><a routerLink="/services">دسترسی سریع</a></li>
       </ul>
     </span>
 
@@ -59,7 +59,7 @@
     <mat-menu #menu="matMenu" class="menu">
       <ng-template matMenuContent>
         <div class="profile-info">
-          <img [src]="userProfile?.avatarUrl || '../../assets/icons/icons8-test-account-48.png'" alt="Profile Image" class="profile-image">
+          <img [src]="userProfile.imagePath == '' ? '../../assets/icons/icons8-test-account-48.png': userProfile.imagePath" alt="Profile Image" class="profile-image">
           <div class="user-details">
             <span class="username">{{ userProfile?.userName }}</span>
             <span class="email">{{ userProfile?.email }}</span>

@@ -18,13 +18,13 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { RouterModule } from '@angular/router';
+
+
 
 @NgModule({
     declarations: [
         DashboardComponent,
         //NavbarComponent,
-        TimelineComponent,
         TimelineComponent,
         ShowGroupsComponent
     ],
@@ -46,9 +46,7 @@ import { RouterModule } from '@angular/router';
         MatInputModule,
         MatMenuModule,
         NavbarFooterModule,
-        MatExpansionModule,
-        NavbarFooterModule,
-        RouterModule
+        MatExpansionModule
     ],
     exports: [
         DashboardComponent

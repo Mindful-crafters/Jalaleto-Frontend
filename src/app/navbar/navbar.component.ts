@@ -6,6 +6,7 @@ import { ViewEncapsulation } from '@angular/core';
 import { RestService } from './../shared/services/Rest.service';
 import { RouterModule, Routes } from '@angular/router';
 
+
 const routes: Routes = [
   { path: '', component: DashboardComponent },
 
@@ -89,8 +90,9 @@ export class NavbarComponent implements OnInit {
   fetchUserProfile() {
     this.restService.post("User/ProfileInfo", null).subscribe(
       (data: UserProfile) => {
+        console.log(data);
+
         this.userProfile = data;
-        // this.userProfile.displayableImage = 'data:image/jpeg;base64,' + data.image;
       },
       (error) => {
         console.error('Error fetching user profile:', error);
@@ -103,7 +105,7 @@ interface UserProfile {
   userName: string;
   email: string;
   avatarUrl: string;
-  image: string;
+  imagePath: string;
 }
 
 interface Notification {
