@@ -8,23 +8,26 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './shared/services/auth.guard';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
-import { HomepageComponent } from './homepage/homepage.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ShowGroupsComponent } from './show-groups/show-groups.component';
-
-
+import { AboutUsComponent } from './about-us/about-us.component';
+import { WorkWithUsComponent } from './work-with-us/work-with-us.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { RulesComponent } from './rules/rules.component';
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'signup', component: SignUpComponent },
-  // { path: 'home' , component: HomepageComponent},
-  { path: 'home', component: HomepageComponent },
   { path: 'signup', component: SignUpComponent },
   { path: 'forgetpassword', component: ForgetPasswordComponent },
   { path: 'newpassword', component: NewPasswordComponent },
   { path: 'login', component: LoginComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: 'home', component: HomepageComponent }
+  { path: 'about', component: AboutUsComponent},
+  { path: 'contact', component: ContactUsComponent},
+  { path: 'rule', component: RulesComponent},
+  { path: 'work', component: WorkWithUsComponent}
+
 ];
 
 @NgModule({

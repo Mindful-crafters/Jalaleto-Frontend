@@ -5,12 +5,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from '../app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { DashboardComponent } from './dashboard.component';
-
-
 import { TimelineComponent } from '../timeline/timeline.component';
-import { MatButton } from '@angular/material/button';
 import { MatRippleModule } from '@angular/material/core';
-
+import { NavbarFooterModule } from '../navbar-footer.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
@@ -24,9 +21,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 @NgModule({
     declarations: [
         DashboardComponent,
+        //NavbarComponent,
         TimelineComponent,
-        FooterComponent,
-        NavbarComponent,
         TimelineComponent,
         ShowGroupsComponent
     ],
@@ -47,7 +43,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
         ReactiveFormsModule,
         MatInputModule,
         MatMenuModule,
-        MatExpansionModule
+        NavbarFooterModule,
+        MatExpansionModule,
+        NavbarFooterModule,
     ],
     exports: [
         DashboardComponent

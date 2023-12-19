@@ -22,22 +22,18 @@ import { AddNewEventReminderComponent } from './timeline/add-new-event-reminder/
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatChipsModule } from '@angular/material/chips';
 import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
-
-import { MatMenuModule } from '@angular/material/menu';
-import { NavbarComponent } from './navbar/navbar.component';
+import { MatMenuModule} from '@angular/material/menu';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { ProfileModule } from './profile/profile.module';
-// import { NavbarComponent } from './navbar/navbar.component';
-// import { FooterComponent } from './footer/footer.component';
-import { HomepageModule } from './homepage/homepage.module';
+import { AboutUsModule } from './about-us/about-us.module';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from "@angular/material/core";
 import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from "./shared/persion-date.adapter";
-import { FooterComponent } from './footer/footer.component';
-import { TimelineComponent } from './timeline/timeline.component';
 import { CreateGroupDialogComponent } from './create-group-dialog/create-group-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
-import { ShowGroupsComponent } from './show-groups/show-groups.component';
 import { ToastrModule } from 'ngx-toastr'
+import { ContactUsModule } from './contact-us/contact-us.module';
+import { RulesModule } from './rules/rules.module';
+import { WorkWithUsModule } from './work-with-us/work-with-us.module';
 
 
 @NgModule({
@@ -68,14 +64,17 @@ import { ToastrModule } from 'ngx-toastr'
     NgxMatTimepickerModule,
     MatMenuModule,
     SignupModule,
-    HomepageModule,
     ProfileModule,
     DashboardModule,
     MatDialogModule,
     MatChipsModule,
     NgxMatTimepickerModule,
     MatIconModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    AboutUsModule,
+    ContactUsModule,
+    RulesModule,
+    WorkWithUsModule,
   ],
   providers: [
     DatePipe,

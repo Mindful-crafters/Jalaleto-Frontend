@@ -67,15 +67,12 @@ export class SignUpComponent implements OnInit {
 
     this.rest.postWithoutHeader<any>('User/SendVerifyEmail', email).subscribe(
       (response) => {
-        console.log(response);
         if (response['success']) {
           this.isSignedClicked = true
           this.shared.setHashString(response['hashString']);
-          console.log(this.hashString);
         }
       },
       (error) => {
-        console.log(error);
       }
     )
   }
@@ -112,11 +109,9 @@ export class SignUpComponent implements OnInit {
 
   handeOtpChange(value: string[]): void {
     this.appearBtn = false;
-    console.log(value);
   }
 
   handleFillEvent(value: string): void {
-    console.log('fill', value);
     this.appearBtn = true;
     this.code = value;
   }
@@ -126,8 +121,6 @@ export class SignUpComponent implements OnInit {
     newPerson.hashString = this.shared.getHashString;
     newPerson.code = this.code
     newPerson.birthday = this.datePipe.transform(newPerson.birthday, 'yyyy-MM-dd').toString();
-
-    console.log(newPerson);
 
     this.rest.postWithoutHeader<SignUPPerson>('User/SignUp', newPerson).subscribe(
       (res) => {
@@ -139,7 +132,6 @@ export class SignUpComponent implements OnInit {
         }
         else {
           this.signUpFail = true;
-          console.log('result', res)
 
           setTimeout(() => {
             this.signUpFail = false;

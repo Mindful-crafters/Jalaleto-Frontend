@@ -64,8 +64,6 @@ export class ForgetPasswordComponent {
       "hashString": this.shared.getHashStringEmail
     }
 
-    console.log(body)
-
     this.rest.postWithoutHeader<any>('User/ResetPassword', body).subscribe(
       (response) => {
         if (response['success']) {
