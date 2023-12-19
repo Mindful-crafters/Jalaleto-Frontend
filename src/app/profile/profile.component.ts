@@ -64,17 +64,9 @@ export class ProfileComponent implements OnInit {
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0] as File;
-    // const input = this.fileInput.nativeElement;
-    // if (input.files && input.files.length > 0) {
-    //   this.selectedFile = input.files[0];
-    //   this.convertFileToLink();
-    // }
+    this.data.imagePath = URL.createObjectURL(this.selectedFile);
   }
-  // convertFileToLink() {
-  //   if (this.selectedFile) {
-  //     this.imageLink = URL.createObjectURL(this.selectedFile);
-  //   }
-  // }
+  
   ngOnInit() {
 
     this.restService.post("User/ProfileInfo", null).subscribe((res: ProfileResult) => {
