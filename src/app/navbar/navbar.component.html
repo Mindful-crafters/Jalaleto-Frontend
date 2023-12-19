@@ -4,37 +4,68 @@
       <a href="#" class="navbar-logo">جلالتو</a>
     </div>
 
-
     <span>
       <ul class="navbar-menu-right">
-        <li><a routerLink="/services" href="./dashboard">خانه</a></li>
-        <li><a routerLink="/services">خدمات</a></li>
-        <li><a routerLink="/services" href="./about">درباره ما</a></li>
+        <li><a routerLink="/" href="./dashboard">خانه</a></li>
+        <li><a routerLink="/services">تبدیل تاریخ</a></li>
+        <li><a routerLink="/services">اوقات شرعی</a></li>
+        <li><a routerLink="/services">دسترسی سریع</a></li>
       </ul>
     </span>
 
     <span class="spacer"></span>
 
-
-    <div class="notification" id="notification">
-      <div class="notification-icon" >
-        <img src="../../assets/icons/notification-image.svg" alt="Notification Icon">
-      </div>
-    </div>
-
-    <!-- <button onclick="showNotification()">Show Notification</button> -->
-
-
-    <button mat-icon-button [matMenuTriggerFor]="menu">
-      <div class="profile-icon">
-        <img src="../../assets/icons/person.svg" alt="Profile Image">
+    <button nz-popover nzTitle="Notifications" nzTrigger="click" [nzPopoverContent]="notificationContent" class="notification-button" nzPlacement="bottomRight">
+      <div class="notification" id="notification" (click)="toggleNotifications()">
+        <div class="notification-icon">
+          <img src="../../assets/icons/notification-image.svg" alt="Notification Icon">
+        </div>
       </div>
     </button>
 
+    <ng-template #notificationContent>
+      <div *ngIf="notifications.length > 0; else noNotifications">
+        <ul>
+          <li *ngFor="let notification of notifications">
+            <div class="notification-details">
+              <div class="notification-icon">
+                <img [src]="notification.icon" alt="Notification Icon">
+              </div>
+              <div class="notification-info">
+                <!-- <h3>{{ notification.title }}</h3> -->
+                <h3>
+                  <a [routerLink]="notification.link">{{ notification.title }}</a>
+                </h3>
+                <p>{{ notification.description }}</p>
+                <!-- <a [routerLink]="notification.link">مشاهده اعلان</a> -->
+              </div>
+            </div>
+          </li>
+        </ul>
+        <a routerLink="/notifications/all" class="view-all-notifications">مشاهده همه اعلان ها</a>
+      </div>
+      <ng-template #noNotifications>
+        <p>اعلان خوانده‌نشده ندارید</p>
+        <a routerLink="/notifications">مشاهده همه اعلان ها</a>
+      </ng-template>
+    </ng-template>
+
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="profile-button">
+      <div class="profile-icon">
+        <img src="../../assets/icons/profile2.png" alt="Profile Icon">
+      </div>
+    </button>
 
     <mat-menu #menu="matMenu" class="menu">
       <ng-template matMenuContent>
-        <!-- <img src="../../assets/icons/icons8-test-account-48.png" alt="profile icon" class="Profile Image"> -->
+        <div class="profile-info">
+          <img [src]="userProfile.imagePath == '' ? '../../assets/icons/icons8-test-account-48.png': userProfile.imagePath" alt="Profile Image" class="profile-image">
+          <div class="user-details">
+            <span class="username">{{ userProfile?.userName }}</span>
+            <span class="email">{{ userProfile?.email }}</span>
+          </div>
+        </div>
+
         <button mat-menu-item (click)="viewProfile()">مشاهده پروفایل</button>
         <div class="line"></div>
         <button mat-menu-item (click)="openSettings()">تنظیمات</button>
@@ -43,12 +74,11 @@
         <div class="line"></div>
         <button mat-menu-item (click)="logout()" class="logout-button">
           خروج
-          <!-- <img src="../../assets/icons/icons8-exit-48.png" alt="exit icon" class="exit-icon"> -->
         </button>
       </ng-template>
     </mat-menu>
-
   </div>
 </nav>
 
 <div class="separator-line"></div>
+

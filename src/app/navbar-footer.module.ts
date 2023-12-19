@@ -14,6 +14,12 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
+import { RouterModule } from '@angular/router';
+import { BrowserModule } from '@angular/platform-browser';
+
+
+
 @NgModule({
     declarations: [
         NavbarComponent,
@@ -22,6 +28,10 @@ import { MatButtonModule } from '@angular/material/button';
     imports: [
         MatMenuModule,
         MatButtonModule,
+        NzPopoverModule,
+        RouterModule,
+        BrowserModule,
+
     ],
     exports: [
         NavbarComponent,

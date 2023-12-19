@@ -36,6 +36,8 @@ import { RulesModule } from './rules/rules.module';
 import { WorkWithUsModule } from './work-with-us/work-with-us.module';
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,7 +67,6 @@ import { WorkWithUsModule } from './work-with-us/work-with-us.module';
     MatMenuModule,
     SignupModule,
     ProfileModule,
-    DashboardModule,
     MatDialogModule,
     MatChipsModule,
     NgxMatTimepickerModule,

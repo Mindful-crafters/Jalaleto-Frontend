@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 })
 
 export class RestService {
+  [x: string]: any;
   private apiUrl = 'https://dev.jalaleto.ir/api';
 
   constructor(private http: HttpClient, private authService: AuthService) { }
