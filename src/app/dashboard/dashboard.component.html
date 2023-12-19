@@ -34,7 +34,7 @@
 </div>
 
 <div *ngIf="isLoggedIn">
-  <app-navbar></app-navbar>
+  <app-navbar (logedOut)="logOut($event)"></app-navbar>
 
   <div class="timeline-container">
     <div class="timeline">

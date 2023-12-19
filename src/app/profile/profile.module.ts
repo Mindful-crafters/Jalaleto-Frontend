@@ -1,3 +1,4 @@
+import { ToastrModule } from 'ngx-toastr';
 
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { ProfileComponent } from './profile.component';
@@ -35,7 +36,7 @@ import { NzPopoverModule } from 'ng-zorro-antd/popover';
         MatIconModule,
         MatDatepickerModule,
         NavbarFooterModule,
-        NzPopoverModule,
+        NzPopoverModule
     ],
     exports: [
         ProfileComponent,

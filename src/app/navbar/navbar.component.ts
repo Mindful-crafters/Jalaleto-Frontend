@@ -1,7 +1,7 @@
 import { DashboardComponent } from './../dashboard/dashboard.component';
 import { Router } from '@angular/router';
 import { AuthService } from './../shared/services/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 import { RestService } from './../shared/services/Rest.service';
 import { RouterModule, Routes } from '@angular/router';
@@ -22,6 +22,7 @@ export class NavbarComponent implements OnInit {
   isLoggedIn = false;
   userProfile: UserProfile | null = null;
   notifications: Notification[] = [];
+  @Output() logedOut:EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(
     private restService: RestService,
@@ -85,7 +86,7 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this.authService.logout();
-    this.router.navigate(['/login']);
+    this.logedOut.emit(true);
   }
 
 

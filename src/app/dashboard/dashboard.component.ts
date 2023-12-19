@@ -60,8 +60,10 @@ export class DashboardComponent {
     this.isLoggedIn = authService.isLoggedIn();
   }
 
-  logOut() {
-    this.auth.logout();
-    this.isLoggedIn = false;
+  logOut(event: boolean) {
+    if (event) {
+      this.auth.logout();
+      this.isLoggedIn = false;
+    }
   }
 }

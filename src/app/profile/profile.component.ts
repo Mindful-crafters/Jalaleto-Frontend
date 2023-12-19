@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http'
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Shared } from '../shared/services/shared.service';
 import { AbstractControl, ValidationErrors, FormBuilder } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-profile',
@@ -47,7 +48,8 @@ export class ProfileComponent implements OnInit {
     private rest: RestService,
     private restService: RestService,
     private http: HttpClient,
-    private datePipe : DatePipe
+    private datePipe : DatePipe,
+    private toastr:ToastrService
   ) {}
 
   emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -106,6 +108,16 @@ export class ProfileComponent implements OnInit {
       (response) => {
         if (response['success']) {
           this.updateData();
+          this.toastr.success('پروفایل با موفقیت تغییر یافت', 'موفقیت');
+        }
+        else
+        {
+          if(response['message']='User already exists.')
+            this.toastr.error('نام کاربری قبلا در سبستم ثبت شده است.', 'خطا');
+          else
+          {
+            this.toastr.error('مشکلی پیش آمده دوباره تلاش کنید', 'خطا');
+          }
         }
       },
     )
