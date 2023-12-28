@@ -34,6 +34,8 @@ import { ToastrModule } from 'ngx-toastr'
 import { ContactUsModule } from './contact-us/contact-us.module';
 import { RulesModule } from './rules/rules.module';
 import { WorkWithUsModule } from './work-with-us/work-with-us.module';
+import { NzListModule } from 'ng-zorro-antd/list';
+import { GroupInfoComponent } from './group-info/group-info.component';
 
 
 
@@ -76,6 +78,11 @@ import { WorkWithUsModule } from './work-with-us/work-with-us.module';
     ContactUsModule,
     RulesModule,
     WorkWithUsModule,
+    NzListModule,
+    GroupInfoComponent,
+    
+
+
   ],
   providers: [
     DatePipe,

@@ -6,7 +6,7 @@
             </mat-panel-title>
         </mat-expansion-panel-header>
 
-        <div class="divider "></div>
+        <!-- <div class="divider"></div>
 
         <div style="background-color: #e0e1dd; padding-top: 10px;">
             <button (click)="CreateGroup()" mat-button class="add-group">افزودن گروه</button>
@@ -14,7 +14,6 @@
         <div class="groups">
             <div class="group" *ngFor="let group of groups">
                 <div style="display: flex; flex-direction: column;width: 75%;">
-                    <!-- <div class="name">{{group.name}}</div> -->
                     <div class="name">
                         <span nz-popover nzPopoverTitle="توضیحات" [nzPopoverContent]="group.description"
                             nzPopoverPlacement="bottomRight">{{ group.name }}
@@ -38,7 +37,7 @@
                     <img [src]="group.imageFile" alt="">
                 </div>
             </div>
-        </div>
+        </div> -->
 
     </mat-expansion-panel>
 </mat-accordion>
