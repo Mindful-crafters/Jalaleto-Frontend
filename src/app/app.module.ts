@@ -67,7 +67,6 @@ import { WorkWithUsModule } from './work-with-us/work-with-us.module';
     MatMenuModule,
     SignupModule,
     ProfileModule,
-    MatDialogModule,
     MatChipsModule,
     NgxMatTimepickerModule,
     MatIconModule,

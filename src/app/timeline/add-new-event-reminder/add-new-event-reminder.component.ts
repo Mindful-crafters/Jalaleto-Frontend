@@ -33,8 +33,8 @@ export class AddNewEventReminderComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public input: any,
     private toastr: ToastrService,
     private formBuilder: FormBuilder,
-    private restService: RestService
-    , private datePipe: DatePipe) {
+    private restService: RestService,
+    private datePipe: DatePipe) {
 
     this.data = input.data;
     this.type = input.type;

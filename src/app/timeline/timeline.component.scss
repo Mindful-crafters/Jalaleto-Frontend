@@ -54,11 +54,15 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  margin-top: 1rem;
+  margin-top: 2rem;
 
   .quick-create-container {
     display: flex;
     justify-content: space-between;
+    
+    .quick-make{
+      margin-inline-start: 0.5rem;
+    }
   }
 }
 
@@ -114,7 +118,7 @@
 }
 
 .selected-day {
-  margin-top: 1rem;
+  margin-top: 2rem;
   border-radius: 0.5rem;
   border: 1px solid var(--gray);
   box-shadow: 0 0 1rem grey;
@@ -229,6 +233,7 @@
 
 .quick-create-container {
   text-align: left;
+  height: 2rem
 }
 
 .things .title {
