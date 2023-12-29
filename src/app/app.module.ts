@@ -17,7 +17,7 @@ import { NewPasswordComponent } from './new-password/new-password.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { SignupModule } from './sign-up/sign-up.module';
 import { MatNativeDateModule } from '@angular/material/core';
-import { DatePipe } from '@angular/common';
+import { DatePipe, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AddNewEventReminderComponent } from './timeline/add-new-event-reminder/add-new-event-reminder.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatChipsModule } from '@angular/material/chips';
@@ -78,6 +78,7 @@ import { WorkWithUsModule } from './work-with-us/work-with-us.module';
     WorkWithUsModule,
   ],
   providers: [
+    {provide:LocationStrategy,useClass:HashLocationStrategy},
     DatePipe,
     { provide: DateAdapter, useClass: MaterialPersianDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: PERSIAN_DATE_FORMATS }

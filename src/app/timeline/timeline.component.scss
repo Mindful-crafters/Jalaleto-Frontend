@@ -176,6 +176,10 @@
 
       .title {
         font-size: 1.2rem;
+        max-lines: 1;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
       }
     }
 
@@ -183,15 +187,32 @@
       margin-top: 1rem;
       display: flex;
       justify-content: space-between;
+
+      .notes{
+        line-break: anywhere;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 30ch;
+      }
+
+      .clock{
+        width: 10%;
+      }
     }
 
     .clock {
       text-align: left;
     }
 
-    .priority {
-      width: 1rem;
+    .priority-container{
+      white-space: nowrap;
+
+      .priority {
+        width: 1rem;
+      }
     }
+
   }
 }
 
