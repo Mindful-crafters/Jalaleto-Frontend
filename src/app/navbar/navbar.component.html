@@ -10,12 +10,14 @@
         <li><a routerLink="/services">تبدیل تاریخ</a></li>
         <li><a routerLink="/services">اوقات شرعی</a></li>
         <li><a routerLink="/services">دسترسی سریع</a></li>
+        <li><a routerLink="/groups">گروه ها</a></li>
       </ul>
     </span>
 
     <span class="spacer"></span>
 
-    <button nz-popover nzTitle="Notifications" nzTrigger="click" [nzPopoverContent]="notificationContent" class="notification-button" nzPlacement="bottomRight">
+    <button nz-popover nzTitle="Notifications" nzTrigger="click" [nzPopoverContent]="notificationContent"
+      class="notification-button" nzPlacement="bottomRight">
       <div class="notification" id="notification" (click)="toggleNotifications()">
         <div class="notification-icon">
           <img src="../../assets/icons/notification-image.svg" alt="Notification Icon">
@@ -49,7 +51,7 @@
         <a routerLink="/notifications">مشاهده همه اعلان ها</a>
       </ng-template>
     </ng-template>
- 
+
     <button [disabled]="!isLoggedIn" mat-icon-button [matMenuTriggerFor]="menu" class="profile-button">
       <div class="profile-icon">
         <img src="../../assets/icons/profile2.png" alt="Profile Icon">
@@ -59,7 +61,9 @@
     <mat-menu #menu="matMenu" class="menu">
       <ng-template matMenuContent>
         <div class="profile-info">
-          <img [src]="userProfile.imagePath == '' ? '../../assets/icons/icons8-test-account-48.png': userProfile.imagePath" alt="Profile Image" class="profile-image">
+          <img
+            [src]="userProfile.imagePath == '' ? '../../assets/icons/icons8-test-account-48.png': userProfile.imagePath"
+            alt="Profile Image" class="profile-image">
           <div class="user-details">
             <span class="username">{{ userProfile?.userName }}</span>
             <span class="email">{{ userProfile?.email }}</span>
@@ -81,4 +85,3 @@
 </nav>
 
 <div class="separator-line"></div>
-

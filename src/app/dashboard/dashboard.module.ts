@@ -48,7 +48,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
         MatExpansionModule
     ],
     exports: [
-        DashboardComponent
+        DashboardComponent,
+        ShowGroupsComponent
     ]
 
 })

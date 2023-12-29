@@ -22,7 +22,7 @@ import { AddNewEventReminderComponent } from './timeline/add-new-event-reminder/
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatChipsModule } from '@angular/material/chips';
 import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
-import { MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { ProfileModule } from './profile/profile.module';
 import { AboutUsModule } from './about-us/about-us.module';
@@ -34,6 +34,7 @@ import { ToastrModule } from 'ngx-toastr'
 import { ContactUsModule } from './contact-us/contact-us.module';
 import { RulesModule } from './rules/rules.module';
 import { WorkWithUsModule } from './work-with-us/work-with-us.module';
+import { GroupsPageComponent } from './groups-page/groups-page.component';
 
 
 
@@ -46,6 +47,8 @@ import { WorkWithUsModule } from './work-with-us/work-with-us.module';
     LoginComponent,
     AddNewEventReminderComponent,
     CreateGroupDialogComponent,
+    GroupsPageComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -75,10 +78,10 @@ import { WorkWithUsModule } from './work-with-us/work-with-us.module';
     AboutUsModule,
     ContactUsModule,
     RulesModule,
-    WorkWithUsModule,
+    WorkWithUsModule
   ],
   providers: [
-    {provide:LocationStrategy,useClass:HashLocationStrategy},
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
     DatePipe,
     { provide: DateAdapter, useClass: MaterialPersianDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: PERSIAN_DATE_FORMATS }
