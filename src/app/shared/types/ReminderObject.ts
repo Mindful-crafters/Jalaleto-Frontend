@@ -1,5 +1,6 @@
 export class ReminderObject {
   title: string;
+  reminderId : number;
   dateTime: Date;
   daysBeforeToRemind: number;
   remindByEmail: boolean;

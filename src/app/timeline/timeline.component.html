@@ -68,6 +68,10 @@
 
   <div class="left-pannel">
     <div class="quick-create-container">
+      <button mat-raised-button class="quick-make" (click)="fastDateNavigate()">
+        برو به تاریخ
+      </button>
+
       <mat-form-field
         class="date-picker"
         appearance="outline"
@@ -80,7 +84,6 @@
           [(ngModel)]="quickDate"
           [matDatepicker]="datepicker"
         />
-        <mat-error>لطفا تاریخ صحیح وارد کنید.</mat-error>
         <mat-datepicker-toggle
           matIconSuffix
           [disableRipple]=""
@@ -95,10 +98,6 @@
           </mat-datepicker-actions>
         </mat-datepicker>
       </mat-form-field>
-
-      <button mat-raised-button class="quick-make" (click)="fastDateNavigate()">
-        برو به تاریخ
-      </button>
     </div>
 
     <div class="selected-day">
@@ -117,6 +116,7 @@
             class="reminder-object-container"
             *ngFor="let reminder of selectedDayReminders; let i = index"
             [style.animation-delay]="i * 0.3 + 's'"
+            (click)="openReminderBox(i)"
           >
             <div class="top-info">
               <span class="title">{{ reminder.title }}</span>
@@ -137,9 +137,8 @@
               <div *ngIf="reminder.notes == null" class="notes">
                 یادداشتی موجود نمی باشد.
               </div>
-
-              <div class="clock">{{ hourAndMinute(reminder.dateTime) }}</div>
             </div>
+            <div class="clock">{{ hourAndMinute(reminder.dateTime) }}</div>
           </div>
         </div>
       </div>
@@ -149,7 +148,7 @@
 
         <button
           mat-raised-button
-          (click)="AddNewReminder('normal')"
+          (click)="AddNewReminder()"
           class="add-remainder"
         >
           افزودن یادآوری

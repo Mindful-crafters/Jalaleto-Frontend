@@ -224,33 +224,12 @@ mat-hint {
   margin: 0;
 }
 
-//profile_navbar
-
 .mat-mdc-menu-panel {
   min-width: 10rem !important;
   border-radius: 10px !important;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5) !important;
 }
 
-// .more {
-//   .mat-mdc-button .mat-mdc-button-touch-target,
-//   .mat-mdc-unelevated-button .mat-mdc-button-touch-target,
-//   .mat-mdc-raised-button .mat-mdc-button-touch-target,
-//   .mat-mdc-outlined-button .mat-mdc-button-touch-target {
-//     height: unset !important;
-//   }
-
-//   .mat-mdc-button.mat-mdc-button-base,
-//   .mat-mdc-raised-button.mat-mdc-button-base,
-//   .mat-mdc-unelevated-button.mat-mdc-button-base,
-//   .mat-mdc-outlined-button.mat-mdc-button-base {
-//     height: unset !important;
-//   }
-
-//   .mdc-button {
-//     padding: 0 !important;
-//   }
-// }
 .hovered-box.title .full-width-btn.mat-mdc-button.mat-mdc-button-base,
 .mat-mdc-raised-button.mat-mdc-button-base,
 .mat-mdc-unelevated-button.mat-mdc-button-base,
@@ -294,5 +273,5 @@ mat-hint {
 }
 
 button.quick-make.mdc-button.mdc-button--raised.mat-mdc-raised-button.mat-unthemed.mat-mdc-button-base {
-  margin-right: 0.5rem;
+  margin-inline-end: 0.5rem;
 }

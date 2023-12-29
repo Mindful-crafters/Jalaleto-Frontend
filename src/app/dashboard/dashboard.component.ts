@@ -58,6 +58,7 @@ export class DashboardComponent {
     private router: Router,
     private authService: AuthService) {
     this.isLoggedIn = authService.isLoggedIn();
+    console.log(this.authService.getToken())
   }
 
   logOut(event: boolean) {

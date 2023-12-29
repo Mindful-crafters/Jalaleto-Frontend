@@ -8,6 +8,7 @@ import { RestService } from '../shared/services/Rest.service';
 import { AuthService } from '../shared/services/auth.service';
 import { ReminderObject } from '../shared/types/ReminderObject';
 import { DatePipe } from '@angular/common';
+import { ReminderDialogComponent } from './reminder-dialog/reminder-dialog/reminder-dialog.component';
 
 
 @Component({
@@ -202,14 +203,13 @@ export class TimelineComponent implements OnInit {
     return result;
   }
 
-  AddNewReminder(type: string) {
+  AddNewReminder() {
     const selectedDay = new Date(this.firstDayOfTimeline);
     selectedDay.setDate(this.firstDayOfTimeline.getDate() + this.selectedBox)
 
     const dialogRef: MatDialogRef<any, any> = this.matDialog.open(AddNewEventReminderComponent, {
       data: {
         data: new ReminderObject({ dateTime: selectedDay }),
-        type: type
       },
 
       disableClose: true,
@@ -228,8 +228,24 @@ export class TimelineComponent implements OnInit {
     })
   }
 
-  reminderQuickCreate() {
+  openReminderBox(index: number) {
+    const dialogRef: MatDialogRef<any, any> = this.matDialog.open(ReminderDialogComponent, {
+      data: {
+        reminder: this.selectedDayReminders[index]
+      },
 
+      disableClose: true,
+      hasBackdrop: true,
+      autoFocus: false
+    })
+
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res) {
+
+      }
+
+      else { }
+    })
   }
 
   starsArray(num: number): number[] {
@@ -259,9 +275,6 @@ export class TimelineComponent implements OnInit {
     gmtDateTime.setHours(sourceHour)
     gmtDateTime.setMinutes(sourceMinute)
 
-
-
-
     this.firstDayOfTimeline = gmtDateTime;
     const updatedWeek: TimeLineItem[] = [];
     console.log('f', this.firstDayOfTimeline)
@@ -280,9 +293,9 @@ export class TimelineComponent implements OnInit {
       };
 
       console.log(WeekItem)
-      console.log('weekday',this.diplayedDate(currentDate, false, false, false, true))
-      console.log('year and month',this.diplayedDate(currentDate, true, true, false, false))
-      
+      console.log('weekday', this.diplayedDate(currentDate, false, false, false, true))
+      console.log('year and month', this.diplayedDate(currentDate, true, true, false, false))
+
       updatedWeek.push(WeekItem)
     }
 
@@ -290,24 +303,6 @@ export class TimelineComponent implements OnInit {
     this.displayedTimeLine = updatedWeek;
     this.openBox(0);
     this.getWeekReminders(this.firstDayOfTimeline);
-
-    // console.log(this.displayedTimeLine)
-    // this.firstDayOfTimeline.setDate(this.firstDayOfTimeline.getDate() + 7);
-    // this.openBox(0);
-    // this.getWeekReminders(this.firstDayOfTimeline);
-
-    // for (const item of this.displayedTimeLine) {
-    //   const pastDate = new Date(item.date);
-    //   pastDate.setDate(item.date.getDate() + 7);
-
-    //   const WeekItem: TimeLineItem = {
-    //     date: pastDate,
-    //     dayName: item.dayName,
-    //     dayNum: this.persiancalendarservice.returnPeaceOfDate(pastDate, 'day'),
-    //   };
-
-    //   updatedWeek.push(WeekItem)
-    // }
   }
 }
 

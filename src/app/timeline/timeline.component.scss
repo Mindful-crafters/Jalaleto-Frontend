@@ -11,6 +11,11 @@
   }
 }
 
+.container::-webkit-scrollbar {
+  width: 0.25rem !important;
+  height: 0.25rem !important;
+}
+
 .container {
   @include box-style();
 
@@ -20,9 +25,7 @@
   display: flex;
   padding: 1rem 1rem 1rem 1.5rem;
 
-  ::-webkit-scrollbar {
-    width: 0.25rem;
-  }
+  
 
   /* Track */
   ::-webkit-scrollbar-track {
@@ -197,7 +200,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        max-width: 30ch;
+        max-width: 40ch;
       }
 
       .clock{

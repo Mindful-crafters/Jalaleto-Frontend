@@ -20,6 +20,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from "@angular/material/core";
 import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from "../shared/persion-date.adapter";
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { ReminderDialogComponent } from '../timeline/reminder-dialog/reminder-dialog/reminder-dialog.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
 
 
 
@@ -27,7 +30,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     declarations: [
         DashboardComponent,
         TimelineComponent,
-        ShowGroupsComponent
+        ShowGroupsComponent,
+        ReminderDialogComponent
     ],
     imports: [
         BrowserAnimationsModule,
@@ -40,6 +44,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
         BrowserModule,
         FormsModule,
         FormsModule,
+        MatChipsModule,
+        NgxMatTimepickerModule,
         ReactiveFormsModule,
         MatInputModule,
         MatMenuModule,

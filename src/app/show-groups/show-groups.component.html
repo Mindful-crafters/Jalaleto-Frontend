@@ -1,20 +1,15 @@
-<mat-accordion>
+<!-- <mat-accordion>
+
     <mat-expansion-panel>
         <mat-expansion-panel-header>
             <mat-panel-title>
-                گروه ها
+                محبوب ترین گروه ها
             </mat-panel-title>
         </mat-expansion-panel-header>
 
-        <div class="divider"></div>
-
-        <div style="background-color: #e0e1dd; padding-top: 10px;">
-            <button (click)="CreateGroup()" mat-button class="add-group">افزودن گروه</button>
-        </div>
-        <div class="groups">
+        <div class="groups most-popular">
             <div class="group" *ngFor="let group of groups">
                 <div style="display: flex; flex-direction: column;width: 75%;">
-                    <!-- <div class="name">{{group.name}}</div> -->
                     <div class="name">
                         <span nz-popover nzPopoverTitle="توضیحات" [nzPopoverContent]="group.description"
                             nzPopoverPlacement="bottomRight">{{ group.name }}
@@ -41,4 +36,36 @@
         </div>
 
     </mat-expansion-panel>
-</mat-accordion>
+</mat-accordion> -->
+<div #scrollContainer class="most-popular-groups-container">
+  <div class="group" *ngFor="let group of groups">
+    <div *ngIf="!group.imageFile" class="prof">
+      <img
+        *ngIf="!group.imageUrl || group.imageUrl == ''"
+        src="assets/icons/group-icon.svg"
+        alt=""
+      />
+      <img
+        *ngIf="group.imageUrl && group.imageUrl != ''"
+        #prof
+        [src]="group.imageUrl"
+        alt=""
+      />
+    </div>
+
+    <div *ngIf="group.imageFile" class="prof">
+      <img [src]="group.imageFile" alt="" />
+    </div>
+
+    <div class="description">
+      <div class="name">
+        <span>{{ group.name }}</span>
+      </div>
+
+      <div class="members-count">
+        <span>تعداد اعضا: </span>
+        <span>{{ group.members.length }}</span>
+      </div>
+    </div>
+  </div>
+</div>
