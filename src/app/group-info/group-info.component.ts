@@ -46,8 +46,8 @@ export class GroupInfoComponent {
   ngOnInit() {
 
     this.restService.post("User/ProfileInfo", null).subscribe((res: GroupInfoResult) => {
-      this.data.GroupName = res.groupname;
-      this.data.GroupImagePath = res.groupimage;
+      this.data.GroupName = res.name;
+      this.data.GroupImagePath = res.imageUrl;
       this.members = res.members;
       // this.data.MemberName = res.membername;
       // this.data.MemberImagePath = res.memberimage;
@@ -66,8 +66,8 @@ interface GroupInfoResult {
   code: number,
   message: string,
 
-  groupname: string,
-  groupimage: string,
+  name: string,
+  imageUrl: string,
   members: Member[];
   // membername: string,
   // memberimage: string,
