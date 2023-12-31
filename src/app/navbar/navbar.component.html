@@ -16,7 +16,7 @@
     <span class="spacer"></span>
 
     <button nz-popover nzTitle="Notifications" nzTrigger="click" [nzPopoverContent]="notificationContent" class="notification-button" nzPlacement="bottomRight">
-      <div class="notification" id="notification" (click)="toggleNotifications()">
+      <div class="notification" id="notification">
         <div class="notification-icon">
           <img src="../../assets/icons/notification-image.svg" alt="Notification Icon">
         </div>
@@ -42,14 +42,14 @@
             </div>
           </li>
         </ul>
-        <a routerLink="/notifications/all" class="view-all-notifications">مشاهده همه اعلان ها</a>
+        <!-- <a routerLink="/notifications/all" class="view-all-notifications">مشاهده همه اعلان ها</a> -->
       </div>
       <ng-template #noNotifications>
         <p>اعلان خوانده‌نشده ندارید</p>
-        <a routerLink="/notifications">مشاهده همه اعلان ها</a>
+        <!-- <a routerLink="/notifications">مشاهده همه اعلان ها</a> -->
       </ng-template>
     </ng-template>
- 
+
     <button [disabled]="!isLoggedIn" mat-icon-button [matMenuTriggerFor]="menu" class="profile-button">
       <div class="profile-icon">
         <img src="../../assets/icons/profile2.png" alt="Profile Icon">

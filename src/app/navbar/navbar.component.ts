@@ -33,54 +33,44 @@ export class NavbarComponent implements OnInit {
     private auth: AuthService,
     private router: Router,
     private authService: AuthService) {
+    3.
     this.isLoggedIn = authService.isLoggedIn();
   }
 
 
   ngOnInit() {
     this.fetchUserProfile();
+    this.getNotifications();
     this.hubInit();
+  }
+
+  ngOnDestroy(): void {
+    this.stopConnection();
   }
 
   public hubInit() {
     this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl('https://dev.jalaleto.ir/Hub').build();
+      .withUrl('wss://dev.jalaleto.ir/Hub', {
+        skipNegotiation: true,
+        transport: signalR.HttpTransportType.WebSockets
+      }).build();
 
     this.hubConnection.start().then(() => {
       console.log('connection started');
     }).catch(err => console.log(err));
 
     this.hubConnection.onclose(() => {
-      debugger;
       setTimeout(() => {
         console.log('try to re start connection');
-        debugger;
         this.hubConnection.start().then(() => {
-          debugger;
           console.log('connection re started');
         }).catch(err => console.log(err));
       }, 5000);
     });
 
-    this.hubConnection.on('privateMessageMethodName', (data) => {
-      debugger;
-      console.log('private Message:' + data);
-    });
-
-    this.hubConnection.on('publicMessageMethodName', (data) => {
-      debugger;
-      console.log('public Message:' + data);
-    });
-
-    this.hubConnection.on('clientMethodName', (data) => {
-      debugger;
-      console.log('server message:' + data);
-    });
-
-    this.hubConnection.on('WelcomeMethodName', (data) => {
-      debugger;
-      console.log('client Id:' + data);
-      this.hubConnection.invoke('GetDataFromClient', 'abc@abc.com', data).catch(err => console.log(err));
+    this.hubConnection.on('newNotificationRecived', (data) => {
+      console.log('new Notification Recived');
+      this.getNotifications();
     });
   }
 
@@ -102,7 +92,7 @@ export class NavbarComponent implements OnInit {
 
   }
 
-  toggleNotifications() {
+  getNotifications() {
     this.restService.post('Notification/Get', null).subscribe(
       (res: any) => {
         console.log(res);
@@ -118,20 +108,6 @@ export class NavbarComponent implements OnInit {
       }
 
     )
-    // this.notifications = [
-    //   {
-    //     title: 'اعلان 1',
-    //     description: 'Description for Notification 1',
-    //     icon: '../../assets/icons/icons8-notification-24.png',
-    //     link: '/notifications/اعلان 1'
-    //   },
-    //   {
-    //     title: 'اعلان 2',
-    //     description: 'Description for Notification 2',
-    //     icon: '../../assets/icons/icons8-notification-24.png',
-    //     link: '/notifications/اعلان 2'
-    //   },
-    // ];
   }
 
 
@@ -169,9 +145,10 @@ interface Notification {
   icon: string;
   link: string;
   type: NotificationType;
-  // seen : boolean;
 }
 
 enum NotificationType {
   Reminder = 0,
+  Event = 1,
+  Message = 2,
 }
