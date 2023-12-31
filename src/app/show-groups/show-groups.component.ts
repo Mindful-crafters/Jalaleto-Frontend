@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import * as moment from 'jalali-moment';
 import { CreateGroupDialogComponent } from '../create-group-dialog/create-group-dialog.component';
@@ -11,12 +11,16 @@ import { RestService } from '../shared/services/Rest.service';
 })
 export class ShowGroupsComponent implements OnInit {
 
+  @Output() showGroup:EventEmitter<Group> = new EventEmitter<Group>();
+
   constructor(private matDialog: MatDialog, private restService: RestService) {
 
   }
 
   ngOnInit(): void {
     this.restService.post('Group/Info', null).subscribe((res) => {
+      console.log(res);
+
       this.groups = res['data'];
       console.log(this.groups);
     })
@@ -37,9 +41,14 @@ export class ShowGroupsComponent implements OnInit {
 
     })
   }
+
+  OpenGroup(group:Group)
+  {
+    this.showGroup.emit(group);
+  }
 }
 
-class Group {
+export class Group {
   name: string = '';
   description: string = '';
   imageUrl: string = '';
