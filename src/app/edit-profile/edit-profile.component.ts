@@ -32,6 +32,7 @@ export class EditProfileComponent {
     Email: string,
     image: File,
     imagePath: string,
+    Password: string,
 
   } = {
       FirstName: "",
@@ -40,7 +41,8 @@ export class EditProfileComponent {
       Birthday: "",
       Email: "",
       image: null,
-      imagePath: ""
+      imagePath: "",
+      Password: ""
     }
     requestData = {
       FirstName: this.data.FirstName,
@@ -83,6 +85,7 @@ export class EditProfileComponent {
       this.data.Email = res.email;
       this.data.Birthday = res.birthday;
       this.data.imagePath = res.imagePath;
+      this.data.Password = res.password;
       const parts = res.birthday.split('/');
       if (parts.length === 3) {
         const day = parseInt(parts[0], 10);
@@ -153,5 +156,6 @@ interface ProfileResult {
   birthday: string,
   email: string,
   imagePath: string,
+  password: string,
   
 }

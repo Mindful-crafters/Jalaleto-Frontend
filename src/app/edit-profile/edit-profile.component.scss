@@ -134,8 +134,8 @@
 
     display: flex;
     justify-content: center;
-    min-height: 100vh;
-    min-width: 30vh;
+    min-height: auto;
+    min-width: auto;
     overflow: hidden;
     border-bottom: 1px solid #495867;
     .header 
@@ -162,34 +162,30 @@
             display: flex;
             justify-content: center;
             margin-top: 5rem;
-            margin-right: -66%;
+            margin-right: -10%;
             .profile-container {
                 width: 250px;
                 height: 250px; 
                 margin-right: 17vh;
   
                 .profile {
-                    width: 60%;
-                    height: 60%;
+                    margin-right: -7%;
+                    width: 70%;
+                    height: 70%;
                     object-fit: cover;
                     border-radius: 50%;
                     
                 }
             }
-            .register-button
-            {
-                margin-right: 50%;
-            }
             .example-button-row
-              {
-                  margin-top: 15%;
-                  margin-right: 25%;
-              }
+            {
+                margin-top: 10%;
+                margin-right: 0%;
+            }
         }
         .Username
         {
             width: 100%;
-            margin-right: -10%;
         }
         .FirstName
         {
@@ -208,13 +204,37 @@
             width: 100%;
         }
         .register-button {
-            margin-right: 0vh;
-            margin-top: 3vh;
-            padding: 0cap;
             height: 35px;
             width: 150px;
             font-size: 18px;
             border: #fff;
+        }
+    }
+    .footer {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        border-top: 1px solid #495867;
+        overflow: hidden;
+
+
+        .save-button {
+            width: 5rem;
+            height: 2rem;
+            background-color: #FE5F55;
+            color: #fff;
+            margin-inline-end: 1rem;
+            margin-bottom: 1rem;
+            margin-top: 75vh;
+        }
+
+        .cancel-button {
+            width: 2rem;
+            height: 2rem;
+            color: #3a86ff;
+            margin-inline-end: 1rem;
+            margin-bottom: 1rem;
+            margin-top: 75vh;
         }
     }
 }
