@@ -1,3 +1,4 @@
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { RestService } from './../shared/services/Rest.service';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
@@ -6,13 +7,14 @@ import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Shared } from '../shared/services/shared.service';
 import { AbstractControl, ValidationErrors, FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  selector: 'app-show-profile',
+  templateUrl: './show-profile.component.html',
+  styleUrls: ['./show-profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class ShowProfileComponent implements OnInit {
   data: {
     FirstName: string,
     LastName: string,
@@ -49,7 +51,8 @@ export class ProfileComponent implements OnInit {
     private restService: RestService,
     private http: HttpClient,
     private datePipe : DatePipe,
-    private toastr:ToastrService
+    private toastr:ToastrService,
+    private matDialog: MatDialog
   ) {}
 
   emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -89,11 +92,7 @@ export class ProfileComponent implements OnInit {
         this.data.Birthday = format;
       }
     });
-    
-
   }
-
-  
   submit()
   {
     console.log(this.selectedFile);
@@ -141,6 +140,13 @@ export class ProfileComponent implements OnInit {
       formData.append('profilePicture', this.profilePicture);
     }
   }
+  CreateGroup() {
+    const dialogRef: MatDialogRef<any, any> = this.matDialog.open(EditProfileComponent, {
+      disableClose: true,
+      hasBackdrop: true,
+      autoFocus: false
+    })
+  }  
 }
 
 interface ProfileResult {
@@ -156,3 +162,4 @@ interface ProfileResult {
   imagePath: string,
   
 }
+

@@ -24,7 +24,6 @@ import { MatChipsModule } from '@angular/material/chips';
 import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
 import { MatMenuModule} from '@angular/material/menu';
 import { DashboardModule } from './dashboard/dashboard.module';
-import { ProfileModule } from './profile/profile.module';
 import { AboutUsModule } from './about-us/about-us.module';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from "@angular/material/core";
 import { MaterialPersianDateAdapter, PERSIAN_DATE_FORMATS } from "./shared/persion-date.adapter";
@@ -34,8 +33,8 @@ import { ToastrModule } from 'ngx-toastr'
 import { ContactUsModule } from './contact-us/contact-us.module';
 import { RulesModule } from './rules/rules.module';
 import { WorkWithUsModule } from './work-with-us/work-with-us.module';
-
-
+import { ShowProfileModule } from './show-profile/show-profile.module';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 
 @NgModule({
@@ -46,6 +45,7 @@ import { WorkWithUsModule } from './work-with-us/work-with-us.module';
     LoginComponent,
     AddNewEventReminderComponent,
     CreateGroupDialogComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +66,6 @@ import { WorkWithUsModule } from './work-with-us/work-with-us.module';
     NgxMatTimepickerModule,
     MatMenuModule,
     SignupModule,
-    ProfileModule,
     MatDialogModule,
     MatChipsModule,
     NgxMatTimepickerModule,
@@ -76,6 +75,8 @@ import { WorkWithUsModule } from './work-with-us/work-with-us.module';
     ContactUsModule,
     RulesModule,
     WorkWithUsModule,
+    ShowProfileModule,
+
   ],
   providers: [
     {provide:LocationStrategy,useClass:HashLocationStrategy},

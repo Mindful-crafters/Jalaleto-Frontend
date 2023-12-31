@@ -8,12 +8,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from './shared/services/auth.guard';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
-import { ProfileComponent } from './profile/profile.component';
 import { ShowGroupsComponent } from './show-groups/show-groups.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { WorkWithUsComponent } from './work-with-us/work-with-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { RulesComponent } from './rules/rules.component';
+import { ShowProfileComponent } from './show-profile/show-profile.component';
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'forgetpassword', component: ForgetPasswordComponent },
   { path: 'newpassword', component: NewPasswordComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile', component: ShowProfileComponent },
   { path: 'about', component: AboutUsComponent},
   { path: 'contact', component: ContactUsComponent},
   { path: 'rule', component: RulesComponent},

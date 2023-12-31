@@ -1,0 +1,59 @@
+<div class="containor">
+    <div class="header">
+        <button class="close-button" mat-button (click)="close()">
+            <img src="assets/icons/close.svg">
+        </button>
+        <span class="title">
+            اطلاعات کاربر
+        </span>
+    </div>
+        <div class="info">
+            <div class="pic">
+                <div class="profile-container">
+                    <img class="profile" [src]="data.imagePath!='' ? data.imagePath : '/assets/profile.svg'"
+                        alt="Profile Image">           
+                    <input type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none;" #fileInput>
+                    <div class="example-button-row">
+                        <button mat-stroked-button color="primary" (click)="fileInput.click()">ویرایش پروفایل</button>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <mat-form-field class="Username" appearance="outline" hideRequiredMarker>
+                    <mat-label>نام کاربری</mat-label>
+                    <input [(ngModel)]="data.UserName" matInput />
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="FirstName" appearance="outline" hideRequiredMarker>
+                    <mat-label>نام</mat-label>
+                    <input [(ngModel)]="data.FirstName" matInput />
+                </mat-form-field>
+            </div>
+            <div>
+
+                <mat-form-field class="LastName" appearance="outline" hideRequiredMarker>
+                    <mat-label>نام خانوادگی</mat-label>
+                    <input [(ngModel)]="data.LastName" matInput />
+                </mat-form-field>
+            </div>
+            <div>
+
+                <mat-form-field class="password" appearance="outline" hideRequiredMarker>
+                    <mat-label>رمز عبور</mat-label>
+                    <input [(ngModel)]="data.LastName" matInput />
+                </mat-form-field>
+            </div>
+            <div>
+
+                <mat-form-field class="Birthday" appearance="outline" hideRequiredMarker>
+                    <mat-label>تاریخ تولد</mat-label>
+                    <input [(ngModel)]="data.Birthday" matInput />
+                    <!-- <mat-hint>YYYY/MM/DD</mat-hint> -->
+                </mat-form-field>
+            </div>
+            <button (click)="submit()" type="button" mat-button class="register-button primary-button">
+                ثبت تغییرات
+            </button>
+        </div>   
+</div>
