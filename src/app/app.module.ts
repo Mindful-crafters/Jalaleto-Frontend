@@ -35,7 +35,7 @@ import { ContactUsModule } from './contact-us/contact-us.module';
 import { RulesModule } from './rules/rules.module';
 import { WorkWithUsModule } from './work-with-us/work-with-us.module';
 import { NzListModule } from 'ng-zorro-antd/list';
-import { GroupInfoComponent } from './group-info/group-info.component';
+
 
 
 
@@ -79,7 +79,6 @@ import { GroupInfoComponent } from './group-info/group-info.component';
     RulesModule,
     WorkWithUsModule,
     NzListModule,
-    GroupInfoComponent,
     
 
 

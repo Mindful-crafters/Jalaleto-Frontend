@@ -14,7 +14,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { WorkWithUsComponent } from './work-with-us/work-with-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { RulesComponent } from './rules/rules.component';
-import { GroupPageComponent } from './group-page/group-page.component';
+import { GroupInfoComponent } from './group-info/group-info.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -29,7 +29,7 @@ const routes: Routes = [
   { path: 'contact', component: ContactUsComponent},
   { path: 'rule', component: RulesComponent},
   { path: 'work', component: WorkWithUsComponent},
-  { path: 'member', component:GroupPageComponent},
+  { path: 'member', component:GroupInfoComponent},
 
 ];
 
