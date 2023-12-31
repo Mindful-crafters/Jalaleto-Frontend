@@ -5,6 +5,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 import { RestService } from './../shared/services/Rest.service';
 import { RouterModule, Routes } from '@angular/router';
+import { HubConnection } from '@microsoft/signalr';
+import * as signalR from '@microsoft/signalr';
 
 
 const routes: Routes = [
@@ -22,7 +24,9 @@ export class NavbarComponent implements OnInit {
   isLoggedIn = false;
   userProfile: UserProfile | null = null;
   notifications: Notification[] = [];
-  @Output() logedOut:EventEmitter<boolean> = new EventEmitter<boolean>();
+  private hubConnection: HubConnection;
+
+  @Output() logedOut: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(
     private restService: RestService,
@@ -35,8 +39,56 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.fetchUserProfile();
+    this.hubInit();
   }
 
+  public hubInit() {
+    this.hubConnection = new signalR.HubConnectionBuilder()
+      .withUrl('https://dev.jalaleto.ir/Hub').build();
+
+    this.hubConnection.start().then(() => {
+      console.log('connection started');
+    }).catch(err => console.log(err));
+
+    this.hubConnection.onclose(() => {
+      debugger;
+      setTimeout(() => {
+        console.log('try to re start connection');
+        debugger;
+        this.hubConnection.start().then(() => {
+          debugger;
+          console.log('connection re started');
+        }).catch(err => console.log(err));
+      }, 5000);
+    });
+
+    this.hubConnection.on('privateMessageMethodName', (data) => {
+      debugger;
+      console.log('private Message:' + data);
+    });
+
+    this.hubConnection.on('publicMessageMethodName', (data) => {
+      debugger;
+      console.log('public Message:' + data);
+    });
+
+    this.hubConnection.on('clientMethodName', (data) => {
+      debugger;
+      console.log('server message:' + data);
+    });
+
+    this.hubConnection.on('WelcomeMethodName', (data) => {
+      debugger;
+      console.log('client Id:' + data);
+      this.hubConnection.invoke('GetDataFromClient', 'abc@abc.com', data).catch(err => console.log(err));
+    });
+  }
+
+  public stopConnection() {
+    this.hubConnection.stop().then(() => {
+      console.log('stopped');
+    }).catch(err => console.log(err));
+  }
 
   viewProfile() {
     this.router.navigate(['/profile'])
@@ -51,14 +103,14 @@ export class NavbarComponent implements OnInit {
   }
 
   toggleNotifications() {
-    this.restService.post('Notification/Get',null).subscribe(
-      (res:any)=>{
+    this.restService.post('Notification/Get', null).subscribe(
+      (res: any) => {
         console.log(res);
-        if(res.success){
+        if (res.success) {
           this.notifications = res.items;
-          this.notifications.forEach((notif )=>{
-            if(notif.type == NotificationType.Reminder){
-              notif.icon =  '../../assets/icons/icons8-notification-24.png'
+          this.notifications.forEach((notif) => {
+            if (notif.type == NotificationType.Reminder) {
+              notif.icon = '../../assets/icons/icons8-notification-24.png'
             }
           })
         }
