@@ -20,6 +20,7 @@
     padding-bottom: 0.5rem;
     border-top: solid 2px #252422;
     background-color: #F7F7FF;
+    overflow-y: auto;
 
     .group {
         border-bottom: solid 1px #ccc;
@@ -29,6 +30,7 @@
         justify-content: space-between;
         align-items: center;
         padding-inline-end: 0.5rem;
+        min-height: 8rem;
 
         .members-count {
             margin-bottom: 0.25rem;
