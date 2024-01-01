@@ -11,14 +11,14 @@ import { RestService } from '../shared/services/Rest.service';
 })
 export class ShowGroupsComponent implements OnInit {
 
-  @Output() showGroup:EventEmitter<Group> = new EventEmitter<Group>();
+  @Output() showGroup: EventEmitter<Group> = new EventEmitter<Group>();
 
   constructor(private matDialog: MatDialog, private restService: RestService) {
 
   }
 
   ngOnInit(): void {
-    this.restService.post('Group/Info', null).subscribe((res) => {
+    this.restService.post('Group/MyGroups', null).subscribe((res) => {
       console.log(res);
 
       this.groups = res['data'];
@@ -42,8 +42,7 @@ export class ShowGroupsComponent implements OnInit {
     })
   }
 
-  OpenGroup(group:Group)
-  {
+  OpenGroup(group: Group) {
     this.showGroup.emit(group);
   }
 }
