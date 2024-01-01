@@ -106,6 +106,7 @@ export class EditProfileComponent {
     formData.append('UserName',this.data.UserName);
     formData.append('BirthDay',this.data.Birthday);
     formData.append('Image',this.selectedFile);
+    formData.append('Password',this.data.Password);
     
     this.restService.post<any>('User/EditProfile', formData).subscribe(
       (response) => {
