@@ -11,7 +11,6 @@ import * as signalR from '@microsoft/signalr';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
-
 ];
 
 @Component({
@@ -69,7 +68,7 @@ export class NavbarComponent implements OnInit {
     });
 
     this.hubConnection.on('newNotificationRecived', (data) => {
-      console.log('new Notification Recived');
+      console.log('new Notification Recived:' + data);
       this.getNotifications();
     });
   }
@@ -100,15 +99,18 @@ export class NavbarComponent implements OnInit {
           this.notifications = res.items;
           this.notifications.forEach((notif) => {
             if (notif.type == NotificationType.Reminder) {
-              notif.icon = '../../assets/icons/icons8-notification-24.png'
+              notif.icon = '../../assets/icons/icons8-notification-24.png';
+            } else if (notif.type == NotificationType.Event) {
+              notif.icon = '../../assets/icons/icons8-event-24.png';
+            } else if (notif.type == NotificationType.Message) {
+              notif.icon = '../../assets/icons/icons8-message-30.png';
             }
-          })
+          });
         }
-
       }
-
-    )
+    );
   }
+
 
 
 

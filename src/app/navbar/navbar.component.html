@@ -26,7 +26,7 @@
     <ng-template #notificationContent>
       <div *ngIf="notifications.length > 0; else noNotifications">
         <ul>
-          <li *ngFor="let notification of notifications">
+          <li class="notif-dot" *ngFor="let notification of notifications">
             <div class="notification-details">
               <div class="notification-icon">
                 <img [src]="notification.icon" alt="Notification Icon">
