@@ -8,7 +8,7 @@ import { Group } from '../show-groups/show-groups.component';
 })
 export class GroupsPageComponent {
 
-  slectedGroup:Group = null;
+  selectedGroup:Group = null;
   messages:Message[]=[
     {message:'سلام', sender:new User({name:'امیر', image:'../../assets/a.png'})},
     {message:'سلام بر شما', sender:null},
@@ -18,9 +18,8 @@ export class GroupsPageComponent {
   ]
   OpenGroup(event:any)
   {
-    this.slectedGroup = event;
+    this.selectedGroup = event;
   }
-
 
 }
 
