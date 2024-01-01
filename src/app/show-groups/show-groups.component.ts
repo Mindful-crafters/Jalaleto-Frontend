@@ -18,7 +18,7 @@ export class ShowGroupsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.restService.post('Group/MyGroups', null).subscribe((res) => {
+    this.restService.post('Group/Groups', null).subscribe((res) => {
       console.log(res);
 
       this.groups = res['data'];
