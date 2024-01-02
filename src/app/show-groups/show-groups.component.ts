@@ -24,6 +24,18 @@ export class ShowGroupsComponent implements OnInit {
       this.groups = res['data'];
       console.log(this.groups);
     })
+    // this.groups.push({
+    //   name: 'gropu',
+    //   description: 'description',
+    //   imageUrl: 'assets/a.png',
+    //   imageFile: null,
+    //   members:[
+    //     {mail:'ali@gsrf.ddsf',
+    //     userName:'ali',
+    //     image: 'assets/b.png'
+    //   }
+    //   ]
+    // })
   }
   groups: Group[] = [];
 
@@ -51,6 +63,14 @@ export class Group {
   name: string = '';
   description: string = '';
   imageUrl: string = '';
-  members: string[];
   imageFile: File = null;
+  members:Member[]
+}
+
+export class Member
+
+{
+  mail: string = '';
+  userName: string='';
+  image: string='';
 }

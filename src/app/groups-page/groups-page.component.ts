@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Group } from '../show-groups/show-groups.component';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { GroupInfoComponent } from '../group-info/group-info.component';
 
 @Component({
   selector: 'app-groups-page',
@@ -16,10 +18,25 @@ export class GroupsPageComponent {
     {message:'رویداد چه ساعتی است؟', sender:new User({name:'پارسا', image:'assets/c.jpg'})},
 
   ]
+
+  constructor(private matDialog:MatDialog)
+  {
+
+  }
   OpenGroup(event:any)
   {
     this.selectedGroup = event;
   }
+
+  OpenGroupInfo(group:Group)
+  {
+    const dialogRef: MatDialogRef<any, any> = this.matDialog.open(GroupInfoComponent, {
+      disableClose: true,
+      hasBackdrop: true,
+      autoFocus: false,
+      data:group
+    })
+  } 
 
 }
 

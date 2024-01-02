@@ -1,63 +1,94 @@
-@import "../../theme/common.styles.scss";
+// @import "../../theme/common.styles.scss";
 
-.info
-{
-    display: flex;
-    justify-content: center;
-    min-height: 100vh;
-    align-items: center;
-    background-color: #f7f7ff;
-    .containor
-    {
-        @include box-style();
-        min-height: auto;
-        width: 22rem;
-        background-color: #fff;
-        margin: 1.5rem 0;
-        padding:1rem;
+// .info
+// {
+//     display: flex;
+//     justify-content: center;
+//     min-height: 100vh;
+//     align-items: center;
+//     background-color: #f7f7ff;
+//     .containor
+//     {
+//         @include box-style();
+//         min-height: auto;
+//         width: 22rem;
+//         background-color: #fff;
+//         margin: 1.5rem 0;
+//         padding:1rem;
         
-        .header
-        {
-            display: flex;
-            border-bottom: 1px solid #495867;
-            .members-count
-            {
-                margin-right: -100%;
-            }
-            .profile
-            {
-                position: relative;
-                width: 20%;
-                margin-right: 3%;
-            }
-            .text
-            {
-                position: relative;
-                margin-right: 60%;
-                margin-top: 8%;
-            }
+//         .header
+//         {
+//             display: flex;
+//             border-bottom: 1px solid #495867;
+//             .members-count
+//             {
+//                 margin-right: -100%;
+//             }
+//             .profile
+//             {
+//                 position: relative;
+//                 width: 20%;
+//                 margin-right: 3%;
+//             }
+//             .text
+//             {
+//                 position: relative;
+//                 margin-right: 60%;
+//                 margin-top: 8%;
+//             }
             
+//         }
+//         .body
+//         {
+//             display: flex;
+//             .name
+//             {
+//                 position: relative;
+//                 margin-right: 68%;
+//                 margin-top: 7%;
+
+//             }
+//             .member-img
+//             {
+//                 position: relative;
+//                 width: 70%;
+//                 margin-top: 10%;
+//                 margin-right: 15%;
+
+//             }
+//         }
+        
+//     }
+    
+// }
+
+.dialog {
+    width: 32rem;
+    overflow: hidden;
+
+    .header {
+        border-bottom: 1px solid #495867;
+
+        .close-button {
+            width: 4rem;
+            margin-top: 0.5rem;
+            margin-inline-start: 0.5rem;
+            margin-bottom: 0.5rem;
         }
-        .body
-        {
-            display: flex;
-            .name
-            {
-                position: relative;
-                margin-right: 68%;
-                margin-top: 7%;
 
-            }
-            .member-img
-            {
-                position: relative;
-                width: 70%;
-                margin-top: 10%;
-                margin-right: 15%;
-
-            }
+        .title {
+            font-weight: bold;
+            font-size: 18px;
         }
         
+
     }
-    
+
+    .content {
+        padding: 0 1rem;
+        max-height: calc(100vh - 10rem);
+        overflow: auto;
+
+    }
+
 }
