@@ -10,6 +10,7 @@
         <li><a routerLink="/services">تبدیل تاریخ</a></li>
         <li><a routerLink="/services">اوقات شرعی</a></li>
         <li><a routerLink="/services">دسترسی سریع</a></li>
+        <li><a routerLink="/groups">گروه ها</a></li>
       </ul>
     </span>
 
@@ -32,21 +33,17 @@
                 <img [src]="notification.icon" alt="Notification Icon">
               </div>
               <div class="notification-info">
-                <!-- <h3>{{ notification.title }}</h3> -->
                 <h3>
                   <a [routerLink]="notification.link">{{ notification.title }}</a>
                 </h3>
                 <p>{{ notification.description }}</p>
-                <!-- <a [routerLink]="notification.link">مشاهده اعلان</a> -->
               </div>
             </div>
           </li>
         </ul>
-        <!-- <a routerLink="/notifications/all" class="view-all-notifications">مشاهده همه اعلان ها</a> -->
       </div>
       <ng-template #noNotifications>
         <p>اعلان خوانده‌نشده ندارید</p>
-        <!-- <a routerLink="/notifications">مشاهده همه اعلان ها</a> -->
       </ng-template>
     </ng-template>
 

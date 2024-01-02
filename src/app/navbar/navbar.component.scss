@@ -155,19 +155,34 @@ button.profile-button {
 
 
   .notification-icon {
-    // margin-right: 10px;
+    margin-right: -5px;
     margin-bottom: 40px;
-    width: 24px;
-    height: 24px;
+
+    img {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+    }
   }
 
   .notification-info {
+
     h3 {
       margin: 0;
       font-size: 16px;
       font-weight: bold;
       margin-right: 10px;
       margin-bottom: 10px;
+
+      a {
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: #BDD5EA;
+        }
+      }
     }
 
     p {
@@ -175,19 +190,7 @@ button.profile-button {
       font-size: 14px;
       color: #666;
     }
-
-    a {
-      text-decoration: none;
-      font-weight: bold;
-      // &:hover {
-      // text-decoration: underline;
-      // }
-    }
   }
-}
-
-.view-all-notifications {
-  margin-right: 10px;
 }
 
 
