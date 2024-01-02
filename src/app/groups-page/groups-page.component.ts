@@ -29,11 +29,12 @@ export class GroupsPageComponent {
 
   OpenGroup(event: any) {
     this.selectedGroup = event;
+    this.getMessages();
   }
 
   getMessages() {
-    this.restService.post(`Message/GetMessages?GroupId=${this.selectedGroup.groupId}`, null).subscribe((res) => {
-      this.messages = res['data']
+    this.restService.post(`Message/GetMessages?GroupId=${this.selectedGroup.groupId}`, null).subscribe((res: any) => {
+      this.messages = res.data.reverse();
       console.log(res);
     });
   }

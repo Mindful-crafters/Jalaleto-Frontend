@@ -51,6 +51,8 @@ import { NzListModule } from 'ng-zorro-antd/list';
     AddNewEventReminderComponent,
     CreateGroupDialogComponent,
     EditProfileComponent,
+    GroupsPageComponent,
+
   ],
   imports: [
     BrowserModule,

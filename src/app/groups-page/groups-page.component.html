@@ -9,6 +9,10 @@
       <div class="group-info">
         <h2>{{selectedGroup.name}}</h2>
       </div>
+      <span class="spacer"></span>
+      <button (click)="getMessages()">
+        بازیابی
+      </button>
     </div>
     <div class="content">
       <div class="message" *ngFor="let message of messages">
