@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import * as moment from 'jalali-moment';
 import { CreateGroupDialogComponent } from '../create-group-dialog/create-group-dialog.component';
@@ -11,15 +11,31 @@ import { RestService } from '../shared/services/Rest.service';
 })
 export class ShowGroupsComponent implements OnInit {
 
+  @Output() showGroup: EventEmitter<Group> = new EventEmitter<Group>();
+
   constructor(private matDialog: MatDialog, private restService: RestService) {
 
   }
 
   ngOnInit(): void {
-    this.restService.post('Group/Info', null).subscribe((res) => {
+    this.restService.post('Group/Groups', null).subscribe((res) => {
+      console.log(res);
+
       this.groups = res['data'];
       console.log(this.groups);
     })
+    // this.groups.push({
+    //   name: 'gropu',
+    //   description: 'description',
+    //   imageUrl: 'assets/a.png',
+    //   imageFile: null,
+    //   members:[
+    //     {mail:'ali@gsrf.ddsf',
+    //     userName:'ali',
+    //     image: 'assets/b.png'
+    //   }
+    //   ]
+    // })
   }
   groups: Group[] = [];
 
@@ -37,12 +53,24 @@ export class ShowGroupsComponent implements OnInit {
 
     })
   }
+
+  OpenGroup(group: Group) {
+    this.showGroup.emit(group);
+  }
 }
 
-class Group {
+export class Group {
+  groupId: number = 0;
   name: string = '';
   description: string = '';
   imageUrl: string = '';
-  members: string[];
   imageFile: File = null;
+  members:Member[]
+}
+
+export class Member
+{
+  mail: string = '';
+  userName: string='';
+  image: string='';
 }

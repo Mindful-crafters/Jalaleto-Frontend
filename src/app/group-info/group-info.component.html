@@ -1,0 +1,106 @@
+<!-- <div class="info">
+<mat-accordion>
+    <mat-expansion-panel>
+        <div class="header">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{data.GroupName}}
+            </mat-panel-title>
+            <mat-panel-title>
+                {{data.GroupImagePath}}
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        </div>
+        <div class="divider"></div>
+
+        <div class="groups">
+            <div class="group" *ngFor="let member of members">
+                <div style="display: flex; flex-direction: column;width: 75%;">
+                    <div class="image">
+                        <span class="member">
+                            {{member.imageFile}}
+                        </span>
+                    </div>
+                    <div class="name">
+                        <span nz-popover
+                            nzPopoverPlacement="bottomRight">{{ member.name }}
+                        </span>
+                    </div>
+                    
+                </div>
+                <div *ngIf="!member.imageFile" class="prof">
+                    <img *ngIf="!member.imageUrl || member.imageUrl =='' " src="'/assets/profile.svg'" alt="">
+                    <img *ngIf="member.imageUrl && member.imageUrl !='' " #prof [src]="member.imageUrl" alt="">
+                </div>
+                <div *ngIf="member.imageFile" class="prof">
+                    <img [src]="member.imageFile" alt="">
+                </div>
+            </div>
+        </div>
+        
+    </mat-expansion-panel>
+</mat-accordion>
+</div>
+ -->
+<!-- <div class="info">
+    <div class="containor">
+    <div class="header">
+        <h2 class="text">{{data.name}}</h2>
+        <img class="profile" [src]="
+        data.imageUrl ? data.imageUrl : '/assets/icons/group-icon.svg'" alt="Profile Image" />
+        <div class="members-count">
+            <span>تعداد اعضا: </span>
+            <span>{{data.members.length}}</span>
+        </div>
+    </div>
+    <div class="member">
+        <div class="group" *ngFor="let member of data.members">
+            <div class="name">
+                <span nz-popover nzPopoverPlacement="bottomRight">{{member.userName}}</span>
+            </div>
+            <div class="image">
+                <span class="image-member">
+                    <img *ngIf="member.image && member.image !== ''" [src]="member.image" >
+                    <img *ngIf="!member.image || member.image === ''" src="/assets/profile.svg">
+                </span>
+
+            </div>
+
+        </div>
+     </div>
+
+    </div>
+</div> -->
+
+
+
+<div class="dialog">
+    <div class="header">
+        <button class="close-button" mat-button (click)="close()">
+            <img src="assets/icons/close.svg">
+        </button>
+        <span class="title">
+            {{data.name}}
+        </span>
+        <img style="width: 20px;height: 20px;" class="profile" [src]="
+        data.imageUrl ? data.imageUrl : '/assets/icons/group-icon.svg'" alt="Profile Image" />
+    </div>
+    <div class="content new-reminder">
+        <div class="member">
+            <div class="group" *ngFor="let member of data.members">
+                <div class="name">
+                    <span nz-popover nzPopoverPlacement="bottomRight">{{member.userName}}</span>
+                </div>
+                <div class="image">
+                    <span class="image-member">
+                        <img style="width: 20px;height: 20px;" *ngIf="member.image && member.image !== ''" [src]="member.image" >
+                        <img style="width: 20px;height: 20px;" *ngIf="!member.image || member.image === ''" src="/assets/profile.svg">
+                    </span>
+    
+                </div>
+    
+            </div>
+         </div>
+    
+    </div>
+</div>
