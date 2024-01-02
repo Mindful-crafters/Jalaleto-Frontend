@@ -130,6 +130,8 @@ export class AddNewEventReminderComponent implements OnInit {
     console.log('all', v.dateTime);
 
     this.restService.post('Reminder/Create', v).subscribe((res) => {
+      console.log('dialog closed')
+      
       if (res['success']) {
         this.toastr.success('رویداد با موفقیت ایجاد شد', 'موفقیت');
         this.dialogRef.close(v);

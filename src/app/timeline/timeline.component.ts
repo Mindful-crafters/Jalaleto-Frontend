@@ -218,13 +218,16 @@ export class TimelineComponent implements OnInit {
     })
 
     dialogRef.afterClosed().subscribe((res) => {
+      console.log('dialog is closed')
       if (res) {
+        console.log('done!')
         this.getWeekReminders(this.firstDayOfTimeline);
         this.openBox(this.selectedBox);
+        console.log('selected box : ',this.selectedBox)
       }
 
       else
-        console.log();
+        console.log('not done');
     })
   }
 
