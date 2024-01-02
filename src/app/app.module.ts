@@ -35,6 +35,8 @@ import { ContactUsModule } from './contact-us/contact-us.module';
 import { RulesModule } from './rules/rules.module';
 import { WorkWithUsModule } from './work-with-us/work-with-us.module';
 import { GroupsPageComponent } from './groups-page/groups-page.component';
+import { NzListModule } from 'ng-zorro-antd/list';
+
 
 
 
@@ -78,7 +80,8 @@ import { GroupsPageComponent } from './groups-page/groups-page.component';
     AboutUsModule,
     ContactUsModule,
     RulesModule,
-    WorkWithUsModule
+    WorkWithUsModule,
+    NzListModule
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

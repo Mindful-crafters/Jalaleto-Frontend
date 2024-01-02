@@ -1,0 +1,172 @@
+<!-- <div class="info">
+<mat-accordion>
+    <mat-expansion-panel>
+        <div class="header">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{data.GroupName}}
+            </mat-panel-title>
+            <mat-panel-title>
+                {{data.GroupImagePath}}
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        </div>
+        <div class="divider"></div>
+
+        <div class="groups">
+            <div class="group" *ngFor="let member of members">
+                <div style="display: flex; flex-direction: column;width: 75%;">
+                    <div class="image">
+                        <span class="member">
+                            {{member.imageFile}}
+                        </span>
+                    </div>
+                    <div class="name">
+                        <span nz-popover
+                            nzPopoverPlacement="bottomRight">{{ member.name }}
+                        </span>
+                    </div>
+                    
+                </div>
+                <div *ngIf="!member.imageFile" class="prof">
+                    <img *ngIf="!member.imageUrl || member.imageUrl =='' " src="'/assets/profile.svg'" alt="">
+                    <img *ngIf="member.imageUrl && member.imageUrl !='' " #prof [src]="member.imageUrl" alt="">
+                </div>
+                <div *ngIf="member.imageFile" class="prof">
+                    <img [src]="member.imageFile" alt="">
+                </div>
+            </div>
+        </div>
+        
+    </mat-expansion-panel>
+</mat-accordion>
+</div>
+ -->
+<div class="info">
+    <div class="containor">
+    <div class="header">
+        <h2 class="text">name</h2>
+        <img class="profile" [src]="
+        selectedGroup
+        ? selectedGroup
+        : '/assets/icons/group-icon.svg'
+        " alt="Profile Image" />
+        <div class="members-count">
+            <span>تعداد اعضا: </span>
+            <span>3</span>
+        </div>
+    </div>
+    <div class="member">
+        <div class="group" *ngFor="let member of members">
+            <div class="name">
+                <!-- <span nz-popover nzPopoverPlacement="bottomRight">{{member.name}}</span> -->
+                <span nz-popover nzPopoverPlacement="bottomRight">ahmad</span>
+            </div>
+            <div class="image">
+                <span class="image-member">
+                    <img *ngIf="member.imageUrl && member.imageUrl !== ''" [src]="member.imageUrl" >
+                    <img *ngIf="!member.imageUrl || member.imageUrl === ''" src="/assets/profile.svg">
+                </span>
+
+            </div>
+
+        </div>
+        <div class="body">
+        <div class="name">
+            <!-- <span nz-popover nzPopoverPlacement="bottomRight">{{member.name}}</span> -->
+            <span nz-popover nzPopoverPlacement="bottomRight">ahmad</span>
+        </div>
+        <div class="image">
+            <span>
+                <img class="member-img" src="./assets/profile.svg">
+            </span>
+            <!-- <span class="image-member">
+                <img *ngIf="member.imageUrl && member.imageUrl !== ''" [src]="member.imageUrl" >
+                <img *ngIf="!member.imageUrl || member.imageUrl === ''" src="/assets/profile.svg">
+            </span> -->
+
+        </div>
+        </div>
+        <div class="body">
+            <div class="name">
+                <!-- <span nz-popover nzPopoverPlacement="bottomRight">{{member.name}}</span> -->
+                <span nz-popover nzPopoverPlacement="bottomRight">ahmad</span>
+            </div>
+            <div class="image">
+                <span>
+                    <img class="member-img" src="./assets/profile.svg">
+                </span>
+                <!-- <span class="image-member">
+                    <img *ngIf="member.imageUrl && member.imageUrl !== ''" [src]="member.imageUrl" >
+                    <img *ngIf="!member.imageUrl || member.imageUrl === ''" src="/assets/profile.svg">
+                </span> -->
+    
+            </div>
+            </div>
+            <div class="body">
+                <div class="name">
+                    <!-- <span nz-popover nzPopoverPlacement="bottomRight">{{member.name}}</span> -->
+                    <span nz-popover nzPopoverPlacement="bottomRight">ahmad</span>
+                </div>
+                <div class="image">
+                    <span>
+                        <img class="member-img" src="./assets/profile.svg">
+                    </span>
+                    <!-- <span class="image-member">
+                        <img *ngIf="member.imageUrl && member.imageUrl !== ''" [src]="member.imageUrl" >
+                        <img *ngIf="!member.imageUrl || member.imageUrl === ''" src="/assets/profile.svg">
+                    </span> -->
+        
+                </div>
+                </div>
+                <div class="body">
+                    <div class="name">
+                        <!-- <span nz-popover nzPopoverPlacement="bottomRight">{{member.name}}</span> -->
+                        <span nz-popover nzPopoverPlacement="bottomRight">ahmad</span>
+                    </div>
+                    <div class="image">
+                        <span>
+                            <img class="member-img" src="./assets/profile.svg">
+                        </span>
+                        <!-- <span class="image-member">
+                            <img *ngIf="member.imageUrl && member.imageUrl !== ''" [src]="member.imageUrl" >
+                            <img *ngIf="!member.imageUrl || member.imageUrl === ''" src="/assets/profile.svg">
+                        </span> -->
+            
+                    </div>
+                    </div>
+                    <div class="body">
+                        <div class="name">
+                            <!-- <span nz-popover nzPopoverPlacement="bottomRight">{{member.name}}</span> -->
+                            <span nz-popover nzPopoverPlacement="bottomRight">ahmad</span>
+                        </div>
+                        <div class="image">
+                            <span>
+                                <img class="member-img" src="./assets/profile.svg">
+                            </span>
+                            <!-- <span class="image-member">
+                                <img *ngIf="member.imageUrl && member.imageUrl !== ''" [src]="member.imageUrl" >
+                                <img *ngIf="!member.imageUrl || member.imageUrl === ''" src="/assets/profile.svg">
+                            </span> -->
+                
+                        </div>
+                        </div>
+                        <div class="body">
+                            <div class="name">
+                                <!-- <span nz-popover nzPopoverPlacement="bottomRight">{{member.name}}</span> -->
+                                <span nz-popover nzPopoverPlacement="bottomRight">ahmad</span>
+                            </div>
+                            <div class="image">
+                                <span>
+                                    <img class="member-img" src="./assets/profile.svg">
+                                </span>
+                                <!-- <span class="image-member">
+                                    <img *ngIf="member.imageUrl && member.imageUrl !== ''" [src]="member.imageUrl" >
+                                    <img *ngIf="!member.imageUrl || member.imageUrl === ''" src="/assets/profile.svg">
+                                </span> -->
+                    
+                            </div>
+                            </div>
+    </div>
+    </div>
+</div>

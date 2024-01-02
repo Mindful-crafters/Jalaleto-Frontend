@@ -17,7 +17,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatExpansionModule } from '@angular/material/expansion';
-
+import { GroupInfoComponent } from '../group-info/group-info.component';
 
 
 @NgModule({
@@ -25,7 +25,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
         DashboardComponent,
         //NavbarComponent,
         TimelineComponent,
-        ShowGroupsComponent
+        ShowGroupsComponent,
+        GroupInfoComponent,
+
     ],
     imports: [
         BrowserAnimationsModule,
