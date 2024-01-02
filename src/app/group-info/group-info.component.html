@@ -82,19 +82,18 @@
         <span class="title">
             {{data.name}}
         </span>
-        <img style="width: 20px;height: 20px;" class="profile" [src]="
+        <img style="width: 60px;height: 60px; border-radius: 50%;" class="profile" [src]="
         data.imageUrl ? data.imageUrl : '/assets/icons/group-icon.svg'" alt="Profile Image" />
     </div>
-    <div class="content new-reminder">
         <div class="member">
             <div class="group" *ngFor="let member of data.members">
                 <div class="name">
                     <span nz-popover nzPopoverPlacement="bottomRight">{{member.userName}}</span>
                 </div>
                 <div class="image">
-                    <span class="image-member">
-                        <img style="width: 20px;height: 20px;" *ngIf="member.image && member.image !== ''" [src]="member.image" >
-                        <img style="width: 20px;height: 20px;" *ngIf="!member.image || member.image === ''" src="/assets/profile.svg">
+                    <span>
+                        <img class="member-img" *ngIf="member.image && member.image !== ''" [src]="member.image" >
+                        <img class="member-img" *ngIf="!member.image || member.image === ''" src="/assets/profile.svg">
                     </span>
     
                 </div>
@@ -102,5 +101,5 @@
             </div>
          </div>
     
-    </div>
+
 </div>
