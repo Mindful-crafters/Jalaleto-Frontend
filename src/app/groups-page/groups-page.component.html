@@ -1,5 +1,4 @@
 <div class="container">
-  <app-show-groups (showGroup)="OpenGroup($event)"></app-show-groups>
   <div *ngIf="!selectedGroup" class="no-group-selected">
   </div>
   <div *ngIf="selectedGroup" class="chat-container">
@@ -28,5 +27,5 @@
       <button>ارسال</button>
     </div>
   </div>
-  <!-- <app-show-groups (showGroup)="OpenGroup($event)"></app-show-groups> -->
+  <app-show-groups (showGroup)="OpenGroup($event)"></app-show-groups>
 </div>
