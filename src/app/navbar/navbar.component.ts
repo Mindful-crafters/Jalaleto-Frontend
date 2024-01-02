@@ -26,6 +26,7 @@ export class NavbarComponent implements OnInit {
   private hubConnection: HubConnection;
 
   @Output() logedOut: EventEmitter<boolean> = new EventEmitter<boolean>();
+last: any;
 
   constructor(
     private restService: RestService,

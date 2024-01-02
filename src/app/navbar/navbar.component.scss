@@ -148,9 +148,16 @@ button.profile-button {
   list-style: none;
 }
 
+.notif_line {
+  width: 100%;
+  height: 1px;
+  background-color: #ccc;
+  margin-bottom: 10px;
+}
+
 .notification-details {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   margin-bottom: 20px;
 
 
@@ -166,6 +173,8 @@ button.profile-button {
   }
 
   .notification-info {
+
+    // border-bottom: 1px solid black;
 
     h3 {
       margin: 0;
@@ -189,6 +198,19 @@ button.profile-button {
       margin: 5px 0;
       font-size: 14px;
       color: #666;
+    }
+  }
+
+  .notif-title{
+    display: flex;
+    height: 2rem;
+
+    .notification-icon{
+      margin-inline-end: 0.5rem;
+    }
+
+    .notif-description{
+      text-align: right;
     }
   }
 }

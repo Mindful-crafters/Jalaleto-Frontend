@@ -29,16 +29,18 @@
         <ul>
           <li class="notif-dot" *ngFor="let notification of notifications">
             <div class="notification-details">
-              <div class="notification-icon">
-                <img [src]="notification.icon" alt="Notification Icon">
+              <div class="notif-title">
+                <div class="notification-icon">
+                  <img [src]="notification.icon" alt="Notification Icon">
+                </div>
+
+                <a class="title-link"  [routerLink]="notification.link">{{ notification.title }}</a>
               </div>
-              <div class="notification-info">
-                <h3>
-                  <a [routerLink]="notification.link">{{ notification.title }}</a>
-                </h3>
-                <p>{{ notification.description }}</p>
-              </div>
+
+              <span class="notif-description">{{notification.description}}</span>
+
             </div>
+            <div class="notif_line"></div>
           </li>
         </ul>
       </div>
