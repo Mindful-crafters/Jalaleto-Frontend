@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
         console.log(response);
         if (response['success']) {
           this.auth.setToken(response['token']);
+          console.log(this.auth.getToken())
           this.Router.navigate(['dashboard']);
         }
         else {

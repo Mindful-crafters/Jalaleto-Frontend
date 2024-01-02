@@ -7,6 +7,8 @@ import { DialogRef } from '@angular/cdk/dialog';
 import { RestService } from '../shared/services/Rest.service';
 import { AuthService } from '../shared/services/auth.service';
 import { ReminderObject } from '../shared/types/ReminderObject';
+import { DatePipe } from '@angular/common';
+import { ReminderDialogComponent } from './reminder-dialog/reminder-dialog/reminder-dialog.component';
 
 
 @Component({
@@ -17,76 +19,25 @@ import { ReminderObject } from '../shared/types/ReminderObject';
 })
 
 export class TimelineComponent implements OnInit {
-  displayedMonth: string = '';
-  displayedYear: string = '';
+  quickDate: Date;
   timelineItems: TimeLineItem[] = [];
   displayedTimeLine: TimeLineItem[] = [];
-  isContentVisible = false;
-
   currentWeek = [1, 2, 3, 4, 5, 6, 7];
   firstDayOfTimeline: Date;
-
-  hoveredBox: number | null = null;
-  private hoverSubject = new Subject<number>();
   selectedBox: number | null = 0;
-
   weekReminders: ReminderObject[];
-
   selectedDayReminders: ReminderObject[];
 
   constructor(
     private el: ElementRef,
     private restService: RestService,
     private auth: AuthService,
+    private datePipe: DatePipe,
     public persiancalendarservice: persiancalendarservice,
     private matDialog: MatDialog) {
-    this.hoverSubject.pipe(debounceTime(200)).subscribe(index => {
-      this.hoveredBox = index;
-    });
   }
 
-  updateTimeLine(direction: string) {
-    const updatedWeek: TimeLineItem[] = [];
 
-    if (direction == 'up') {
-      this.firstDayOfTimeline.setDate(this.firstDayOfTimeline.getDate() - 7);
-      this.openBox(0);
-      this.getWeekReminders(this.firstDayOfTimeline);
-
-      for (const item of this.displayedTimeLine) {
-        const pastDate = new Date(item.date);
-        pastDate.setDate(item.date.getDate() - 7);
-
-        const WeekItem: TimeLineItem = {
-          date: pastDate,
-          dayName: item.dayName,
-          dayNum: this.persiancalendarservice.returnPeaceOfDate(pastDate, 'day'),
-        };
-
-        updatedWeek.push(WeekItem)
-      }
-    }
-    else {
-      this.firstDayOfTimeline.setDate(this.firstDayOfTimeline.getDate() + 7);
-      this.openBox(0);
-      this.getWeekReminders(this.firstDayOfTimeline);
-
-      for (const item of this.displayedTimeLine) {
-        const pastDate = new Date(item.date);
-        pastDate.setDate(item.date.getDate() + 7);
-
-        const WeekItem: TimeLineItem = {
-          date: pastDate,
-          dayName: item.dayName,
-          dayNum: this.persiancalendarservice.returnPeaceOfDate(pastDate, 'day'),
-        };
-
-        updatedWeek.push(WeekItem)
-      }
-    }
-
-    this.displayedTimeLine = updatedWeek;
-  }
 
   ngOnInit() {
     this.generateTimeline();
@@ -134,6 +85,50 @@ export class TimelineComponent implements OnInit {
     }
   }
 
+
+  updateTimeLine(direction: string) {
+    const updatedWeek: TimeLineItem[] = [];
+
+    if (direction == 'up') {
+      this.firstDayOfTimeline.setDate(this.firstDayOfTimeline.getDate() - 7);
+      this.openBox(0);
+      this.getWeekReminders(this.firstDayOfTimeline);
+
+      for (const item of this.displayedTimeLine) {
+        const pastDate = new Date(item.date);
+        pastDate.setDate(item.date.getDate() - 7);
+
+        const WeekItem: TimeLineItem = {
+          date: pastDate,
+          dayName: item.dayName,
+          dayNum: this.persiancalendarservice.returnPeaceOfDate(pastDate, 'day'),
+        };
+
+        updatedWeek.push(WeekItem)
+      }
+    }
+    else {
+      this.firstDayOfTimeline.setDate(this.firstDayOfTimeline.getDate() + 7);
+      this.openBox(0);
+      this.getWeekReminders(this.firstDayOfTimeline);
+
+      for (const item of this.displayedTimeLine) {
+        const pastDate = new Date(item.date);
+        pastDate.setDate(item.date.getDate() + 7);
+
+        const WeekItem: TimeLineItem = {
+          date: pastDate,
+          dayName: item.dayName,
+          dayNum: this.persiancalendarservice.returnPeaceOfDate(pastDate, 'day'),
+        };
+
+        updatedWeek.push(WeekItem)
+      }
+    }
+
+    this.displayedTimeLine = updatedWeek;
+  }
+
   MiladiToShamsi(date: Date) {
     const dateObject = new Date(date);
     return (this.persiancalendarservice.returnPeaceOfDate(dateObject, 'day'));
@@ -164,11 +159,8 @@ export class TimelineComponent implements OnInit {
       "to": lasOftday
     }
 
-    console.log(body)
-
     this.restService.post('Reminder/Info', body).subscribe(res => {
       this.selectedDayReminders = res['data'];
-      console.log(res)
     })
   }
 
@@ -211,16 +203,13 @@ export class TimelineComponent implements OnInit {
     return result;
   }
 
-  AddNewReminder(type: string) {
+  AddNewReminder() {
     const selectedDay = new Date(this.firstDayOfTimeline);
     selectedDay.setDate(this.firstDayOfTimeline.getDate() + this.selectedBox)
-
-    console.log(selectedDay);
 
     const dialogRef: MatDialogRef<any, any> = this.matDialog.open(AddNewEventReminderComponent, {
       data: {
         data: new ReminderObject({ dateTime: selectedDay }),
-        type: type
       },
 
       disableClose: true,
@@ -230,8 +219,6 @@ export class TimelineComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((res) => {
       if (res) {
-        console.log(res);
-
         this.getWeekReminders(this.firstDayOfTimeline);
         this.openBox(this.selectedBox);
       }
@@ -241,8 +228,24 @@ export class TimelineComponent implements OnInit {
     })
   }
 
-  reminderQuickCreate() {
+  openReminderBox(index: number) {
+    const dialogRef: MatDialogRef<any, any> = this.matDialog.open(ReminderDialogComponent, {
+      data: {
+        reminder: this.selectedDayReminders[index]
+      },
 
+      disableClose: true,
+      hasBackdrop: true,
+      autoFocus: false
+    })
+
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res) {
+
+      }
+
+      else { }
+    })
   }
 
   starsArray(num: number): number[] {
@@ -251,6 +254,55 @@ export class TimelineComponent implements OnInit {
       array.push(1)
     }
     return array;
+  }
+
+  fastDateNavigate() {
+    if (this.quickDate == null) {
+      console.log('date is null')
+      return;
+    }
+
+    const localDateTime = new Date(this.quickDate);
+    const localTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+    const gmtDateTimeString = this.datePipe.transform(localDateTime, 'yyyy-MM-dd HH:mm:ss', 'GMT');
+    const gmtDateTime = new Date(gmtDateTimeString);
+    gmtDateTime.setDate(gmtDateTime.getDate() + 1);
+
+    const sourceHour = this.firstDayOfTimeline.getHours();
+    const sourceMinute = this.firstDayOfTimeline.getMinutes();
+
+    gmtDateTime.setHours(sourceHour)
+    gmtDateTime.setMinutes(sourceMinute)
+
+    this.firstDayOfTimeline = gmtDateTime;
+    const updatedWeek: TimeLineItem[] = [];
+    console.log('f', this.firstDayOfTimeline)
+
+    for (let index = 0; index < 7; index++) {
+      const currentDate = new Date(this.firstDayOfTimeline);
+      currentDate.setDate(currentDate.getDate() + index);
+
+      const dayNum = this.persiancalendarservice.returnPeaceOfDate(currentDate, 'day')
+      const dayName = this.getDayName(currentDate.getDay());
+
+      const WeekItem: TimeLineItem = {
+        date: currentDate,
+        dayName: dayName,
+        dayNum: dayNum,
+      };
+
+      console.log(WeekItem)
+      console.log('weekday', this.diplayedDate(currentDate, false, false, false, true))
+      console.log('year and month', this.diplayedDate(currentDate, true, true, false, false))
+
+      updatedWeek.push(WeekItem)
+    }
+
+    console.log(updatedWeek);
+    this.displayedTimeLine = updatedWeek;
+    this.openBox(0);
+    this.getWeekReminders(this.firstDayOfTimeline);
   }
 }
 

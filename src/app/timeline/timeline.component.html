@@ -19,7 +19,9 @@
         *ngFor="let reminder of weekReminders; let i = index"
         class="history-event-item"
       >
-        <span class="week-reminder-title">{{ MiladiToShamsi(reminder.dateTime) }} {{ reminder.title }}</span>
+        <span class="week-reminder-title"
+          >{{ MiladiToShamsi(reminder.dateTime) }} {{ reminder.title }}</span
+        >
       </div>
     </div>
   </div>
@@ -52,10 +54,6 @@
             diplayedDate(displayedTimeLine[i].date, true, true, false, false)
           }}
         </span>
-
-        <span class="hovered-box date">
-          {{ diplayedDate(displayedTimeLine[i].date, true, true, true, true) }}
-        </span>
       </div>
     </div>
 
@@ -70,16 +68,36 @@
 
   <div class="left-pannel">
     <div class="quick-create-container">
-      <button [matMenuTriggerFor]="menu" mat-raised-button class="quick-make">
-        افزودن سریع
+      <button mat-raised-button class="quick-make" (click)="fastDateNavigate()">
+        برو به تاریخ
       </button>
 
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item>افزودن رویداد</button>
-        <button mat-menu-item (click)="AddNewReminder('quick')">
-          افزودن یادآوری
-        </button>
-      </mat-menu>
+      <mat-form-field
+        class="date-picker"
+        appearance="outline"
+        hideRequiredMarker
+      >
+        <mat-label>تاریخ را انتخاب کنید</mat-label>
+        <input
+          style="margin-top: 0.25rem"
+          matInput
+          [(ngModel)]="quickDate"
+          [matDatepicker]="datepicker"
+        />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [disableRipple]=""
+          [for]="datepicker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #datepicker>
+          <mat-datepicker-actions>
+            <button mat-button matDatepickerCancel>لغو</button>
+            <button mat-raised-button color="primary" matDatepickerApply>
+              انتخاب
+            </button>
+          </mat-datepicker-actions>
+        </mat-datepicker>
+      </mat-form-field>
     </div>
 
     <div class="selected-day">
@@ -97,22 +115,30 @@
           <div
             class="reminder-object-container"
             *ngFor="let reminder of selectedDayReminders; let i = index"
-            [style.animation-delay]="i*0.3 + 's'"
+            [style.animation-delay]="i * 0.3 + 's'"
+            (click)="openReminderBox(i)"
           >
             <div class="top-info">
               <span class="title">{{ reminder.title }}</span>
 
               <div class="priority-container">
-                <img class="priority" src="../../assets/Blue-Star.svg" *ngFor="let star of starsArray(reminder.priorityLevel)">
+                <img
+                  class="priority"
+                  src="../../assets/Blue-Star.svg"
+                  *ngFor="let star of starsArray(reminder.priorityLevel)"
+                />
               </div>
             </div>
 
             <div class="bottom-info">
-              <div *ngIf="reminder.notes != null" class="notes">{{ reminder.notes }}</div>
-              <div *ngIf="reminder.notes == null" class="notes">یادداشتی موجود نمی باشد.</div>
-
-              <div class="clock">{{ hourAndMinute(reminder.dateTime) }}</div>
+              <div *ngIf="reminder.notes != null" class="notes">
+                {{ reminder.notes }}
+              </div>
+              <div *ngIf="reminder.notes == null" class="notes">
+                یادداشتی موجود نمی باشد.
+              </div>
             </div>
+            <div class="clock">{{ hourAndMinute(reminder.dateTime) }}</div>
           </div>
         </div>
       </div>
@@ -122,62 +148,12 @@
 
         <button
           mat-raised-button
-          (click)="AddNewReminder('normal')"
+          (click)="AddNewReminder()"
           class="add-remainder"
         >
           افزودن یادآوری
         </button>
       </div>
-      <!-- <div class="hovered-box time-items">
-        <div
-          class="time-item"
-          *ngFor="let item of selectedDayReminders; let i = index"
-        >
-          <div class="title">
-            <span
-              nz-popover
-              nzPopoverTitle="یادداشت"
-              [nzPopoverContent]="contentTemplate"
-              nzPopoverPlacement="bottomRight"
-              >{{ item.title }}
-            </span>
-          </div>
-
-          <div class="start-time">
-            {{ hourAndMinute(item.dateTime) }}
-          </div>
-
-          <div class="الویت">
-            {{ item.priorityLevel }}
-          </div>
-
-          <div class="more">
-            <button class="edit-btn">
-              <img src="../../assets/icons/edit.svg" />
-            </button>
-
-            <button class="delete-btn">
-              <img src="../../assets/icons/delete.svg" />
-            </button>
-          </div>
-        </div>
-      </div> -->
-
-      <!-- <div class="hovered-box title">
-        <button mat-raised-button class="exit" (click)="closeBox()">
-          خروج
-        </button>
-
-        <button mat-raised-button class="add-event">افزودن رویداد</button>
-
-        <button
-          mat-raised-button
-          (click)="AddNewReminder('normal')"
-          class="add-remainder"
-        >
-          افزودن یادآوری
-        </button>
-      </div> -->
     </div>
   </div>
 </div>

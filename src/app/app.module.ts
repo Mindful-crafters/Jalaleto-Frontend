@@ -62,13 +62,12 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     HttpClientModule,
     DashboardModule,
     MatDialogModule,
-    MatChipsModule,
     NgxMatTimepickerModule,
     MatMenuModule,
     SignupModule,
     MatDialogModule,
+    ShowProfileModule,
     MatChipsModule,
-    NgxMatTimepickerModule,
     MatIconModule,
     ToastrModule.forRoot(),
     AboutUsModule,
@@ -79,7 +78,6 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
   ],
   providers: [
-    {provide:LocationStrategy,useClass:HashLocationStrategy},
     DatePipe,
     { provide: DateAdapter, useClass: MaterialPersianDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: PERSIAN_DATE_FORMATS }
