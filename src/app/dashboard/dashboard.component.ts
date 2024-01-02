@@ -5,6 +5,7 @@ import { RestService } from '../shared/services/Rest.service';
 import * as moment from 'jalali-moment';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CreateGroupDialogComponent } from '../create-group-dialog/create-group-dialog.component';
+import { Group } from '../shared/types/Group';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +14,7 @@ import { CreateGroupDialogComponent } from '../create-group-dialog/create-group-
 })
 export class DashboardComponent {
   isLoggedIn = false;
-
+  popularGroups : Group[];
   private dayArray = ['یکشنبه', 'دوشنبه', 'سه شنبه', 'چهارشبه', 'پنجشنبه', 'جمعه', 'شنبه'];
 
   private date = new Date();
@@ -38,6 +39,20 @@ export class DashboardComponent {
     const jalali = moment().locale('fa');
     this.jalaliYear = jalali.jYear();
     this.jalaliDay = jalali.date();
+    this.loadPopularGroups(10)
+  }
+
+  loadPopularGroups(num : number){
+    this.restService.postWithoutHeader<any>('Group/PopularGroups', num).subscribe(
+      (response) => {
+        console.log(response)
+        this.popularGroups = response['data']
+        console.log(this.popularGroups)
+      },
+      (error) => {
+        console.log('error')
+      }
+    )
   }
 
   private updateDate(date: Date) {
