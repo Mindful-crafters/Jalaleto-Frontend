@@ -23,6 +23,7 @@ export class NavbarComponent implements OnInit {
   userProfile: UserProfile | null = null;
   notifications: Notification[] = [];
   @Output() logedOut:EventEmitter<boolean> = new EventEmitter<boolean>();
+  userInfoLoaded:boolean=false;
 
   constructor(
     private restService: RestService,
@@ -96,9 +97,8 @@ export class NavbarComponent implements OnInit {
         console.log(data);
 
         this.userProfile = data;
-      },
-      (error) => {
-        console.error('Error fetching user profile:', error);
+        this.userInfoLoaded = true;
+
       }
     );
   }

@@ -60,6 +60,7 @@ export class ShowGroupsComponent implements OnInit {
 }
 
 export class Group {
+  groupId: number = 0;
   name: string = '';
   description: string = '';
   imageUrl: string = '';
@@ -68,7 +69,6 @@ export class Group {
 }
 
 export class Member
-
 {
   mail: string = '';
   userName: string='';

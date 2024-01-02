@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Group } from '../show-groups/show-groups.component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { GroupInfoComponent } from '../group-info/group-info.component';
+import { RestService } from '../shared/services/Rest.service';
 
 @Component({
   selector: 'app-groups-page',
@@ -10,57 +11,79 @@ import { GroupInfoComponent } from '../group-info/group-info.component';
 })
 export class GroupsPageComponent {
 
-  selectedGroup:Group = null;
-  messages:Message[]=[
-    {message:'سلام', sender:new User({name:'امیر', image:'../../assets/a.png'})},
-    {message:'سلام بر شما', sender:null},
-    {message:'سلام خوبی؟', sender:new User({name:'پارسا', image:'assets/b.png'})},
-    {message:'رویداد چه ساعتی است؟', sender:new User({name:'پارسا', image:'assets/c.jpg'})},
+  selectedGroup: Group = null;
+  messages: Message[] = []
 
-  ]
+  sendingMessage: string = '';
 
-  constructor(private matDialog:MatDialog)
-  {
+  constructor(
+    private matDialog: MatDialog,
+    private restService: RestService,
+  ) {
 
   }
-  OpenGroup(event:any)
-  {
+
+  ngOnInit() {
+    this.getMessages();
+  }
+
+  OpenGroup(event: any) {
     this.selectedGroup = event;
   }
 
-  OpenGroupInfo(group:Group)
-  {
+  getMessages() {
+    this.restService.post(`Message/GetMessages?GroupId=${this.selectedGroup.groupId}`, null).subscribe((res) => {
+      this.messages = res['data']
+      console.log(res);
+    });
+  }
+
+  sendMessage() {
+    let data = {
+      message: this.sendingMessage,
+      groupId: this.selectedGroup.groupId,
+    }
+    this.restService.post(`Message/SendMessage`, data).subscribe((res) => {
+      console.log(res);
+      this.sendingMessage = '';
+    });
+  }
+
+  OpenGroupInfo(group: Group) {
     const dialogRef: MatDialogRef<any, any> = this.matDialog.open(GroupInfoComponent, {
       disableClose: true,
       hasBackdrop: true,
       autoFocus: false,
-      data:group
+      data: group
     })
-  } 
+  }
 
 }
 
-class Message
-{
-  message:string;
-  sender:User;
+class Message {
+  message: string;
+  sender: User;
+  messageId : number;
+  groupId: number;
+  senderUserId: string;
+  content: string;
+  sentTime : Date
+  areYouSender : boolean;
+  senderImageUrl:string
 
-  constructor(m:any)
-  {
+  constructor(m: any) {
     this.message = m.message;
     this.sender = m.sender;
   }
 }
 
-class User
-{
-  name:string;
-  image:string;
+class User {
+  name: string;
+  image: string;
 
-  constructor(user:any)
-  {
+  constructor(user: any) {
     this.name = user.name;
-    this.image=user.image;
+    this.image = user.image;
   }
 
 }
