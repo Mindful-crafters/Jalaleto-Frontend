@@ -12,12 +12,7 @@ import { RestService } from '../shared/services/Rest.service';
 export class GroupsPageComponent {
 
   selectedGroup: Group = null;
-  messages: Message[] = [
-    { message: 'سلام', sender: new User({ name: 'امیر', image: '../../assets/a.png' }) },
-    { message: 'سلام بر شما', sender: null },
-    { message: 'سلام خوبی؟', sender: new User({ name: 'پارسا', image: 'assets/b.png' }) },
-    { message: 'رویداد چه ساعتی است؟', sender: new User({ name: 'پارسا', image: 'assets/c.jpg' }) },
-  ]
+  messages: Message[] = []
 
   sendingMessage: string = '';
 
@@ -29,6 +24,7 @@ export class GroupsPageComponent {
   }
 
   ngOnInit() {
+    this.getMessages();
   }
 
   OpenGroup(event: any) {
@@ -37,6 +33,7 @@ export class GroupsPageComponent {
 
   getMessages() {
     this.restService.post(`Message/GetMessages?GroupId=${this.selectedGroup.groupId}`, null).subscribe((res) => {
+      this.messages = res['data']
       console.log(res);
     });
   }
@@ -66,6 +63,13 @@ export class GroupsPageComponent {
 class Message {
   message: string;
   sender: User;
+  messageId : number;
+  groupId: number;
+  senderUserId: string;
+  content: string;
+  sentTime : Date
+  areYouSender : boolean;
+  senderImageUrl:string
 
   constructor(m: any) {
     this.message = m.message;

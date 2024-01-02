@@ -12,12 +12,12 @@
     </div>
     <div class="content">
       <div class="message" *ngFor="let message of messages">
-        <div *ngIf="message.sender" class="others-message">
-          <img [src]="message.sender.image" alt="error">
-          <span class="text">{{message.message}}</span>
+        <div *ngIf="!message.areYouSender" class="others-message">
+          <img [src]="message.senderImageUrl" alt="error">
+          <span class="text">{{message.content}}</span>
         </div>
-        <div *ngIf="!message.sender" class="my-message">
-          <span class="text">{{message.message}}</span>
+        <div *ngIf="message.areYouSender" class="my-message">
+          <span class="text">{{message.content}}</span>
         </div>
       </div>
 
