@@ -23,8 +23,8 @@
 
     </div>
     <div class="message-input">
-      <input type="text" placeholder="پیام">
-      <button>ارسال</button>
+      <input [(ngModel)]="sendingMessage" type="text" placeholder="پیام">
+      <button (click)="sendMessage()">ارسال</button>
     </div>
   </div>
   <app-show-groups (showGroup)="OpenGroup($event)"></app-show-groups>
