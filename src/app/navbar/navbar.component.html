@@ -57,8 +57,10 @@
 
     <mat-menu #menu="matMenu" class="menu">
       <ng-template matMenuContent>
-        <div class="profile-info">
-          <img [src]="userProfile.imagePath == '' ? '../../assets/icons/icons8-test-account-48.png': userProfile.imagePath" alt="Profile Image" class="profile-image">
+        <div class="profile-info" *ngIf="userInfoLoaded">
+          <img
+            [src]="userProfile.imagePath == '' ? '../../assets/icons/icons8-test-account-48.png': userProfile.imagePath"
+            alt="Profile Image" class="profile-image">
           <div class="user-details">
             <span class="username">{{ userProfile?.userName }}</span>
             <span class="email">{{ userProfile?.email }}</span>
@@ -80,4 +82,3 @@
 </nav>
 
 <div class="separator-line"></div>
-
