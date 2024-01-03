@@ -144,26 +144,54 @@ button.profile-button {
   }
 }
 
+.notif-dot {
+  list-style: none;
+}
+
+.notif_line {
+  width: 100%;
+  height: 1px;
+  background-color: #ccc;
+  margin-bottom: 10px;
+}
+
 .notification-details {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   margin-bottom: 20px;
 
 
   .notification-icon {
-    // margin-right: 10px;
+    margin-right: -5px;
     margin-bottom: 40px;
-    width: 24px;
-    height: 24px;
+
+    img {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+    }
   }
 
   .notification-info {
+
+    // border-bottom: 1px solid black;
+
     h3 {
       margin: 0;
       font-size: 16px;
       font-weight: bold;
       margin-right: 10px;
       margin-bottom: 10px;
+
+      a {
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: #BDD5EA;
+        }
+      }
     }
 
     p {
@@ -171,20 +199,20 @@ button.profile-button {
       font-size: 14px;
       color: #666;
     }
+  }
 
-    a {
-      text-decoration: none;
-      font-weight: bold;
-    // &:hover {
-      // text-decoration: underline;
+  .notif-title{
+    display: flex;
+    height: 2rem;
 
-    // }
+    .notification-icon{
+      margin-inline-end: 0.5rem;
+    }
+
+    .notif-description{
+      text-align: right;
     }
   }
-}
-
-.view-all-notifications {
-  margin-right: 10px;
 }
 
 

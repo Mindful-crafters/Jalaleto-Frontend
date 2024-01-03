@@ -22,7 +22,7 @@ import { AddNewEventReminderComponent } from './timeline/add-new-event-reminder/
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatChipsModule } from '@angular/material/chips';
 import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
-import { MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { AboutUsModule } from './about-us/about-us.module';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from "@angular/material/core";
@@ -35,6 +35,11 @@ import { RulesModule } from './rules/rules.module';
 import { WorkWithUsModule } from './work-with-us/work-with-us.module';
 import { ShowProfileModule } from './show-profile/show-profile.module';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { GroupsPageComponent } from './groups-page/groups-page.component';
+import { NzListModule } from 'ng-zorro-antd/list';
+
+
+
 
 
 @NgModule({
@@ -45,7 +50,9 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     LoginComponent,
     AddNewEventReminderComponent,
     CreateGroupDialogComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    GroupsPageComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -76,6 +83,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     WorkWithUsModule,
     ShowProfileModule,
 
+    NzListModule
   ],
   providers: [
     DatePipe,

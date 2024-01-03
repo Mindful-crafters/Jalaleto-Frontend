@@ -14,6 +14,9 @@ import { WorkWithUsComponent } from './work-with-us/work-with-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { RulesComponent } from './rules/rules.component';
 import { ShowProfileComponent } from './show-profile/show-profile.component';
+import { GroupsPageComponent } from './groups-page/groups-page.component';
+import { GroupInfoComponent } from './group-info/group-info.component';
+
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
@@ -23,10 +26,12 @@ const routes: Routes = [
   { path: 'newpassword', component: NewPasswordComponent },
   { path: 'login', component: LoginComponent },
   { path: 'profile', component: ShowProfileComponent },
-  { path: 'about', component: AboutUsComponent},
-  { path: 'contact', component: ContactUsComponent},
-  { path: 'rule', component: RulesComponent},
-  { path: 'work', component: WorkWithUsComponent}
+  { path: 'about', component: AboutUsComponent },
+  { path: 'contact', component: ContactUsComponent },
+  { path: 'rule', component: RulesComponent },
+  { path: 'work', component: WorkWithUsComponent },
+  { path: 'groups', component: GroupsPageComponent },
+  { path: 'member', component:GroupInfoComponent},
 
 ];
 
