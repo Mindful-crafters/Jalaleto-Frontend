@@ -26,7 +26,8 @@ export class NavbarComponent implements OnInit {
   private hubConnection: HubConnection;
 
   @Output() logedOut: EventEmitter<boolean> = new EventEmitter<boolean>();
-last: any;
+  last: any;
+  userInfoLoaded: boolean = false;
 
   constructor(
     private restService: RestService,
@@ -127,9 +128,8 @@ last: any;
         console.log(data);
 
         this.userProfile = data;
-      },
-      (error) => {
-        console.error('Error fetching user profile:', error);
+        this.userInfoLoaded = true;
+
       }
     );
   }
