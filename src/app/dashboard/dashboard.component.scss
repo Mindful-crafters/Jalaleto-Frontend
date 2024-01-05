@@ -1,6 +1,5 @@
 @import "../../theme/common.styles.scss";
 
-
 ::selection {
   background: #333;
 }
@@ -15,12 +14,12 @@ body {
   background: #333;
 }
 
-.clock-container{
+.clock-container {
   width: 35%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 8rem;
+  padding-top: 5rem;
 }
 
 figure {
@@ -198,10 +197,6 @@ figure:hover {
         100% {
           transform: translateX(-10%) translateY(-10%);
         }
-      }
-
-      body {
-        // background: #eee;
       }
 
       .animation-example {
@@ -407,8 +402,88 @@ figure:hover {
     text-align: center;
     font-size: 2rem;
 
-    div{
+    div {
       margin-bottom: 1.5rem;
     }
   }
+}
+
+label {
+  position: realtive;
+  margin: 0 -35px;
+  display: inline-block;
+  width: 125px;
+  height: 150px;
+  line-height: 200px;
+  color: #ddd;
+  font-size: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 10px 6px -6px #777;
+  -webkit-transform: skew(-20deg) rotate(-20deg);
+  transform: skew(-20deg) rotate(-20deg);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+
+  .container {
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .profile-image {
+    margin-bottom: 102px;
+    width: 5rem;
+    border-radius: 50%;
+  }
+}
+
+.pop-group-name {
+  height: 0rem;
+}
+
+// label:nth-of-type(1) {
+//   background: #1abc9c;
+// }
+
+label {
+  background: #3498db;
+}
+
+// label:nth-of-type(3) {
+//   background: #e67e22;
+// }
+
+// label:nth-of-type(4) {
+//   background: #9b59b6;
+// }
+
+// label:nth-of-type(5) {
+//   background: #f1c40f;
+// }
+
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"]:checked ~ label {
+  -webkit-transform: skew(20deg) rotate(20deg);
+  transform: skew(20deg) rotate(20deg);
+}
+
+input[type="radio"]:checked + label {
+  margin: 0 55px;
+  -webkit-transform: none;
+  transform: none;
+}
+
+.most-popular-groups-title{
+  font-size: 1rem;
+  margin-top: 2rem;
+}
+
+.card-slider {
+  margin: 1.5rem auto 0 auto;
+  text-align: center;
 }

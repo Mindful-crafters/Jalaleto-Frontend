@@ -80,10 +80,103 @@
 
       <div class="dayTitle">
         <div>{{ day }} {{ jalaliDay }} {{ jalaliMonth }} {{ jalaliYear }}</div>
-        <div>{{ formattedDate  }}</div>
+        <div>{{ formattedDate }}</div>
+      </div>
+
+      <p class="most-popular-groups-title">محبوب ترین گروه ها</p>
+      <div class="card-slider">        
+        <input type="radio" id="1" name="sld" />
+        <label for="1">
+          <div class="container" mat-raised-button matBadge = {{popularGroups[0].members.length}}>
+            <div class="pop-group-name">
+              {{ popularGroups[0].name }}
+            </div>
+
+            <img
+              [src]="
+                popularGroups[0].imageUrl == ''
+                  ? '../../assets/icons/icons8-test-account-48.png'
+                  : popularGroups[0].imageUrl
+              "
+              class="profile-image"
+            />
+          </div>
+        </label>
+
+        <input type="radio" id="2" name="sld" />
+
+        <label for="2">
+          <div class="container" mat-raised-button matBadge = {{popularGroups[1].members.length}}>
+            <div class="pop-group-name">
+              {{ popularGroups[1].name }}
+            </div>
+
+            <img
+              [src]="
+                popularGroups[1].imageUrl == ''
+                  ? '../../assets/icons/icons8-test-account-48.png'
+                  : popularGroups[1].imageUrl
+              "
+              class="profile-image"
+            />
+          </div>
+        </label>
+
+        <input type="radio" id="3" name="sld" checked/>
+        <label for="3">
+          <div class="container" mat-raised-button matBadge = {{popularGroups[2].members.length}}>
+            <div class="pop-group-name">
+              {{ popularGroups[2].name }}
+            </div>
+
+            <img
+              [src]="
+                popularGroups[2].imageUrl == ''
+                  ? '../../assets/icons/icons8-test-account-48.png'
+                  : popularGroups[2].imageUrl
+              "
+              class="profile-image"
+            />
+          </div>
+        </label>
+
+        <input type="radio" id="4" name="sld" />
+        <label for="4">
+          <div class="container" mat-raised-button matBadge = {{popularGroups[3].members.length}}>
+            <div class="pop-group-name">
+              {{ popularGroups[3].name }}
+            </div>
+
+            <img
+              [src]="
+                popularGroups[3].imageUrl == ''
+                  ? '../../assets/icons/icons8-test-account-48.png'
+                  : popularGroups[3].imageUrl
+              "
+              class="profile-image"
+            />
+          </div>
+        </label>
+
+        <input type="radio" id="5" name="sld" />
+        <label for="5">
+          <div class="container" mat-raised-button matBadge = {{popularGroups[4].members.length}}>
+            <div class="pop-group-name">
+              {{ popularGroups[4].name }}
+            </div>
+
+            <img
+              [src]="
+                popularGroups[4].imageUrl == ''
+                  ? '../../assets/icons/icons8-test-account-48.png'
+                  : popularGroups[4].imageUrl
+              "
+              class="profile-image"
+            />
+          </div>
+        </label>
       </div>
     </div>
-
   </div>
 
   <app-footer></app-footer>

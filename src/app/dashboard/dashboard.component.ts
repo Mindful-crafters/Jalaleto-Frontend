@@ -7,6 +7,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CreateGroupDialogComponent } from '../create-group-dialog/create-group-dialog.component';
 import { Group } from '../shared/types/Group';
 import { DatePipe } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,7 +20,7 @@ export class DashboardComponent {
   seconds: string | number = '00';
 
   isLoggedIn = false;
-  popularGroups : Group[];
+  popularGroups: Group[];
   private dayArray = ['یکشنبه', 'دوشنبه', 'سه شنبه', 'چهارشبه', 'پنجشنبه', 'جمعه', 'شنبه'];
 
   private date = new Date();
@@ -38,6 +39,7 @@ export class DashboardComponent {
     private restService: RestService,
     private datePipe: DatePipe,
     private auth: AuthService,
+    private http: HttpClient,
     private router: Router,
     private authService: AuthService) {
     this.isLoggedIn = authService.isLoggedIn();
@@ -88,7 +90,7 @@ export class DashboardComponent {
     const jalali = moment().locale('fa');
     this.jalaliYear = jalali.jYear();
     this.jalaliDay = jalali.date();
-    this.loadPopularGroups(10)
+    this.loadPopularGroups(5)
     this.updateTime()
   }
 
@@ -105,17 +107,21 @@ export class DashboardComponent {
     return value < 10 ? `0${value}` : `${value}`;
   }
 
-  loadPopularGroups(num : number){
-    this.restService.postWithoutHeader<any>('Group/PopularGroups', num).subscribe(
-      (response) => {
-        console.log(response)
-        this.popularGroups = response['data']
-        console.log(this.popularGroups)
+  loadPopularGroups(num: number) {
+    const apiUrl = 'https://dev.jalaleto.ir/api/Group/PopularGroups';
+    const url = `${apiUrl}?cnt=${num}`;
+
+    this.http.post(url, {}).subscribe(
+      (data) => {
+        console.log('Received data:', data);
+        this.popularGroups = data['data'];
+        console.log(this.popularGroups);
+        // Process the data as needed
       },
       (error) => {
-        console.log('error')
+        console.error('Error posting data:', error);
       }
-    )
+    );
   }
 
   private updateDate(date: Date) {
@@ -130,7 +136,7 @@ export class DashboardComponent {
     this.second = seconds < 10 ? '0' + seconds : seconds.toString();
   }
 
-  
+
 
   logOut(event: boolean) {
     if (event) {
