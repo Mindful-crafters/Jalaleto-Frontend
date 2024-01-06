@@ -1,12 +1,11 @@
 import { DashboardComponent } from './../dashboard/dashboard.component';
-import { Router } from '@angular/router';
 import { AuthService } from './../shared/services/auth.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ViewEncapsulation } from '@angular/core';
 import { RestService } from './../shared/services/Rest.service';
-import { RouterModule, Routes } from '@angular/router';
 import { HubConnection } from '@microsoft/signalr';
 import * as signalR from '@microsoft/signalr';
+import { Router, Routes } from '@angular/router';
 
 
 const routes: Routes = [

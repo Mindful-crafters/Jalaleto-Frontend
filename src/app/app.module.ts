@@ -69,13 +69,12 @@ import { NzListModule } from 'ng-zorro-antd/list';
     HttpClientModule,
     DashboardModule,
     MatDialogModule,
-    MatChipsModule,
     NgxMatTimepickerModule,
     MatMenuModule,
     SignupModule,
     MatDialogModule,
+    ShowProfileModule,
     MatChipsModule,
-    NgxMatTimepickerModule,
     MatIconModule,
     ToastrModule.forRoot(),
     AboutUsModule,
@@ -87,7 +86,6 @@ import { NzListModule } from 'ng-zorro-antd/list';
     NzListModule
   ],
   providers: [
-    { provide: LocationStrategy, useClass: HashLocationStrategy },
     DatePipe,
     { provide: DateAdapter, useClass: MaterialPersianDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: PERSIAN_DATE_FORMATS }

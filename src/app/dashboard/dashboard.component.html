@@ -2,123 +2,55 @@
   <app-navbar></app-navbar>
 
   <div class="preview">
-
     <div class="pic">
       <img class="calendar-pic" src="/assets/3970925.svg" />
     </div>
-      <div class="title">
-        <p>به جلالتو خوش آمدید</p><br>
-        <h2 class="text">
-          برای ثبت رویداد ها و به اشتراک گذاری آنها با دوستان<br />
-          به صفحه ی شخصی خود وارد شوید.
-        </h2>
-        <div class="button">
-          <button
-            type="button"
-            routerLink="/login"
-            mat-button
-            class="login-button primary-button"
-          >
-            ورود
-          </button>
-          <button
-            type="button"
-            routerLink="/signup"
-            mat-button
-            class="signup-button primary-button"
-          >
-            ثبت نام
-          </button>
+    <div class="title">
+      <p>به جلالتو خوش آمدید</p>
+      <br />
+      <h2 class="text">
+        برای ثبت رویداد ها و به اشتراک گذاری آنها با دوستان<br />
+        به صفحه ی شخصی خود وارد شوید.
+      </h2>
+      <div class="button">
+        <button
+          type="button"
+          routerLink="/login"
+          mat-button
+          class="login-button primary-button"
+        >
+          ورود
+        </button>
+        <button
+          type="button"
+          routerLink="/signup"
+          mat-button
+          class="signup-button primary-button"
+        >
+          ثبت نام
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="body">
+    <div>
+      <h1 class="service">خدمات سایت</h1>
+      <div class="items">
+        <div class="item1">
+          <img class="img" src="/assets/event.png" />
+          <h2 class="font">ثبت رویداد</h2>
+        </div>
+        <div class="item2">
+          <img class="img" src="/assets/reminder.png" />
+          <h2 class="font">افزودن یاداوری</h2>
+        </div>
+        <div class="item3">
+          <img class="img" src="/assets/group.png" />
+          <h2 class="font">ثبت رویداد های گروهی</h2>
         </div>
       </div>
     </div>
-    <div class="body">
-      <div>
-        <h1 class="service">خدمات سایت</h1>
-        <div class="items">
-          <div class="item1">
-            <img class="img" src="/assets/event.png">
-            <h2 class="font">ثبت رویداد</h2>
-          </div>
-          <div class="item2">
-            <img class="img" src="/assets/reminder.png">
-            <h2 class="font">افزودن یاداوری</h2>
-          </div>
-          <div class="item3">
-            <img class="img" src="/assets/group.png">
-            <h2 class="font">ثبت رویداد های گروهی</h2>
-          </div>
-        </div>
-      </div>
-      <!-- <div class="data">
-        <div class="data1">
-          <img src="/assets/reminder1.png">
-          <h2></h2>
-        </div>
-        <div class="data2">
-          <img src="/assets/group1.png">
-          <h2></h2>
-        </div>
-        <div class="data3">
-          <img src="/assets/smile.png">
-          <h2></h2>
-        </div>
-        <div class="data4">
-          <img src="/assets/event1.png">
-          <h2></h2>
-        </div>
-      </div> -->
-      <!-- <div class="data">
-
-        <div class='animation-example'>
-          <div class='item'>
-              <div class='line'></div>
-              <div class='dot'></div>
-              <div class='circle'></div>
-          </div>
-          <div class='item'>
-              <div class='line'></div>
-              <div class='dot'></div>
-              <div class='circle'></div>
-          </div>
-          <div class='item'>
-              <div class='line'></div>
-              <div class='dot'></div>
-              <div class='circle'></div>
-          </div>
-          <div class='item'>
-              <div class='line'></div>
-              <div class='dot'></div>
-              <div class='circle'></div>
-          </div>
-          <div class='item -type2'>
-              <div class='line'></div>
-              <div class='dot'></div>
-              <div class='circle'></div>
-          </div>
-          <div class='item -type2'>
-              <div class='line'></div>
-              <div class='dot'></div>
-              <div class='circle'></div>
-          </div>
-          <div class='item -type2'>
-              <div class='line'></div>
-              <div class='dot'></div>
-              <div class='circle'></div>
-          </div>
-          <div class='item -type2'>
-              <div class='line'></div>
-              <div class='dot'></div>
-              <div class='circle'></div>
-          </div>
-          <div class='center'>
-              <div class='circle'></div>
-              <div class='circle'></div>
-              <div class='circle'></div>
-          </div>
-      </div>
-      </div> -->
-    </div>
+  </div>
 
   <div class="spacer"></div>
 
@@ -133,15 +65,116 @@
       <app-timeline></app-timeline>
     </div>
 
-    <div class="left-panel">
-      <div class="digitalClock">
-        <div class="digitalTime">
-          <div>{{ second }} : {{ minute }} : {{ hour }}</div>
+    <div class="clock-container">
+      <figure class="clock">
+        <div class="face top">
+          <p id="s">{{ seconds }}</p>
         </div>
+        <div class="face front">
+          <p id="m">{{ minutes }}</p>
+        </div>
+        <div class="face left">
+          <p id="h">{{ hours }}</p>
+        </div>
+      </figure>
 
-        <div class="dayTitle">
-          {{ day }} {{ jalaliDay }} {{ jalaliMonth }} {{ jalaliYear }}
-        </div>
+      <div class="dayTitle">
+        <div>{{ day }} {{ jalaliDay }} {{ jalaliMonth }} {{ jalaliYear }}</div>
+        <div>{{ formattedDate }}</div>
+      </div>
+
+      <p class="most-popular-groups-title">محبوب ترین گروه ها</p>
+      <div class="card-slider">        
+        <input type="radio" id="1" name="sld" />
+        <label for="1">
+          <div class="container" mat-raised-button matBadge = {{popularGroups[0].members.length}}>
+            <div class="pop-group-name">
+              {{ popularGroups[0].name }}
+            </div>
+
+            <img
+              [src]="
+                popularGroups[0].imageUrl == ''
+                  ? '../../assets/icons/icons8-test-account-48.png'
+                  : popularGroups[0].imageUrl
+              "
+              class="profile-image"
+            />
+          </div>
+        </label>
+
+        <input type="radio" id="2" name="sld" checked/>
+
+        <label for="2">
+          <div class="container" mat-raised-button matBadge = {{popularGroups[1].members.length}}>
+            <div class="pop-group-name">
+              {{ popularGroups[1].name }}
+            </div>
+
+            <img
+              [src]="
+                popularGroups[1].imageUrl == ''
+                  ? '../../assets/icons/icons8-test-account-48.png'
+                  : popularGroups[1].imageUrl
+              "
+              class="profile-image"
+            />
+          </div>
+        </label>
+
+        <input type="radio" id="3" name="sld" />
+        <label for="3">
+          <div class="container" mat-raised-button matBadge = {{popularGroups[2].members.length}}>
+            <div class="pop-group-name">
+              {{ popularGroups[2].name }}
+            </div>
+
+            <img
+              [src]="
+                popularGroups[2].imageUrl == ''
+                  ? '../../assets/icons/icons8-test-account-48.png'
+                  : popularGroups[2].imageUrl
+              "
+              class="profile-image"
+            />
+          </div>
+        </label>
+
+        <!-- <input type="radio" id="4" name="sld" />
+        <label for="4">
+          <div class="container" mat-raised-button matBadge = {{popularGroups[3].members.length}}>
+            <div class="pop-group-name">
+              {{ popularGroups[3].name }}
+            </div>
+
+            <img
+              [src]="
+                popularGroups[3].imageUrl == ''
+                  ? '../../assets/icons/icons8-test-account-48.png'
+                  : popularGroups[3].imageUrl
+              "
+              class="profile-image"
+            />
+          </div>
+        </label>
+
+        <input type="radio" id="5" name="sld" />
+        <label for="5">
+          <div class="container" mat-raised-button matBadge = {{popularGroups[4].members.length}}>
+            <div class="pop-group-name">
+              {{ popularGroups[4].name }}
+            </div>
+
+            <img
+              [src]="
+                popularGroups[4].imageUrl == ''
+                  ? '../../assets/icons/icons8-test-account-48.png'
+                  : popularGroups[4].imageUrl
+              "
+              class="profile-image"
+            />
+          </div>
+        </label> -->
       </div>
     </div>
   </div>

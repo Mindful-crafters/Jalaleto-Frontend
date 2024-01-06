@@ -1,58 +1,118 @@
 @import "../../theme/common.styles.scss";
+
+::selection {
+  background: #333;
+}
+::-moz-selection {
+  background: #111;
+}
+*,
+html {
+  margin: 0;
+}
+body {
+  background: #333;
+}
+
+.clock-container {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 5rem;
+}
+
+figure {
+  width: 210px;
+  height: 210px;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  -webkit-transform: rotateX(-35deg) rotateY(45deg);
+  transform: rotateX(-35deg) rotateY(45deg);
+  transition: 2s;
+}
+
+figure:hover {
+  -webkit-transform: rotateX(-50deg) rotateY(45deg);
+  transform: rotateX(-50deg) rotateY(45deg);
+}
+
+.face {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  -webkit-transform-origin: center;
+  transform-origin: center;
+  background: #000;
+  text-align: center;
+}
+
+.front {
+  border: 2px solid white;
+
+  -webkit-transform: translate3d(0, 0, 105px);
+  transform: translate3d(0, 0, 105px);
+  background: var(--blue);
+}
+.left {
+  border: 2px solid white;
+
+  -webkit-transform: rotateY(-90deg) translate3d(0, 0, 105px);
+  transform: rotateY(-90deg) translate3d(0, 0, 105px);
+  background: var(--blue);
+}
+.top {
+  border: 2px solid white;
+  -webkit-transform: rotateX(90deg) translate3d(0, 0, 105px);
+  transform: rotateX(90deg) translate3d(0, 0, 105px);
+  background: var(--blue);
+}
+
 .first-page {
   flex-direction: column;
-  display: flex; 
+  display: flex;
   .preview {
     display: flex;
     align-items: center;
     align-content: center;
     justify-content: space-around;
     .pic {
-  
       & img {
         width: 80%;
         margin-top: -7%;
         margin-right: 15% !important;
-        
       }
     }
-    .title
-    {
+    .title {
       position: relative;
       margin-left: 5% !important;
       font-size: 50px;
       left: 12%;
       text-align: center;
       white-space: nowrap;
-      .text
-      {
+      .text {
         position: relative;
         justify-content: center;
         align-items: center;
       }
     }
-    
-    .button
-    {
+
+    .button {
       display: flex;
-      .login-button
-      {
+      .login-button {
         left: 5%;
         margin-right: 30%;
         font-size: 45%;
         padding: 20px 30px;
       }
-      .signup-button
-      {
+      .signup-button {
         font-size: 45%;
         padding: 20px 25px;
       }
     }
   }
-  .body
-  {
-    .service
-    {
+  .body {
+    .service {
       margin-top: 2%;
       font-size: 30px;
       align-items: center;
@@ -60,8 +120,7 @@
       align-content: center;
       justify-content: center;
     }
-    .items
-    {
+    .items {
       font-size: 30px;
       display: flex;
       justify-content: center;
@@ -71,8 +130,9 @@
       margin: 0 auto;
       margin-top: 10px;
       margin-bottom: 50px;
-      .item1,.item2,.item3
-      {
+      .item1,
+      .item2,
+      .item3 {
         position: relative;
         width: 200px;
         height: 250px;
@@ -88,256 +148,240 @@
         display: flex;
         box-shadow: 0 4px 8px 0 #ffd8d5, 0 6px 20px 0 #fedbd9;
         margin: 3%;
-        .font
-        {
+        .font {
           align-items: center;
           align-content: center;
           font-size: 18px;
           margin-top: 10%;
         }
-        .img
-        {
+        .img {
           margin-top: 15%;
           width: 50%;
         }
       }
     }
-    .data
-{
-  $color: #5bc0eb;
+    .data {
+      $color: #5bc0eb;
 
-* {
-    box-sizing: border-box;
-}
+      * {
+        box-sizing: border-box;
+      }
 
+      @keyframes move-dot1 {
+        0% {
+          transform: translateX(-50%) translateY(-50%);
+        }
 
-@keyframes move-dot1 {
-    0% {
-        transform: translateX(-50%) translateY(-50%);
-    }
-    
-    20% {
-        transform: translateX(-50%) translateY(30%);
-    }
-    
-    100% { 
-        transform: translateX(-50%) translateY(30%);
-    }
-}
+        20% {
+          transform: translateX(-50%) translateY(30%);
+        }
 
+        100% {
+          transform: translateX(-50%) translateY(30%);
+        }
+      }
 
-@keyframes move-dot2 {
-    0% {
-        transform: translateX(-50%) translateY(-50%);
-    }
-    
-    15% {
-        transform: translateX(-50%) translateY(-10%);
-    }
-    
-    30% {
-        transform: translateX(-10%) translateY(-10%);
-    }
-    
-    100% { 
-        transform: translateX(-10%) translateY(-10%);
-    }
-}
+      @keyframes move-dot2 {
+        0% {
+          transform: translateX(-50%) translateY(-50%);
+        }
 
+        15% {
+          transform: translateX(-50%) translateY(-10%);
+        }
 
-body {
-    // background: #eee;
-}
+        30% {
+          transform: translateX(-10%) translateY(-10%);
+        }
 
+        100% {
+          transform: translateX(-10%) translateY(-10%);
+        }
+      }
 
-.animation-example {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    height: 90vmin;
-    width: 90vmin;
-    
-    > .item {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        height: 50%;
-        width: 50%;
-        transform: translateX(-50%);
-        transform-origin: 50% 100%;
-        pointer-events: none;
-    }
-    
-    > .item:nth-child(2) {
-        transform: translateX(-50%) rotate(90deg);
-    }
-    
-    > .item:nth-child(3) {
-        transform: translateX(-50%) rotate(180deg);
-    }
-    
-    > .item:nth-child(4) {
-        transform: translateX(-50%) rotate(270deg);
-    }
-    
-    > .item > .line {
-        height: 100%;
-        width: "calc(50% + 1px)";
-        border-right: 2px dashed $color;
-    }
-    
-    > .item > .dot {
-        position: absolute;
-        left: 50%;
-        top: 10%;
-        transform: translateX(-50%) translateY(-50%);
-        height: 100%;
-        width: 100%;
-        animation: move-dot1 5.5s linear infinite;
-    }
-    
-    > .item > .dot::after {
-        content: '';
-        position: absolute;
+      .animation-example {
+        position: fixed;
         top: 50%;
         left: 50%;
         transform: translateX(-50%) translateY(-50%);
-        height: 5%;
-        width: 5%;
-        background: #fff;
-        border: 2px solid $color;
-        border-radius: 50%;
-    }
+        height: 90vmin;
+        width: 90vmin;
 
-    > .item > .circle {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        height: 20%;
-        width: 20%;
-        border-radius: 50%;
-        background: $color;
-    }
-    
-    > .item.-type2 {
-        top: 0;
-        left: 0;
-        transform: none;
-        transform-origin: 100% 100%;
-    }
-    
-    > .item.-type2:nth-child(5) {
-        transform: scaleX(-100%);
-    }
-    
-    > .item.-type2:nth-child(6) {
-        transform: scaleX(-100%) scaleY(-100%);
-    }
-    
-    > .item.-type2:nth-child(7) {
-        transform: scaleY(-100%);
-    }
-    
-    > .item.-type2 > .line {
-        position: absolute;
-        top: 30%;
-        left: "calc(30% - 1px)";
-        width: 70%;
-        height: 40%;
-        border-right: none;
-        border-left: 2px dashed $color;
-        border-bottom: 2px dashed $color;
-    }
-    
-    > .item.-type2 > .dot {
-        top: 30%;
-        left: 30%;
-        animation: move-dot2 4s linear infinite;
-    }
-    
-    > .item.-type2 > .circle {
-        top: 30%;
-        left: 30%;
-        transform: translateX(-50%) translateY(-50%);
-    }
-    
-    > .item:nth-of-type(1) > .dot {
-        animation-delay: 0;
-    }
-    
-    > .item:nth-of-type(7) > .dot {
-        animation-delay: .5s;
-    }
-    
-    > .item:nth-of-type(2) > .dot {
-        animation-delay: 1s;
-    }
-    
-    > .item:nth-of-type(6) > .dot {
-        animation-delay: 1.5s;
-    }
-    
-    > .item:nth-of-type(3) > .dot {
-        animation-delay: 2s;
-    }
-    
-    > .item:nth-of-type(5) > .dot {
-        animation-delay: 2.5s;
-    }
-    
-    > .item:nth-of-type(4) > .dot {
-        animation-delay: 3s;
-    }
-    
-    > .item:nth-of-type(8) > .dot {
-        animation-delay: 3.5s;
-    }
-    
-    > .center {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translateX(-50%) translateY(-50%);
-        height: 50%;
-        width: 50%;
-    }
-    
-    > .center > .circle {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translateX(-50%) translateY(-50%);
-        border-radius: 50%;
-    }
-    
-    > .center > .circle:nth-child(1) {
-        height: 100%;
-        width: 100%;
-        background: #fff;
-        box-shadow: 0 0 3vmin rgba(0, 0, 0, .1);
-    }
-    
-    > .center > .circle:nth-child(2) {
-        height: 80%;
-        width: 80%;
-        border: 2px solid $color;
-    }
-    
-    > .center > .circle:nth-child(3) {
-        height: 50%;
-        width: 50%;
-        background: $color;
-    }
-}
+        > .item {
+          position: absolute;
+          top: 0;
+          left: 50%;
+          height: 50%;
+          width: 50%;
+          transform: translateX(-50%);
+          transform-origin: 50% 100%;
+          pointer-events: none;
+        }
 
-}
-    
-    
-    
+        > .item:nth-child(2) {
+          transform: translateX(-50%) rotate(90deg);
+        }
+
+        > .item:nth-child(3) {
+          transform: translateX(-50%) rotate(180deg);
+        }
+
+        > .item:nth-child(4) {
+          transform: translateX(-50%) rotate(270deg);
+        }
+
+        > .item > .line {
+          height: 100%;
+          width: "calc(50% + 1px)";
+          border-right: 2px dashed $color;
+        }
+
+        > .item > .dot {
+          position: absolute;
+          left: 50%;
+          top: 10%;
+          transform: translateX(-50%) translateY(-50%);
+          height: 100%;
+          width: 100%;
+          animation: move-dot1 5.5s linear infinite;
+        }
+
+        > .item > .dot::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translateX(-50%) translateY(-50%);
+          height: 5%;
+          width: 5%;
+          background: #fff;
+          border: 2px solid $color;
+          border-radius: 50%;
+        }
+
+        > .item > .circle {
+          position: absolute;
+          top: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          height: 20%;
+          width: 20%;
+          border-radius: 50%;
+          background: $color;
+        }
+
+        > .item.-type2 {
+          top: 0;
+          left: 0;
+          transform: none;
+          transform-origin: 100% 100%;
+        }
+
+        > .item.-type2:nth-child(5) {
+          transform: scaleX(-100%);
+        }
+
+        > .item.-type2:nth-child(6) {
+          transform: scaleX(-100%) scaleY(-100%);
+        }
+
+        > .item.-type2:nth-child(7) {
+          transform: scaleY(-100%);
+        }
+
+        > .item.-type2 > .line {
+          position: absolute;
+          top: 30%;
+          left: "calc(30% - 1px)";
+          width: 70%;
+          height: 40%;
+          border-right: none;
+          border-left: 2px dashed $color;
+          border-bottom: 2px dashed $color;
+        }
+
+        > .item.-type2 > .dot {
+          top: 30%;
+          left: 30%;
+          animation: move-dot2 4s linear infinite;
+        }
+
+        > .item.-type2 > .circle {
+          top: 30%;
+          left: 30%;
+          transform: translateX(-50%) translateY(-50%);
+        }
+
+        > .item:nth-of-type(1) > .dot {
+          animation-delay: 0;
+        }
+
+        > .item:nth-of-type(7) > .dot {
+          animation-delay: 0.5s;
+        }
+
+        > .item:nth-of-type(2) > .dot {
+          animation-delay: 1s;
+        }
+
+        > .item:nth-of-type(6) > .dot {
+          animation-delay: 1.5s;
+        }
+
+        > .item:nth-of-type(3) > .dot {
+          animation-delay: 2s;
+        }
+
+        > .item:nth-of-type(5) > .dot {
+          animation-delay: 2.5s;
+        }
+
+        > .item:nth-of-type(4) > .dot {
+          animation-delay: 3s;
+        }
+
+        > .item:nth-of-type(8) > .dot {
+          animation-delay: 3.5s;
+        }
+
+        > .center {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translateX(-50%) translateY(-50%);
+          height: 50%;
+          width: 50%;
+        }
+
+        > .center > .circle {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translateX(-50%) translateY(-50%);
+          border-radius: 50%;
+        }
+
+        > .center > .circle:nth-child(1) {
+          height: 100%;
+          width: 100%;
+          background: #fff;
+          box-shadow: 0 0 3vmin rgba(0, 0, 0, 0.1);
+        }
+
+        > .center > .circle:nth-child(2) {
+          height: 80%;
+          width: 80%;
+          border: 2px solid $color;
+        }
+
+        > .center > .circle:nth-child(3) {
+          height: 50%;
+          width: 50%;
+          background: $color;
+        }
+      }
+    }
   }
-  
 }
 
 .timeline-container {
@@ -353,22 +397,94 @@ body {
     width: 35%;
   }
 
-  .digitalClock{
-    margin: 5rem 0;
-    color: var(--primary-text-color);
-  }
-
-  .digitalTime {
-    text-align: center;
-    font-size: 3rem;
-  }
-
   .dayTitle {
-    margin: 2rem;
+    margin-top: 7rem;
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 2rem;
+
+    div {
+      margin-bottom: 1.5rem;
+    }
+  }
+}
+
+label {
+  position: realtive;
+  margin: 0 -35px;
+  display: inline-block;
+  width: 125px;
+  height: 150px;
+  line-height: 200px;
+  color: #ddd;
+  font-size: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 10px 6px -6px #777;
+  -webkit-transform: skew(-20deg) rotate(-20deg);
+  transform: skew(-20deg) rotate(-20deg);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+
+  .container {
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    cursor: pointer;
   }
 
+  .profile-image {
+    margin-bottom: 102px;
+    width: 5rem;
+    border-radius: 50%;
+  }
+}
 
-/////////////////////////
+.pop-group-name {
+  height: 0rem;
+}
+
+// label:nth-of-type(1) {
+//   background: #1abc9c;
+// }
+
+label {
+  background: #3498db;
+}
+
+// label:nth-of-type(3) {
+//   background: #e67e22;
+// }
+
+// label:nth-of-type(4) {
+//   background: #9b59b6;
+// }
+
+// label:nth-of-type(5) {
+//   background: #f1c40f;
+// }
+
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"]:checked ~ label {
+  -webkit-transform: skew(20deg) rotate(20deg);
+  transform: skew(20deg) rotate(20deg);
+}
+
+input[type="radio"]:checked + label {
+  margin: 0 55px;
+  -webkit-transform: none;
+  transform: none;
+}
+
+.most-popular-groups-title{
+  font-size: 1rem;
+  margin-top: 2rem;
+}
+
+.card-slider {
+  margin: 1.5rem auto 0 auto;
+  text-align: center;
 }
