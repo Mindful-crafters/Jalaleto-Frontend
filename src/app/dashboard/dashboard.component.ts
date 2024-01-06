@@ -38,6 +38,13 @@ export class DashboardComponent {
     const jalali = moment().locale('fa');
     this.jalaliYear = jalali.jYear();
     this.jalaliDay = jalali.date();
+    this.restService.post("User/LandingInfo", null).subscribe((res: LandingResult) => {
+
+      this.data.UsersCount = res.usersCount;
+      this.data.GroupCount = res.groupCount;
+      this.data.EventCount = res.eventCount;
+      this.data.ReminderCount = res.reminderCount;
+    });
   }
 
   private updateDate(date: Date) {
@@ -66,4 +73,26 @@ export class DashboardComponent {
       this.isLoggedIn = false;
     }
   }
+  data: {
+    UsersCount: number,
+    GroupCount: number,
+    ReminderCount: number,
+    EventCount: number,
+  } = {
+    UsersCount: 0,
+    GroupCount: 0,
+    ReminderCount: 0,
+    EventCount: 0,
+  }
+
+}
+interface LandingResult {
+  success: boolean,
+  code: number,
+  message: string,
+
+  usersCount: number,
+  groupCount: number,
+  reminderCount: number,
+  eventCount: number,
 }
