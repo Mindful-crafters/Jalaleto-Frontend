@@ -4,7 +4,8 @@
   <div *ngIf="selectedGroup" class="chat-container">
     <div class="chat-header">
       <div class="profile-avatar" (click)="OpenGroupInfo(selectedGroup)">
-        <img [src]="selectedGroup ? selectedGroup.imageUrl : '../../assets/icons/icons8-group-30.png'" alt="Profile Image">
+        <img [src]="selectedGroup ? selectedGroup.imageUrl : '../../assets/icons/icons8-group-30.png'"
+          alt="Profile Image">
       </div>
       <div class="group-info">
         <h2>{{selectedGroup.name}}</h2>
@@ -31,5 +32,6 @@
       <button (click)="sendMessage()">ارسال</button>
     </div>
   </div>
+
   <app-show-groups (showGroup)="OpenGroup($event)"></app-show-groups>
 </div>

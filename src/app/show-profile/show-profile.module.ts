@@ -1,6 +1,6 @@
 import { ToastrModule } from 'ngx-toastr';
 
-import { MatFormFieldModule} from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,11 +14,12 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/compiler';
-import { MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NavbarFooterModule } from '../navbar-footer.module';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { ShowGroupsComponent } from '../show-groups/show-groups.component';
 import { ShowProfileComponent } from './show-profile.component';
+import { MatTabsModule } from '@angular/material/tabs';
 @NgModule({
     declarations: [
         ShowProfileComponent,
@@ -37,7 +38,8 @@ import { ShowProfileComponent } from './show-profile.component';
         MatIconModule,
         MatDatepickerModule,
         NavbarFooterModule,
-        NzPopoverModule
+        NzPopoverModule,
+        MatTabsModule
     ],
     exports: [
         ShowProfileComponent,

@@ -37,6 +37,8 @@ import { ShowProfileModule } from './show-profile/show-profile.module';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { GroupsPageComponent } from './groups-page/groups-page.component';
 import { NzListModule } from 'ng-zorro-antd/list';
+import { MatTabsModule } from '@angular/material/tabs';
+
 
 
 
@@ -83,7 +85,8 @@ import { NzListModule } from 'ng-zorro-antd/list';
     WorkWithUsModule,
     ShowProfileModule,
 
-    NzListModule
+    NzListModule,
+    MatTabsModule
   ],
   providers: [
     DatePipe,

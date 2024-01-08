@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Group } from '../show-groups/show-groups.component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { GroupInfoComponent } from '../group-info/group-info.component';
@@ -9,12 +9,14 @@ import { RestService } from '../shared/services/Rest.service';
   templateUrl: './groups-page.component.html',
   styleUrls: ['./groups-page.component.scss']
 })
-export class GroupsPageComponent {
+export class GroupsPageComponent implements OnInit {
 
   selectedGroup: Group = null;
   messages: Message[] = []
 
   sendingMessage: string = '';
+  allGroups: Group[] = [];
+  myGroups: Group[] = [];
 
   constructor(
     private matDialog: MatDialog,
@@ -24,7 +26,7 @@ export class GroupsPageComponent {
   }
 
   ngOnInit() {
-    this.getMessages();
+    //this.getMessages();
   }
 
   OpenGroup(event: any) {
@@ -64,13 +66,13 @@ export class GroupsPageComponent {
 class Message {
   message: string;
   sender: User;
-  messageId : number;
+  messageId: number;
   groupId: number;
   senderUserId: string;
   content: string;
-  sentTime : Date
-  areYouSender : boolean;
-  senderImageUrl:string
+  sentTime: Date
+  areYouSender: boolean;
+  senderImageUrl: string
 
   constructor(m: any) {
     this.message = m.message;

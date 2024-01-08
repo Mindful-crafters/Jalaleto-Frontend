@@ -281,3 +281,14 @@ mat-hint {
     padding: 0 !important;
 }
 
+//tabs
+.mat-mdc-tab-body-content {
+    height: 100%;
+    overflow: hidden !important;
+}
+
+.search-bar {
+    .mat-mdc-form-field-subscript-wrapper {
+        height: 0 !important;
+    }
+}
