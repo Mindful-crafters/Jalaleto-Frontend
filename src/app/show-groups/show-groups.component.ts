@@ -71,6 +71,7 @@ export class Group {
 export class Member
 {
   mail: string = '';
+  firstName: string='';
   userName: string='';
   image: string='';
 }

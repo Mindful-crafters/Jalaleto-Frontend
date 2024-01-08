@@ -22,18 +22,18 @@
             display: flex;
             align-items: center;
 
-            .profile-avatar {
+            .profile-group {
                 width: 40px;
                 height: 40px;
                 border-radius: 50%;
                 overflow: hidden;
                 margin-right: 10px;
                 margin-inline-end: 8px;
-
                 img {
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
+                    border-radius: 50%;
                 }
             }
 
