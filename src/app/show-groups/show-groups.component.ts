@@ -33,6 +33,7 @@ export class ShowGroupsComponent implements OnInit {
   }
   allGroups: Group[] = [];
   myGroups: Group[] = [];
+  filterdGroups: Group[] = [];
   isSearching: boolean = false;
   searchString: string;
   searchInputChanges = new Subject<string>();
@@ -60,15 +61,15 @@ export class ShowGroupsComponent implements OnInit {
     this.searchInputChanges
       .pipe(debounceTime(500), distinctUntilChanged())
       .subscribe((value) => {
-
-        console.log(value);
-
-
+        this.Search(value);
       })
   }
 
-  Search() {
-    console.log('ki');
+  Search(groupName: string) {
+    this.restService.post('Group/Search?GroupName=' + groupName, null).subscribe((res) => {
+      console.log(res);
+      this.filterdGroups = res['data'];
+    })
 
   }
 }

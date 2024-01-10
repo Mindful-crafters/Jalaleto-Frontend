@@ -68,6 +68,29 @@
         </mat-tab>
     </mat-tab-group>
 
-    <div *ngIf="isSearching" style="height: calc(100vh - 4rem);background-color: red;">
+    <div *ngIf="isSearching" style="height: calc(100vh - 4rem);background-color: #fff;">
+        <div class="groups">
+            <div class="group" *ngFor="let group of filterdGroups" mat-ripple (click)="OpenGroup(group)">
+                <div style="display: flex; flex-direction: column;width: 75%;">
+                    <!-- <div class="name">{{group.name}}</div> -->
+                    <div class="name">
+                        <span nz-popover nzPopoverTitle="توضیحات" [nzPopoverContent]="group.description"
+                            nzPopoverPlacement="bottomRight">{{ group.name }}
+                        </span>
+                    </div>
+                    <div class="members-count">
+                        <span>تعداد اعضا: </span>
+                        <span>{{group.members.length}}</span>
+                    </div>
+                </div>
+                <div *ngIf="!group.imageFile" class="prof">
+                    <img *ngIf="!group.imageUrl || group.imageUrl =='' " src="assets/icons/group-icon.svg" alt="">
+                    <img *ngIf="group.imageUrl && group.imageUrl !='' " #prof [src]="group.imageUrl" alt="">
+                </div>
+                <div *ngIf="group.imageFile" class="prof">
+                    <img [src]="group.imageFile" alt="">
+                </div>
+            </div>
+        </div>
     </div>
 </div>
