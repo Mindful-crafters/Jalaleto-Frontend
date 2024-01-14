@@ -4,7 +4,8 @@
   <div *ngIf="selectedGroup" class="chat-container">
     <div class="chat-header">
       <div class="profile-avatar" (click)="OpenGroupInfo(selectedGroup)">
-        <img [src]="selectedGroup ? selectedGroup.imageUrl : '../../assets/icons/icons8-group-30.png'" alt="Profile Image">
+        <img *ngIf="!selectedGroup.imageUrl || selectedGroup.imageUrl =='' " src="assets/icons/group-icon.svg" alt="">
+        <img *ngIf="selectedGroup.imageUrl && selectedGroup.imageUrl !='' " #prof [src]="selectedGroup.imageUrl" alt="">
       </div>
       <div class="group-detail">
         <div class="group-info">
