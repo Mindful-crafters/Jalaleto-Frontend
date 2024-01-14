@@ -5,6 +5,7 @@ import { GroupInfoComponent } from '../group-info/group-info.component';
 import { RestService } from '../shared/services/Rest.service';
 import { HubConnection } from '@microsoft/signalr';
 import * as signalR from '@microsoft/signalr';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
   selector: 'app-groups-page',
@@ -24,6 +25,7 @@ export class GroupsPageComponent implements OnInit {
   constructor(
     private matDialog: MatDialog,
     private restService: RestService,
+    private authService: AuthService,
   ) {
 
   }
@@ -47,20 +49,27 @@ export class GroupsPageComponent implements OnInit {
       }).build();
 
     this.hubConnection.start().then(() => {
-        console.log('connection started');
-        this.hubConnection
+      console.log('connection started');
+      this.hubConnection
         .invoke('joinGroupHub', this.selectedGroup.groupId)
         .catch(err => console.log(err));
     }).catch(err => console.log(err));
 
     this.hubConnection.onclose(() => {
-        console.log('try to re start connection');
-        this.hubConnection.start().then(() => {
-          console.log('connection re started');
-        }).catch(err => console.log(err));
+      console.log('try to re start connection');
+      this.hubConnection.start().then(() => {
+        console.log('connection re started');
+      }).catch(err => console.log(err));
     });
 
     this.hubConnection.on('NewMessage', (data) => {
+      let newMessage: Message = data;
+
+      if (newMessage.senderUserId === this.authService.getUserId) {
+        newMessage.areYouSender = true;
+      } else {
+        newMessage.areYouSender = false;
+      }
       this.messages.unshift(data);
     });
   }

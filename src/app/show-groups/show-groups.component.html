@@ -26,10 +26,6 @@
                                 nzPopoverPlacement="bottomRight">{{ group.name }}
                             </span>
                         </div>
-                        <div class="members-count">
-                            <span>تعداد اعضا: </span>
-                            <span>{{group.members.length}}</span>
-                        </div>
                     </div>
                     <div *ngIf="!group.imageFile" class="prof">
                         <img *ngIf="!group.imageUrl || group.imageUrl =='' " src="assets/icons/group-icon.svg" alt="">
@@ -50,10 +46,6 @@
                             <span nz-popover nzPopoverTitle="توضیحات" [nzPopoverContent]="group.description"
                                 nzPopoverPlacement="bottomRight">{{ group.name }}
                             </span>
-                        </div>
-                        <div class="members-count">
-                            <span>تعداد اعضا: </span>
-                            <span>{{group.members.length}}</span>
                         </div>
                     </div>
                     <div *ngIf="!group.imageFile" class="prof">
