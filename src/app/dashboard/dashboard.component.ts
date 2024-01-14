@@ -1,11 +1,13 @@
 import { AuthService } from './../shared/services/auth.service';
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { RestService } from '../shared/services/Rest.service';
 import * as moment from 'jalali-moment';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CreateGroupDialogComponent } from '../create-group-dialog/create-group-dialog.component';
 import { Group } from '../shared/types/Group';
+import { DatePipe } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,8 +15,12 @@ import { Group } from '../shared/types/Group';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
+  hours: string | number = '00';
+  minutes: string | number = '00';
+  seconds: string | number = '00';
+
   isLoggedIn = false;
-  popularGroups : Group[];
+  popularGroups: Group[];
   private dayArray = ['یکشنبه', 'دوشنبه', 'سه شنبه', 'چهارشبه', 'پنجشنبه', 'جمعه', 'شنبه'];
 
   private date = new Date();
@@ -27,32 +33,95 @@ export class DashboardComponent {
   public jalaliMonth;
   public jalaliYear;
   public jalaliDay;
+  formattedDate: string;
+
+  constructor(
+    private restService: RestService,
+    private datePipe: DatePipe,
+    private auth: AuthService,
+    private http: HttpClient,
+    private router: Router,
+    private authService: AuthService) {
+    this.isLoggedIn = authService.isLoggedIn();
+    console.log(this.authService.getToken())
+
+    const currentDate = new Date();
+
+    // Map English month names to Persian
+    const persianMonthMap = {
+      January: 'ژانویه',
+      February: 'فوریه',
+      March: 'مارس',
+      April: 'آوریل',
+      May: 'مه',
+      June: 'ژوئن',
+      July: 'ژوئیه',
+      August: 'اوت',
+      September: 'سپتامبر',
+      October: 'اکتبر',
+      November: 'نوامبر',
+      December: 'دسامبر',
+    };
+
+    // Get month names
+    const englishMonth = currentDate.toLocaleString('en-US', { month: 'long' });
+    const persianMonth = persianMonthMap[englishMonth];
+
+    // Format the date in the desired Persian way
+    const formattedJalaliDate = `${currentDate.getDate()} ${persianMonth} ${currentDate.getFullYear()}`;
+    const formattedGregorianDate = currentDate.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+
+    this.formattedDate = `${formattedJalaliDate}`;
+  }
 
   ngOnInit() {
-    const token = '';
+
     setInterval(() => {
       const date = new Date();
       this.updateDate(date);
     }, 1000)
+
     this.day = this.dayArray[this.date.getDay()];
     this.jalaliMonth = moment().locale('fa').format('jMMMM');
     const jalali = moment().locale('fa');
     this.jalaliYear = jalali.jYear();
     this.jalaliDay = jalali.date();
-    this.loadPopularGroups(10)
+    this.loadPopularGroups(5)
+    this.updateTime()
   }
 
-  loadPopularGroups(num : number){
-    this.restService.postWithoutHeader<any>('Group/PopularGroups', num).subscribe(
-      (response) => {
-        console.log(response)
-        this.popularGroups = response['data']
-        console.log(this.popularGroups)
+  private updateTime(): void {
+    const date = new Date();
+    this.hours = this.formatTime(date.getHours());
+    this.minutes = this.formatTime(date.getMinutes());
+    this.seconds = this.formatTime(date.getSeconds());
+
+    setTimeout(() => this.updateTime(), 1000);
+  }
+
+  private formatTime(value: number): string {
+    return value < 10 ? `0${value}` : `${value}`;
+  }
+
+  loadPopularGroups(num: number) {
+    const apiUrl = 'https://dev.jalaleto.ir/api/Group/PopularGroups';
+    const url = `${apiUrl}?cnt=${num}`;
+
+    this.http.post(url, {}).subscribe(
+      (data) => {
+        console.log('Received data:', data);
+        this.popularGroups = data['data'];
+        console.log(this.popularGroups);
+        // Process the data as needed
       },
       (error) => {
-        console.log('error')
+        console.error('Error posting data:', error);
       }
-    )
+    );
   }
 
   private updateDate(date: Date) {
@@ -67,14 +136,7 @@ export class DashboardComponent {
     this.second = seconds < 10 ? '0' + seconds : seconds.toString();
   }
 
-  constructor(
-    private restService: RestService,
-    private auth: AuthService,
-    private router: Router,
-    private authService: AuthService) {
-    this.isLoggedIn = authService.isLoggedIn();
-    console.log(this.authService.getToken())
-  }
+
 
   logOut(event: boolean) {
     if (event) {

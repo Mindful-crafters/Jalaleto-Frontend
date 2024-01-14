@@ -1,8 +1,9 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import * as moment from 'jalali-moment';
 import { CreateGroupDialogComponent } from '../create-group-dialog/create-group-dialog.component';
 import { RestService } from '../shared/services/Rest.service';
+import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
 
 @Component({
   selector: 'app-show-groups',
@@ -18,14 +19,24 @@ export class ShowGroupsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.SearchInputChangeHandler();
+    this.restService.post('Group/Groups?FilterMyGroups=false', null).subscribe((res) => {
+      console.log(res);
+      this.allGroups = res['data'];
+    })
+
     this.restService.post('Group/Groups?FilterMyGroups=true', null).subscribe((res) => {
       console.log(res);
-
-      this.groups = res['data'];
-      console.log(this.groups);
+      this.myGroups = res['data'];
     })
   }
-  groups: Group[] = [];
+  allGroups: Group[] = [];
+  myGroups: Group[] = [];
+  filterdGroups: Group[] = [];
+  isSearching: boolean = false;
+  searchString: string;
+  searchInputChanges = new Subject<string>();
 
   CreateGroup() {
     const dialogRef: MatDialogRef<any, any> = this.matDialog.open(CreateGroupDialogComponent, {
@@ -35,15 +46,31 @@ export class ShowGroupsComponent implements OnInit {
     })
 
     dialogRef.afterClosed().subscribe((res) => {
-      if (res)
-        this.groups.push(res);
-      console.log(res);
+      //if (res)
+      //   this.groups.push(res);
+      // console.log(res);
 
     })
   }
 
   OpenGroup(group: Group) {
     this.showGroup.emit(group);
+  }
+
+  SearchInputChangeHandler() {
+    this.searchInputChanges
+      .pipe(debounceTime(500), distinctUntilChanged())
+      .subscribe((value) => {
+        this.Search(value);
+      })
+  }
+
+  Search(groupName: string) {
+    this.restService.post('Group/Search?GroupName=' + groupName, null).subscribe((res) => {
+      console.log(res);
+      this.filterdGroups = res['data'];
+    })
+
   }
 }
 
@@ -53,12 +80,11 @@ export class Group {
   description: string = '';
   imageUrl: string = '';
   imageFile: File = null;
-  members:Member[]
+  members: Member[]
 }
 
-export class Member
-{
+export class Member {
   mail: string = '';
-  userName: string='';
-  image: string='';
+  userName: string = '';
+  image: string = '';
 }

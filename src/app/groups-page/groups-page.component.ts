@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Group } from '../show-groups/show-groups.component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { GroupInfoComponent } from '../group-info/group-info.component';
@@ -11,13 +11,15 @@ import * as signalR from '@microsoft/signalr';
   templateUrl: './groups-page.component.html',
   styleUrls: ['./groups-page.component.scss']
 })
-export class GroupsPageComponent {
+export class GroupsPageComponent implements OnInit {
 
 
   selectedGroup: Group = null;
   messages: Message[] = [];
   sendingMessage: string = '';
   private hubConnection: HubConnection;
+  allGroups: Group[] = [];
+  myGroups: Group[] = [];
 
   constructor(
     private matDialog: MatDialog,
@@ -28,7 +30,7 @@ export class GroupsPageComponent {
 
 
   ngOnInit() {
-    this.getMessages();
+    //this.getMessages();
   }
 
   OpenGroup(event: any) {

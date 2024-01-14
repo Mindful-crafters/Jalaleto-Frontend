@@ -4,6 +4,7 @@
 
 .container {
     display: flex;
+    overflow: hidden;
 
     .no-group-selected {
         width: 80vw;
