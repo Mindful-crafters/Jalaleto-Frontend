@@ -6,12 +6,12 @@
     display: flex;
 
     .no-group-selected {
-        width: 70vw;
+        width: 80vw;
         height: 100vh;
     }
 
     .chat-container {
-        width: 70vw;
+        width: 80vw;
         height: 100vh;
         display: flex;
         flex-direction: column;
@@ -21,6 +21,10 @@
             padding: 20px;
             display: flex;
             align-items: center;
+
+            .members-count {
+              margin-bottom: 0.25rem;
+          }
 
             .profile-avatar {
                 width: 40px;
@@ -88,6 +92,7 @@
         }
 
         .message-input {
+          background-color: #BDD5EA;
             display: flex;
             align-items: center;
             padding: 10px;
@@ -115,3 +120,6 @@
         }
     }
 }
+
+
+

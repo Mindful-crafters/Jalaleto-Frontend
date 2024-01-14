@@ -68,8 +68,8 @@ export class NavbarComponent implements OnInit {
       }, 5000);
     });
 
-    this.hubConnection.on('newNotificationRecived', (data) => {
-      console.log('new Notification Recived:' + data);
+    this.hubConnection.on('newNotificationReceived', (data) => {
+      console.log('new Notification Received:' + data);
       this.getNotifications();
     });
   }

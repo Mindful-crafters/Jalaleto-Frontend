@@ -18,24 +18,12 @@ export class ShowGroupsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.restService.post('Group/Groups', null).subscribe((res) => {
+    this.restService.post('Group/Groups?FilterMyGroups=true', null).subscribe((res) => {
       console.log(res);
 
       this.groups = res['data'];
       console.log(this.groups);
     })
-    // this.groups.push({
-    //   name: 'gropu',
-    //   description: 'description',
-    //   imageUrl: 'assets/a.png',
-    //   imageFile: null,
-    //   members:[
-    //     {mail:'ali@gsrf.ddsf',
-    //     userName:'ali',
-    //     image: 'assets/b.png'
-    //   }
-    //   ]
-    // })
   }
   groups: Group[] = [];
 
