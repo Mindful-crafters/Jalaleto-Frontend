@@ -30,6 +30,9 @@ export class GroupsPageComponent implements OnInit {
 
   }
 
+  ngOnDestroy(): void {
+    this.stopConnection();
+  }
 
   ngOnInit() {
     //this.getMessages();

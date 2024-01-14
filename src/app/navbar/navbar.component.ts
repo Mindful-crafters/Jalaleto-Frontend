@@ -22,7 +22,9 @@ export class NavbarComponent implements OnInit {
   isLoggedIn = false;
   userProfile: UserProfile | null = null;
   notifications: Notification[] = [];
+  groups: Group[];
   private hubConnection: HubConnection;
+  hideRedCircle: boolean = true;
 
   @Output() logedOut: EventEmitter<boolean> = new EventEmitter<boolean>();
   last: any;
@@ -42,6 +44,19 @@ export class NavbarComponent implements OnInit {
     this.fetchUserProfile();
     this.getNotifications();
     this.hubInit();
+    this.getGroups();
+  }
+
+  getGroups() {
+    this.restService.post('Group/Groups?FilterMyGroups=true', null).subscribe((res) => {
+      this.groups = res['data'];
+
+      this.groups.forEach((group) => {
+        this.hubConnection
+          .invoke('joinGroupHub', group.groupId)
+          .catch(err => console.log(err));
+      })
+    })
   }
 
   ngOnDestroy(): void {
@@ -50,7 +65,7 @@ export class NavbarComponent implements OnInit {
 
   public hubInit() {
     this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl('wss://dev.jalaleto.ir/Hub', {
+      .withUrl('wss://dev.jalaleto.ir/MessageHub', {
         skipNegotiation: true,
         transport: signalR.HttpTransportType.WebSockets
       }).build();
@@ -60,17 +75,28 @@ export class NavbarComponent implements OnInit {
     }).catch(err => console.log(err));
 
     this.hubConnection.onclose(() => {
-      setTimeout(() => {
-        console.log('try to re start connection');
-        this.hubConnection.start().then(() => {
-          console.log('connection re started');
-        }).catch(err => console.log(err));
-      }, 5000);
+      console.log('try to re start connection');
+      this.hubConnection.start().then(() => {
+        console.log('connection re started');
+      }).catch(err => console.log(err));
     });
 
-    this.hubConnection.on('newNotificationReceived', (data) => {
-      console.log('new Notification Received:' + data);
-      this.getNotifications();
+    this.hubConnection.on('NewMessage', (data) => {
+      console.log(data);
+      this.hideRedCircle = false;
+      const message: Message = data;
+      const group = this.groups.find(g => g.groupId === message.groupId);
+
+      const notif: Notification = {
+        title: group.name,
+        description: message.content,
+        icon: group.imageUrl,
+        link: '',
+        type: NotificationType.Message,
+      }
+      this.notifications.push(
+        notif
+      )
     });
   }
 
@@ -153,4 +179,22 @@ enum NotificationType {
   Reminder = 0,
   Event = 1,
   Message = 2,
+}
+
+interface Message {
+  messageId: number;
+  groupId: number;
+  senderUserId: string;
+  content: string;
+  sentTime: Date
+  areYouSender: boolean;
+  senderImageUrl: string
+}
+
+export class Group {
+  groupId: number = 0;
+  name: string = '';
+  description: string = '';
+  imageUrl: string = '';
+  imageFile: File = null;
 }
