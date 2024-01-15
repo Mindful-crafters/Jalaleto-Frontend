@@ -1,6 +1,6 @@
+<div>
 <div *ngIf="!isLoggedIn" class="first-page">
   <app-navbar></app-navbar>
-
   <div class="preview">
     <div class="pic">
       <img class="calendar-pic" src="/assets/3970925.svg" />
@@ -85,11 +85,12 @@
         </div>
       </div>
     </div>
+    <app-footer></app-footer>
   </div>
-
+  
   <div class="spacer"></div>
 
-  <app-footer></app-footer>
+  
 </div>
 
 <div *ngIf="isLoggedIn">

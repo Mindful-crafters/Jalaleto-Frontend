@@ -441,14 +441,14 @@ figure:hover {
   }
 }
 
-// .timeline-container {
-//   padding: 1rem;
-//   gap: 1rem;
-//   display: flex;
+.timeline-container {
+  padding: 1rem;
+  gap: 1rem;
+  display: flex;
 
-//   .timeline {
-//     width: 65%;
-//   }
+  .timeline {
+    width: 65%;
+  }
 
   .left-panel {
     width: 35%;
@@ -463,7 +463,7 @@ figure:hover {
       margin-bottom: 1.5rem;
     }
   }
-}
+
 
 label {
   position: realtive;
