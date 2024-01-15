@@ -44,6 +44,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -84,6 +86,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     RulesModule,
     WorkWithUsModule,
     ShowProfileModule,
+    MatFormFieldModule,
 
     NzListModule,
     MatTabsModule
