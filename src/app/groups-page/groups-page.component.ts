@@ -22,6 +22,7 @@ export class GroupsPageComponent implements OnInit {
   allGroups: Group[] = [];
   myGroups: Group[] = [];
 
+
   constructor(
     private matDialog: MatDialog,
     private restService: RestService,
@@ -108,8 +109,9 @@ export class GroupsPageComponent implements OnInit {
       data: group
     })
   }
-
 }
+
+
 
 class Message {
   message: string;
@@ -120,11 +122,13 @@ class Message {
   content: string;
   sentTime: Date
   areYouSender: boolean;
-  senderImageUrl: string
+  senderImageUrl: string;
+  senderName: string
 
   constructor(m: any) {
     this.message = m.message;
     this.sender = m.sender;
+    this.senderImageUrl = m.sender.image;
   }
 }
 

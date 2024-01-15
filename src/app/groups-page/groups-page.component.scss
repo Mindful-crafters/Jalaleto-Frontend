@@ -66,10 +66,26 @@
           direction: ltr;
           margin-bottom: 1rem;
 
-          .text {
+          .text-container {
+            position: relative;
+            padding: 8px;
+            border-radius: 8px;
             background-color: #fff;
+            width: fit-content;
+          }
+
+          .text {
+
             padding: 4px;
             border-radius: 5px;
+          }
+
+          .username {
+            margin-bottom: 4px;
+            margin-left: 2.5rem;
+            padding: 4px;
+            border-radius: 5px;
+            font-size: 12px;
           }
 
           img {

@@ -17,7 +17,7 @@
         </div>
       </div>
     </div>
-    <div class="content">
+    <!-- <div class="content">
       <div class="message" *ngFor="let message of messages">
         <div *ngIf="!message.areYouSender" class="others-message">
           <img [src]="message.senderImageUrl" alt="error" />
@@ -27,7 +27,25 @@
           <span class="text">{{ message.content }}</span>
         </div>
       </div>
+    </div> -->
+    <div class="content">
+      <div class="message" *ngFor="let message of messages">
+        <div *ngIf="!message.areYouSender" class="others-message">
+          <div class="text-container">
+            <div class="username">{{ message.senderName }}</div>
+            <img *ngIf="!message.senderImageUrl || message.senderImageUrl === ''" src="../../assets/icons/icons8-test-account-48.png" alt="">
+            <img *ngIf="message.senderImageUrl && message.senderImageUrl !== ''" [src]="message.senderImageUrl" alt="">
+            <span class="text">{{ message.content }}</span>
+          </div>
+        </div>
+        <div *ngIf="message.areYouSender" class="my-message">
+          <span class="text">{{ message.content }}</span>
+        </div>
+      </div>
     </div>
+
+
+
     <div class="message-input">
       <input [(ngModel)]="sendingMessage" type="text" placeholder="پیام" />
       <button (click)="sendMessage()">ارسال</button>
