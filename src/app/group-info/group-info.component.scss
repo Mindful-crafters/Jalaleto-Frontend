@@ -1,93 +1,90 @@
-// @import "../../theme/common.styles.scss";
 
-// .info
-// {
-//     display: flex;
-//     justify-content: center;
-//     min-height: 100vh;
-//     align-items: center;
-//     background-color: #f7f7ff;
-//     .containor
-//     {
-//         @include box-style();
-//         min-height: auto;
-//         width: 22rem;
-//         background-color: #fff;
-//         margin: 1.5rem 0;
-//         padding:1rem;
-        
-//         .header
-//         {
-//             display: flex;
-//             border-bottom: 1px solid #495867;
-//             .members-count
-//             {
-//                 margin-right: -100%;
-//             }
-//             .profile
-//             {
-//                 position: relative;
-//                 width: 20%;
-//                 margin-right: 3%;
-//             }
-//             .text
-//             {
-//                 position: relative;
-//                 margin-right: 60%;
-//                 margin-top: 8%;
-//             }
-            
-//         }
-//         .body
-//         {
-//             display: flex;
-//             .name
-//             {
-//                 position: relative;
-//                 margin-right: 68%;
-//                 margin-top: 7%;
-
-//             }
-//             .member-img
-//             {
-//                 position: relative;
-//                 width: 70%;
-//                 margin-top: 10%;
-//                 margin-right: 15%;
-
-//             }
-//         }
-        
-//     }
-    
-// }
 
 .dialog {
     width: 32rem;
-    overflow: hidden;
+    //overflow: hidden;
 
     .header {
+        display: flex;
         border-bottom: 1px solid #495867;
-
+        padding: 2%;
         .close-button {
             width: 4rem;
             margin-top: 0.5rem;
             margin-inline-start: 0.5rem;
             margin-bottom: 0.5rem;
         }
-
-        .title {
-            font-weight: bold;
-            font-size: 18px;
+        .info
+        {
+            display: flex;
+            margin-right: 220px;
+            margin-top: 2%;
+            
+            .profile
+            {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+            
+            }
+            .title 
+            {
+                font-weight: bold;
+                font-size: 25px;
+                margin-top: 23%;
+                margin-left: 5%;
+            }
         }
+        
         
 
     }
 
     .content {
-        padding: 0 1rem;
-        max-height: calc(100vh - 10rem);
+        padding: 2px;
+        //max-height: calc(100vh - 10rem);
         overflow: auto;
+        //align-items: center;
+        .member
+        {
+            border-bottom: 1px solid #ccc;
+            align-items: center;
+            .group
+            {
+                align-items: center;
+                display: flex;
+                padding: 5%;
+                justify-content: left;
+                .img-member
+                {
+                    .image-member
+                    {
+                        width: 85px;
+                        height: 85px;
+                        border-radius: 50%;
+                    }
+                }
+                .name{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: left;
+                    align-items: flex-end;
+                    margin-left: 13px;
+                    .firstname
+                    {
+                        position: relative;
+                        font-size: 20px;
+                    }
+                    .username
+                    {
+                        color: #838383;
+
+                    }
+                } 
+            }
+            
+            
+        }
 
     }
 
