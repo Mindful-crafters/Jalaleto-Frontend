@@ -87,4 +87,5 @@ export class Member {
   mail: string = '';
   userName: string = '';
   image: string = '';
+  firstName: string = '';
 }
