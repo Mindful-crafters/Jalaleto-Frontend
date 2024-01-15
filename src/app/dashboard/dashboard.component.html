@@ -5,48 +5,83 @@
     <div class="pic">
       <img class="calendar-pic" src="/assets/3970925.svg" />
     </div>
-    <div class="title">
-      <p>به جلالتو خوش آمدید</p>
-      <br />
-      <h2 class="text">
-        برای ثبت رویداد ها و به اشتراک گذاری آنها با دوستان<br />
-        به صفحه ی شخصی خود وارد شوید.
-      </h2>
-      <div class="button">
-        <button
-          type="button"
-          routerLink="/login"
-          mat-button
-          class="login-button primary-button"
-        >
-          ورود
-        </button>
-        <button
-          type="button"
-          routerLink="/signup"
-          mat-button
-          class="signup-button primary-button"
-        >
-          ثبت نام
-        </button>
+      <div class="title">
+        <p>به جلالتو خوش آمدید</p><br>
+        <h2 class="text">
+          برای ثبت رویداد ها و به اشتراک گذاری آنها با دوستان<br />
+          به صفحه ی شخصی خود وارد شوید.
+        </h2>
+        <div class="button">
+          <button
+            type="button"
+            routerLink="/login"
+            mat-button
+            class="login-button primary-button"
+          >
+            ورود
+          </button>
+          <button
+            type="button"
+            routerLink="/signup"
+            mat-button
+            class="signup-button primary-button"
+          >
+            ثبت نام
+          </button>
+        </div>
+        
       </div>
     </div>
-  </div>
-  <div class="body">
-    <div>
-      <h1 class="service">خدمات سایت</h1>
-      <div class="items">
-        <div class="item1">
-          <img class="img" src="/assets/event.png" />
-          <h2 class="font">ثبت رویداد</h2>
+    <div class="data">
+      <div class="outer3">
+        <h2 class="title">کاربران</h2>
+        <p class="number">{{data.UsersCount}}</p>
+        <div class="inner3">
+          <img class="img1" src="/assets/smile.png">
         </div>
-        <div class="item2">
-          <img class="img" src="/assets/reminder.png" />
-          <h2 class="font">افزودن یاداوری</h2>
+        
+        
+      </div>
+      <div class="outer2">
+        <h2 class="title">گروه‌ها</h2>
+        <p class="number">{{data.GroupCount}}</p>
+        <div class="inner2"> 
+          <img class="img1" src="/assets/group1.png">
         </div>
-        <div class="item3">
-          <img class="img" src="/assets/group.png" />
-          <h2 class="font">ثبت رویداد های گروهی</h2>
+      </div>
+      <div class="outer4">
+        <h2 class="title">رویدادها</h2>
+        <p class="number">{{data.EventCount}}</p>
+        <div class="inner4">
+          <img class="img1" src="/assets/event1.png">
+        </div>
+        
+        
+      </div>
+      <div class="outer1">
+        <h2 class="title">یاداروی‌ها</h2>
+        <p class="number">{{data.ReminderCount}}</p>
+        <div class="inner1">
+          <img class="img1" src="/assets/reminder1.png">
+        </div>
+      </div>
+    </div>
+    <div class="body">
+      <div>
+        <h1 class="service">خدمات سایت</h1>
+        <div class="items">
+          <div class="item1">
+            <img class="img" src="/assets/event.png">
+            <h2 class="font">ثبت رویداد</h2>
+          </div>
+          <div class="item2">
+            <img class="img" src="/assets/reminder.png">
+            <h2 class="font">افزودن یاداوری</h2>
+          </div>
+          <div class="item3">
+            <img class="img" src="/assets/group.png">
+            <h2 class="font">ثبت رویداد های گروهی</h2>
+          </div>
         </div>
       </div>
     </div>
