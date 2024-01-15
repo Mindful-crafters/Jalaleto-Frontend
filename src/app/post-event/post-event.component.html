@@ -4,7 +4,7 @@
             <img src="assets/icons/close.svg">
         </button> -->
         <span class="title">
-            ایجاد گروه جدید
+            ایجاد رویداد
         </span>
     </div>
     <form [formGroup]="formGroup" class="content">
@@ -19,18 +19,28 @@
                     #fileInput />
                 <button type="button" (click)="fileInput.click()">
                     
-                    <img class="edit" src="../../assets/icons/icons8-camera-48.png" alt="Upload Image" />
+                    <button class="add-photo" mat-stroked-button color="primary" (click)="fileInput.click()">افزودن عکس</button>
                 </button>
             </div>
         </div>
-        <mat-form-field class="input-group" appearance="outline" hideRequiredMarker>
+        <br>
+        <div class="input">
+        <mat-form-field class="title" appearance="outline" hideRequiredMarker>
             <mat-label>عنوان</mat-label>
             <input formControlName="name" matInput />
             <mat-error>این قسمت را خالی نگذارید.</mat-error>
         </mat-form-field>
-        <mat-form-field class="input-group" appearance="outline" hideRequiredMarker>
+        
+        <mat-form-field class="description" appearance="outline" hideRequiredMarker>
             <mat-label>توضیحات</mat-label>
             <textarea formControlName="description" matInput></textarea>
         </mat-form-field>
+        <button class="post-button" mat-button>ایجاد</button>
+    </div>
     </form>
+    
+    <!-- <div class="footer">
+        <button class="save-button" mat-button (click)="Submit()">ایجاد</button>
+        <button class="cancel-button" mat-button (click)="close()">لغو</button>
+    </div> -->
 </div>

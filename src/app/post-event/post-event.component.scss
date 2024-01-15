@@ -1,5 +1,6 @@
+
 .dialog {
-    width: 32rem;
+    width: 33rem;
     overflow: hidden;
 
     .header {
@@ -22,12 +23,45 @@
     .content {
         .profile-container
         {
+            display: flex;
             .profile
             {
-                width: 200px;
-                height: 200px;
+                width: 100px;
+                height: 100px;
                 border-radius: 50%;
             }
+            .circle
+            {
+                .add-photo
+                {
+                    border-radius: 20%;
+                    margin-top: 50px;
+                }
+            }
+        }
+        .input
+        {
+            .title
+            {
+                justify-content: center;
+            }
+            .description
+            {
+                justify-content: center;
+                width: 98%;
+            }
+        }
+        
+        .post-button
+        {
+            width: 98%;
+            height: 2rem;
+            background-color: #3a86ff;
+            color: #fff;
+            margin-inline-end: 1rem;
+            margin-bottom: 1rem;
+            margin-top: 1rem;
+            
         }
     }
 }
