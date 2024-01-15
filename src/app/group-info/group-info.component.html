@@ -14,16 +14,19 @@
     <div class="content new-reminder">
         <div class="member" *ngFor="let member of data.members">
             <div class="group" >
-                <span class="firstname" nz-popover nzPopoverPlacement="bottomRight">{{member.firstName}}</span>
-                    
-                <div>
+                <div class="name">
+                    <span class="firstname" nz-popover nzPopoverPlacement="bottomRight">{{member.firstName}}</span>
+                    <span class="username" nz-popover nzPopoverPlacement="bottomRight">{{member.userName}}</span>
+                </div>
+                 
+                <div class="img-member">
                     <span>
                         <img class="image-member" *ngIf="member.image && member.image !== ''" [src]="member.image" >
                         <img class="image-member" *ngIf="!member.image || member.image === ''" src="/assets/profile.svg">
                     </span>
                 </div>
             </div>
-            <span class="username" nz-popover nzPopoverPlacement="bottomRight">{{member.userName}}</span>
+            
          </div>
     </div>
 </div>

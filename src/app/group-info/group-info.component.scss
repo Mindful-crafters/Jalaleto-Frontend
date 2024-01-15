@@ -1,66 +1,4 @@
-// @import "../../theme/common.styles.scss";
 
-// .info
-// {
-//     display: flex;
-//     justify-content: center;
-//     min-height: 100vh;
-//     align-items: center;
-//     background-color: #f7f7ff;
-//     .containor
-//     {
-//         @include box-style();
-//         min-height: auto;
-//         width: 22rem;
-//         background-color: #fff;
-//         margin: 1.5rem 0;
-//         padding:1rem;
-        
-//         .header
-//         {
-//             display: flex;
-//             border-bottom: 1px solid #495867;
-//             .members-count
-//             {
-//                 margin-right: -100%;
-//             }
-//             .profile
-//             {
-//                 position: relative;
-//                 width: 20%;
-//                 margin-right: 3%;
-//             }
-//             .text
-//             {
-//                 position: relative;
-//                 margin-right: 60%;
-//                 margin-top: 8%;
-//             }
-            
-//         }
-//         .body
-//         {
-//             display: flex;
-//             .name
-//             {
-//                 position: relative;
-//                 margin-right: 68%;
-//                 margin-top: 7%;
-
-//             }
-//             .member-img
-//             {
-//                 position: relative;
-//                 width: 70%;
-//                 margin-top: 10%;
-//                 margin-right: 15%;
-
-//             }
-//         }
-        
-//     }
-    
-// }
 
 .dialog {
     width: 32rem;
@@ -103,43 +41,48 @@
     }
 
     .content {
-        padding: 0 1rem;
-        max-height: calc(100vh - 10rem);
+        padding: 2px;
+        //max-height: calc(100vh - 10rem);
         overflow: auto;
-        align-items: center;
+        //align-items: center;
         .member
         {
+            border-bottom: 1px solid #ccc;
             align-items: center;
             .group
             {
                 align-items: center;
                 display: flex;
                 padding: 5%;
-                border-bottom: 1px solid #ccc;
-                justify-content: space-between;
-                .image-member
+                justify-content: left;
+                .img-member
                 {
-                    width: 75px;
-                    height: 75px;
-                    border-radius: 50%;
+                    .image-member
+                    {
+                        width: 85px;
+                        height: 85px;
+                        border-radius: 50%;
+                    }
                 }
-                .firstname
-                {
-                    //margin-right: 50%;
-                    font-size: 20px;
-                }
-                
-                    
-                
-                
-            }
-            .username
-                {
-                    margin-top: -27%;
-                        //margin-left: 50%;
-                    color: #838383;
+                .name{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: left;
+                    align-items: flex-end;
+                    margin-left: 13px;
+                    .firstname
+                    {
+                        position: relative;
+                        font-size: 20px;
+                    }
+                    .username
+                    {
+                        color: #838383;
 
-                }
+                    }
+                } 
+            }
+            
             
         }
 
