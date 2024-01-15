@@ -37,9 +37,7 @@ import { ShowProfileModule } from './show-profile/show-profile.module';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { GroupsPageComponent } from './groups-page/groups-page.component';
 import { NzListModule } from 'ng-zorro-antd/list';
-
-
-
+import { PostEventComponent } from './post-event/post-event.component';
 
 
 @NgModule({
@@ -52,7 +50,7 @@ import { NzListModule } from 'ng-zorro-antd/list';
     CreateGroupDialogComponent,
     EditProfileComponent,
     GroupsPageComponent,
-
+    PostEventComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +80,6 @@ import { NzListModule } from 'ng-zorro-antd/list';
     RulesModule,
     WorkWithUsModule,
     ShowProfileModule,
-
     NzListModule
   ],
   providers: [

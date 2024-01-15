@@ -1,0 +1,36 @@
+<div class="dialog">
+    <div class="header">
+        <!-- <button class="close-button" mat-button (click)="close()">
+            <img src="assets/icons/close.svg">
+        </button> -->
+        <span class="title">
+            ایجاد گروه جدید
+        </span>
+    </div>
+    <form [formGroup]="formGroup" class="content">
+        <div class="profile-container">
+            <img class="profile" [src]="
+              selectedImage
+                ? selectedImage
+                : '/assets/icons/group-icon.svg'
+            " alt="Profile Image" />
+            <div id="circle">
+                <input type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none"
+                    #fileInput />
+                <button type="button" (click)="fileInput.click()">
+                    
+                    <img class="edit" src="../../assets/icons/icons8-camera-48.png" alt="Upload Image" />
+                </button>
+            </div>
+        </div>
+        <mat-form-field class="input-group" appearance="outline" hideRequiredMarker>
+            <mat-label>عنوان</mat-label>
+            <input formControlName="name" matInput />
+            <mat-error>این قسمت را خالی نگذارید.</mat-error>
+        </mat-form-field>
+        <mat-form-field class="input-group" appearance="outline" hideRequiredMarker>
+            <mat-label>توضیحات</mat-label>
+            <textarea formControlName="description" matInput></textarea>
+        </mat-form-field>
+    </form>
+</div>

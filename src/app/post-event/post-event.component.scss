@@ -1,0 +1,33 @@
+.dialog {
+    width: 32rem;
+    overflow: hidden;
+
+    .header {
+        border-bottom: 1px solid #495867;
+
+        .close-button {
+            width: 4rem;
+            margin-top: 0.5rem;
+            margin-inline-start: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .title {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+    }
+
+    .content {
+        .profile-container
+        {
+            .profile
+            {
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+            }
+        }
+    }
+}

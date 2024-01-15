@@ -9,8 +9,7 @@ import { AuthService } from '../shared/services/auth.service';
 import { ReminderObject } from '../shared/types/ReminderObject';
 import { DatePipe } from '@angular/common';
 import { ReminderDialogComponent } from './reminder-dialog/reminder-dialog/reminder-dialog.component';
-
-
+import { PostEventComponent } from '../post-event/post-event.component';
 @Component({
   selector: 'app-timeline',
   templateUrl: './timeline.component.html',
@@ -207,7 +206,7 @@ export class TimelineComponent implements OnInit {
     const selectedDay = new Date(this.firstDayOfTimeline);
     selectedDay.setDate(this.firstDayOfTimeline.getDate() + this.selectedBox)
 
-    const dialogRef: MatDialogRef<any, any> = this.matDialog.open(AddNewEventReminderComponent, {
+    const dialogRef: MatDialogRef<any, any> = this.matDialog.open(PostEventComponent, {
       data: {
         data: new ReminderObject({ dateTime: selectedDay }),
       },
