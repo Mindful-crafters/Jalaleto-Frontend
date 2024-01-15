@@ -78,9 +78,10 @@ figure:hover {
     justify-content: space-around;
     .pic {
       & img {
-        width: 80%;
+        width: 90%;
         margin-top: -7%;
-        margin-right: 15% !important;
+        margin-right: 13% !important;
+
       }
     }
     .title {
@@ -110,10 +111,66 @@ figure:hover {
         padding: 20px 25px;
       }
     }
+
   }
-  .body {
-    .service {
-      margin-top: 2%;
+  .data
+    {
+      display: flex;
+      margin-top: 100px;
+      justify-content: left;
+      margin-left: 4%;
+      margin-top: -10%;
+      .outer1,.outer2,.outer3,.outer4
+      {
+        width: 190px;
+        height: 70px;
+        border: 0px solid #BDD5EA;
+        position: relative;
+        margin: 1%;
+        box-shadow: 0 4px 8px 0 #dbdee1, 0 6px 20px 0 #dfe1e2;
+        .title
+        {
+          margin-right: 50%;
+          font-size: 16px;
+        }
+        .number
+        {
+          font-size: 25px;
+          margin-right: 50%;
+          margin-top: -5%;
+        }
+        .inner1,.inner2,.inner3,.inner4
+        {
+          position: absolute;
+          width: 70px;
+          height: 70px;
+          font-size: 18px;
+          font-size: 18px;
+          border: 0.5px solid #BDD5EA;
+          box-sizing: border-box;
+          border-radius: 5%;
+          background-color: #353566;
+          margin-top: -30%;
+          display: flex;
+          .img1
+          {
+            width: 50px;
+            height: 50px;
+            margin-right: 14%;
+            margin-top: 13%;
+          }
+        }
+      }
+
+
+
+
+    }
+  .body
+  {
+    .service
+    {
+      margin-top: 10%;
       font-size: 30px;
       align-items: center;
       display: flex;
@@ -406,7 +463,7 @@ figure:hover {
       margin-bottom: 1.5rem;
     }
   }
-}
+
 
 label {
   position: realtive;
@@ -487,4 +544,5 @@ input[type="radio"]:checked + label {
 .card-slider {
   margin: 1.5rem auto 0 auto;
   text-align: center;
+}
 }
