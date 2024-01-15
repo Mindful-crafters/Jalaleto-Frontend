@@ -1,35 +1,54 @@
 <div class="container">
-  <div *ngIf="!selectedGroup" class="no-group-selected">
-  </div>
+  <app-show-groups (showGroup)="OpenGroup($event)"></app-show-groups>
+  <div *ngIf="!selectedGroup" class="no-group-selected"></div>
   <div *ngIf="selectedGroup" class="chat-container">
     <div class="chat-header">
       <div class="profile-avatar" (click)="OpenGroupInfo(selectedGroup)">
-        <img [src]="selectedGroup ? selectedGroup.imageUrl : '../../assets/icons/icons8-group-30.png'" alt="Profile Image">
+        <img *ngIf="!selectedGroup.imageUrl || selectedGroup.imageUrl =='' " src="assets/icons/group-icon.svg" alt="">
+        <img *ngIf="selectedGroup.imageUrl && selectedGroup.imageUrl !='' " #prof [src]="selectedGroup.imageUrl" alt="">
       </div>
-      <div class="group-info">
-        <h2>{{selectedGroup.name}}</h2>
+      <div class="group-detail">
+        <div class="group-info">
+          <h2>{{ selectedGroup.name }}</h2>
+        </div>
+        <div class="members-count">
+          <span>تعداد اعضا: </span>
+          <span>{{ selectedGroup.members.length }}</span>
+        </div>
       </div>
-      <span class="spacer"></span>
-      <button (click)="getMessages()">
-        بازیابی
-      </button>
     </div>
+    <!-- <div class="content">
+      <div class="message" *ngFor="let message of messages">
+        <div *ngIf="!message.areYouSender" class="others-message">
+          <img [src]="message.senderImageUrl" alt="error" />
+          <span class="text">{{ message.content }}</span>
+        </div>
+        <div *ngIf="message.areYouSender" class="my-message">
+          <span class="text">{{ message.content }}</span>
+        </div>
+      </div>
+    </div> -->
     <div class="content">
       <div class="message" *ngFor="let message of messages">
         <div *ngIf="!message.areYouSender" class="others-message">
-          <img [src]="message.senderImageUrl" alt="error">
-          <span class="text">{{message.content}}</span>
+          <div class="text-container">
+            <div class="username">{{ message.senderName }}</div>
+            <img *ngIf="!message.senderImageUrl || message.senderImageUrl === ''" src="../../assets/icons/icons8-test-account-48.png" alt="">
+            <img *ngIf="message.senderImageUrl && message.senderImageUrl !== ''" [src]="message.senderImageUrl" alt="">
+            <span class="text">{{ message.content }}</span>
+          </div>
         </div>
         <div *ngIf="message.areYouSender" class="my-message">
-          <span class="text">{{message.content}}</span>
+          <span class="text">{{ message.content }}</span>
         </div>
       </div>
-
     </div>
+
+
+
     <div class="message-input">
-      <input [(ngModel)]="sendingMessage" type="text" placeholder="پیام">
+      <input [(ngModel)]="sendingMessage" type="text" placeholder="پیام" />
       <button (click)="sendMessage()">ارسال</button>
     </div>
   </div>
-  <app-show-groups (showGroup)="OpenGroup($event)"></app-show-groups>
 </div>

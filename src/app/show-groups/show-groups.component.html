@@ -1,23 +1,88 @@
-<div class="groups">
-  <div class="group" *ngFor="let group of groups" mat-ripple (click)="OpenGroup(group)">
-      <div style="display: flex; flex-direction: column;width: 75%;">
-          <!-- <div class="name">{{group.name}}</div> -->
-          <div class="name">
-              <span nz-popover nzPopoverTitle="توضیحات" [nzPopoverContent]="group.description"
-                  nzPopoverPlacement="bottomRight">{{ group.name }}
-              </span>
-          </div>
-          <div class="members-count">
-              <span>تعداد اعضا: </span>
-              <span>{{group.members.length}}</span>
-          </div>
-      </div>
-      <div *ngIf="!group.imageFile" class="prof">
-          <img *ngIf="!group.imageUrl || group.imageUrl =='' " src="assets/icons/group-icon.svg" alt="">
-          <img *ngIf="group.imageUrl && group.imageUrl !='' " #prof [src]="group.imageUrl" alt="">
-      </div>
-      <div *ngIf="group.imageFile" class="prof">
-          <img [src]="group.imageFile" alt="">
-      </div>
-  </div>
+<mat-menu #menu="matMenu" class="menu">
+    <button mat-menu-item (click)="CreateGroup()">افزودن گروه</button>
+</mat-menu>
+
+<div style="border-right: 1px solid #ccc;width: 30vw;">
+    <div class="search-bar" style="display: flex;padding-top: 1rem;">
+        <mat-form-field style="flex-grow: 1;height: 40px;margin-inline-start: 1rem;" appearance="outline"
+            hideRequiredMarker>
+            <img src="assets/icons/magnifier.svg" alt="">
+            <input [(ngModel)]="searchString" (focus)="isSearching = true" (blur)="isSearching = false"
+                (ngModelChange)="searchInputChanges.next($event)" style="max-width: 100px;" matInput type="text"
+                placeholder="جستجو...">
+        </mat-form-field>
+        <button class="menu-button" mat-icon-button [matMenuTriggerFor]="menu">
+            <img src="assets/icons/group-menu.svg" alt="">
+        </button>
+    </div>
+    <mat-tab-group *ngIf="!isSearching" style="height: calc(100vh - 4rem)">
+        <mat-tab label="همه ی گروه ها">
+            <div class="groups">
+                <div class="group" *ngFor="let group of allGroups" mat-ripple (click)="OpenGroup(group)">
+                    <div style="display: flex; flex-direction: column;width: 75%;">
+                        <!-- <div class="name">{{group.name}}</div> -->
+                        <div class="name">
+                            <span nz-popover nzPopoverTitle="توضیحات" [nzPopoverContent]="group.description"
+                                nzPopoverPlacement="bottomRight">{{ group.name }}
+                            </span>
+                        </div>
+                    </div>
+                    <div *ngIf="!group.imageFile" class="prof">
+                        <img *ngIf="!group.imageUrl || group.imageUrl =='' " src="assets/icons/group-icon.svg" alt="">
+                        <img *ngIf="group.imageUrl && group.imageUrl !='' " #prof [src]="group.imageUrl" alt="">
+                    </div>
+                    <div *ngIf="group.imageFile" class="prof">
+                        <img [src]="group.imageFile" alt="">
+                    </div>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="گروه های من">
+            <div class="groups">
+                <div class="group" *ngFor="let group of myGroups" mat-ripple (click)="OpenGroup(group)">
+                    <div style="display: flex; flex-direction: column;width: 75%;">
+                        <!-- <div class="name">{{group.name}}</div> -->
+                        <div class="name">
+                            <span nz-popover nzPopoverTitle="توضیحات" [nzPopoverContent]="group.description"
+                                nzPopoverPlacement="bottomRight">{{ group.name }}
+                            </span>
+                        </div>
+                    </div>
+                    <div *ngIf="!group.imageFile" class="prof">
+                        <img *ngIf="!group.imageUrl || group.imageUrl =='' " src="assets/icons/group-icon.svg" alt="">
+                        <img *ngIf="group.imageUrl && group.imageUrl !='' " #prof [src]="group.imageUrl" alt="">
+                    </div>
+                    <div *ngIf="group.imageFile" class="prof">
+                        <img [src]="group.imageFile" alt="">
+                    </div>
+                </div>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+
+    <div *ngIf="isSearching" style="height: calc(100vh - 4rem);background-color: #fff;">
+        <div class="groups">
+            <div class="group" *ngFor="let group of filterdGroups" mat-ripple (click)="OpenGroup(group)">
+                <div style="display: flex; flex-direction: column;width: 75%;">
+                    <!-- <div class="name">{{group.name}}</div> -->
+                    <div class="name">
+                        <span nz-popover nzPopoverTitle="توضیحات" [nzPopoverContent]="group.description"
+                            nzPopoverPlacement="bottomRight">{{ group.name }}
+                        </span>
+                    </div>
+                    <div class="members-count">
+                        <span>تعداد اعضا: </span>
+                        <span>{{group.members.length}}</span>
+                    </div>
+                </div>
+                <div *ngIf="!group.imageFile" class="prof">
+                    <img *ngIf="!group.imageUrl || group.imageUrl =='' " src="assets/icons/group-icon.svg" alt="">
+                    <img *ngIf="group.imageUrl && group.imageUrl !='' " #prof [src]="group.imageUrl" alt="">
+                </div>
+                <div *ngIf="group.imageFile" class="prof">
+                    <img [src]="group.imageFile" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

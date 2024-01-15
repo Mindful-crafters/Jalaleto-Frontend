@@ -33,16 +33,16 @@ export class ShowProfileComponent implements OnInit {
       image: null,
       imagePath: ""
     }
-    requestData = {
-      FirstName: this.data.FirstName,
-      LastName: this.data.LastName,
-      UserName: this.data.UserName,
-      Birthday: this.data.Birthday,
-      image: this.data.image,
-    }
+  requestData = {
+    FirstName: this.data.FirstName,
+    LastName: this.data.LastName,
+    UserName: this.data.UserName,
+    Birthday: this.data.Birthday,
+    image: this.data.image,
+  }
   session: any;
   profilePicture: File | undefined;
-  @ViewChild('fileInput') fileInput:any;
+  @ViewChild('fileInput') fileInput: any;
   selectedImage: string | null = null;
   selectedFile: File | null = null;
   imageLink: string | null = null;
@@ -50,10 +50,10 @@ export class ShowProfileComponent implements OnInit {
     private rest: RestService,
     private restService: RestService,
     private http: HttpClient,
-    private datePipe : DatePipe,
-    private toastr:ToastrService,
+    private datePipe: DatePipe,
+    private toastr: ToastrService,
     private matDialog: MatDialog
-  ) {}
+  ) { }
 
   emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   validateAge(control: AbstractControl): ValidationErrors | null {
@@ -71,7 +71,7 @@ export class ShowProfileComponent implements OnInit {
     this.selectedFile = event.target.files[0] as File;
     this.data.imagePath = URL.createObjectURL(this.selectedFile);
   }
-  
+
   ngOnInit() {
 
     this.restService.post("User/ProfileInfo", null).subscribe((res: ProfileResult) => {
@@ -87,42 +87,39 @@ export class ShowProfileComponent implements OnInit {
         const day = parseInt(parts[0], 10);
         const month = parseInt(parts[1], 10) - 1; // Months are 0-indexed
         const year = parseInt(parts[2], 10);
-      
+
         const format = this.datePipe.transform(new Date(year, month, day), 'yyyy-MM-dd');
         this.data.Birthday = format;
       }
     });
   }
-  submit()
-  {
+  submit() {
     console.log(this.selectedFile);
     const formData = new FormData;
-    formData.append('FirstName',this.data.FirstName);
-    formData.append('LastName',this.data.LastName);
-    formData.append('UserName',this.data.UserName);
-    formData.append('BirthDay',this.data.Birthday);
-    formData.append('Image',this.selectedFile);
-    
+    formData.append('FirstName', this.data.FirstName);
+    formData.append('LastName', this.data.LastName);
+    formData.append('UserName', this.data.UserName);
+    formData.append('BirthDay', this.data.Birthday);
+    formData.append('Image', this.selectedFile);
+
     this.restService.post<any>('User/EditProfile', formData).subscribe(
       (response) => {
         if (response['success']) {
           this.updateData();
           this.toastr.success('پروفایل با موفقیت تغییر یافت', 'موفقیت');
         }
-        else
-        {
-          if(response['message']='User already exists.')
+        else {
+          if (response['message'] = 'User already exists.')
             this.toastr.error('نام کاربری قبلا در سبستم ثبت شده است.', 'خطا');
-          else
-          {
+          else {
             this.toastr.error('مشکلی پیش آمده دوباره تلاش کنید', 'خطا');
           }
         }
       },
     )
   }
-  
-  updateData(){
+
+  updateData() {
     this.requestData = {
       FirstName: "",
       LastName: "",
@@ -133,7 +130,7 @@ export class ShowProfileComponent implements OnInit {
     this.selectedImage = undefined;
     this.selectedFile = null;
   }
-  
+
   onSubmit() {
     if (this.profilePicture) {
       const formData = new FormData();
@@ -146,7 +143,7 @@ export class ShowProfileComponent implements OnInit {
       hasBackdrop: true,
       autoFocus: false
     })
-  }  
+  }
 }
 
 interface ProfileResult {
@@ -160,6 +157,6 @@ interface ProfileResult {
   birthday: string,
   email: string,
   imagePath: string,
-  
+
 }
 

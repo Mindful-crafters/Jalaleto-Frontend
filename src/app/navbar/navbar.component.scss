@@ -66,6 +66,7 @@
       align-items: center;
       margin-right: 1rem;
       cursor: pointer;
+      position: relative;
 
       img {
         width: 32px;
@@ -201,18 +202,27 @@ button.profile-button {
     }
   }
 
-  .notif-title{
+  .notif-title {
     display: flex;
     height: 2rem;
 
-    .notification-icon{
+    .notification-icon {
       margin-inline-end: 0.5rem;
     }
 
-    .notif-description{
+    .notif-description {
       text-align: right;
     }
   }
 }
 
 
+.red-circle {
+  position: absolute;
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: red;
+  border-radius: 0.5rem;
+  top: 4px;
+  right: 10px;
+}

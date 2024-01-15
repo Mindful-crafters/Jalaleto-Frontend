@@ -24,7 +24,8 @@ import { ReminderDialogComponent } from '../timeline/reminder-dialog/reminder-di
 import { MatChipsModule } from '@angular/material/chips';
 import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
 import { GroupInfoComponent } from '../group-info/group-info.component';
-import {MatBadgeModule} from '@angular/material/badge';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatTabsModule } from '@angular/material/tabs';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import {MatBadgeModule} from '@angular/material/badge';
         MatExpansionModule,
         MatDatepickerModule,
         MatNativeDateModule,
-        MatBadgeModule
+        MatBadgeModule,
+        MatTabsModule
     ],
     exports: [
         DashboardComponent,

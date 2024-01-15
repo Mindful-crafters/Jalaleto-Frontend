@@ -16,10 +16,23 @@
 
     <span class="spacer"></span>
 
-    <button nz-popover nzTitle="Notifications" nzTrigger="click" [nzPopoverContent]="notificationContent" class="notification-button" nzPlacement="bottomRight">
+    <button
+      nz-popover
+      nzTitle="Notifications"
+      nzTrigger="click"
+      [nzPopoverContent]="notificationContent"
+      class="notification-button"
+      nzPlacement="bottomRight"
+      (click)="hideRedCircle = true"
+    >
+
       <div class="notification" id="notification">
         <div class="notification-icon">
-          <img src="../../assets/icons/notification-image.svg" alt="Notification Icon">
+          <span class="red-circle" *ngIf="!hideRedCircle"></span>
+          <img
+            src="../../assets/icons/notification-image.svg"
+            alt="Notification Icon"
+          />
         </div>
       </div>
     </button>
@@ -31,14 +44,17 @@
             <div class="notification-details">
               <div class="notif-title">
                 <div class="notification-icon">
-                  <img [src]="notification.icon" alt="Notification Icon">
+                  <img [src]="notification.icon" alt="Notification Icon" />
                 </div>
 
-                <a class="title-link"  [routerLink]="notification.link">{{ notification.title }}</a>
+                <a class="title-link" [routerLink]="notification.link">{{
+                  notification.title
+                }}</a>
               </div>
 
-              <span class="notif-description">{{notification.description}}</span>
-
+              <span class="notif-description">{{
+                notification.description
+              }}</span>
             </div>
             <div class="notif_line"></div>
           </li>
@@ -49,9 +65,14 @@
       </ng-template>
     </ng-template>
 
-    <button [disabled]="!isLoggedIn" mat-icon-button [matMenuTriggerFor]="menu" class="profile-button">
+    <button
+      [disabled]="!isLoggedIn"
+      mat-icon-button
+      [matMenuTriggerFor]="menu"
+      class="profile-button"
+    >
       <div class="profile-icon">
-        <img src="../../assets/icons/profile2.png" alt="Profile Icon">
+        <img src="../../assets/icons/profile2.png" alt="Profile Icon" />
       </div>
     </button>
 
@@ -59,8 +80,14 @@
       <ng-template matMenuContent>
         <div class="profile-info" *ngIf="userInfoLoaded">
           <img
-            [src]="userProfile.imagePath == '' ? '../../assets/icons/icons8-test-account-48.png': userProfile.imagePath"
-            alt="Profile Image" class="profile-image">
+            [src]="
+              userProfile.imagePath == ''
+                ? '../../assets/icons/icons8-test-account-48.png'
+                : userProfile.imagePath
+            "
+            alt="Profile Image"
+            class="profile-image"
+          />
           <div class="user-details">
             <span class="username">{{ userProfile?.userName }}</span>
             <span class="email">{{ userProfile?.email }}</span>
