@@ -31,13 +31,17 @@
     <div class="content">
       <div class="message" *ngFor="let message of messages">
         <div *ngIf="!message.areYouSender" class="others-message">
+          <div class="profile-img">
+            <img *ngIf="!message.senderImageUrl || message.senderImageUrl == '' " src="../../assets/icons/icons8-test-account-48.png" alt="">
+            <img *ngIf="message.senderImageUrl && message.senderImageUrl != '' " [src]="message.senderImageUrl" alt="">
+          </div>
+
           <div class="text-container">
             <div class="username">{{ message.senderName }}</div>
-            <img *ngIf="!message.senderImageUrl || message.senderImageUrl === ''" src="../../assets/icons/icons8-test-account-48.png" alt="">
-            <img *ngIf="message.senderImageUrl && message.senderImageUrl !== ''" [src]="message.senderImageUrl" alt="">
             <span class="text">{{ message.content }}</span>
           </div>
         </div>
+
         <div *ngIf="message.areYouSender" class="my-message">
           <span class="text">{{ message.content }}</span>
         </div>

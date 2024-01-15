@@ -16,7 +16,7 @@ export class GroupsPageComponent implements OnInit {
 
 
   selectedGroup: Group = null;
-  messages: Message[] = [];
+  messages : Message[] = [];
   sendingMessage: string = '';
   private hubConnection: HubConnection;
   allGroups: Group[] = [];
@@ -41,6 +41,7 @@ export class GroupsPageComponent implements OnInit {
 
   OpenGroup(event: any) {
     this.selectedGroup = event;
+    console.log('s',this.selectedGroup.imageUrl)
     this.getMessages();
     this.hubInit();
   }
@@ -88,7 +89,9 @@ export class GroupsPageComponent implements OnInit {
     this.messages = [];
     this.restService.post(`Message/GetMessages?GroupId=${this.selectedGroup.groupId}`, null).subscribe((res: any) => {
       this.messages = res.data.reverse();
+      console.log(this.messages[0].senderImageUrl)
     });
+
   }
 
   sendMessage() {
