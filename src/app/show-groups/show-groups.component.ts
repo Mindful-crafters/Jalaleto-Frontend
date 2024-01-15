@@ -88,5 +88,4 @@ export class Member {
   firstName: string = ''
   userName: string = '';
   image: string = '';
-  firstName: string = '';
 }
