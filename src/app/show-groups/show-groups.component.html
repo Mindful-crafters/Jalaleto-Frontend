@@ -19,6 +19,14 @@
         <mat-tab label="همه ی گروه ها">
             <div class="groups">
                 <div class="group" *ngFor="let group of allGroups" mat-ripple (click)="OpenGroup(group)">
+                    <div *ngIf="!group.imageFile" class="prof">
+                        <img *ngIf="!group.imageUrl || group.imageUrl =='' " src="assets/icons/group-icon.svg" alt="">
+                        <img *ngIf="group.imageUrl && group.imageUrl !='' " #prof [src]="group.imageUrl" alt="">
+                    </div>
+                    <div *ngIf="group.imageFile" class="prof">
+                        <img [src]="group.imageFile" alt="">
+                    </div>
+                    
                     <div style="display: flex; flex-direction: column;width: 75%;">
                         <!-- <div class="name">{{group.name}}</div> -->
                         <div class="name">
@@ -26,13 +34,6 @@
                                 nzPopoverPlacement="bottomRight">{{ group.name }}
                             </span>
                         </div>
-                    </div>
-                    <div *ngIf="!group.imageFile" class="prof">
-                        <img *ngIf="!group.imageUrl || group.imageUrl =='' " src="assets/icons/group-icon.svg" alt="">
-                        <img *ngIf="group.imageUrl && group.imageUrl !='' " #prof [src]="group.imageUrl" alt="">
-                    </div>
-                    <div *ngIf="group.imageFile" class="prof">
-                        <img [src]="group.imageFile" alt="">
                     </div>
                 </div>
             </div>

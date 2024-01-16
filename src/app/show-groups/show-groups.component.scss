@@ -18,21 +18,23 @@
     height: 100vh;
     padding-bottom: 0.5rem;
     border-top: solid 2px #252422;
-    background-color: #F7F7FF;
     overflow-y: auto;
     padding-bottom: 8rem;
 
 
     .group {
+        cursor: pointer;
         border-bottom: solid 1px #ccc;
         display: flex;
         padding-inline-start: 0.5rem;
         padding-top: 0.25rem;
-        justify-content: space-between;
+        gap: 1rem;
         align-items: center;
         padding-inline-end: 0.5rem;
-        min-height: 8rem;
-
+        min-height: 6rem;
+        &:hover{
+            background-color: rgb(226, 226, 226);
+        }
 
         .name {
             color: #415a77;
@@ -68,8 +70,8 @@
         .prof {
             img {
                 border-radius: 50%;
-                width: 5rem;
-                height: 5rem;
+                width: 4rem;
+                height: 4rem;
                 border: 1px solid #e0e1dd;
                 margin: 1rem 0;
                 margin-inline-start: 0.25rem;

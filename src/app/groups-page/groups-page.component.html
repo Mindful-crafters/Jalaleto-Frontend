@@ -2,8 +2,8 @@
   <app-show-groups (showGroup)="OpenGroup($event)"></app-show-groups>
   <div *ngIf="!selectedGroup" class="no-group-selected"></div>
   <div *ngIf="selectedGroup" class="chat-container">
-    <div class="chat-header">
-      <div class="profile-avatar" (click)="OpenGroupInfo(selectedGroup)">
+    <div class="chat-header" (click)="OpenGroupInfo(selectedGroup)">
+      <div class="profile-avatar">
         <img *ngIf="!selectedGroup.imageUrl || selectedGroup.imageUrl =='' " src="assets/icons/group-icon.svg" alt="">
         <img *ngIf="selectedGroup.imageUrl && selectedGroup.imageUrl !='' " #prof [src]="selectedGroup.imageUrl" alt="">
       </div>
@@ -38,12 +38,19 @@
 
           <div class="text-container">
             <div class="username">{{ message.senderName }}</div>
-            <span class="text">{{ message.content }}</span>
+            <div class="text">
+              <span>
+                {{ message.content }}    
+              </span>
+            </div>
           </div>
         </div>
 
         <div *ngIf="message.areYouSender" class="my-message">
-          <span class="text">{{ message.content }}</span>
+          <div class="text">
+            <span>
+              {{ message.content }}    
+            </span></div>
         </div>
       </div>
     </div>
