@@ -92,6 +92,13 @@ export class DashboardComponent {
     this.jalaliDay = jalali.date();
     this.loadPopularGroups(5)
     this.updateTime()
+    this.restService.post("User/LandingInfo", null).subscribe((res: LandingResult) => {
+
+      this.data.UsersCount = res.usersCount;
+      this.data.GroupCount = res.groupCount;
+      this.data.EventCount = res.eventCount;
+      this.data.ReminderCount = res.reminderCount;
+    });
   }
 
   private updateTime(): void {
@@ -155,6 +162,8 @@ export class DashboardComponent {
     ReminderCount: 0,
     EventCount: 0,
   }
+
+
 
 }
 interface LandingResult {
