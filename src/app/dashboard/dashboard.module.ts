@@ -26,6 +26,7 @@ import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
 import { GroupInfoComponent } from '../group-info/group-info.component';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatTabsModule } from '@angular/material/tabs';
+import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import { MatTabsModule } from '@angular/material/tabs';
         MatDatepickerModule,
         MatNativeDateModule,
         MatBadgeModule,
+        NzSkeletonModule,
         MatTabsModule
     ],
     exports: [

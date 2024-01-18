@@ -9,7 +9,13 @@ import { AuthService } from '../shared/services/auth.service';
 import { ReminderObject } from '../shared/types/ReminderObject';
 import { DatePipe } from '@angular/common';
 import { ReminderDialogComponent } from './reminder-dialog/reminder-dialog/reminder-dialog.component';
-
+import {
+  NzSkeletonAvatarShape,
+  NzSkeletonAvatarSize,
+  NzSkeletonButtonShape,
+  NzSkeletonButtonSize,
+  NzSkeletonInputSize
+} from 'ng-zorro-antd/skeleton';
 
 @Component({
   selector: 'app-timeline',
@@ -19,6 +25,19 @@ import { ReminderDialogComponent } from './reminder-dialog/reminder-dialog/remin
 })
 
 export class TimelineComponent implements OnInit {
+  buttonActive = true;
+  avatarActive = true;
+  inputActive = true;
+  imageActive = true;
+  buttonSize: NzSkeletonButtonSize = 'default';
+  avatarSize: NzSkeletonAvatarSize = 'default';
+  inputSize: NzSkeletonInputSize = 'default';
+  elementActive = true;
+  buttonShape: NzSkeletonButtonShape = 'default';
+  avatarShape: NzSkeletonAvatarShape = 'circle';
+  elementSize: NzSkeletonInputSize = 'default';
+  selectedDayLoading = true;
+  remindersLoading = true;
   quickDate: Date;
   timelineItems: TimeLineItem[] = [];
   displayedTimeLine: TimeLineItem[] = [];
@@ -42,7 +61,6 @@ export class TimelineComponent implements OnInit {
   ngOnInit() {
     this.generateTimeline();
     this.displayedTimeLine = this.timelineItems;
-
     const today = new Date();
     this.firstDayOfTimeline = today;
     this.getWeekReminders(today);
@@ -68,6 +86,7 @@ export class TimelineComponent implements OnInit {
 
     this.restService.post('Reminder/Info', body).subscribe(res => {
       this.weekReminders = res['data'];
+      this.remindersLoading = false;
     })
   }
 
@@ -161,6 +180,8 @@ export class TimelineComponent implements OnInit {
 
     this.restService.post('Reminder/Info', body).subscribe(res => {
       this.selectedDayReminders = res['data'];
+      this.selectedDayLoading = false;
+  
     })
   }
 
@@ -223,7 +244,7 @@ export class TimelineComponent implements OnInit {
         console.log('done!')
         this.getWeekReminders(this.firstDayOfTimeline);
         this.openBox(this.selectedBox);
-        console.log('selected box : ',this.selectedBox)
+        console.log('selected box : ', this.selectedBox)
       }
 
       else

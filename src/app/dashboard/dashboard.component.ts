@@ -8,6 +8,8 @@ import { CreateGroupDialogComponent } from '../create-group-dialog/create-group-
 import { Group } from '../shared/types/Group';
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { NzSkeletonAvatarShape, NzSkeletonAvatarSize, NzSkeletonButtonShape, NzSkeletonButtonSize, NzSkeletonInputSize } from 'ng-zorro-antd/skeleton';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -15,6 +17,18 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
+  buttonActive = true;
+  avatarActive = true;
+  inputActive = true;
+  imageActive = true;
+  buttonSize: NzSkeletonButtonSize = 'default';
+  avatarSize: NzSkeletonAvatarSize = 'default';
+  inputSize: NzSkeletonInputSize = 'default';
+  elementActive = true;
+  buttonShape: NzSkeletonButtonShape = 'default';
+  avatarShape: NzSkeletonAvatarShape = 'circle';
+  elementSize: NzSkeletonInputSize = 'default';
+  isLoadingGroup = true;
   hours: string | number = '00';
   minutes: string | number = '00';
   seconds: string | number = '00';
@@ -42,9 +56,10 @@ export class DashboardComponent {
     private http: HttpClient,
     private router: Router,
     private authService: AuthService) {
+    this.isLoadingGroup =true;
     this.isLoggedIn = authService.isLoggedIn();
     console.log(this.authService.getToken())
-
+    this.loadPopularGroups(3)
     const currentDate = new Date();
 
     // Map English month names to Persian
@@ -79,7 +94,6 @@ export class DashboardComponent {
   }
 
   ngOnInit() {
-
     setInterval(() => {
       const date = new Date();
       this.updateDate(date);
@@ -90,10 +104,8 @@ export class DashboardComponent {
     const jalali = moment().locale('fa');
     this.jalaliYear = jalali.jYear();
     this.jalaliDay = jalali.date();
-    this.loadPopularGroups(5)
     this.updateTime()
     this.restService.post("User/LandingInfo", null).subscribe((res: LandingResult) => {
-
       this.data.UsersCount = res.usersCount;
       this.data.GroupCount = res.groupCount;
       this.data.EventCount = res.eventCount;
@@ -124,6 +136,7 @@ export class DashboardComponent {
         this.popularGroups = data['data'];
         console.log(this.popularGroups);
         // Process the data as needed
+        this.isLoadingGroup = false;
       },
       (error) => {
         console.error('Error posting data:', error);

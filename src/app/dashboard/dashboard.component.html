@@ -121,10 +121,10 @@
       </div>
 
       <p class="most-popular-groups-title">محبوب ترین گروه ها</p>
-      <div class="card-slider">
+      <div *ngIf="!isLoadingGroup" class="card-slider">
         <input type="radio" id="1" name="sld" />
         <label for="1">
-          <div class="container" mat-raised-button matBadge = {{popularGroups[0].members.length}}>
+          <div class="container" mat-raised-button>
             <div class="pop-group-name">
               {{ popularGroups[0].name }}
             </div>
@@ -177,41 +177,27 @@
           </div>
         </label>
 
-        <!-- <input type="radio" id="4" name="sld" />
-        <label for="4">
-          <div class="container" mat-raised-button matBadge = {{popularGroups[3].members.length}}>
-            <div class="pop-group-name">
-              {{ popularGroups[3].name }}
-            </div>
+      </div>
 
-            <img
-              [src]="
-                popularGroups[3].imageUrl == ''
-                  ? '../../assets/icons/icons8-test-account-48.png'
-                  : popularGroups[3].imageUrl
-              "
-              class="profile-image"
-            />
-          </div>
-        </label>
-
-        <input type="radio" id="5" name="sld" />
-        <label for="5">
-          <div class="container" mat-raised-button matBadge = {{popularGroups[4].members.length}}>
-            <div class="pop-group-name">
-              {{ popularGroups[4].name }}
-            </div>
-
-            <img
-              [src]="
-                popularGroups[4].imageUrl == ''
-                  ? '../../assets/icons/icons8-test-account-48.png'
-                  : popularGroups[4].imageUrl
-              "
-              class="profile-image"
-            />
-          </div>
-        </label> -->
+      <div class="popular-groups-skeleton" *ngIf="isLoadingGroup">
+        <nz-skeleton-element class="item"
+        nzType="button"
+        [nzActive]="elementActive"
+        [nzSize]="elementSize"
+        [nzShape]="buttonShape"
+      ></nz-skeleton-element>
+      <nz-skeleton-element class="item"
+        nzType="button"
+        [nzActive]="elementActive"
+        [nzSize]="elementSize"
+        [nzShape]="buttonShape"
+      ></nz-skeleton-element>
+      <nz-skeleton-element class="item"
+        nzType="button"
+        [nzActive]="elementActive"
+        [nzSize]="elementSize"
+        [nzShape]="buttonShape"
+      ></nz-skeleton-element>
       </div>
     </div>
   </div>

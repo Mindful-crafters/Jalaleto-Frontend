@@ -15,14 +15,28 @@
     <p class="title">یادآوری های هفته</p>
 
     <div class="historical-events">
-      <div
-        *ngFor="let reminder of weekReminders; let i = index"
-        class="history-event-item"
-      >
-        <span class="week-reminder-title"
-          >{{ MiladiToShamsi(reminder.dateTime) }} {{ reminder.title }}</span
+      <ng-container *ngIf="!remindersLoading">
+        <div
+          *ngFor="let reminder of weekReminders; let i = index"
+          class="history-event-item"
         >
-      </div>
+          <span class="week-reminder-title"
+            >{{ MiladiToShamsi(reminder.dateTime) }} {{ reminder.title }}</span
+          >
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="remindersLoading">
+        <div *ngFor="let item of currentWeek">
+          <nz-skeleton-element
+            nzType="button"
+            [nzActive]="elementActive"
+            [nzSize]="elementSize"
+            [nzShape]="buttonShape"
+          ></nz-skeleton-element>
+        </div>
+      </ng-container>
+
     </div>
   </div>
 
@@ -112,33 +126,70 @@
         <div class="divider"></div>
 
         <div class="reminder-panel">
-          <div
-            class="reminder-object-container"
-            *ngFor="let reminder of selectedDayReminders; let i = index"
-            [style.animation-delay]="i * 0.3 + 's'"
-            (click)="openReminderBox(i)"
-          >
-            <div class="top-info">
-              <span class="title">{{ reminder.title }}</span>
+          <ng-container *ngIf="!selectedDayLoading">
+            <div
+              class="reminder-object-container"
+              *ngFor="let reminder of selectedDayReminders; let i = index"
+              [style.animation-delay]="i * 0.3 + 's'"
+              (click)="openReminderBox(i)"
+            >
+              <div class="top-info">
+                <span class="title">{{ reminder.title }}</span>
 
-              <div class="priority-container">
-                <img
-                  class="priority"
-                  src="../../assets/Blue-Star.svg"
-                  *ngFor="let star of starsArray(reminder.priorityLevel)"
-                />
+                <div class="priority-container">
+                  <img
+                    class="priority"
+                    src="../../assets/Blue-Star.svg"
+                    *ngFor="let star of starsArray(reminder.priorityLevel)"
+                  />
+                </div>
               </div>
-            </div>
 
-            <div class="bottom-info">
-              <div *ngIf="reminder.notes != null" class="notes">
-                {{ reminder.notes }}
+              <div class="bottom-info">
+                <div *ngIf="reminder.notes != null" class="notes">
+                  {{ reminder.notes }}
+                </div>
+                <div *ngIf="reminder.notes == null" class="notes">
+                  یادداشتی موجود نمی باشد.
+                </div>
               </div>
-              <div *ngIf="reminder.notes == null" class="notes">
-                یادداشتی موجود نمی باشد.
-              </div>
+              <div class="clock">{{ hourAndMinute(reminder.dateTime) }}</div>
             </div>
-            <div class="clock">{{ hourAndMinute(reminder.dateTime) }}</div>
+          </ng-container>
+
+          <div *ngIf="selectedDayLoading">
+            <div>
+              <nz-skeleton-element
+                nzType="button"
+                [nzActive]="elementActive"
+                [nzSize]="elementSize"
+                [nzShape]="buttonShape"
+              ></nz-skeleton-element>
+            </div>
+            <div>
+              <nz-skeleton-element
+                nzType="button"
+                [nzActive]="elementActive"
+                [nzSize]="elementSize"
+                [nzShape]="buttonShape"
+              ></nz-skeleton-element>
+            </div>
+            <div>
+              <nz-skeleton-element
+                nzType="button"
+                [nzActive]="elementActive"
+                [nzSize]="elementSize"
+                [nzShape]="buttonShape"
+              ></nz-skeleton-element>
+            </div>
+            <div>
+              <nz-skeleton-element
+                nzType="button"
+                [nzActive]="elementActive"
+                [nzSize]="elementSize"
+                [nzShape]="buttonShape"
+              ></nz-skeleton-element>
+            </div>
           </div>
         </div>
       </div>
