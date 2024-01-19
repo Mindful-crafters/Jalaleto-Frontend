@@ -2,131 +2,179 @@
 <div [dir]="'rtl'" class="containor">
   <div class="profile-form">
     <div class="pic">
-        <div class="profile-container">
-          <img
-            *ngIf="!isLoading"
-            class="profile"
-            [src]="data.imagePath != '' ? data.imagePath : '/assets/profile.svg'"
-            alt="Profile Image"
-          />
-          <input
-            *ngIf="!isLoading"
-            type="file"
-            (change)="onFileSelected($event)"
-            accept="image/*"
-            style="display: none"
-            #fileInput
-          />
-          <nz-skeleton-element
-            *ngIf="isLoading"
-            class="profile"
-            nzType="image"
-            [nzActive]="elementActive"
-          ></nz-skeleton-element>
-        </div>
+      <div class="profile-container">
+        <img
+          *ngIf="!isLoading"
+          class="profile"
+          [src]="data.imagePath != '' ? data.imagePath : '/assets/profile.svg'"
+          alt="Profile Image"
+        />
+        <input
+          *ngIf="!isLoading"
+          type="file"
+          (change)="onFileSelected($event)"
+          accept="image/*"
+          style="display: none"
+          #fileInput
+        />
+        <nz-skeleton-element
+          *ngIf="isLoading"
+          class="profile"
+          nzType="image"
+          [nzActive]="elementActive"
+        ></nz-skeleton-element>
       </div>
-      
+    </div>
+
     <div class="inputs">
-        <div *ngIf="!isLoading">
-          <mat-form-field class="Username" appearance="outline" hideRequiredMarker>
-            <mat-label>نام کاربری</mat-label>
-            <input [disabled]="true" [(ngModel)]="data.UserName" matInput />
-          </mat-form-field>
-        </div>
-    
-        <div class="skeleton" *ngIf="isLoading">
-          <nz-skeleton-element
-            nzType="button"
-            [nzActive]="elementActive"
-            [nzSize]="elementSize"
-            [nzShape]="buttonShape"
-          ></nz-skeleton-element>
-        </div>
-    
-        <div *ngIf="!isLoading">
-          <mat-form-field class="FirstName" appearance="outline" hideRequiredMarker>
-            <mat-label>نام</mat-label>
-            <input [disabled]="true" [(ngModel)]="data.FirstName" matInput />
-          </mat-form-field>
-        </div>
-    
-        <div class="skeleton" *ngIf="isLoading">
-          <nz-skeleton-element
-            nzType="button"
-            [nzActive]="elementActive"
-            [nzSize]="elementSize"
-            [nzShape]="buttonShape"
-          ></nz-skeleton-element>
-        </div>
-    
-        <div *ngIf="!isLoading">
-          <mat-form-field class="LastName" appearance="outline" hideRequiredMarker>
-            <mat-label>نام خانوادگی</mat-label>
-            <input [disabled]="true" [(ngModel)]="data.LastName" matInput />
-          </mat-form-field>
-        </div>
-    
-        <div class="skeleton" *ngIf="isLoading">
-          <nz-skeleton-element
-            nzType="button"
-            [nzActive]="elementActive"
-            [nzSize]="elementSize"
-            [nzShape]="buttonShape"
-          ></nz-skeleton-element>
-        </div>
-    
-        <div *ngIf="!isLoading">
-          <mat-form-field class="Birthday" appearance="outline" hideRequiredMarker>
-            <mat-label>تاریخ تولد</mat-label>
-            <input [disabled]="true" [(ngModel)]="data.Birthday" matInput />
-            <!-- <mat-hint>YYYY/MM/DD</mat-hint> -->
-          </mat-form-field>
-        </div>
-    
-        <div class="skeleton" *ngIf="isLoading">
-          <nz-skeleton-element
-            nzType="button"
-            [nzActive]="elementActive"
-            [nzSize]="elementSize"
-            [nzShape]="buttonShape"
-          ></nz-skeleton-element>
-        </div>
-    
-        <div *ngIf="!isLoading">
-          <mat-form-field class="Email" appearance="outline" hideRequiredMarker>
-            <mat-label>ایمیل</mat-label>
-            <input [disabled]="true" [(ngModel)]="data.Email" matInput />
-          </mat-form-field>
-        </div>
-    
-        <div class="skeleton" *ngIf="isLoading">
-          <nz-skeleton-element
-            nzType="button"
-            [nzActive]="elementActive"
-            [nzSize]="elementSize"
-            [nzShape]="buttonShape"
-          ></nz-skeleton-element>
-        </div>
-    
-        <div *ngIf="!isLoading">
-          <button
-            (click)="CreateGroup()"
-            type="button"
-            mat-button
-            class="register-button primary-button"
-          >
-            ویرایش اطلاعات
-          </button>
-        </div>
-    
-        <div class="skeleton" class="edit-btn" *ngIf="isLoading">
-          <nz-skeleton-element
-            nzType="button"
-            [nzActive]="elementActive"
-            [nzSize]="elementSize"
-            [nzShape]="buttonShape"
-          ></nz-skeleton-element>
-        </div>
+      <div *ngIf="!isLoading">
+        <mat-form-field
+          class="Username"
+          appearance="outline"
+          hideRequiredMarker
+        >
+          <mat-label>نام کاربری</mat-label>
+          <input [disabled]="true" [(ngModel)]="data.UserName" matInput />
+        </mat-form-field>
+      </div>
+
+      <div class="skeleton" *ngIf="isLoading">
+        <nz-skeleton-element
+          nzType="button"
+          [nzActive]="elementActive"
+          [nzSize]="elementSize"
+          [nzShape]="buttonShape"
+        ></nz-skeleton-element>
+      </div>
+
+      <div *ngIf="!isLoading">
+        <mat-form-field
+          class="FirstName"
+          appearance="outline"
+          hideRequiredMarker
+        >
+          <mat-label>نام</mat-label>
+          <input [disabled]="true" [(ngModel)]="data.FirstName" matInput />
+        </mat-form-field>
+      </div>
+
+      <div class="skeleton" *ngIf="isLoading">
+        <nz-skeleton-element
+          nzType="button"
+          [nzActive]="elementActive"
+          [nzSize]="elementSize"
+          [nzShape]="buttonShape"
+        ></nz-skeleton-element>
+      </div>
+
+      <div *ngIf="!isLoading">
+        <mat-form-field
+          class="LastName"
+          appearance="outline"
+          hideRequiredMarker
+        >
+          <mat-label>نام خانوادگی</mat-label>
+          <input [disabled]="true" [(ngModel)]="data.LastName" matInput />
+        </mat-form-field>
+      </div>
+
+      <div class="skeleton" *ngIf="isLoading">
+        <nz-skeleton-element
+          nzType="button"
+          [nzActive]="elementActive"
+          [nzSize]="elementSize"
+          [nzShape]="buttonShape"
+        ></nz-skeleton-element>
+      </div>
+
+      <div *ngIf="!isLoading">
+        <mat-form-field
+          class="Birthday"
+          appearance="outline"
+          hideRequiredMarker
+        >
+          <mat-label>تاریخ تولد</mat-label>
+          <input [disabled]="true" [(ngModel)]="data.Birthday" matInput />
+          <!-- <mat-hint>YYYY/MM/DD</mat-hint> -->
+        </mat-form-field>
+      </div>
+
+      <div class="skeleton" *ngIf="isLoading">
+        <nz-skeleton-element
+          nzType="button"
+          [nzActive]="elementActive"
+          [nzSize]="elementSize"
+          [nzShape]="buttonShape"
+        ></nz-skeleton-element>
+      </div>
+
+      <div *ngIf="!isLoading">
+        <mat-form-field class="Email" appearance="outline" hideRequiredMarker>
+          <mat-label>ایمیل</mat-label>
+          <input [disabled]="true" [(ngModel)]="data.Email" matInput />
+        </mat-form-field>
+      </div>
+
+      <div class="skeleton" *ngIf="isLoading">
+        <nz-skeleton-element
+          nzType="button"
+          [nzActive]="elementActive"
+          [nzSize]="elementSize"
+          [nzShape]="buttonShape"
+        ></nz-skeleton-element>
+      </div>
+
+      <form *ngIf="!isLoading">
+        <mat-form-field class="example-chip-list" appearance="outline">
+          <mat-label>علاقه مندی ها</mat-label>
+          <mat-chip-grid #chipGrid aria-label="Fruit selection">
+            <mat-chip-row *ngFor="let fruit of fruits" (removed)="remove(fruit)">
+              {{fruit}}
+              <button matChipRemove [attr.aria-label]="'remove ' + fruit">
+                X
+              </button>
+            </mat-chip-row>
+          </mat-chip-grid>
+          <input placeholder="علاقه مندی جدید ..." #fruitInput [formControl]="fruitCtrl"
+            [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            (matChipInputTokenEnd)="add($event)"/>
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+            <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
+              {{fruit}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </form>
+      
+      <div class="skeleton" *ngIf="isLoading">
+        <nz-skeleton-element
+          nzType="button"
+          [nzActive]="elementActive"
+          [nzSize]="elementSize"
+          [nzShape]="buttonShape"
+        ></nz-skeleton-element>
+      </div>
+
+      <div *ngIf="!isLoading">
+        <button
+          (click)="CreateGroup()"
+          type="button"
+          mat-button
+          class="register-button primary-button"
+        >
+          ویرایش اطلاعات
+        </button>
+      </div>
+
+      <div class="skeleton" class="edit-btn" *ngIf="isLoading">
+        <nz-skeleton-element
+          nzType="button"
+          [nzActive]="elementActive"
+          [nzSize]="elementSize"
+          [nzShape]="buttonShape"
+        ></nz-skeleton-element>
+      </div>
     </div>
   </div>
 </div>

@@ -354,6 +354,13 @@ button.quick-make.mdc-button.mdc-button--raised.mat-mdc-raised-button.mat-unthem
   .mat-mdc-form-field {
     width: 20rem !important;
   }
+
+  .mat-mdc-standard-chip.mdc-evolution-chip--with-trailing-action
+    .mdc-evolution-chip__action--trailing,
+  .mat-mdc-standard-chip.mdc-evolution-chip--with-trailing-action
+    .mdc-evolution-chip__action--trailing[dir="rtl"] {
+    padding-top: 4px !important;
+  }
 }
 
 .pic {

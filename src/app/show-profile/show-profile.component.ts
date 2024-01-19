@@ -3,9 +3,9 @@ import { RestService } from './../shared/services/Rest.service';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http'
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation, inject } from '@angular/core';
 import { Shared } from '../shared/services/shared.service';
-import { AbstractControl, ValidationErrors, FormBuilder } from '@angular/forms';
+import { AbstractControl, ValidationErrors, FormBuilder, FormControl } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 import {
@@ -15,6 +15,11 @@ import {
   NzSkeletonButtonSize,
   NzSkeletonInputSize
 } from 'ng-zorro-antd/skeleton';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { Observable, map, startWith } from 'rxjs';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatChipInputEvent } from '@angular/material/chips';
 
 @Component({
   selector: 'app-show-profile',
@@ -22,6 +27,15 @@ import {
   styleUrls: ['./show-profile.component.scss']
 })
 export class ShowProfileComponent implements OnInit {
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  fruitCtrl = new FormControl('');
+  filteredFruits: Observable<string[]>;
+  fruits: string[] = [];
+  allFruits: string[] = ['ورزشی', 'گیم', 'طبیعت', 'اجتماعی', 'درسی'];
+
+  @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
+
+  announcer = inject(LiveAnnouncer);
   buttonActive = true;
   avatarActive = true;
   inputActive = true;
@@ -43,6 +57,7 @@ export class ShowProfileComponent implements OnInit {
     Email: string,
     image: File,
     imagePath: string,
+    interests: string[]
 
   } = {
       FirstName: "",
@@ -51,14 +66,17 @@ export class ShowProfileComponent implements OnInit {
       Birthday: "",
       Email: "",
       image: null,
-      imagePath: ""
+      imagePath: "",
+      interests: []
     }
+
   requestData = {
     FirstName: this.data.FirstName,
     LastName: this.data.LastName,
     UserName: this.data.UserName,
     Birthday: this.data.Birthday,
     image: this.data.image,
+    interests: this.data.interests
   }
   session: any;
   profilePicture: File | undefined;
@@ -73,7 +91,91 @@ export class ShowProfileComponent implements OnInit {
     private datePipe: DatePipe,
     private toastr: ToastrService,
     private matDialog: MatDialog
-  ) { }
+  ) {
+    this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
+      startWith(null),
+      map((fruit: string | null) => (fruit ? this._filter(fruit) : this.allFruits.slice())),
+    );
+  }
+
+  add(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+
+    // Add our fruit
+    if (value) {
+      console.log('value', value)
+      console.log('list', this.fruits)
+      if (this.allFruits.includes(value) && !this.fruits.includes(value)) {
+        this.fruits.push(value);
+        this.updateInterest();
+      }
+    }
+
+    // Clear the input value
+    event.chipInput!.clear();
+
+    this.fruitCtrl.setValue(null);
+
+  }
+
+  remove(fruit: string): void {
+    const index = this.fruits.indexOf(fruit);
+
+    if (index >= 0) {
+      this.fruits.splice(index, 1);
+
+      this.announcer.announce(`Removed ${fruit}`);
+      this.updateInterest();
+    }
+  }
+
+  updateInterest() {
+    const formData = new FormData;
+    console.log(this.selectedFile);
+    formData.append('FirstName', this.data.FirstName);
+    formData.append('LastName', this.data.LastName);
+    formData.append('UserName', this.data.UserName);
+    formData.append('BirthDay', this.data.Birthday);
+    formData.append('Image', this.data.imagePath);
+    this.fruits.forEach((interest, index) => {
+      formData.append(`interests[${index}]`, interest);
+    });
+    console.log('before', formData.getAll)
+
+    this.restService.post<any>('User/EditProfile', formData).subscribe(
+      (response) => {
+        if (response['success']) {
+          this.updateData();
+          this.toastr.success('پروفایل با موفقیت تغییر یافت', 'موفقیت');
+          console.log('after', formData.getAll)
+
+        }
+        else {
+          if (response['message'] = 'User already exists.')
+            this.toastr.error('نام کاربری قبلا در سبستم ثبت شده است.', 'خطا');
+          else {
+            this.toastr.error('مشکلی پیش آمده دوباره تلاش کنید', 'خطا');
+          }
+        }
+      },
+    )
+  }
+
+  selected(event: MatAutocompleteSelectedEvent): void {
+    if (!this.fruits.includes(event.option.viewValue)) {
+      this.fruits.push(event.option.viewValue);
+      this.fruitInput.nativeElement.value = '';
+      this.fruitCtrl.setValue(null);
+
+      this.updateInterest();
+    }
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.allFruits.filter(fruit => fruit.toLowerCase().includes(filterValue));
+  }
 
   emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   validateAge(control: AbstractControl): ValidationErrors | null {
@@ -93,15 +195,16 @@ export class ShowProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.restService.post("User/ProfileInfo", null).subscribe((res: ProfileResult) => {
-
       this.data.FirstName = res.firstName;
       this.data.LastName = res.lastName;
       this.data.UserName = res.userName;
       this.data.Email = res.email;
       this.data.Birthday = res.birthday;
       this.data.imagePath = res.imagePath;
+      this.data.interests = res.interests;
+      this.fruits = this.data.interests;
+      console.log('interests', this.data.interests)
       const parts = res.birthday.split('/');
       if (parts.length === 3) {
         const day = parseInt(parts[0], 10);
@@ -115,31 +218,6 @@ export class ShowProfileComponent implements OnInit {
       this.isLoading = false;
     });
   }
-  submit() {
-    console.log(this.selectedFile);
-    const formData = new FormData;
-    formData.append('FirstName', this.data.FirstName);
-    formData.append('LastName', this.data.LastName);
-    formData.append('UserName', this.data.UserName);
-    formData.append('BirthDay', this.data.Birthday);
-    formData.append('Image', this.selectedFile);
-
-    this.restService.post<any>('User/EditProfile', formData).subscribe(
-      (response) => {
-        if (response['success']) {
-          this.updateData();
-          this.toastr.success('پروفایل با موفقیت تغییر یافت', 'موفقیت');
-        }
-        else {
-          if (response['message'] = 'User already exists.')
-            this.toastr.error('نام کاربری قبلا در سبستم ثبت شده است.', 'خطا');
-          else {
-            this.toastr.error('مشکلی پیش آمده دوباره تلاش کنید', 'خطا');
-          }
-        }
-      },
-    )
-  }
 
   updateData() {
     this.requestData = {
@@ -148,6 +226,7 @@ export class ShowProfileComponent implements OnInit {
       UserName: "",
       Birthday: null,
       image: null,
+      interests: []
     }
     this.selectedImage = undefined;
     this.selectedFile = null;
@@ -160,10 +239,12 @@ export class ShowProfileComponent implements OnInit {
     }
   }
   CreateGroup() {
+
     const dialogRef: MatDialogRef<any, any> = this.matDialog.open(EditProfileComponent, {
       disableClose: true,
       hasBackdrop: true,
-      autoFocus: false
+      autoFocus: false,
+      data : this.fruits
     })
   }
 }
@@ -179,6 +260,6 @@ interface ProfileResult {
   birthday: string,
   email: string,
   imagePath: string,
-
+  interests: string[]
 }
 
