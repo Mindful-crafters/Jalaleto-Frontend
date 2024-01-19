@@ -337,3 +337,29 @@ button.quick-make.mdc-button.mdc-button--raised.mat-mdc-raised-button.mat-unthem
     margin-bottom: 0.5rem !important;
   }
 }
+
+.profile-form {
+  .ant-skeleton-element .ant-skeleton-button {
+    width: 20rem !important;
+    height: 41px !important;
+  }
+
+  .edit-btn {
+    .ant-skeleton-element .ant-skeleton-button {
+      width: 9rem !important;
+      height: 41px !important;
+    }
+  }
+
+  .mat-mdc-form-field {
+    width: 20rem !important;
+  }
+}
+
+.pic {
+  .ant-skeleton-element .ant-skeleton-image {
+    border-radius: 50% !important;
+    width: 16rem !important;
+    height: 16rem !important;
+  }
+}

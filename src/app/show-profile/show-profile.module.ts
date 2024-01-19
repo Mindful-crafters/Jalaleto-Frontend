@@ -20,6 +20,7 @@ import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { ShowGroupsComponent } from '../show-groups/show-groups.component';
 import { ShowProfileComponent } from './show-profile.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 @NgModule({
     declarations: [
         ShowProfileComponent,
@@ -39,7 +40,8 @@ import { MatTabsModule } from '@angular/material/tabs';
         MatDatepickerModule,
         NavbarFooterModule,
         NzPopoverModule,
-        MatTabsModule
+        MatTabsModule,
+        NzSkeletonModule,
     ],
     exports: [
         ShowProfileComponent,

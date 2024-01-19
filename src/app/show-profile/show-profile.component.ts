@@ -8,6 +8,13 @@ import { Shared } from '../shared/services/shared.service';
 import { AbstractControl, ValidationErrors, FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { EditProfileComponent } from '../edit-profile/edit-profile.component';
+import {
+  NzSkeletonAvatarShape,
+  NzSkeletonAvatarSize,
+  NzSkeletonButtonShape,
+  NzSkeletonButtonSize,
+  NzSkeletonInputSize
+} from 'ng-zorro-antd/skeleton';
 
 @Component({
   selector: 'app-show-profile',
@@ -15,6 +22,19 @@ import { EditProfileComponent } from '../edit-profile/edit-profile.component';
   styleUrls: ['./show-profile.component.scss']
 })
 export class ShowProfileComponent implements OnInit {
+  buttonActive = true;
+  avatarActive = true;
+  inputActive = true;
+  imageActive = true;
+  buttonSize: NzSkeletonButtonSize = 'default';
+  avatarSize: NzSkeletonAvatarSize = 'default';
+  inputSize: NzSkeletonInputSize = 'default';
+  elementActive = true;
+  buttonShape: NzSkeletonButtonShape = 'default';
+  avatarShape: NzSkeletonAvatarShape = 'circle';
+  elementSize: NzSkeletonInputSize = 'default';
+  isLoading = true;
+
   data: {
     FirstName: string,
     LastName: string,
@@ -91,6 +111,8 @@ export class ShowProfileComponent implements OnInit {
         const format = this.datePipe.transform(new Date(year, month, day), 'yyyy-MM-dd');
         this.data.Birthday = format;
       }
+
+      this.isLoading = false;
     });
   }
   submit() {
