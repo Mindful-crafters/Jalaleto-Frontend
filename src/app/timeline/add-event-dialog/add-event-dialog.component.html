@@ -1,0 +1,117 @@
+<div class="dialog">
+  <div class="header">
+    <button class="close-button" mat-button (click)="close()">
+      <img src="assets/icons/close.svg" />
+    </button>
+    <span class="title">
+      افزودن رویداد
+    </span>
+  </div>
+
+  <form [formGroup]="formGroup" class="content new-reminder">
+    <mat-form-field class="input-group" appearance="outline" hideRequiredMarker>
+      <mat-label>عنوان</mat-label>
+      <input formControlName="title" matInput />
+      <mat-error>این قسمت را خالی نگذارید.</mat-error>
+    </mat-form-field>
+
+    <div class="name-member-limit">
+      <mat-form-field *ngIf="!isMyGroupsLoading" appearance="outline">
+        <mat-label>گروه</mat-label>
+        <mat-select formControlName="selectBox" required>
+          <mat-option *ngFor="let group of myGroups" [value]="group.groupId">
+            {{ group.name }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="formGroup.get('selectBox').hasError('required')"
+          > یکی از گروه های خود را انتخاب کنید</mat-error>
+      </mat-form-field>
+
+      <nz-skeleton-element
+        *ngIf="isMyGroupsLoading"
+        nzType="button"
+        [nzActive]="elementActive"
+        [nzSize]="elementSize"
+        [nzShape]="buttonShape"
+      ></nz-skeleton-element>
+
+      <mat-form-field appearance="outline" hideRequiredMarker>
+        <mat-label>حداکثر اعضای رویداد</mat-label>
+        <input formControlName="memberLimit" matInput />
+        <mat-error *ngIf="formGroup.get('memberLimit').hasError('isNull')"
+          >این قسمت را خالی نگذارید.</mat-error
+        >
+        <mat-error *ngIf="formGroup.get('memberLimit').hasError('notANumber')"
+          >عدد وارد کنید</mat-error
+        >
+        <mat-error *ngIf="formGroup.get('memberLimit').hasError('isZero')"
+          >تعداد اعضای گروه نمی تواند 0 باشد</mat-error
+        >
+      </mat-form-field>
+    </div>
+
+    <div class="interests">
+      <mat-form-field class="example-chip-list" appearance="outline">
+        <mat-label>تگ های رویداد</mat-label>
+        <mat-chip-grid #chipGrid aria-label="Fruit selection">
+          <mat-chip-row *ngFor="let fruit of fruits" (removed)="remove(fruit)">
+            {{ fruit }}
+            <button matChipRemove [attr.aria-label]="'remove ' + fruit">
+              X
+            </button>
+          </mat-chip-row>
+        </mat-chip-grid>
+        <input
+          placeholder="علاقه مندی جدید ..."
+          #fruitInput
+          [matChipInputFor]="chipGrid"
+          [matAutocomplete]="auto"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          (matChipInputTokenEnd)="add($event)"
+        />
+        <mat-autocomplete
+          #auto="matAutocomplete"
+          (optionSelected)="selected($event)"
+        >
+          <mat-option
+            *ngFor="let fruit of filteredFruits | async"
+            [value]="fruit"
+          >
+            {{ fruit }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+
+    <div class="time-div">
+      <span>زمان شروع :</span>
+      <ngx-mat-timepicker #pickerA></ngx-mat-timepicker>
+      <mat-form-field
+        style="margin-top: 1.5rem; width: 6rem"
+        appearance="outline"
+        hideRequiredMarker
+      >
+        <input
+          formControlName="startTime"
+          [format]="24"
+          placeholder="12:00"
+          style="text-align: center"
+          [dir]="'ltr'"
+          matInput
+          [ngxMatTimepicker]="pickerA"
+          readonly
+        />
+      </mat-form-field>
+    </div>
+
+    <mat-form-field style="width: 100%" appearance="outline" hideRequiredMarker>
+      <mat-label>توضیحات</mat-label>
+      <textarea formControlName="description" rows="4" matInput></textarea>
+      <mat-error>این قسمت را خالی نگذارید</mat-error>
+    </mat-form-field>
+  </form>
+  <div class="footer">
+    <button class="save-button" mat-button (click)="Submit()">ذخیره</button>
+    <button class="cancel-button" mat-button (click)="close()">لغو</button>
+  </div>
+</div>

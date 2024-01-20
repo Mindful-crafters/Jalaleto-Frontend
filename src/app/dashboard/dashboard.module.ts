@@ -27,6 +27,7 @@ import { GroupInfoComponent } from '../group-info/group-info.component';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatTabsModule } from '@angular/material/tabs';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
+import { AddEventDialogComponent } from '../timeline/add-event-dialog/add-event-dialog.component';
 
 
 @NgModule({
@@ -36,7 +37,6 @@ import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
         ShowGroupsComponent,
         ReminderDialogComponent,
         GroupInfoComponent,
-
     ],
     imports: [
         BrowserAnimationsModule,

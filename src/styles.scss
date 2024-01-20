@@ -318,7 +318,7 @@ button.quick-make.mdc-button.mdc-button--raised.mat-mdc-raised-button.mat-unthem
   }
 }
 
-.reminder-panel {
+.reminder-panel , .event-panel {
   .ant-skeleton-element {
     display: inline-block !important;
     width: 100% !important;
@@ -368,5 +368,27 @@ button.quick-make.mdc-button.mdc-button--raised.mat-mdc-raised-button.mat-unthem
     border-radius: 50% !important;
     width: 16rem !important;
     height: 16rem !important;
+  }
+}
+
+.name-member-limit {
+  .ant-skeleton-element .ant-skeleton-button {
+    width: 12.6875rem !important;
+    height: 2.5625rem !important;
+  }
+}
+
+.content {
+  .mat-mdc-standard-chip.mdc-evolution-chip--with-trailing-action
+    .mdc-evolution-chip__action--trailing,
+  .mat-mdc-standard-chip.mdc-evolution-chip--with-trailing-action
+    .mdc-evolution-chip__action--trailing[dir="rtl"] {
+    padding-top: 4px !important;
+  }
+}
+
+.interests {
+  .mat-mdc-form-field {
+    width: 100% !important;
   }
 }

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Group } from '../show-groups/show-groups.component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { GroupInfoComponent } from '../group-info/group-info.component';
 import { RestService } from '../shared/services/Rest.service';
 import { HubConnection } from '@microsoft/signalr';
 import * as signalR from '@microsoft/signalr';
 import { AuthService } from '../shared/services/auth.service';
+import { Group } from '../shared/types/Group';
 
 @Component({
   selector: 'app-groups-page',

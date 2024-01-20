@@ -1,10 +1,16 @@
-import { Member } from "./Member";
+export class Member {
+    mail: string = '';
+    firstName: string = ''
+    userName: string = '';
+    image: string = '';
+  }
+  
 
 export class Group {
-    groupId : number;
-    name : string;
-    description : string ; 
-    imageUrl : string;
-
-    members : Member[]
-}
+    groupId: number = 0;
+    name: string = '';
+    description: string = '';
+    imageUrl: string = '';
+    imageFile: File = null;
+    members: Member[]
+  }

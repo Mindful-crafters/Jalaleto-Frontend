@@ -66,30 +66,11 @@ export class ReminderDialogComponent implements OnInit {
     )
   }
 
-  validateDate(control: AbstractControl): ValidationErrors | null {
-    const currentDate = new Date();
-    const selectedDate = new Date(control.value);
-
-    currentDate.setHours(0, 0, 0, 0);
-
-    if (selectedDate < currentDate) {
-      return { customError: true };
-    } else {
-      console.log('selected date : ', selectedDate)
-      this.data.dateTime = selectedDate;
-      return null;
-    }
-  }
-
   close() {
     this.dialogRef.close(null);
   }
 
   Submit() {
-    if (this.formGroup.get('datePicker') == null) {
-
-    }
-
     if (this.formGroup.invalid) {
       this.formGroup.markAllAsTouched();
 

@@ -1,3 +1,4 @@
+import { EventObject } from './../shared/types/EventObject.type';
 import { persiancalendarservice } from './../shared/services/persiancalendarservice.service';
 import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
@@ -16,6 +17,7 @@ import {
   NzSkeletonButtonSize,
   NzSkeletonInputSize
 } from 'ng-zorro-antd/skeleton';
+import { AddEventDialogComponent } from './add-event-dialog/add-event-dialog.component';
 
 @Component({
   selector: 'app-timeline',
@@ -36,8 +38,6 @@ export class TimelineComponent implements OnInit {
   buttonShape: NzSkeletonButtonShape = 'default';
   avatarShape: NzSkeletonAvatarShape = 'circle';
   elementSize: NzSkeletonInputSize = 'default';
-  selectedDayLoading = true;
-  remindersLoading = true;
   quickDate: Date;
   timelineItems: TimeLineItem[] = [];
   displayedTimeLine: TimeLineItem[] = [];
@@ -46,6 +46,12 @@ export class TimelineComponent implements OnInit {
   selectedBox: number | null = 0;
   weekReminders: ReminderObject[];
   selectedDayReminders: ReminderObject[];
+  weekEvents: EventObject[];
+  selectedDayEvents: EventObject[];
+  selectedDayLoading = true;
+  remindersLoading = true;
+  weekEventsLoading = true;
+  selectedDayEventsLoading = true;
 
   constructor(
     private el: ElementRef,
@@ -53,10 +59,7 @@ export class TimelineComponent implements OnInit {
     private auth: AuthService,
     private datePipe: DatePipe,
     public persiancalendarservice: persiancalendarservice,
-    private matDialog: MatDialog) {
-  }
-
-
+    private matDialog: MatDialog) { }
 
   ngOnInit() {
     this.generateTimeline();
@@ -64,6 +67,7 @@ export class TimelineComponent implements OnInit {
     const today = new Date();
     this.firstDayOfTimeline = today;
     this.getWeekReminders(today);
+    this.getWeekEvents(today);
     this.openBox(0);
   }
 
@@ -90,6 +94,29 @@ export class TimelineComponent implements OnInit {
     })
   }
 
+  getWeekEvents(firstDate: Date) {
+    const currentDate = new Date(firstDate);
+    currentDate.setHours(3, 30, 0, 0);
+
+    const firstday = currentDate.toISOString();
+
+    const lastDay = new Date(firstDate)
+    lastDay.setDate(firstDate.getDate() + 7);
+    lastDay.setHours(3, 29, 59, 999);
+
+    const lastday = lastDay.toISOString();
+
+    const body = {
+      "from": firstday,
+      "to": lastDay
+    }
+
+    this.restService.post('Event/Info', body).subscribe(res => {
+      this.weekEvents = res['data'];
+      this.weekEventsLoading = false;
+    })
+  }
+
   generateTimeline() {
     const today = new Date();
 
@@ -112,6 +139,7 @@ export class TimelineComponent implements OnInit {
       this.firstDayOfTimeline.setDate(this.firstDayOfTimeline.getDate() - 7);
       this.openBox(0);
       this.getWeekReminders(this.firstDayOfTimeline);
+      this.getWeekEvents(this.firstDayOfTimeline);
 
       for (const item of this.displayedTimeLine) {
         const pastDate = new Date(item.date);
@@ -130,6 +158,7 @@ export class TimelineComponent implements OnInit {
       this.firstDayOfTimeline.setDate(this.firstDayOfTimeline.getDate() + 7);
       this.openBox(0);
       this.getWeekReminders(this.firstDayOfTimeline);
+      this.getWeekEvents(this.firstDayOfTimeline);
 
       for (const item of this.displayedTimeLine) {
         const pastDate = new Date(item.date);
@@ -181,7 +210,11 @@ export class TimelineComponent implements OnInit {
     this.restService.post('Reminder/Info', body).subscribe(res => {
       this.selectedDayReminders = res['data'];
       this.selectedDayLoading = false;
-  
+    })
+
+    this.restService.post('Event/Info', body).subscribe(res => {
+      this.selectedDayEvents = res['data'];
+      this.selectedDayEventsLoading = false;
     })
   }
 
@@ -222,6 +255,31 @@ export class TimelineComponent implements OnInit {
       result += year;
     }
     return result;
+  }
+
+  AddNewEvent() {
+    const selectedDay = new Date(this.firstDayOfTimeline);
+    selectedDay.setDate(this.firstDayOfTimeline.getDate() + this.selectedBox)
+
+    const dialogRef: MatDialogRef<any, any> = this.matDialog.open(AddEventDialogComponent, {
+      data: selectedDay,
+      disableClose: true,
+      hasBackdrop: true,
+      autoFocus: false
+    })
+
+    dialogRef.afterClosed().subscribe((res) => {
+      console.log('dialog is closed')
+      if (res) {
+        console.log('done!')
+        this.getWeekEvents(this.firstDayOfTimeline);
+        this.openBox(this.selectedBox);
+        console.log('selected box : ', this.selectedBox)
+      }
+
+      else
+        console.log('not done');
+    })
   }
 
   AddNewReminder() {
@@ -265,9 +323,9 @@ export class TimelineComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((res) => {
       if (res) {
-
+        this.getWeekReminders(this.firstDayOfTimeline);
+        this.openBox(this.selectedBox);
       }
-
       else { }
     })
   }
@@ -327,6 +385,7 @@ export class TimelineComponent implements OnInit {
     this.displayedTimeLine = updatedWeek;
     this.openBox(0);
     this.getWeekReminders(this.firstDayOfTimeline);
+    this.getWeekEvents(this.firstDayOfTimeline);
   }
 }
 

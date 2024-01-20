@@ -1,10 +1,8 @@
 import { AuthService } from './../shared/services/auth.service';
-import { AfterViewInit, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { RestService } from '../shared/services/Rest.service';
 import * as moment from 'jalali-moment';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { CreateGroupDialogComponent } from '../create-group-dialog/create-group-dialog.component';
 import { Group } from '../shared/types/Group';
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -175,10 +173,8 @@ export class DashboardComponent {
     ReminderCount: 0,
     EventCount: 0,
   }
-
-
-
 }
+
 interface LandingResult {
   success: boolean,
   code: number,

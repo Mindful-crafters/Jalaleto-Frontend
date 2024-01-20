@@ -4,6 +4,7 @@ import * as moment from 'jalali-moment';
 import { CreateGroupDialogComponent } from '../create-group-dialog/create-group-dialog.component';
 import { RestService } from '../shared/services/Rest.service';
 import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
+import { Group } from '../shared/types/Group';
 
 @Component({
   selector: 'app-show-groups',
@@ -70,22 +71,5 @@ export class ShowGroupsComponent implements OnInit {
       console.log(res);
       this.filterdGroups = res['data'];
     })
-
   }
-}
-
-export class Group {
-  groupId: number = 0;
-  name: string = '';
-  description: string = '';
-  imageUrl: string = '';
-  imageFile: File = null;
-  members: Member[]
-}
-
-export class Member {
-  mail: string = '';
-  firstName: string = ''
-  userName: string = '';
-  image: string = '';
 }

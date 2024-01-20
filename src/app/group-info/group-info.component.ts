@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http'
 import { Shared } from '../shared/services/shared.service';
 import { AbstractControl, ValidationErrors, FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { Group } from '../show-groups/show-groups.component';
+import { Group } from '../shared/types/Group';
 
 @Component({
   selector: 'app-group-info',

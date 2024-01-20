@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -39,13 +38,9 @@ import { GroupsPageComponent } from './groups-page/groups-page.component';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { MatTabsModule } from '@angular/material/tabs';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
-
-
-
-
-
-
-
+import { AddEventDialogComponent } from './timeline/add-event-dialog/add-event-dialog.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -57,15 +52,13 @@ import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
     CreateGroupDialogComponent,
     EditProfileComponent,
     GroupsPageComponent,
-
+    AddEventDialogComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatFormFieldModule,
     MatInputModule,
-    FormsModule,
     ReactiveFormsModule,
     MatCheckboxModule,
     MatButtonModule,
@@ -77,19 +70,21 @@ import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
     NgxMatTimepickerModule,
     MatMenuModule,
     SignupModule,
-    MatDialogModule,
     ShowProfileModule,
     MatChipsModule,
+    NzSkeletonModule,
     MatIconModule,
     ToastrModule.forRoot(),
     AboutUsModule,
     ContactUsModule,
+    MatSelectModule,
     RulesModule,
     WorkWithUsModule,
-    ShowProfileModule,
     MatFormFieldModule,
     NzListModule,
-    MatTabsModule
+    MatTabsModule,
+    FormsModule,
+    MatAutocompleteModule
   ],
   providers: [
     DatePipe,

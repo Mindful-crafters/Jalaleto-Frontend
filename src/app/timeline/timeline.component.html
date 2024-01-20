@@ -3,13 +3,25 @@
     <p class="title">رویداد های هفته</p>
 
     <div class="historical-events">
-      <!-- <div
-        *ngFor="let event of historicalEvents; let i = index"
-        class="history-event-item"
-      >
-        <span>{{ event.dayNum }}</span>
-        <span>{{ event.event }}</span>
-      </div> -->
+      <ng-container *ngIf="!weekEventsLoading">
+        <div
+          *ngFor="let event of weekEvents; let i = index"
+          class="history-event-item"
+        >
+          <span>{{ MiladiToShamsi(event.when) }} {{ event.name }}</span>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="weekEventsLoading">
+        <div *ngFor="let item of currentWeek">
+          <nz-skeleton-element
+            nzType="button"
+            [nzActive]="elementActive"
+            [nzSize]="elementSize"
+            [nzShape]="buttonShape"
+          ></nz-skeleton-element>
+        </div>
+      </ng-container>
     </div>
 
     <p class="title">یادآوری های هفته</p>
@@ -36,7 +48,6 @@
           ></nz-skeleton-element>
         </div>
       </ng-container>
-
     </div>
   </div>
 
@@ -121,7 +132,64 @@
       </div>
 
       <div class="panels">
-        <div class="event-panel"></div>
+        <div class="event-panel">
+          <ng-container *ngIf="!selectedDayEventsLoading">
+            <div
+              class="reminder-object-container"
+              *ngFor="let event of selectedDayEvents; let i = index"
+              [style.animation-delay]="i * 0.3 + 's'"
+            >
+              <div class="top-info">
+                <span class="title">{{ event.name }} </span>
+              </div>
+
+              <div class="bottom-info">
+                <div *ngIf="event.description != null" class="notes">
+                  {{ event.description }}
+                </div>
+                <div *ngIf="!event.description" class="notes">
+                  َشرحی موجود نمی باشد.
+                </div>
+              </div>
+              <div class="clock">{{ hourAndMinute(event.when) }}</div>
+            </div>
+          </ng-container>
+
+          <div *ngIf="selectedDayLoading">
+            <div>
+              <nz-skeleton-element
+                nzType="button"
+                [nzActive]="elementActive"
+                [nzSize]="elementSize"
+                [nzShape]="buttonShape"
+              ></nz-skeleton-element>
+            </div>
+            <div>
+              <nz-skeleton-element
+                nzType="button"
+                [nzActive]="elementActive"
+                [nzSize]="elementSize"
+                [nzShape]="buttonShape"
+              ></nz-skeleton-element>
+            </div>
+            <div>
+              <nz-skeleton-element
+                nzType="button"
+                [nzActive]="elementActive"
+                [nzSize]="elementSize"
+                [nzShape]="buttonShape"
+              ></nz-skeleton-element>
+            </div>
+            <div>
+              <nz-skeleton-element
+                nzType="button"
+                [nzActive]="elementActive"
+                [nzSize]="elementSize"
+                [nzShape]="buttonShape"
+              ></nz-skeleton-element>
+            </div>
+          </div>
+        </div>
 
         <div class="divider"></div>
 
@@ -195,7 +263,8 @@
       </div>
 
       <div class="btn-container">
-        <button mat-raised-button class="add-event">افزودن رویداد</button>
+        <button mat-raised-button class="add-event"
+        (click)="AddNewEvent()">افزودن رویداد</button>
 
         <button
           mat-raised-button
