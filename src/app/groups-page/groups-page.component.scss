@@ -19,14 +19,9 @@
 
     .chat-header {
       height: 123px;
-      border-bottom: 2px solid black;
       display: flex;
       align-items: center;
       cursor: pointer;
-      
-      &:hover {
-        background-color: rgb(226, 226, 226);
-      }
 
       .members-count {
         opacity: 0.8;

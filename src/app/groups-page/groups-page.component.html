@@ -1,22 +1,31 @@
 <div class="container">
-  <app-show-groups (showGroup)="OpenGroup($event)"></app-show-groups>
+  <app-show-groups [selectedGroup]="selectedGroup" (showGroup)="OpenGroup($event)"></app-show-groups>
   <div *ngIf="!selectedGroup" class="no-group-selected"></div>
   <div *ngIf="selectedGroup" class="chat-container">
-    <div class="chat-header" (click)="OpenGroupInfo(selectedGroup)">
-      <div class="profile-avatar">
-        <img *ngIf="!selectedGroup.imageUrl || selectedGroup.imageUrl =='' " src="assets/icons/group-icon.svg" alt="">
-        <img *ngIf="selectedGroup.imageUrl && selectedGroup.imageUrl !='' " #prof [src]="selectedGroup.imageUrl" alt="">
-      </div>
-      <div class="group-detail">
-        <div class="group-info">
-          <h2>{{ selectedGroup.name }}</h2>
+    <div style="display: flex; justify-content: space-between;border-bottom: 2px solid black;align-items: center;">
+      <div class="chat-header">
+        <div class="profile-avatar" (click)="OpenGroupInfo(selectedGroup)">
+          <img *ngIf="!selectedGroup.imageUrl || selectedGroup.imageUrl =='' " src="assets/icons/group-icon.svg" alt="">
+          <img *ngIf="selectedGroup.imageUrl && selectedGroup.imageUrl !='' " #prof [src]="selectedGroup.imageUrl"
+            alt="">
         </div>
-        <div class="members-count">
-          <span>تعداد اعضا: </span>
-          <span>{{ selectedGroup.members.length }}</span>
+        <div class="group-detail">
+          <div class="group-info">
+            <h2>{{ selectedGroup.name }}</h2>
+          </div>
+          <div class="members-count">
+            <span>تعداد اعضا: </span>
+            <span>{{ selectedGroup.members.length }}</span>
+          </div>
         </div>
       </div>
+      <button mat-button [matMenuTriggerFor]="menu">
+        <img style="width: 32px;" src="assets/icons/3-vertical-dots.svg" alt="">
+      </button>
     </div>
+    <mat-menu #menu="matMenu" class="menu">
+      <button mat-menu-item (click)="OpenShowEvents()">مشاهده ی رویداد ها</button>
+    </mat-menu>
     <!-- <div class="content">
       <div class="message" *ngFor="let message of messages">
         <div *ngIf="!message.areYouSender" class="others-message">
@@ -32,7 +41,8 @@
       <div class="message" *ngFor="let message of messages">
         <div *ngIf="!message.areYouSender" class="others-message">
           <div class="profile-img">
-            <img *ngIf="!message.senderImageUrl || message.senderImageUrl == '' " src="../../assets/icons/icons8-test-account-48.png" alt="">
+            <img *ngIf="!message.senderImageUrl || message.senderImageUrl == '' "
+              src="../../assets/icons/icons8-test-account-48.png" alt="">
             <img *ngIf="message.senderImageUrl && message.senderImageUrl != '' " [src]="message.senderImageUrl" alt="">
           </div>
 
@@ -40,7 +50,7 @@
             <div class="username">{{ message.senderName }}</div>
             <div class="text">
               <span>
-                {{ message.content }}    
+                {{ message.content }}
               </span>
             </div>
           </div>
@@ -49,8 +59,9 @@
         <div *ngIf="message.areYouSender" class="my-message">
           <div class="text">
             <span>
-              {{ message.content }}    
-            </span></div>
+              {{ message.content }}
+            </span>
+          </div>
         </div>
       </div>
     </div>

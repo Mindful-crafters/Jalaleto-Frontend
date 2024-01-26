@@ -1,8 +1,9 @@
 <mat-menu #menu="matMenu" class="menu">
     <button mat-menu-item (click)="CreateGroup()">افزودن گروه</button>
+    <button mat-menu-item routerLink="">بازگشت به صفحه داشبورد</button>
 </mat-menu>
 
-<div style="border-right: 1px solid #ccc;width: 30vw;">
+<div style="border-inline-end: 1px solid #ccc;width: 30vw;">
     <div class="search-bar" style="display: flex;padding-top: 1rem;">
         <mat-form-field style="flex-grow: 1;height: 40px;margin-inline-start: 1rem;" appearance="outline"
             hideRequiredMarker>
@@ -18,7 +19,8 @@
     <mat-tab-group *ngIf="!isSearching" style="height: calc(100vh - 4rem)">
         <mat-tab label="همه ی گروه ها">
             <div class="groups">
-                <div class="group" *ngFor="let group of allGroups" mat-ripple (click)="OpenGroup(group)">
+                <div class="group" *ngFor="let group of allGroups" mat-ripple (click)="OpenGroup(group)"
+                    [style.background-color]="selectedGroup.groupId == group.groupId ? '#3a86ff' : '#fff'">
                     <div *ngIf="!group.imageFile" class="prof">
                         <img *ngIf="!group.imageUrl || group.imageUrl =='' " src="assets/icons/group-icon.svg" alt="">
                         <img *ngIf="group.imageUrl && group.imageUrl !='' " #prof [src]="group.imageUrl" alt="">
@@ -26,7 +28,7 @@
                     <div *ngIf="group.imageFile" class="prof">
                         <img [src]="group.imageFile" alt="">
                     </div>
-                    
+
                     <div style="display: flex; flex-direction: column;width: 75%;">
                         <!-- <div class="name">{{group.name}}</div> -->
                         <div class="name">
@@ -40,7 +42,8 @@
         </mat-tab>
         <mat-tab label="گروه های من">
             <div class="groups">
-                <div class="group" *ngFor="let group of myGroups" mat-ripple (click)="OpenGroup(group)">
+                <div class="group" *ngFor="let group of myGroups" mat-ripple (click)="OpenGroup(group)"
+                    [style.background-color]="selectedGroup.groupId == group.groupId ? '#3a86ff' : '#fff'">
                     <div style="display: flex; flex-direction: column;width: 75%;">
                         <!-- <div class="name">{{group.name}}</div> -->
                         <div class="name">
@@ -63,7 +66,8 @@
 
     <div *ngIf="isSearching" style="height: calc(100vh - 4rem);background-color: #fff;">
         <div class="groups">
-            <div class="group" *ngFor="let group of filterdGroups" mat-ripple (click)="OpenGroup(group)">
+            <div class="group" *ngFor="let group of filterdGroups" mat-ripple (click)="OpenGroup(group)"
+                [style.background-color]="selectedGroup.groupId == group.groupId ? '#3a86ff' : '#fff'">
                 <div style="display: flex; flex-direction: column;width: 75%;">
                     <!-- <div class="name">{{group.name}}</div> -->
                     <div class="name">

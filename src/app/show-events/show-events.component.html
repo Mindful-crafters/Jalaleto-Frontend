@@ -1,0 +1,42 @@
+<div class="dialog">
+    <div class="header">
+        <button class="close-button" mat-button (click)="Close()">
+            <img src="assets/icons/close.svg">
+        </button>
+        <div class="info">
+            رویداد ها
+        </div>
+
+    </div>
+    <div class="content">
+        <ng-container *ngIf="!isLoaded">
+            <nz-skeleton [nzActive]="true"></nz-skeleton>
+        </ng-container>
+        <ng-container *ngIf="isLoaded">
+            <div *ngIf="events.length == 0" class="no-event">
+                رویدادی برای این گروه یافت نشد
+            </div>
+            <div class="event" *ngFor="let event of events" mat-ripple>
+                <div class="details">
+                    <div class="name">
+                        <span nz-popover nzPopoverTitle="توضیحات" [nzPopoverContent]="event.description"
+                            nzPopoverPlacement="bottomRight">{{ event.name }}
+                        </span>
+                    </div>
+                    <div *ngIf="event.tag.length > 0" class="tags">
+                        <span>تگ ها: </span>
+                        <span *ngFor="let tag of event.tag.slice(0, event.tag.length-1)">
+                            {{tag + ' - '}}
+                        </span>
+                        <span>
+                            {{event.tag[event.tag.length-1]}}
+                        </span>
+                    </div>
+                </div>
+                <div class="time">
+                    {{event.when | date}}
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>

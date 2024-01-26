@@ -14,6 +14,7 @@ import { Group } from '../shared/types/Group';
 export class ShowGroupsComponent implements OnInit {
 
   @Output() showGroup: EventEmitter<Group> = new EventEmitter<Group>();
+  @Input() selectedGroup: Group = null;
 
   constructor(private matDialog: MatDialog, private restService: RestService) {
 

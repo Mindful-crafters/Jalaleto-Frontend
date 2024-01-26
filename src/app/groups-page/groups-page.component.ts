@@ -6,6 +6,7 @@ import { HubConnection } from '@microsoft/signalr';
 import * as signalR from '@microsoft/signalr';
 import { AuthService } from '../shared/services/auth.service';
 import { Group } from '../shared/types/Group';
+import { ShowEventsComponent } from '../show-events/show-events.component';
 
 @Component({
   selector: 'app-groups-page',
@@ -16,7 +17,7 @@ export class GroupsPageComponent implements OnInit {
 
 
   selectedGroup: Group = null;
-  messages : Message[] = [];
+  messages: Message[] = [];
   sendingMessage: string = '';
   private hubConnection: HubConnection;
   allGroups: Group[] = [];
@@ -41,7 +42,7 @@ export class GroupsPageComponent implements OnInit {
 
   OpenGroup(event: any) {
     this.selectedGroup = event;
-    console.log('s',this.selectedGroup.imageUrl)
+    console.log('s', this.selectedGroup.imageUrl)
     this.getMessages();
     this.hubInit();
   }
@@ -110,6 +111,15 @@ export class GroupsPageComponent implements OnInit {
       hasBackdrop: true,
       autoFocus: false,
       data: group
+    })
+  }
+
+  OpenShowEvents() {
+    const dialogRef: MatDialogRef<any, any> = this.matDialog.open(ShowEventsComponent, {
+      disableClose: true,
+      hasBackdrop: true,
+      autoFocus: false,
+      data: this.selectedGroup.groupId
     })
   }
 }

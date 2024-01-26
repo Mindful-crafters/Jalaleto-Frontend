@@ -15,7 +15,7 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
 import { NewPasswordComponent } from './new-password/new-password.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { SignupModule } from './sign-up/sign-up.module';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import { DatePipe, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AddNewEventReminderComponent } from './timeline/add-new-event-reminder/add-new-event-reminder.component';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -41,6 +41,8 @@ import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 import { AddEventDialogComponent } from './timeline/add-event-dialog/add-event-dialog.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
+import { ShowEventsComponent } from './show-events/show-events.component';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,8 @@ import { MatSelectModule } from '@angular/material/select';
     CreateGroupDialogComponent,
     EditProfileComponent,
     GroupsPageComponent,
-    AddEventDialogComponent
+    AddEventDialogComponent,
+    ShowEventsComponent
   ],
   imports: [
     BrowserModule,
@@ -84,7 +87,9 @@ import { MatSelectModule } from '@angular/material/select';
     NzListModule,
     MatTabsModule,
     FormsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatRippleModule,
+    NzPopoverModule
   ],
   providers: [
     DatePipe,
