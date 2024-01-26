@@ -1,6 +1,6 @@
 <mat-menu #menu="matMenu" class="menu">
     <button mat-menu-item (click)="CreateGroup()">افزودن گروه</button>
-    <button mat-menu-item routerLink="">بازگشت به صفحه داشبورد</button>
+    <button mat-menu-item (click)="NavigateDashboard()">بازگشت به صفحه داشبورد</button>
 </mat-menu>
 
 <div style="border-inline-end: 1px solid #ccc;width: 30vw;">
@@ -8,7 +8,7 @@
         <mat-form-field style="flex-grow: 1;height: 40px;margin-inline-start: 1rem;" appearance="outline"
             hideRequiredMarker>
             <img src="assets/icons/magnifier.svg" alt="">
-            <input [(ngModel)]="searchString" (focus)="isSearching = true" (blur)="isSearching = false"
+            <input [(ngModel)]="searchString" (focus)="isSearching = true" (blur)="DisableSearching()"
                 (ngModelChange)="searchInputChanges.next($event)" style="max-width: 100px;" matInput type="text"
                 placeholder="جستجو...">
         </mat-form-field>

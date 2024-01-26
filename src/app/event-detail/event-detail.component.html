@@ -4,11 +4,76 @@
             <img src="assets/icons/close.svg">
         </button>
         <div class="info">
-            رویداد ها
+            {{data.name}}
+        </div>
+    </div>
+
+    <ng-container *ngIf="!isLoaded">
+        <nz-skeleton [nzActive]="true"></nz-skeleton>
+    </ng-container>
+
+    <div *ngIf="isLoaded" class="content">
+        <div class="date-time">
+            <div class="date">
+                <span style="font-weight: 600;">تاریخ برگزاری رویداد : </span>
+                <span>{{jalaliDate(data.when)}}</span>
+            </div>
+            <div class="time">
+                <span style="font-weight: 600;">زمان برگزاری رویداد : </span>
+                <span>{{CalculateTime(data.when)}}</span>
+            </div>
         </div>
 
-    </div>
-    <div class="content">
+        <div class="tag-title">
+            تگ های این رویداد :
+        </div>
+
+        <mat-chip-listbox>
+            <mat-chip *ngFor="let tag of data.tag">
+                {{tag}}
+            </mat-chip>
+        </mat-chip-listbox>
+
+        <div class="max-number">
+            <span style="font-weight: 600;">حداکثر تعداد اعضا : </span>
+            <span>{{data.memberLimit}}</span>
+        </div>
+
+        <div class="members">
+            <span style="font-weight: 600;">افراد شرکت کننده : </span>
+            <span *ngFor="let member of data.members.slice(0, data.members.length - 1)">
+                {{member.userName + ' - '}}
+            </span>
+            <span>
+                {{data.members[data.members.length-1].userName}}
+            </span>
+        </div>
+
+        <div class="description-title">
+            توضیحات :
+        </div>
+
+        <div class="description">
+            {{data.description}}
+        </div>
+
+        <div class="footer" *ngIf="isMember">
+            <div style="margin-top: 1rem;opacity: 0.7;">
+                شما عضو این رویداد هستید
+            </div>
+        </div>
+
+        <div class="footer" *ngIf="data.members.length >= data.memberLimit && !isMember">
+            <div style="margin-top: 1rem;opacity: 0.7;">
+                تعداد افراد شرکت کننده در این رویداد به حد نصاب رسیده است
+            </div>
+        </div>
+
+        <div class="footer" *ngIf="!isMember && data.members.length < data.memberLimit ">
+            <button (click)="JoinToEvent()" class="join-button" mat-button>
+                عضویت در این رویداد
+            </button>
+        </div>
 
     </div>
 </div>

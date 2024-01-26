@@ -16,7 +16,7 @@ export class EventClass {
     memberLimit: number;
     when: Date;
     groupId: number;
-    eventId: number;
+    eventId: string;
     name: string;
     description: string;
     members: MemberEvent[];

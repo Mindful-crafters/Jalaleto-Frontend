@@ -5,6 +5,7 @@ import { CreateGroupDialogComponent } from '../create-group-dialog/create-group-
 import { RestService } from '../shared/services/Rest.service';
 import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
 import { Group } from '../shared/types/Group';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-show-groups',
@@ -16,7 +17,8 @@ export class ShowGroupsComponent implements OnInit {
   @Output() showGroup: EventEmitter<Group> = new EventEmitter<Group>();
   @Input() selectedGroup: Group = null;
 
-  constructor(private matDialog: MatDialog, private restService: RestService) {
+  constructor(private matDialog: MatDialog, private restService: RestService,
+    private router: Router) {
 
   }
 
@@ -72,5 +74,15 @@ export class ShowGroupsComponent implements OnInit {
       console.log(res);
       this.filterdGroups = res['data'];
     })
+  }
+
+  DisableSearching() {
+    setTimeout(() => {
+      this.isSearching = false;
+    }, 500)
+  }
+
+  NavigateDashboard() {
+    this.router.navigate(['dashboard']);
   }
 }

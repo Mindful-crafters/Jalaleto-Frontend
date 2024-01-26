@@ -5,9 +5,10 @@
     <div style="display: flex; justify-content: space-between;border-bottom: 2px solid black;align-items: center;">
       <div class="chat-header">
         <div class="profile-avatar" (click)="OpenGroupInfo(selectedGroup)">
-          <img *ngIf="!selectedGroup.imageUrl || selectedGroup.imageUrl =='' " src="assets/icons/group-icon.svg" alt="">
-          <img *ngIf="selectedGroup.imageUrl && selectedGroup.imageUrl !='' " #prof [src]="selectedGroup.imageUrl"
-            alt="">
+          <img style="cursor: pointer;" *ngIf="!selectedGroup.imageUrl || selectedGroup.imageUrl =='' "
+            src="assets/icons/group-icon.svg" alt="">
+          <img style="cursor: pointer;" *ngIf="selectedGroup.imageUrl && selectedGroup.imageUrl !='' " #prof
+            [src]="selectedGroup.imageUrl" alt="">
         </div>
         <div class="group-detail">
           <div class="group-info">
@@ -26,17 +27,6 @@
     <mat-menu #menu="matMenu" class="menu">
       <button mat-menu-item (click)="OpenShowEvents()">مشاهده ی رویداد ها</button>
     </mat-menu>
-    <!-- <div class="content">
-      <div class="message" *ngFor="let message of messages">
-        <div *ngIf="!message.areYouSender" class="others-message">
-          <img [src]="message.senderImageUrl" alt="error" />
-          <span class="text">{{ message.content }}</span>
-        </div>
-        <div *ngIf="message.areYouSender" class="my-message">
-          <span class="text">{{ message.content }}</span>
-        </div>
-      </div>
-    </div> -->
     <div class="content">
       <div class="message" *ngFor="let message of messages">
         <div *ngIf="!message.areYouSender" class="others-message">

@@ -27,7 +27,55 @@
         max-height: calc(100vh - 10rem);
         overflow: auto;
         align-items: center;
+        padding: 1rem;
 
+        .date-time {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1rem;
+        }
+
+        .tag-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .max-number {
+            font-size: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .members {
+            font-size: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .description-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+    }
+
+    .footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-top: 1px solid #495867;
+        overflow: hidden;
+        margin-top: 2rem;
+
+
+        .join-button {
+            width: 9rem;
+            height: 2rem;
+            background-color: #3a86ff;
+            color: #fff;
+            margin-top: 1rem;
+        }
 
     }
 

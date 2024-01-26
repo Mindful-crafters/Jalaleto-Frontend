@@ -160,7 +160,7 @@ export class NavbarComponent implements OnInit {
   }
 }
 
-interface UserProfile {
+export interface UserProfile {
   userName: string;
   email: string;
   avatarUrl: string;
