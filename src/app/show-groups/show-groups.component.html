@@ -20,7 +20,7 @@
         <mat-tab label="همه ی گروه ها">
             <div class="groups">
                 <div class="group" *ngFor="let group of allGroups" mat-ripple (click)="OpenGroup(group)"
-                    [style.background-color]="selectedGroup.groupId == group.groupId ? '#3a86ff' : '#fff'">
+                    [style.background-color]="selectedGroup?.groupId == group.groupId ? '#3a86ff' : '#fff'">
                     <div *ngIf="!group.imageFile" class="prof">
                         <img *ngIf="!group.imageUrl || group.imageUrl =='' " src="assets/icons/group-icon.svg" alt="">
                         <img *ngIf="group.imageUrl && group.imageUrl !='' " #prof [src]="group.imageUrl" alt="">
@@ -43,7 +43,7 @@
         <mat-tab label="گروه های من">
             <div class="groups">
                 <div class="group" *ngFor="let group of myGroups" mat-ripple (click)="OpenGroup(group)"
-                    [style.background-color]="selectedGroup.groupId == group.groupId ? '#3a86ff' : '#fff'">
+                    [style.background-color]="selectedGroup?.groupId == group.groupId ? '#3a86ff' : '#fff'">
                     <div style="display: flex; flex-direction: column;width: 75%;">
                         <!-- <div class="name">{{group.name}}</div> -->
                         <div class="name">
@@ -67,7 +67,7 @@
     <div *ngIf="isSearching" style="height: calc(100vh - 4rem);background-color: #fff;">
         <div class="groups">
             <div class="group" *ngFor="let group of filterdGroups" mat-ripple (click)="OpenGroup(group)"
-                [style.background-color]="selectedGroup.groupId == group.groupId ? '#3a86ff' : '#fff'">
+                [style.background-color]="selectedGroup?.groupId == group.groupId ? '#3a86ff' : '#fff'">
                 <div style="display: flex; flex-direction: column;width: 75%;">
                     <!-- <div class="name">{{group.name}}</div> -->
                     <div class="name">

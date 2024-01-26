@@ -43,6 +43,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
 import { ShowEventsComponent } from './show-events/show-events.component';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
+import { EventDetailComponent } from './event-detail/event-detail.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { NzPopoverModule } from 'ng-zorro-antd/popover';
     EditProfileComponent,
     GroupsPageComponent,
     AddEventDialogComponent,
-    ShowEventsComponent
+    ShowEventsComponent,
+    EventDetailComponent
   ],
   imports: [
     BrowserModule,

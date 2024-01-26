@@ -16,7 +16,7 @@
             <div *ngIf="events.length == 0" class="no-event">
                 رویدادی برای این گروه یافت نشد
             </div>
-            <div class="event" *ngFor="let event of events" mat-ripple>
+            <div class="event" *ngFor="let event of events" mat-ripple (click)="OpenEventDetail(event)">
                 <div class="details">
                     <div class="name">
                         <span nz-popover nzPopoverTitle="توضیحات" [nzPopoverContent]="event.description"

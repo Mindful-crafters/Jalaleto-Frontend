@@ -1,8 +1,11 @@
 import { DialogRef } from '@angular/cdk/dialog';
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { RestService } from '../shared/services/Rest.service';
 import { ToastrService } from 'ngx-toastr';
+import { EventClass } from '../shared/types/EventObject.type';
+import { EventDetailComponent } from '../event-detail/event-detail.component';
+
 
 @Component({
   selector: 'app-show-events',
@@ -10,12 +13,13 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./show-events.component.scss']
 })
 export class ShowEventsComponent implements OnInit {
+
   constructor(private dialogRef: DialogRef, @Inject(MAT_DIALOG_DATA) public data: number,
-    private restService: RestService, private toastr: ToastrService
+    private restService: RestService, private toastr: ToastrService, private matDialog: MatDialog
   ) {
 
   }
-  events: Event[] = [];
+  events: EventClass[] = [];
   isLoaded = false;
   ngOnInit(): void {
     this.restService.post('Group/GpInfo?GroupId=' + this.data, null).subscribe((res) => {
@@ -34,25 +38,12 @@ export class ShowEventsComponent implements OnInit {
     this.dialogRef.close(null);
   }
 
-
-}
-
-export class Event {
-  tag: string[];
-  memberLimit: number;
-  when: Date;
-  groupId: number;
-  eventId: number;
-  name: string;
-  description: string;
-
-  constructor(event: Event) {
-    this.tag = event.tag || null;
-    this.memberLimit = event.memberLimit || null;
-    this.when = event.when || null;
-    this.groupId = event.groupId || null;
-    this.eventId = event.eventId || null;
-    this.name = event.name || null;
-    this.description = event.description || null;
+  OpenEventDetail(event: EventClass) {
+    const dialogRef: MatDialogRef<any, any> = this.matDialog.open(EventDetailComponent, {
+      disableClose: true,
+      hasBackdrop: true,
+      autoFocus: false,
+      data: event
+    })
   }
 }
