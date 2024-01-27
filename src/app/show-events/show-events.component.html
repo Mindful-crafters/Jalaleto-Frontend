@@ -25,10 +25,10 @@
                     </div>
                     <div *ngIf="event.tag.length > 0" class="tags">
                         <span>تگ ها: </span>
-                        <span *ngFor="let tag of event.tag.slice(0, event.tag.length-1)">
-                            {{tag + ' - '}}
+                        <span class="tag" *ngFor="let tag of event.tag.slice(0, event.tag.length-1)">
+                            {{tag}}
                         </span>
-                        <span>
+                        <span class="tag">
                             {{event.tag[event.tag.length-1]}}
                         </span>
                     </div>

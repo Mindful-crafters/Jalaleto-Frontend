@@ -1,70 +1,74 @@
 .dialog {
-    width: 32rem;
-    overflow: hidden;
+  width: 32rem;
+  overflow: hidden;
 
-    .header {
+  .header {
+    display: flex;
+    border-bottom: 1px solid #495867;
+    padding: 2%;
+
+    .close-button {
+      width: 4rem;
+      margin-top: 0.5rem;
+      margin-inline-start: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .info {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-top: 1rem;
+      margin-right: 0.5rem;
+    }
+  }
+
+  .content {
+    padding: 2px;
+    max-height: calc(100vh - 10rem);
+    overflow: auto;
+    align-items: center;
+
+    .no-event {
+      padding: 2rem 0;
+      text-align: center;
+    }
+
+    .event {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 4rem;
+      padding: 0 1rem;
+      border-bottom: solid 1px #ccc;
+      padding: 1rem 1rem;
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgb(226, 226, 226);
+      }
+
+      .details {
         display: flex;
-        border-bottom: 1px solid #495867;
-        padding: 2%;
+        flex-direction: column;
 
-        .close-button {
-            width: 4rem;
-            margin-top: 0.5rem;
-            margin-inline-start: 0.5rem;
-            margin-bottom: 0.5rem;
+        .name {
+          font-size: 1.5rem;
+          margin-bottom: 0.5rem;
+          color: #34495e;
         }
 
-        .info {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-top: 1rem;
+        .tags {
+          margin-top: 0.5rem;
+          opacity: 0.75;
         }
-
+      }
     }
+  }
+}
 
-    .content {
-        padding: 2px;
-        max-height: calc(100vh - 10rem);
-        overflow: auto;
-        align-items: center;
-
-        .no-event {
-            padding: 2rem 0;
-            text-align: center;
-        }
-
-        .event {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            min-height: 4rem;
-            padding: 0 1rem;
-            border-bottom: solid 1px #ccc;
-            padding: 1rem 1rem;
-            cursor: pointer;
-
-            &:hover {
-                background-color: rgb(226, 226, 226);
-            }
-
-            .details {
-                display: flex;
-                flex-direction: column;
-
-                .name {
-                    font-size: 2rem;
-                    font-weight: bold;
-                    margin-top: 0.5rem;
-                    color: #34495e;
-                }
-
-                .tags {
-                    margin-top: 0.5rem;
-                    opacity: 0.75;
-                }
-            }
-        }
-
-    }
-
+.tag {
+  border-radius: 0.25rem;
+  margin: 0 0.25rem;
+  background: lightblue;
+  padding: 0.25rem;
 }
