@@ -191,6 +191,7 @@ export class AddEventDialogComponent {
     const localDateTime = new Date(this.inputDate);
     // Set the local time with the adjusted UTC hours and minutes
     const localDateTimeWithOffset = new Date(localDateTime);
+    localDateTimeWithOffset.setDate(localDateTimeWithOffset.getDate() + 1);
     localDateTimeWithOffset.setUTCHours(Number(h), Number(m));
     //tags
     const tags = this.fruits;
