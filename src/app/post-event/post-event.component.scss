@@ -43,10 +43,12 @@
         {
             .title
             {
+                margin-right: 5px;
                 justify-content: center;
             }
             .description
             {
+                margin-right: 5px;
                 justify-content: center;
                 width: 98%;
             }
@@ -61,6 +63,7 @@
             margin-inline-end: 1rem;
             margin-bottom: 1rem;
             margin-top: 1rem;
+            justify-items: center;
             
         }
     }
