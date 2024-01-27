@@ -75,6 +75,9 @@ export class EventDetailComponent implements OnInit {
         this.toastr.success('با موفقیت عضو رویداد شدید', 'موفقیت');
         this.dialogRef.close(null);
       }
+      else if (res['message'] == 'cant join event before joining group of that event') {
+        this.toastr.error('ابتدا در گروه عضو شوید', 'خطا')
+      }
       else {
         this.toastr.error('مشکلی پیش آمده دوباره تلاش کنید', 'خطا');
       }

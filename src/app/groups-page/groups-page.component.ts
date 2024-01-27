@@ -7,6 +7,8 @@ import * as signalR from '@microsoft/signalr';
 import { AuthService } from '../shared/services/auth.service';
 import { Group } from '../shared/types/Group';
 import { ShowEventsComponent } from '../show-events/show-events.component';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-groups-page',
@@ -22,12 +24,14 @@ export class GroupsPageComponent implements OnInit {
   private hubConnection: HubConnection;
   allGroups: Group[] = [];
   myGroups: Group[] = [];
-
+  userProfile: any;
+  isLoaded: boolean = false
 
   constructor(
     private matDialog: MatDialog,
     private restService: RestService,
     private authService: AuthService,
+    private toastr: ToastrService
   ) {
 
   }
@@ -37,7 +41,7 @@ export class GroupsPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this.getMessages();
+    this.fetchUserProfile();
   }
 
   OpenGroup(event: any) {
@@ -120,6 +124,39 @@ export class GroupsPageComponent implements OnInit {
       hasBackdrop: true,
       autoFocus: false,
       data: this.selectedGroup.groupId
+    })
+  }
+
+  fetchUserProfile() {
+    this.restService.post("User/ProfileInfo", null).subscribe(
+      (data) => {
+        console.log(data);
+
+        if (data['success']) {
+          this.userProfile = data;
+          this.isLoaded = true;
+        }
+        else
+          this.toastr.error('مشکلی پیش آمده دوباره تلاش کنید', 'خطا');
+      }
+
+    );
+  }
+
+  IsMember() {
+    if (!this.selectedGroup)
+      return true;
+    const b = this.selectedGroup.members.find(m => m.mail == this.userProfile.email);
+    return b ? true : false;
+  }
+
+  JoinGroup() {
+    this.restService.post('Group/JoinGroup?GroupId=' + this.selectedGroup.groupId, null).subscribe((res) => {
+      if (res['success'])
+        this.toastr.success('با موفقیت عضو گروه شدید', 'موفقیت');
+      else
+        this.toastr.error('مشکلی پیش آمده دوباره تلاش کنید', 'خطا');
+
     })
   }
 }
