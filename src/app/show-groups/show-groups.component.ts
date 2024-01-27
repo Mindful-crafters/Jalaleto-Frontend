@@ -70,10 +70,13 @@ export class ShowGroupsComponent implements OnInit {
   }
 
   Search(groupName: string) {
-    this.restService.post('Group/Search?GroupName=' + groupName, null).subscribe((res) => {
-      console.log(res);
-      this.filterdGroups = res['data'];
-    })
+    if (!groupName || groupName == '')
+      this.filterdGroups = [];
+    else
+      this.restService.post('Group/Search?GroupName=' + groupName, null).subscribe((res) => {
+        console.log(res);
+        this.filterdGroups = res['data'];
+      })
   }
 
   DisableSearching() {

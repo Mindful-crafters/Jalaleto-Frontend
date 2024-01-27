@@ -44,6 +44,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { ShowEventsComponent } from './show-events/show-events.component';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { EventDetailComponent } from './event-detail/event-detail.component';
+import { EventPageComponent } from './event-page/event-page.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { EventDetailComponent } from './event-detail/event-detail.component';
     GroupsPageComponent,
     AddEventDialogComponent,
     ShowEventsComponent,
-    EventDetailComponent
+    EventDetailComponent,
+    EventPageComponent
   ],
   imports: [
     BrowserModule,

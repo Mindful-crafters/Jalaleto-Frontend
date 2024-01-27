@@ -16,7 +16,7 @@
         <div class="date-time">
             <div class="date">
                 <span style="font-weight: 600;">تاریخ برگزاری رویداد : </span>
-                <span>{{jalaliDate(data.when)}}</span>
+                <span>{{jalaliDate(data.when) | date : 'dd-MM-yyyy'}}</span>
             </div>
             <div class="time">
                 <span style="font-weight: 600;">زمان برگزاری رویداد : </span>

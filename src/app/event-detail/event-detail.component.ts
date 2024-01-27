@@ -31,11 +31,7 @@ export class EventDetailComponent implements OnInit {
   }
 
   jalaliDate(date: Date): string {
-    // Parse the Gregorian date using moment.js
-
     const gregorianMoment = moment(date, 'YYYY-MM-DD');
-
-    // Convert to Jalali date
     const jalaliDate = gregorianMoment.format('jYYYY-jMM-jDD');
 
     return jalaliDate;

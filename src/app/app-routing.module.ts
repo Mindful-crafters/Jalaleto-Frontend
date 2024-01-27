@@ -16,6 +16,7 @@ import { RulesComponent } from './rules/rules.component';
 import { ShowProfileComponent } from './show-profile/show-profile.component';
 import { GroupsPageComponent } from './groups-page/groups-page.component';
 import { GroupInfoComponent } from './group-info/group-info.component';
+import { EventPageComponent } from './event-page/event-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -31,7 +32,8 @@ const routes: Routes = [
   { path: 'rule', component: RulesComponent },
   { path: 'work', component: WorkWithUsComponent },
   { path: 'groups', component: GroupsPageComponent },
-  { path: 'member', component:GroupInfoComponent},
+  { path: 'member', component: GroupInfoComponent },
+  { path: 'event', component: EventPageComponent },
 
 ];
 
