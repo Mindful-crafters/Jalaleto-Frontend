@@ -328,6 +328,26 @@ export class TimelineComponent implements OnInit {
     })
   }
 
+  openEventBox(index : number){
+    const dialogRef: MatDialogRef<any, any> = this.matDialog.open(AddEventDialogComponent, {
+      data: {
+        event: this.selectedDayEvents[index]
+      },
+
+      disableClose: true,
+      hasBackdrop: true,
+      autoFocus: false
+    })
+
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res) {
+        this.getWeekEvents(this.firstDayOfTimeline);
+        this.openBox(this.selectedBox);
+      }
+      else { }
+    })
+  }
+
   openReminderBox(index: number) {
     const dialogRef: MatDialogRef<any, any> = this.matDialog.open(ReminderDialogComponent, {
       data: {

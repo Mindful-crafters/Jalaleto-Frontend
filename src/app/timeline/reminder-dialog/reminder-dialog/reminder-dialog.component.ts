@@ -34,13 +34,6 @@ export class ReminderDialogComponent implements OnInit {
     private datePipe: DatePipe) {
     this.data = input.reminder;
     this.priorityLevel = this.data.priorityLevel;
-
-    if (true) {
-
-    }
-    console.log(this.data.daysBeforeToRemind)
-    console.log(this.data.remindByEmail)
-
   }
 
   ngOnInit(): void {

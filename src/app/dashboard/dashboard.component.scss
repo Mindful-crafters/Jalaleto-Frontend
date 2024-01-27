@@ -486,6 +486,8 @@ figure:hover {
     margin: 1rem 0;
     font-size: 1.25rem;
     color: white;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .number-of-members {

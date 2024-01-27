@@ -55,6 +55,18 @@ export class AddEventDialogComponent {
   fruits: string[] = [];
   allFruits: string[] = ['ورزشی', 'گیم', 'طبیعت', 'اجتماعی', 'درسی'];
   myGroups: Group[];
+
+  inputEvent : CreateEvent = {
+    eventId: null,
+    groupId: null,
+    name: null,
+    description: null,
+    when: null,
+    location: null,
+    memberLimit: null,
+    tag: []
+  };
+
   isMyGroupsLoading = true;
   @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
 
@@ -68,7 +80,12 @@ export class AddEventDialogComponent {
     private restService: RestService
     , private datePipe: DatePipe) {
 
-    console.log('input', this.inputDate)
+    if (inputDate.event) {
+      this.inputEvent = inputDate.event;
+      this.fruits = this.inputEvent.tag
+
+      console.log('input event : ',this.inputEvent)
+    }
 
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
       startWith(null),
@@ -129,14 +146,24 @@ export class AddEventDialogComponent {
     }
   }
 
+  initHour() {
+    if(this.inputEvent.when != null){
+      const date = new Date(this.inputEvent.when);
+      const hour = date.getHours();
+      const minutes = date.getMinutes();
+      return hour + ':' + minutes;
+    }
+    return '12:00'
+  }
+
   CreateForm() {
     this.formGroup = this.formBuilder.group(
       {
-        title: [null, Validators.required],
-        description: [null ,Validators.required],
-        startTime: ['12:00', Validators.required],
-        memberLimit: [null, [this.numberValidator]],
-        selectBox: [null]
+        title: [this.inputEvent.name || null, Validators.required],
+        description: [this.inputEvent.description || null, Validators.required],
+        startTime: [ this.initHour(), Validators.required],
+        memberLimit: [this.inputEvent.memberLimit, [this.numberValidator]],
+        selectBox: [this.inputEvent.groupId || null]
       }
     )
   }
@@ -168,6 +195,7 @@ export class AddEventDialogComponent {
     }
 
     const event: CreateEvent = {
+      eventId: null,
       groupId: 0,
       name: '',
       description: '',
@@ -176,6 +204,13 @@ export class AddEventDialogComponent {
       memberLimit: 0,
       tag: []
     };
+
+    //event id (if is not null used for update)
+    if(this.inputEvent.eventId != null){
+      const eventId = this.inputEvent.eventId;
+      event.eventId = eventId;
+    }
+
     //group Id
     const groupId = this.formGroup.get('selectBox').value;
     //group Name
@@ -188,10 +223,20 @@ export class AddEventDialogComponent {
     //when
     const startTimeValue = this.formGroup.get('startTime').value;
     const [h, m] = startTimeValue.split(":");
-    const localDateTime = new Date(this.inputDate);
+    
+    let localDateTime = new Date(this.inputDate);
+    if(this.inputEvent.eventId){
+      localDateTime = new Date(this.inputEvent.when);
+    }
+
     // Set the local time with the adjusted UTC hours and minutes
     const localDateTimeWithOffset = new Date(localDateTime);
-    localDateTimeWithOffset.setDate(localDateTimeWithOffset.getDate() + 1);
+    if(this.inputEvent.eventId){
+      localDateTimeWithOffset.setDate(localDateTimeWithOffset.getDate());
+    }
+    else{
+      localDateTimeWithOffset.setDate(localDateTimeWithOffset.getDate() + 1);
+    }
     localDateTimeWithOffset.setUTCHours(Number(h), Number(m));
     //tags
     const tags = this.fruits;
@@ -203,8 +248,9 @@ export class AddEventDialogComponent {
     event.memberLimit = memberLimit;
     event.tag = tags;
 
+    console.log(event);
+
     this.restService.post('Event/Create', event).subscribe((res) => {
-      console.log('dialog closed')
       if (res['success']) {
         this.toastr.success('رویداد با موفقیت ایجاد شد', 'موفقیت');
         console.log(res)

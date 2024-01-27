@@ -1,4 +1,5 @@
 export interface CreateEvent{
+    eventId : string;
     groupId:number;
     name:string;
     description:string;
