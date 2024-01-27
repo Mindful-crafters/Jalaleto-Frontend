@@ -18,7 +18,7 @@
     <div class="name-member-limit">
       <mat-form-field *ngIf="!isMyGroupsLoading" appearance="outline">
         <mat-label>گروه</mat-label>
-        <mat-select [disabled]="inputEvent.eventId != null" FormControlName="selectBox" required>
+        <mat-select [value]="inputEvent.groupId" [disabled]="inputEvent.eventId != null" FormControlName="selectBox" required>
           <mat-option *ngFor="let group of myGroups" [value]="group.groupId">
             {{ group.name }}
           </mat-option>
