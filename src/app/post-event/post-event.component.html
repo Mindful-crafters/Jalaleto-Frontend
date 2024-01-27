@@ -1,0 +1,63 @@
+<div class="dialog">
+    <div class="header">
+        <button class="close-button" mat-button (click)="close()">
+            <img src="assets/icons/close.svg">
+        </button>
+        <span class="title">
+            دیدگاه خود را در رابطه با رویداد رخ داده ثبت کنید
+        </span>
+    </div>
+    <form [formGroup]="formGroup" class="content">
+        <!-- <div class="profile-container">
+            <img class="profile" [src]="
+              selectedImage
+                ? selectedImage
+                : '/assets/icons/group-icon.svg'
+            " alt="Profile Image" />
+            <div id="circle">
+                <input type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none"
+                    #fileInput />
+                <button type="button" (click)="fileInput.click()">
+                    
+                    <button class="add-photo" mat-stroked-button color="primary" (click)="fileInput.click()">افزودن عکس</button>
+                </button>
+            </div>
+        </div> -->
+        <br>
+        <div class="input">
+        <!-- <mat-form-field class="title" appearance="outline" hideRequiredMarker>
+            <mat-label>عنوان</mat-label>
+            <input formControlName="name" matInput />
+            <mat-error>این قسمت را خالی نگذارید.</mat-error>
+        </mat-form-field> -->
+        
+        <mat-form-field class="description" appearance="outline" hideRequiredMarker>
+            <mat-label>توضیحات</mat-label>
+            <textarea formControlName="description" matInput></textarea>
+        </mat-form-field>
+        <div class="rating">
+            <h3>چه امتیازی می‌دهید</h3>
+            <!-- <ngx-star-rating [id]="'rating'"></ngx-star-rating> -->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        </div>
+        <br>
+        <br>
+        
+        <!-- <div class="priorty">
+            <h3>چه امتیازی می‌دهید</h3>
+            <mat-chip-listbox aria-label="Fish selection">
+                <mat-chip-option style="width: 4rem;" #low [disabled]="low.selected">بد</mat-chip-option>
+                <mat-chip-option style="width: 4rem;" #medium selected [disabled]="medium.selected">متوسط</mat-chip-option>
+                <mat-chip-option style="width: 4rem;" #high [disabled]="high.selected">عالی</mat-chip-option>
+            </mat-chip-listbox>
+        </div> -->
+        <button class="post-button" mat-button>ایجاد</button>
+        
+    </div>
+    </form>
+    
+    <!-- <div class="footer">
+        <button class="save-button" mat-button (click)="Submit()">ایجاد</button>
+        <button class="cancel-button" mat-button (click)="close()">لغو</button>
+    </div> -->
+</div>

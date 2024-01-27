@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -44,6 +45,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { ShowEventsComponent } from './show-events/show-events.component';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { EventDetailComponent } from './event-detail/event-detail.component';
+import { PostEventComponent } from './post-event/post-event.component';
+// import { NgxStarRatingModule } from 'ngx-star-rating';
 
 @NgModule({
   declarations: [
@@ -55,6 +58,7 @@ import { EventDetailComponent } from './event-detail/event-detail.component';
     CreateGroupDialogComponent,
     EditProfileComponent,
     GroupsPageComponent,
+    PostEventComponent,    
     AddEventDialogComponent,
     ShowEventsComponent,
     EventDetailComponent
@@ -85,13 +89,14 @@ import { EventDetailComponent } from './event-detail/event-detail.component';
     MatSelectModule,
     RulesModule,
     WorkWithUsModule,
-    MatFormFieldModule,
+    MatFormFieldModule,    
     NzListModule,
     MatTabsModule,
     FormsModule,
     MatAutocompleteModule,
     MatRippleModule,
-    NzPopoverModule
+    NzPopoverModule,
+    //NgxStarRatingModule,
   ],
   providers: [
     DatePipe,
