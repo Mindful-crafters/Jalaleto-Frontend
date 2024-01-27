@@ -31,11 +31,7 @@ export class EventDetailComponent implements OnInit {
   }
 
   jalaliDate(date: Date): string {
-    // Parse the Gregorian date using moment.js
-
     const gregorianMoment = moment(date, 'YYYY-MM-DD');
-
-    // Convert to Jalali date
     const jalaliDate = gregorianMoment.format('jYYYY-jMM-jDD');
 
     return jalaliDate;
@@ -74,6 +70,9 @@ export class EventDetailComponent implements OnInit {
       if (res['success']) {
         this.toastr.success('با موفقیت عضو رویداد شدید', 'موفقیت');
         this.dialogRef.close(null);
+      }
+      else if (res['message'] == 'cant join event before joining group of that event') {
+        this.toastr.error('ابتدا در گروه عضو شوید', 'خطا')
       }
       else {
         this.toastr.error('مشکلی پیش آمده دوباره تلاش کنید', 'خطا');

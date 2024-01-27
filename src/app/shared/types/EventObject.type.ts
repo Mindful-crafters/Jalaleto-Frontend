@@ -20,6 +20,7 @@ export class EventClass {
     name: string;
     description: string;
     members: MemberEvent[];
+    maked: boolean;
 
     constructor(event: any) {
         this.tag = event.tag || null;
@@ -30,6 +31,7 @@ export class EventClass {
         this.name = event.name || null;
         this.description = event.description || null;
         this.members = event.members || [];
+        this.maked = event.maked || false;
     }
 }
 
