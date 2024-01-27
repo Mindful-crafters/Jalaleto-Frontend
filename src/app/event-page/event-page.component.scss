@@ -1,0 +1,160 @@
+@import "../../theme/common.styles.scss";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.container {
+    display: flex;
+    overflow: hidden;
+
+    .divider {
+        width: 100%;
+        height: 2px;
+        background-color: #252422;
+    }
+
+    .events {
+        display: flex;
+        flex-direction: column;
+        overflow: auto;
+        height: 100vh;
+        padding-bottom: 0.5rem;
+        border-top: solid 2px #252422;
+        overflow-y: auto;
+        padding-bottom: 8rem;
+
+        .event {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 4rem;
+            padding: 0 1rem;
+            border-bottom: solid 1px #ccc;
+            padding: 1rem 1rem;
+            cursor: pointer;
+
+            &:hover {
+                background-color: rgb(226, 226, 226);
+            }
+
+            .details {
+                display: flex;
+                flex-direction: column;
+
+                .name {
+                    font-size: 2rem;
+                    font-weight: bold;
+                    margin-top: 0.5rem;
+                    color: #34495e;
+                }
+
+                .tags {
+                    margin-top: 0.5rem;
+                    opacity: 0.75;
+                }
+            }
+        }
+
+    }
+
+    .no-event-selected {
+        width: 70%;
+        height: 100vh;
+    }
+
+    .event-details {
+        width: 70%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+
+        .header {
+            border-bottom: solid 1px;
+            height: 7rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .name {
+                font-size: 3rem;
+                font-weight: 500;
+            }
+        }
+
+        .content {
+            flex-grow: 1;
+            overflow: auto;
+            align-items: center;
+            padding: 1rem;
+
+            .date-time {
+                display: flex;
+                justify-content: space-between;
+                font-size: 1rem;
+            }
+
+            .tag-title {
+                font-size: 1rem;
+                font-weight: 600;
+                margin-top: 1.5rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .max-number {
+                font-size: 1rem;
+                margin-top: 1.5rem;
+            }
+
+            .members {
+                font-size: 1rem;
+                margin-top: 1.5rem;
+
+                .member {
+                    border-bottom: 1px solid #ccc;
+                    align-items: center;
+
+                    .group {
+                        align-items: center;
+                        display: flex;
+                        padding: 1rem;
+                        padding-inline-end: 2rem;
+                        justify-content: left;
+
+                        .img-member {
+                            .image-member {
+                                width: 85px;
+                                height: 85px;
+                                border-radius: 50%;
+                            }
+                        }
+
+                        .name {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: left;
+                            align-items: flex-end;
+                            margin-left: 13px;
+
+                            .firstname {
+                                position: relative;
+                                font-size: 20px;
+                            }
+
+                            .username {
+                                color: #838383;
+
+                            }
+                        }
+                    }
+
+
+                }
+            }
+
+            .description-title {
+                font-size: 1rem;
+                font-weight: 600;
+                margin-top: 1.5rem;
+                margin-bottom: 0.5rem;
+            }
+        }
+    }
+}

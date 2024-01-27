@@ -47,6 +47,7 @@ import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { EventDetailComponent } from './event-detail/event-detail.component';
 import { PostEventComponent } from './post-event/post-event.component';
 import { NgxStarRatingModule } from 'ngx-star-rating';
+import { EventPageComponent } from './event-page/event-page.component';
 
 @NgModule({
   declarations: [
@@ -58,10 +59,11 @@ import { NgxStarRatingModule } from 'ngx-star-rating';
     CreateGroupDialogComponent,
     EditProfileComponent,
     GroupsPageComponent,
-    PostEventComponent,    
+    PostEventComponent,
     AddEventDialogComponent,
     ShowEventsComponent,
-    EventDetailComponent
+    EventDetailComponent,
+    EventPageComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +91,7 @@ import { NgxStarRatingModule } from 'ngx-star-rating';
     MatSelectModule,
     RulesModule,
     WorkWithUsModule,
-    MatFormFieldModule,    
+    MatFormFieldModule,
     NzListModule,
     MatTabsModule,
     FormsModule,

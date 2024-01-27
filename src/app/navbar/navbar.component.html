@@ -8,28 +8,19 @@
       <ul class="navbar-menu-right">
         <li><a routerLink="/" href="./dashboard">خانه</a></li>
         <li><a routerLink="/groups">گروه ها</a></li>
+        <li><a routerLink="/events">رویداد ها</a></li>
       </ul>
     </span>
 
     <span class="spacer"></span>
 
-    <button
-      nz-popover
-      nzTitle="Notifications"
-      nzTrigger="click"
-      [nzPopoverContent]="notificationContent"
-      class="notification-button"
-      nzPlacement="bottomRight"
-      (click)="hideRedCircle = true"
-    >
+    <button nz-popover nzTitle="Notifications" nzTrigger="click" [nzPopoverContent]="notificationContent"
+      class="notification-button" nzPlacement="bottomRight" (click)="hideRedCircle = true">
 
       <div class="notification" id="notification">
         <div class="notification-icon">
           <span class="red-circle" *ngIf="!hideRedCircle"></span>
-          <img
-            src="../../assets/icons/notification-image.svg"
-            alt="Notification Icon"
-          />
+          <img src="../../assets/icons/notification-image.svg" alt="Notification Icon" />
         </div>
       </div>
     </button>
@@ -46,12 +37,12 @@
 
                 <a class="title-link" [routerLink]="notification.link">{{
                   notification.title
-                }}</a>
+                  }}</a>
               </div>
 
               <span class="notif-description">{{
                 notification.description
-              }}</span>
+                }}</span>
             </div>
             <div class="notif_line"></div>
           </li>
@@ -62,12 +53,7 @@
       </ng-template>
     </ng-template>
 
-    <button
-      [disabled]="!isLoggedIn"
-      mat-icon-button
-      [matMenuTriggerFor]="menu"
-      class="profile-button"
-    >
+    <button [disabled]="!isLoggedIn" mat-icon-button [matMenuTriggerFor]="menu" class="profile-button">
       <div class="profile-icon">
         <img src="../../assets/icons/profile2.png" alt="Profile Icon" />
       </div>
@@ -76,15 +62,11 @@
     <mat-menu #menu="matMenu" class="menu">
       <ng-template matMenuContent>
         <div class="profile-info" *ngIf="userInfoLoaded">
-          <img
-            [src]="
+          <img [src]="
               userProfile.imagePath == ''
                 ? '../../assets/icons/icons8-test-account-48.png'
                 : userProfile.imagePath
-            "
-            alt="Profile Image"
-            class="profile-image"
-          />
+            " alt="Profile Image" class="profile-image" />
           <div class="user-details">
             <span class="username">{{ userProfile?.userName }}</span>
             <span class="email">{{ userProfile?.email }}</span>

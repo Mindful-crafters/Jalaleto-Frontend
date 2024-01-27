@@ -58,9 +58,13 @@
 
 
 
-    <div class="message-input">
+    <div *ngIf="IsMember()" class="message-input">
       <input [(ngModel)]="sendingMessage" type="text" placeholder="پیام" />
       <button (click)="sendMessage()">ارسال</button>
+    </div>
+
+    <div *ngIf="!IsMember()" class="join-div">
+      <button class="join-button" mat-button (click)="JoinGroup()">عضویت</button>
     </div>
   </div>
 </div>

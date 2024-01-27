@@ -6,7 +6,6 @@ import { RestService } from '../shared/services/Rest.service';
 import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
 import { Group } from '../shared/types/Group';
 import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-show-groups',
   templateUrl: './show-groups.component.html',
@@ -16,6 +15,7 @@ export class ShowGroupsComponent implements OnInit {
 
   @Output() showGroup: EventEmitter<Group> = new EventEmitter<Group>();
   @Input() selectedGroup: Group = null;
+  @Output() backToDashboard: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private matDialog: MatDialog, private restService: RestService,
     private router: Router) {
@@ -70,10 +70,13 @@ export class ShowGroupsComponent implements OnInit {
   }
 
   Search(groupName: string) {
-    this.restService.post('Group/Search?GroupName=' + groupName, null).subscribe((res) => {
-      console.log(res);
-      this.filterdGroups = res['data'];
-    })
+    if (!groupName || groupName == '')
+      this.filterdGroups = [];
+    else
+      this.restService.post('Group/Search?GroupName=' + groupName, null).subscribe((res) => {
+        console.log(res);
+        this.filterdGroups = res['data'];
+      })
   }
 
   DisableSearching() {
@@ -83,6 +86,6 @@ export class ShowGroupsComponent implements OnInit {
   }
 
   NavigateDashboard() {
-    this.router.navigate(['dashboard']);
+    this.backToDashboard.emit(true);
   }
 }
