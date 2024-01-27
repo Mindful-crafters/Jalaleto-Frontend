@@ -38,7 +38,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { GroupsPageComponent } from './groups-page/groups-page.component';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { PostEventComponent } from './post-event/post-event.component';
-
+import { NgxStarRatingComponent, NgxStarRatingModule } from 'ngx-star-rating';
 
 @NgModule({
   declarations: [
@@ -80,7 +80,8 @@ import { PostEventComponent } from './post-event/post-event.component';
     RulesModule,
     WorkWithUsModule,
     ShowProfileModule,
-    NzListModule
+    NzListModule,
+    NgxStarRatingModule,
   ],
   providers: [
     DatePipe,

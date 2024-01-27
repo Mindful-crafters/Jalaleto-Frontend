@@ -56,6 +56,7 @@
         
         .post-button
         {
+            margin-right: 5px;
             width: 98%;
             height: 2rem;
             background-color: #3a86ff;
@@ -66,5 +67,14 @@
             justify-items: center;
             
         }
+        .rating
+        {
+            margin-right: 5px;
+        }
     }
+}
+::ng-deep label.star{
+    padding: 0 5px !important;
+    font-size: 25px !important;
+    color: #7c7c7c !important;
 }

@@ -4,7 +4,7 @@
             <img src="assets/icons/close.svg">
         </button>
         <span class="title">
-            ایجاد رویداد
+            دیدگاه خود را در رابطه با رویداد رخ داده ثبت کنید
         </span>
     </div>
     <form [formGroup]="formGroup" class="content">
@@ -25,17 +25,34 @@
         </div> -->
         <br>
         <div class="input">
-        <mat-form-field class="title" appearance="outline" hideRequiredMarker>
+        <!-- <mat-form-field class="title" appearance="outline" hideRequiredMarker>
             <mat-label>عنوان</mat-label>
             <input formControlName="name" matInput />
             <mat-error>این قسمت را خالی نگذارید.</mat-error>
-        </mat-form-field>
+        </mat-form-field> -->
         
         <mat-form-field class="description" appearance="outline" hideRequiredMarker>
             <mat-label>توضیحات</mat-label>
             <textarea formControlName="description" matInput></textarea>
         </mat-form-field>
+        <div class="rating">
+            <h3>چه امتیازی می‌دهید</h3>
+            <ngx-star-rating [id]="'rating'"></ngx-star-rating>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        </div>
+        <br>
+        <br>
+        
+        <!-- <div class="priorty">
+            <h3>چه امتیازی می‌دهید</h3>
+            <mat-chip-listbox aria-label="Fish selection">
+                <mat-chip-option style="width: 4rem;" #low [disabled]="low.selected">بد</mat-chip-option>
+                <mat-chip-option style="width: 4rem;" #medium selected [disabled]="medium.selected">متوسط</mat-chip-option>
+                <mat-chip-option style="width: 4rem;" #high [disabled]="high.selected">عالی</mat-chip-option>
+            </mat-chip-listbox>
+        </div> -->
         <button class="post-button" mat-button>ایجاد</button>
+        
     </div>
     </form>
     
