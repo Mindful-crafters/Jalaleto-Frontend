@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Shared } from '../shared/services/shared.service';
 import { RestService } from '../shared/services/Rest.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-forget-password',
@@ -17,7 +18,9 @@ export class ForgetPasswordComponent {
     private rest: RestService,
     private formBuilder: FormBuilder,
     private shared: Shared,
-    private router: Router) {
+    private router: Router,
+    private toastr: ToastrService
+    ) {
 
   }
 
@@ -64,17 +67,32 @@ export class ForgetPasswordComponent {
       "hashString": this.shared.getHashStringEmail
     }
 
+    if(body.mail == null){
+      this.router.navigate(['newpassword']);
+      this.toastr.error('دوباره ایمیل خود را وارد کنید', 'خطا');
+    }
+
+    const password = this.ForgetPasswordform.get('password').value;
+    const confirmPassword = this.ForgetPasswordform.get('confirmPassword').value;
+
+    if(password != confirmPassword ){
+      this.toastr.error('رمز عبور و تایید رمز عبور همخوانی ندارند.', 'خطا');
+      return;
+    }
+
     this.rest.postWithoutHeader<any>('User/ResetPassword', body).subscribe(
       (response) => {
+        console.log(response)
         if (response['success']) {
           this.router.navigate(['login']);
+          this.toastr.success('تغییر رمز عبور با موفقیت انجام شد.', 'خطا');
         }
-        else {
-          this.error = true;
+        else if(response['message']=='Incorect verification code') {
+          this.toastr.error('کد وارد شده صحیح نمی باشد.', 'خطا');
         }
       },
       (error) => {
-        this.error = true;
+        this.toastr.error('مشکلی به وجود آمده است.', 'خطا');
       }
     )
   }

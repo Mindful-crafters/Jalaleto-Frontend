@@ -5,6 +5,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Shared } from '../shared/services/shared.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,7 +19,9 @@ export class LoginComponent implements OnInit {
     private Router: Router,
     private formBuilder: FormBuilder,
     private restService: RestService,
+    private toastr: ToastrService,
     private auth: AuthService,
+    
     private shared: Shared
   ) { }
 
@@ -40,12 +43,15 @@ export class LoginComponent implements OnInit {
           console.log(this.auth.getToken())
           this.Router.navigate(['dashboard']);
         }
-        else {
-          this.error = true;
+        else if(response['message']=='User not found') {
+          this.toastr.error('کاربری یافت نشد.', 'خطا');
+        }
+        else if(response['message']=='Password is incorrect.'){
+          this.toastr.error('رمز وارد شده اشتباه است.', 'خطا');
         }
       },
       (error) => {
-        this.error = true;
+        this.toastr.error('مشکلی به وجود آمده است.', 'خطا');
       }
     )
   }
