@@ -3,11 +3,12 @@ import { DatePipe } from '@angular/common';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http'
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, resolveForwardRef } from '@angular/core';
 import { NgxOtpInputConfig } from 'ngx-otp-input';
 import { RestService } from '../shared/services/Rest.service';
 import { UserModel } from '../shared/types/UserModel.type';
 import { Shared } from '../shared/services/shared.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-sign-up',
@@ -23,17 +24,19 @@ import { Shared } from '../shared/services/shared.service';
 export class SignUpComponent implements OnInit {
   signUpForm: FormGroup;
   code = '';
+  isloading = false;
   hashString = '';
   isSignedClicked: boolean = false;
   signUpSuccus = false;
   signUpFail = false;
   formControl: FormControl;
   appearBtn = false;
-  
+
   constructor(
     private formBuilder: FormBuilder,
     private datePipe: DatePipe,
     private http: HttpClient,
+    private toastr: ToastrService,
     private Router: Router,
     private rest: RestService,
     private shared: Shared
@@ -64,15 +67,23 @@ export class SignUpComponent implements OnInit {
       "email": this.signUpForm.get('mail').value
     }
 
-
+    this.isloading = true;
     this.rest.postWithoutHeader<any>('User/SendVerifyEmail', email).subscribe(
       (response) => {
+        this.isloading = false;
         if (response['success']) {
           this.isSignedClicked = true
+          this.toastr.success('کد تایید به ایمیل فرستاده شد.', 'موفقیت');
           this.shared.setHashString(response['hashString']);
+        }
+        else if (response['message'] == 'Mail already in use.') {
+          this.isloading = false;
+          this.toastr.error('ایمیل تکراری است.', 'خطا');
         }
       },
       (error) => {
+        this.isloading = false;
+        this.toastr.error('مشکلی به وجود آمده است.', 'خطا');
       }
     )
   }
@@ -87,7 +98,10 @@ export class SignUpComponent implements OnInit {
     const currentDate = new Date();
     const selectedDate = new Date(control.value);
 
-    if (selectedDate <= currentDate) {
+    const minDate = new Date();
+    minDate.setFullYear(minDate.getFullYear() - 120);
+
+    if (selectedDate <= currentDate && selectedDate >= minDate) {
       return null;
     } else {
       return { customError: true };
@@ -124,17 +138,22 @@ export class SignUpComponent implements OnInit {
 
     this.rest.postWithoutHeader<SignUPPerson>('User/SignUp', newPerson).subscribe(
       (res) => {
+        console.log(res);
         if (res['success']) {
-          this.signUpSuccus = true;
+          this.toastr.success('حساب کاری با موفقیت ساخته شد.', 'موفقیت');
+          
           setTimeout(() => {
             this.Router.navigate(['login'])
           }, 1500)
+
+        }
+        else if(res['message']=='Incorect verification code'){
+          this.toastr.error('کد وارد شده صحیح نمی باشد.', 'خطا');
         }
         else {
-          this.signUpFail = true;
+          this.toastr.error('مشکلی رخ داده است', 'خطا');
 
           setTimeout(() => {
-            this.signUpFail = false;
           }, 1500)
         }
       },
