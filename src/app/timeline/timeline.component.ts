@@ -286,7 +286,7 @@ export class TimelineComponent implements OnInit {
     const selectedDay = new Date(this.firstDayOfTimeline);
     selectedDay.setDate(this.firstDayOfTimeline.getDate() + this.selectedBox)
 
-    const dialogRef: MatDialogRef<any, any> = this.matDialog.open(PostEventComponent, {
+    const dialogRef: MatDialogRef<any, any> = this.matDialog.open(AddNewEventReminderComponent, {
       data: {
         data: new ReminderObject({ dateTime: selectedDay }),
       },

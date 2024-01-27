@@ -46,7 +46,7 @@ import { ShowEventsComponent } from './show-events/show-events.component';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { EventDetailComponent } from './event-detail/event-detail.component';
 import { PostEventComponent } from './post-event/post-event.component';
-// import { NgxStarRatingModule } from 'ngx-star-rating';
+import { NgxStarRatingModule } from 'ngx-star-rating';
 
 @NgModule({
   declarations: [
@@ -96,7 +96,7 @@ import { PostEventComponent } from './post-event/post-event.component';
     MatAutocompleteModule,
     MatRippleModule,
     NzPopoverModule,
-    //NgxStarRatingModule,
+    NgxStarRatingModule,
   ],
   providers: [
     DatePipe,
