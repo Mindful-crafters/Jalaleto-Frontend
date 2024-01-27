@@ -49,31 +49,6 @@
             <mat-label>یادداشت</mat-label>
             <textarea formControlName="notes" rows="4" matInput></textarea>
         </mat-form-field>
-
-        <div class="checkbox-div">
-            <span>یادآوری قبل رویداد</span>
-            <label class="switch">
-                <input #check type="checkbox">
-                <span class="slider round"></span>
-            </label>
-        </div>
-
-        <div *ngIf="check.checked" class="reminder-days">
-            <span>چند روز قبل بهت یادآوری کنم:</span>
-            <mat-form-field class="days-input" appearance="outline" hideRequiredMarker>
-                <input [min]="0" type="number" formControlName="daysBeforeToRemind" style="text-align: center;"
-                    matInput />
-                <mat-error>این قسمت را خالی نگذارید.</mat-error>
-            </mat-form-field>
-        </div>
-
-        <div class="checkbox-div" style="margin-top: 1rem;">
-            <span>یادآوری با ایمیل</span>
-            <label class="switch">
-                <input #email type="checkbox">
-                <span class="slider round"></span>
-            </label>
-        </div>
     </form>
     <div class="footer">
 

@@ -54,8 +54,6 @@ export class AddNewEventReminderComponent implements OnInit {
       {
         title: [this.data?.title || null, Validators.required],
         notes: [this.data?.notes || null],
-        datePicker: [this.data.dateTime, Validators.required],
-        daysBeforeToRemind: [this.data?.daysBeforeToRemind || 7],
         startTime: ['12:00']
       }
     )
@@ -81,10 +79,6 @@ export class AddNewEventReminderComponent implements OnInit {
   }
 
   Submit() {
-    if (this.formGroup.get('datePicker') == null) {
-
-    }
-
     if (this.formGroup.invalid) {
       this.formGroup.markAllAsTouched();
 
@@ -99,31 +93,19 @@ export class AddNewEventReminderComponent implements OnInit {
     else
       v.priorityLevel = 2;
 
-    if (!this.reminde.nativeElement.checked)
-      v.daysBeforeToRemind = 0;
-
-    v.remindByEmail = this.emailReminder.nativeElement.checked;
+    v.daysBeforeToRemind = 7;
+    v.remindByEmail = false;
 
     const startTimeValue = this.formGroup.get('startTime').value;
     const [h, m] = startTimeValue.split(":");
-
     let date: Date = new Date(this.data.dateTime);
-
-    if (this.type == 'quick') {
-      date = this.formGroup.get('datePicker').value;
-    }
-
     console.log('date', date);
-
     const localDateTime = new Date(date);
     const localTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
     const gmtDateTimeString = this.datePipe.transform(localDateTime, 'yyyy-MM-dd HH:mm:ss', 'GMT');
     const gmtDateTime = new Date(gmtDateTimeString);
     gmtDateTime.setUTCHours(Number(h), Number(m));
-
-    if(this.type == 'quick')
-      gmtDateTime.setDate(gmtDateTime.getDate() + 1);
+    gmtDateTime.setDate(gmtDateTime.getDate() + 1);
 
     v.dateTime = gmtDateTime;
     v.reminderId = null;

@@ -35,7 +35,7 @@ export class ReminderDialogComponent implements OnInit {
     this.data = input.reminder;
     this.priorityLevel = this.data.priorityLevel;
 
-    if(true){
+    if (true) {
 
     }
     console.log(this.data.daysBeforeToRemind)
@@ -59,8 +59,6 @@ export class ReminderDialogComponent implements OnInit {
       {
         title: [this.data?.title || null, Validators.required],
         notes: [this.data?.notes || null],
-        datePicker: [this.data.dateTime, Validators.required],
-        daysBeforeToRemind: [this.data?.daysBeforeToRemind || 7],
         startTime: [this.initHour() || '12:00']
       }
     )
@@ -85,10 +83,8 @@ export class ReminderDialogComponent implements OnInit {
     else
       v.priorityLevel = 2;
 
-    if (!this.reminde.nativeElement.checked)
-      v.daysBeforeToRemind = 0;
-
-    v.remindByEmail = this.emailReminder.nativeElement.checked;
+    v.daysBeforeToRemind = 7;
+    v.remindByEmail = false;
 
     const startTimeValue = this.formGroup.get('startTime').value;
     const [h, m] = startTimeValue.split(":");

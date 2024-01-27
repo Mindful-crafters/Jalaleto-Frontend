@@ -1,11 +1,11 @@
 @import "../../theme/common.styles.scss";
 
-@keyframes slideIn{
-  from{
+@keyframes slideIn {
+  from {
     opacity: 0;
-    transform: translateX(-100%)
+    transform: translateX(-100%);
   }
-  to{
+  to {
     opacity: 100%;
     transform: translateX(0);
   }
@@ -24,8 +24,6 @@
   border-radius: 1rem;
   display: flex;
   padding: 1rem 1rem 1rem 1.5rem;
-
-  
 
   /* Track */
   ::-webkit-scrollbar-track {
@@ -62,8 +60,8 @@
   .quick-create-container {
     display: flex;
     justify-content: space-between;
-    
-    .quick-make{
+
+    .quick-make {
       margin-inline-start: 0.5rem;
     }
   }
@@ -97,6 +95,12 @@
     margin-inline-start: 0.25rem;
     margin-inline-end: auto;
   }
+}
+
+.group-name {
+  padding-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  border-bottom: 1px solid gainsboro;
 }
 
 .box-skeleton {
@@ -162,6 +166,13 @@
     scroll-behavior: smooth;
   }
 
+  .reminder-panel {
+    .top-info {
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid gainsboro;
+    }
+  }
+
   .divider {
     margin: 0;
     margin-top: 1rem;
@@ -175,7 +186,7 @@
     opacity: 0;
     animation: slideIn 0.2s ease-out forwards;
 
-    &:hover{
+    &:hover {
       background-color: rgb(233, 233, 233);
       cursor: pointer;
     }
@@ -199,7 +210,7 @@
       display: flex;
       justify-content: space-between;
 
-      .notes{
+      .notes {
         line-break: anywhere;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -207,7 +218,7 @@
         max-width: 40ch;
       }
 
-      .clock{
+      .clock {
         width: 10%;
       }
     }
@@ -216,14 +227,13 @@
       text-align: left;
     }
 
-    .priority-container{
+    .priority-container {
       white-space: nowrap;
 
       .priority {
         width: 1rem;
       }
     }
-
   }
 }
 
@@ -240,7 +250,7 @@
 
 .quick-create-container {
   text-align: left;
-  height: 2rem
+  height: 2rem;
 }
 
 .things .title {

@@ -216,7 +216,6 @@ export class AddEventDialogComponent {
     },
       (error: HttpErrorResponse) => {
         this.toastr.error('مشکلی پیش آمده دوباره تلاش کنید', 'خطا');
-
       })
   }
 }

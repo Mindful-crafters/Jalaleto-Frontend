@@ -143,6 +143,8 @@
                 <span class="title">{{ event.name }} </span>
               </div>
 
+              <div class="group-name">{{ returnGroupName(event.groupId) }}</div>
+
               <div class="bottom-info">
                 <div *ngIf="event.description != null" class="notes">
                   {{ event.description }}
@@ -263,8 +265,9 @@
       </div>
 
       <div class="btn-container">
-        <button mat-raised-button class="add-event"
-        (click)="AddNewEvent()">افزودن رویداد</button>
+        <button mat-raised-button class="add-event" (click)="AddNewEvent()">
+          افزودن رویداد
+        </button>
 
         <button
           mat-raised-button

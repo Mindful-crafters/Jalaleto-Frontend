@@ -8,7 +8,7 @@ import { DialogRef } from '@angular/cdk/dialog';
 import { RestService } from '../shared/services/Rest.service';
 import { AuthService } from '../shared/services/auth.service';
 import { ReminderObject } from '../shared/types/ReminderObject';
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgForOfContext } from '@angular/common';
 import { ReminderDialogComponent } from './reminder-dialog/reminder-dialog/reminder-dialog.component';
 import {
   NzSkeletonAvatarShape,
@@ -18,6 +18,10 @@ import {
   NzSkeletonInputSize
 } from 'ng-zorro-antd/skeleton';
 import { AddEventDialogComponent } from './add-event-dialog/add-event-dialog.component';
+import { HttpParams } from '@angular/common/http';
+import { HttpClient } from '@microsoft/signalr';
+import { Group } from '../shared/types/Group';
+import { group } from '@angular/animations';
 
 @Component({
   selector: 'app-timeline',
@@ -52,11 +56,11 @@ export class TimelineComponent implements OnInit {
   remindersLoading = true;
   weekEventsLoading = true;
   selectedDayEventsLoading = true;
+  myGroups: Group[];
+
 
   constructor(
-    private el: ElementRef,
     private restService: RestService,
-    private auth: AuthService,
     private datePipe: DatePipe,
     public persiancalendarservice: persiancalendarservice,
     private matDialog: MatDialog) { }
@@ -69,6 +73,20 @@ export class TimelineComponent implements OnInit {
     this.getWeekReminders(today);
     this.getWeekEvents(today);
     this.openBox(0);
+
+    this.restService.post('Group/Groups?FilterMyGroups=true', null).subscribe((res) => {
+      console.log(res);
+      this.myGroups = res['data'];
+    })
+  }
+
+  returnGroupName(id: number) {
+    let name = '';
+    this.myGroups.forEach(group => {
+      if (group.groupId == id)  name = group.name;
+    });
+
+    return name
   }
 
   getWeekReminders(firstDate: Date) {
