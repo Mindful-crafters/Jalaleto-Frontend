@@ -8,7 +8,8 @@
           *ngFor="let event of weekEvents; let i = index"
           class="history-event-item"
         >
-          <span>{{ MiladiToShamsi(event.when) }} {{ event.name }}</span>
+          <a style="color: black;" (click)="show()">{{ MiladiToShamsi(event.when) }} {{ event.name }}</a>
+          <button class="post-button" (click)="post(selectedEvent)" mat-button>post</button>
         </div>
       </ng-container>
 

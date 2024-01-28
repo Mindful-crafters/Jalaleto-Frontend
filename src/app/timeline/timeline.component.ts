@@ -1,3 +1,4 @@
+import { ShowPostComponent } from '../show-post/show-post.component';
 import { EventObject } from './../shared/types/EventObject.type';
 import { persiancalendarservice } from './../shared/services/persiancalendarservice.service';
 import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
@@ -18,7 +19,9 @@ import {
   NzSkeletonInputSize
 } from 'ng-zorro-antd/skeleton';
 import { AddEventDialogComponent } from './add-event-dialog/add-event-dialog.component';
-
+import { PostEventComponent } from '../post-event/post-event.component';
+import { ShowEventsComponent } from './../show-events/show-events.component';
+import { Posts } from '../shared/types/Group';
 @Component({
   selector: 'app-timeline',
   templateUrl: './timeline.component.html',
@@ -27,6 +30,7 @@ import { AddEventDialogComponent } from './add-event-dialog/add-event-dialog.com
 })
 
 export class TimelineComponent implements OnInit {
+  selectedEvent: Posts = null;
   buttonActive = true;
   avatarActive = true;
   inputActive = true;
@@ -327,6 +331,22 @@ export class TimelineComponent implements OnInit {
         this.openBox(this.selectedBox);
       }
       else { }
+    })
+  }
+  post (post: Posts) { 
+    const dialogRef: MatDialogRef<any, any> = this.matDialog.open(PostEventComponent, {
+      disableClose: true,
+      hasBackdrop: true,
+      autoFocus: false,
+      data: post,
+    })
+  }
+
+  show () {
+    const dialogRef: MatDialogRef<any, any> = this.matDialog.open(ShowPostComponent, {
+      disableClose: true,
+      hasBackdrop: true,
+      autoFocus: false,
     })
   }
 

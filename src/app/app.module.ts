@@ -47,6 +47,7 @@ import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { EventDetailComponent } from './event-detail/event-detail.component';
 import { PostEventComponent } from './post-event/post-event.component';
 import { NgxStarRatingModule } from 'ngx-star-rating';
+import { ShowPostComponent } from './show-post/show-post.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { NgxStarRatingModule } from 'ngx-star-rating';
     PostEventComponent,    
     AddEventDialogComponent,
     ShowEventsComponent,
-    EventDetailComponent
+    EventDetailComponent,
+    ShowPostComponent,
   ],
   imports: [
     BrowserModule,
