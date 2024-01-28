@@ -14,6 +14,8 @@ export class EventPageComponent implements OnInit {
   selectedEvent: EventClass = null;
   joinedEvents: EventClass[] = [];
   makedEvents: EventClass[] = [];
+  joinedEventsLoading: boolean = false
+  makedEventsLoading: boolean = false
 
   constructor(private restService: RestService, private toastr: ToastrService,
     private datePipe: DatePipe) {
@@ -25,6 +27,9 @@ export class EventPageComponent implements OnInit {
   }
 
   FetchEvents() {
+    this.joinedEventsLoading = true;
+    this.makedEventsLoading = true;
+
     this.restService.post('Event/Info', { from: '2020-01-27T18:29:42.459Z', to: '2026-01-27T18:29:42.459Z' }).subscribe((res) => {
       if (res['success']) {
         console.log(res);
@@ -32,6 +37,9 @@ export class EventPageComponent implements OnInit {
         this.joinedEvents = res['data'];
 
         this.makedEvents = this.joinedEvents.filter(e => e.maked);
+
+        this.joinedEventsLoading = false;
+        this.makedEventsLoading = false;
       }
       else
         this.toastr.error('مشکلی پیش آمده دوباره تلاش کنید', 'خطا');

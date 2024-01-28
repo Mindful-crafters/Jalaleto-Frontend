@@ -2,9 +2,14 @@
     <div style="border-inline-end: 1px solid #ccc;width: 30vw;">
         <mat-tab-group style="height: 100vh;">
             <mat-tab label="رویداد های عضو شده">
-                <div class="events">
+
+                <div class="groups-skeleton chat-skeleton" style="border-top:solid 1px ;" *ngIf="joinedEventsLoading">
+                    <nz-skeleton [nzActive]="true" [nzParagraph]="{ rows: 4 }"></nz-skeleton>
+                </div>
+
+                <div *ngIf="!joinedEventsLoading" class="events">
                     <div class="event" *ngFor="let event of joinedEvents" mat-ripple (click)="OpenEvent(event)"
-                        [style.background-color]="selectedEvent?.eventId == event.eventId ? '#3a86ff' : '#fff'">
+                        [style.background-color]="selectedEvent?.eventId == event.eventId ? '#ECF3FF' : '#fff'">
                         <div class="details">
                             <div class="name">
                                 <span nz-popover nzPopoverTitle="توضیحات" [nzPopoverContent]="event.description"
@@ -28,9 +33,12 @@
                 </div>
             </mat-tab>
             <mat-tab label="رویداد های ساخته شده">
-                <div class="events">
+                <div class="groups-skeleton chat-skeleton" style="border-top:solid 1px ;" *ngIf="makedEventsLoading">
+                    <nz-skeleton [nzActive]="true" [nzParagraph]="{ rows: 4 }"></nz-skeleton>
+                </div>
+                <div *ngIf="!makedEventsLoading" class="events">
                     <div class="event" *ngFor="let event of makedEvents" mat-ripple (click)="OpenEvent(event)"
-                        [style.background-color]="selectedEvent?.eventId == event.eventId ? '#3a86ff' : '#fff'">
+                        [style.background-color]="selectedEvent?.eventId == event.eventId ? '#ECF3FF' : '#fff'">
                         <div class="details">
                             <div class="name">
                                 <span nz-popover nzPopoverTitle="توضیحات" [nzPopoverContent]="event.description"
