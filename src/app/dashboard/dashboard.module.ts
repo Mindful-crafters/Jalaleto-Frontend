@@ -28,7 +28,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatTabsModule } from '@angular/material/tabs';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 import { AddEventDialogComponent } from '../timeline/add-event-dialog/add-event-dialog.component';
-
+import { NzSpaceModule } from 'ng-zorro-antd/space';
 
 @NgModule({
     declarations: [
@@ -60,7 +60,8 @@ import { AddEventDialogComponent } from '../timeline/add-event-dialog/add-event-
         MatNativeDateModule,
         MatBadgeModule,
         NzSkeletonModule,
-        MatTabsModule
+        MatTabsModule,
+        NzSpaceModule
     ],
     exports: [
         DashboardComponent,

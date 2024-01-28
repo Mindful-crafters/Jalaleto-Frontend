@@ -6,6 +6,7 @@ import { RestService } from '../shared/services/Rest.service';
 import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
 import { Group } from '../shared/types/Group';
 import { Router } from '@angular/router';
+import { NzSkeletonParagraph } from 'ng-zorro-antd/skeleton';
 @Component({
   selector: 'app-show-groups',
   templateUrl: './show-groups.component.html',
@@ -15,6 +16,8 @@ export class ShowGroupsComponent implements OnInit {
 
   @Output() showGroup: EventEmitter<Group> = new EventEmitter<Group>();
   @Input() selectedGroup: Group = null;
+  @Input() allGroupsLoading: boolean = false;
+  @Input() myGroupsLoading: boolean = false;
   @Output() backToDashboard: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private matDialog: MatDialog, private restService: RestService,
@@ -25,18 +28,9 @@ export class ShowGroupsComponent implements OnInit {
   ngOnInit(): void {
 
     this.SearchInputChangeHandler();
-    this.restService.post('Group/Groups?FilterMyGroups=false', null).subscribe((res) => {
-      console.log(res);
-      this.allGroups = res['data'];
-    })
-
-    this.restService.post('Group/Groups?FilterMyGroups=true', null).subscribe((res) => {
-      console.log(res);
-      this.myGroups = res['data'];
-    })
   }
-  allGroups: Group[] = [];
-  myGroups: Group[] = [];
+  @Input() allGroups: Group[] = [];
+  @Input() myGroups: Group[] = [];
   filterdGroups: Group[] = [];
   isSearching: boolean = false;
   searchString: string;

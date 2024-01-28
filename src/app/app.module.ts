@@ -99,6 +99,7 @@ import { EventPageComponent } from './event-page/event-page.component';
     MatRippleModule,
     NzPopoverModule,
     NgxStarRatingModule,
+
   ],
   providers: [
     DatePipe,

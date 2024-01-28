@@ -25,7 +25,11 @@ export class GroupsPageComponent implements OnInit {
   allGroups: Group[] = [];
   myGroups: Group[] = [];
   userProfile: any;
-  isLoaded: boolean = false
+  isLoaded: boolean = false;
+  chatLoading: boolean = false;
+
+  myGroupsLoading: boolean = false;
+  allGroupsLoading: boolean = false;
 
   constructor(
     private matDialog: MatDialog,
@@ -42,13 +46,28 @@ export class GroupsPageComponent implements OnInit {
 
   ngOnInit() {
     this.fetchUserProfile();
+    this.allGroupsLoading = true;
+    this.myGroupsLoading = true;
+
+    this.restService.post('Group/Groups?FilterMyGroups=false', null).subscribe((res) => {
+      console.log(res);
+      this.allGroups = res['data'];
+      this.allGroupsLoading = false;
+    })
+
+    this.restService.post('Group/Groups?FilterMyGroups=true', null).subscribe((res) => {
+      console.log(res);
+      this.myGroups = res['data'];
+      this.myGroupsLoading = false;
+    })
   }
 
   OpenGroup(event: any) {
+    this.chatLoading = true;
     this.selectedGroup = event;
-    console.log('s', this.selectedGroup.imageUrl)
     this.getMessages();
     this.hubInit();
+    this.chatLoading = false;
   }
 
   public hubInit() {
@@ -151,12 +170,27 @@ export class GroupsPageComponent implements OnInit {
   }
 
   JoinGroup() {
+    this.chatLoading = true;
     this.restService.post('Group/JoinGroup?GroupId=' + this.selectedGroup.groupId, null).subscribe((res) => {
-      if (res['success'])
-        this.toastr.success('با موفقیت عضو گروه شدید', 'موفقیت');
+      if (res['success']) {
+
+        this.restService.post('Group/GpInfo?GroupId=' + this.selectedGroup.groupId, null).subscribe((response) => {
+          if (response['success']) {
+            this.OpenGroup(response['data'][0]);
+            this.myGroups.push(response['data'][0]);
+          }
+          else {
+            this.toastr.error('مشکلی پیش آمده دوباره تلاش کنید', 'خطا');
+          }
+          this.toastr.success('با موفقیت عضو گروه شدید', 'موفقیت');
+
+        })
+
+      }
       else
         this.toastr.error('مشکلی پیش آمده دوباره تلاش کنید', 'خطا');
 
+      this.chatLoading = false;
     })
   }
 }

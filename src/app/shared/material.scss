@@ -292,3 +292,48 @@ mat-hint {
         height: 0 !important;
     }
 }
+
+.chat-skeleton {
+
+    .ant-skeleton-element .ant-skeleton-avatar-lg.ant-skeleton-avatar-circle,
+    .ant-skeleton-element .ant-skeleton-avatar-sm.ant-skeleton-avatar-circle,
+    .ant-skeleton-element .ant-skeleton-avatar.ant-skeleton-avatar-circle,
+    .ant-skeleton-element .ant-skeleton-image-svg.ant-skeleton-image-circle,
+    .ant-skeleton-element .ant-skeleton-image.ant-skeleton-image-circle {
+        width: 3rem !important;
+        height: 3rem !important;
+    }
+
+    .ant-skeleton-content .ant-skeleton-paragraph>li {
+        width: 90% !important;
+        height: 4rem !important;
+        margin-bottom: 4rem !important;
+    }
+
+    .ant-skeleton-with-avatar .ant-skeleton-content .ant-skeleton-title {
+        margin-top: 12px !important;
+        height: 4rem !important;
+        margin-bottom: 4rem !important;
+        margin-inline-start: 1rem !important;
+    }
+
+    .ant-skeleton {
+        margin-top: 1.5rem !important;
+    }
+
+    .ant-skeleton-with-avatar .ant-skeleton-content .ant-skeleton-title+.ant-skeleton-paragraph {
+        margin-inline-start: 1rem !important;
+    }
+}
+
+.groups-skeleton {
+
+    .ant-skeleton-content .ant-skeleton-title {
+        display: none !important;
+    }
+
+    .ant-skeleton-content {
+        padding-inline-start: 10% !important;
+    }
+
+}
