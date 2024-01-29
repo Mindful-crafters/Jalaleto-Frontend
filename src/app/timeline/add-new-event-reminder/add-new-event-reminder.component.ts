@@ -105,7 +105,6 @@ export class AddNewEventReminderComponent implements OnInit {
     const gmtDateTimeString = this.datePipe.transform(localDateTime, 'yyyy-MM-dd HH:mm:ss', 'GMT');
     const gmtDateTime = new Date(gmtDateTimeString);
     gmtDateTime.setUTCHours(Number(h), Number(m));
-    gmtDateTime.setDate(gmtDateTime.getDate() + 1);
 
     v.dateTime = gmtDateTime;
     v.reminderId = null;

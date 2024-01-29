@@ -56,7 +56,7 @@ export class AddEventDialogComponent {
   allFruits: string[] = ['ورزشی', 'گیم', 'طبیعت', 'اجتماعی', 'درسی'];
   myGroups: Group[];
 
-  inputEvent : CreateEvent = {
+  inputEvent: CreateEvent = {
     eventId: null,
     groupId: null,
     name: null,
@@ -84,7 +84,7 @@ export class AddEventDialogComponent {
       this.inputEvent = inputDate.event;
       this.fruits = this.inputEvent.tag
 
-      console.log('input event : ',this.inputEvent)
+      console.log('input event : ', this.inputEvent)
     }
 
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
@@ -100,6 +100,17 @@ export class AddEventDialogComponent {
       console.log(res);
       this.myGroups = res['data'];
       this.isMyGroupsLoading = false;
+      console.log('my groups : ',this.myGroups)
+
+      this.myGroups.forEach(element => {
+        if(element.groupId == this.inputEvent.groupId){
+          this.selectedGroup = element;
+        }
+      });
+
+      if(this.selectedGroup == null && this.myGroups.length > 0){
+        this.selectedGroup = this.myGroups[0]
+      }
     })
   }
 
@@ -147,7 +158,7 @@ export class AddEventDialogComponent {
   }
 
   initHour() {
-    if(this.inputEvent.when != null){
+    if (this.inputEvent.when != null) {
       const date = new Date(this.inputEvent.when);
       const hour = date.getHours();
       const minutes = date.getMinutes();
@@ -161,9 +172,9 @@ export class AddEventDialogComponent {
       {
         title: [this.inputEvent.name || null, Validators.required],
         description: [this.inputEvent.description || null, Validators.required],
-        startTime: [ this.initHour(), Validators.required],
+        startTime: [this.initHour(), Validators.required],
         memberLimit: [this.inputEvent.memberLimit, [this.numberValidator]],
-        selectBox: [this.inputEvent.groupId || null]
+        groupSelected: [null , Validators.required]
       }
     )
   }
@@ -188,11 +199,11 @@ export class AddEventDialogComponent {
 
   Submit() {
     console.log('start')
-    if (this.formGroup.invalid) {
-      console.log(this.formGroup.getRawValue())
-      this.formGroup.markAllAsTouched();
-      return;
-    }
+    // if (this.formGroup.invalid) {
+    //   console.log(this.formGroup.getRawValue())
+    //   this.formGroup.markAllAsTouched();
+    //   return;
+    // }
 
     const event: CreateEvent = {
       eventId: null,
@@ -206,13 +217,15 @@ export class AddEventDialogComponent {
     };
 
     //event id (if is not null used for update)
-    if(this.inputEvent.eventId != null){
+    if (this.inputEvent.eventId != null) {
       const eventId = this.inputEvent.eventId;
       event.eventId = eventId;
     }
 
     //group Id
-    const groupId = this.formGroup.get('selectBox').value;
+    console.log('group id selected from box: ', this.formGroup.get('groupSelected').value)
+    console.log('group id selected from value: ', this.selectedGroup)
+    const groupId = this.selectedGroup.groupId;
     //group Name
     const groupName = this.formGroup.get('title').value;
     //description
@@ -223,20 +236,15 @@ export class AddEventDialogComponent {
     //when
     const startTimeValue = this.formGroup.get('startTime').value;
     const [h, m] = startTimeValue.split(":");
-    
+
     let localDateTime = new Date(this.inputDate);
-    if(this.inputEvent.eventId){
+    if (this.inputEvent.eventId) {
       localDateTime = new Date(this.inputEvent.when);
     }
 
     // Set the local time with the adjusted UTC hours and minutes
     const localDateTimeWithOffset = new Date(localDateTime);
-    if(this.inputEvent.eventId){
-      localDateTimeWithOffset.setDate(localDateTimeWithOffset.getDate());
-    }
-    else{
-      localDateTimeWithOffset.setDate(localDateTimeWithOffset.getDate() + 1);
-    }
+    localDateTimeWithOffset.setDate(localDateTimeWithOffset.getDate());
     localDateTimeWithOffset.setUTCHours(Number(h), Number(m));
     //tags
     const tags = this.fruits;
