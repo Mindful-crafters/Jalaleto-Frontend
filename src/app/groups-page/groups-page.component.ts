@@ -46,17 +46,19 @@ export class GroupsPageComponent implements OnInit {
 
   ngOnInit() {
     this.fetchUserProfile();
+    this.FetchGroups();
+  }
+
+  FetchGroups() {
     this.allGroupsLoading = true;
     this.myGroupsLoading = true;
 
     this.restService.post('Group/Groups?FilterMyGroups=false', null).subscribe((res) => {
-      console.log(res);
       this.allGroups = res['data'];
       this.allGroupsLoading = false;
     })
 
     this.restService.post('Group/Groups?FilterMyGroups=true', null).subscribe((res) => {
-      console.log(res);
       this.myGroups = res['data'];
       this.myGroupsLoading = false;
     })

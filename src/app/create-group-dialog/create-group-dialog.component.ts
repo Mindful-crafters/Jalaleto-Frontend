@@ -42,7 +42,7 @@ export class CreateGroupDialogComponent {
   }
 
   close() {
-    this.dialogRef.close(null);
+    this.dialogRef.close(false);
   }
 
   Submit() {
@@ -66,7 +66,7 @@ export class CreateGroupDialogComponent {
     this.restService.post('Group/Create', formData).subscribe((res) => {
       if (res['success']) {
         this.toastr.success('گروه با موفقیت ایجاد شد', 'موفقیت');
-        this.dialogRef.close(newGroup);
+        this.dialogRef.close(true);
       }
       else {
         this.toastr.error('مشکلی پیش آمده دوباره تلاش کنید', 'خطا');

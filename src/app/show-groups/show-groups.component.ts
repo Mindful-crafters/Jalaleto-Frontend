@@ -35,6 +35,7 @@ export class ShowGroupsComponent implements OnInit {
   isSearching: boolean = false;
   searchString: string;
   searchInputChanges = new Subject<string>();
+  @Output() groupAdded: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   CreateGroup() {
     const dialogRef: MatDialogRef<any, any> = this.matDialog.open(CreateGroupDialogComponent, {
@@ -44,9 +45,8 @@ export class ShowGroupsComponent implements OnInit {
     })
 
     dialogRef.afterClosed().subscribe((res) => {
-      //if (res)
-      //   this.groups.push(res);
-      // console.log(res);
+      if (res)
+        this.groupAdded.emit(true);
 
     })
   }
