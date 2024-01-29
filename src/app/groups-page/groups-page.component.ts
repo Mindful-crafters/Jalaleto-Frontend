@@ -178,6 +178,8 @@ export class GroupsPageComponent implements OnInit {
           if (response['success']) {
             this.OpenGroup(response['data'][0]);
             this.myGroups.push(response['data'][0]);
+            const index = this.allGroups.findIndex(g => g.groupId == this.selectedGroup.groupId);
+            this.allGroups[index] = this.selectedGroup;
           }
           else {
             this.toastr.error('مشکلی پیش آمده دوباره تلاش کنید', 'خطا');
