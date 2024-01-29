@@ -36,7 +36,6 @@ export class EditProfileComponent {
     Email: string,
     image: File,
     imagePath: string,
-    Password: string,
     interests : string[]
   } = {
       FirstName: "",
@@ -46,7 +45,6 @@ export class EditProfileComponent {
       Email: "",
       image: null,
       imagePath: "",
-      Password: "",
     interests : []
     }
   requestData = {
@@ -126,10 +124,10 @@ export class EditProfileComponent {
     console.log('sss',this.imageLink);
     console.log('image',this.selectedFile);
     
-    if (this.data.Password === '' || this.data.Password === null) {
-      this.data.Password = null;
-      console.log('pppp',this.data.Password);
-    }
+    // if (this.data.Password === '' || this.data.Password === null) {
+    //   this.data.Password = null;
+    //   console.log('pppp',this.data.Password);
+    // }
     const formData = new FormData;
     formData.append('FirstName', this.data.FirstName);
     formData.append('LastName', this.data.LastName);
@@ -145,7 +143,6 @@ export class EditProfileComponent {
       formData.append('Image',imageUrl);
       console.log('goz',imageUrl);
     }
-    formData.append('Password', this.data.Password);
     console.log(formData)
     this.fruits.forEach((interest, index) => {
       formData.append(`interests[${index}]`, interest);
@@ -212,7 +209,6 @@ interface ProfileResult {
   birthday: string,
   email: string,
   imagePath: string,
-  password: string,
   interests : string[]
 }
 
