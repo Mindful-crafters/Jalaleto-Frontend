@@ -1,6 +1,6 @@
 <div class="container chat-skeleton">
-  <app-show-groups [myGroups]="myGroups" [allGroups]="allGroups" [selectedGroup]="selectedGroup"
-    [allGroupsLoading]="allGroupsLoading" [myGroupsLoading]="myGroupsLoading"
+  <app-show-groups (groupAdded)="FetchGroups()" [myGroups]="myGroups" [allGroups]="allGroups"
+    [selectedGroup]="selectedGroup" [allGroupsLoading]="allGroupsLoading" [myGroupsLoading]="myGroupsLoading"
     (showGroup)="OpenGroup($event)"></app-show-groups>
   <div *ngIf="!selectedGroup" class="no-group-selected"></div>
 
