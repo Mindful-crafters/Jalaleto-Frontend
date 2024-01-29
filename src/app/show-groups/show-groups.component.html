@@ -79,8 +79,16 @@
     <div class="groups" *ngIf="!allGroupsLoading">
       <div class="group" *ngFor="let group of filterdGroups" mat-ripple (click)="OpenGroup(group)"
         [style.background-color]="
-          selectedGroup?.groupId == group.groupId ? '#ECF3FF' : '#fff'
-        ">
+        selectedGroup?.groupId == group.groupId ? '#ECF3FF' : '#fff'
+      ">
+        <div *ngIf="!group.imageFile" class="prof">
+          <img *ngIf="!group.imageUrl || group.imageUrl == ''" src="assets/icons/group-icon.svg" alt="" />
+          <img *ngIf="group.imageUrl && group.imageUrl != ''" #prof [src]="group.imageUrl" alt="" />
+        </div>
+        <div *ngIf="group.imageFile" class="prof">
+          <img [src]="group.imageFile" alt="" />
+        </div>
+
         <div style="display: flex; flex-direction: column; width: 75%">
           <!-- <div class="name">{{group.name}}</div> -->
           <div class="name">
@@ -88,17 +96,6 @@
               nzPopoverPlacement="bottomRight">{{ group.name }}
             </span>
           </div>
-          <div class="members-count">
-            <span>تعداد اعضا: </span>
-            <span>{{ group.members.length }}</span>
-          </div>
-        </div>
-        <div *ngIf="!group.imageFile" class="prof">
-          <img *ngIf="!group.imageUrl || group.imageUrl == ''" src="assets/icons/group-icon.svg" alt="" />
-          <img *ngIf="group.imageUrl && group.imageUrl != ''" #prof [src]="group.imageUrl" alt="" />
-        </div>
-        <div *ngIf="group.imageFile" class="prof">
-          <img [src]="group.imageFile" alt="" />
         </div>
       </div>
     </div>
