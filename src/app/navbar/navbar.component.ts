@@ -158,6 +158,14 @@ export class NavbarComponent implements OnInit {
       }
     );
   }
+
+  truncateString(str: string, maxLength: number) {
+    if (str.length <= maxLength) {
+      return str;
+    } else {
+      return str.substring(0, maxLength) + '...';
+    }
+  }
 }
 
 export interface UserProfile {

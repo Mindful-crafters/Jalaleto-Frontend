@@ -3,9 +3,7 @@
     <button class="close-button" mat-button (click)="close()">
       <img src="assets/icons/close.svg" />
     </button>
-    <span class="title">
-      افزودن رویداد
-    </span>
+    <span class="title"> افزودن رویداد </span>
   </div>
 
   <form [formGroup]="formGroup" class="content new-reminder">
@@ -18,14 +16,19 @@
     <div class="name-member-limit">
       <mat-form-field *ngIf="!isMyGroupsLoading" appearance="outline">
         <mat-label>گروه</mat-label>
-        <mat-select [value]="inputEvent.groupId" [disabled]="inputEvent.eventId != null" FormControlName="selectBox" required>
+        <mat-select
+          [(value)]="selectedGroup.groupId"
+          FormControlName="groupSelected"
+          [disabled]="inputEvent.eventId != null"
+        >
           <mat-option *ngFor="let group of myGroups" [value]="group.groupId">
             {{ group.name }}
           </mat-option>
         </mat-select>
-        <mat-error *ngIf="formGroup.get('selectBox').hasError('required')"
-          > یکی از گروه های خود را انتخاب کنید</mat-error>
+        <mat-error *ngIf="formGroup.get('groupSelected').hasError('required')">
+          یکی از گروه های خود را انتخاب کنید</mat-error>
       </mat-form-field>
+      
 
       <nz-skeleton-element
         *ngIf="isMyGroupsLoading"
