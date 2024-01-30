@@ -65,6 +65,8 @@ export class GroupsPageComponent implements OnInit {
   }
 
   OpenGroup(event: any) {
+    if (this.selectedGroup)
+      this.stopConnection();
     this.chatLoading = true;
     this.selectedGroup = event;
     this.getMessages();
