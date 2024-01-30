@@ -8,22 +8,31 @@
         </span>
     </div>
     <div class="content new-reminder">
-        <!-- <div class="member" *ngFor="let member of data.members">
-            <div class="group" >
-                <div class="name">
-                    <span class="firstname" nz-popover nzPopoverPlacement="bottomRight">{{member.userName}}</span>
-                    <span class="username" nz-popover nzPopoverPlacement="bottomRight">{{member.userName}}</span>
+        <ng-container *ngIf="reviews.length> 0 ">
+            <div class="member" *ngFor="let member of reviews">
+                <div class="group" >
+                    <div class="name">
+                        <span class="firstname" nz-popover nzPopoverPlacement="bottomRight">{{member.id}}</span>
+                    </div>
+    
+                    <div class="comment-member">
+                        <div>نظر : </div>
+                        <span class="text">{{member.text}}</span>
+                        <div>امتیاز داده شده:</div>
+                        <span>{{member.score}}</span>
+                    </div>
                 </div>
+              </div>
+        </ng-container>
 
-                <div class="img-member">
-                    <span>
-                        <img class="image-member" *ngIf="member.image && member.image !== ''" [src]="member.image" >
-                        <img class="image-member" *ngIf="!member.image || member.image === ''" src="/assets/profile.svg">
-                    </span>
-                </div>
+        <ng-container *ngIf="reviews.length == 0">
+            <div class="group">
+                هیچ نظری موجود نمی باشد.
             </div>
+        </ng-container>
+    </div>
+    <div class="footer">
 
-          </div> -->
     </div>
 </div>
 

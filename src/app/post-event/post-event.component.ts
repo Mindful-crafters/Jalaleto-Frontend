@@ -28,16 +28,16 @@ export class PostEventComponent {
   constructor(public dialogRef: MatDialogRef<PostEventComponent>,
     private formBuilder: FormBuilder, private restService: RestService,
     private toastr: ToastrService,
-    @Inject(MAT_DIALOG_DATA) public data: Posts,
+    @Inject(MAT_DIALOG_DATA) public eventId,
     private fb: FormBuilder) {
     this.rating3 = 0;
     this.form = this.fb.group({
       text: ['', Validators.required],
       rating: [0, Validators.required],
-      
+
     })
   }
-  
+
   onFileSelected(event: any) {
     const file = event.target.files[0];
 
@@ -50,37 +50,37 @@ export class PostEventComponent {
     this.selectedStarCount = event.selectedCount;
     console.log(this.selectedStarCount);
   }
-  
+
   close() {
     this.dialogRef.close(null);
   }
-  
+
   submit() {
-    
-    console.log('data',this.data);
-    if (this.data && this.data.eventId) {
-    const eventData = {
-      text: this.form.value.text,
-      rating: this.form.value.rating,
-      eventId: this.data.eventId,
-    };
-    console.log('eventId:', this.data.eventId);
-    console.log('Text:', this.form.value.text);
-    console.log('Score:', this.form.value.rating);
-    this.restService.post<any>('Event/AddEventReview',eventData).subscribe(
-      (response) => {
-        if (response['success']) {
-          this.toastr.success('نظر شما با موفقیت ثبت شد.', 'موفقیت');
+    console.log('data', this.eventId);
+    if (this.eventId) {
+      const eventData = {
+        text: this.form.value.text,
+        score: this.form.value.rating,
+        eventId: this.eventId,
+      };
+      console.log('eventId:', this.eventId);
+      console.log('Text:', this.form.value.text);
+      console.log('Score:', this.form.value.rating);
+      this.restService.post<any>('Event/AddEventReview', eventData).subscribe(
+        (response) => {
+          if (response['success']) {
+            this.toastr.success('نظر شما با موفقیت ثبت شد.', 'موفقیت');
+            this.dialogRef.close(true);
+          }
+          else {
+            this.toastr.error('نظر شما ثبت نشد', 'خطا')
+          }
+        },
+        (error) => {
+          this.toastr.error('مشکلی به وجود آمده است.', 'خطا');
         }
-      },
-      (error) => {
-        this.toastr.error('مشکلی به وجود آمده است.', 'خطا');
-      }
-    )
-  } else {
-    console.error('Data or eventId is null or undefined.');
-  }
-  console.log('post',Posts);
+      )
+    }
   }
 }
 

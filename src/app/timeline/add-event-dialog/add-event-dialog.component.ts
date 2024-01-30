@@ -4,7 +4,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, Inject, ViewChild, inject } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatChipInputEvent, MatChipOption } from '@angular/material/chips';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { RestService } from 'src/app/shared/services/Rest.service';
 import { AddNewEventReminderComponent } from '../add-new-event-reminder/add-new-event-reminder.component';
@@ -20,6 +20,10 @@ import {
   NzSkeletonButtonSize,
   NzSkeletonInputSize
 } from 'ng-zorro-antd/skeleton';
+import { PostEventComponent } from 'src/app/post-event/post-event.component';
+import { Posts } from 'src/app/shared/types/Group';
+import { StreamInvocationMessage } from '@microsoft/signalr';
+import { ShowPostComponent } from 'src/app/show-post/show-post.component';
 
 @Component({
   selector: 'app-add-event-dialog',
@@ -48,6 +52,8 @@ export class AddEventDialogComponent {
   @ViewChild('check') reminde: ElementRef;
   @ViewChild('email') emailReminder: ElementRef;
   type: string;
+  reviews: Review[];
+
 
   separatorKeysCodes: number[] = [ENTER, COMMA];
   fruitCtrl = new FormControl('');
@@ -75,7 +81,9 @@ export class AddEventDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<AddNewEventReminderComponent>,
     @Inject(MAT_DIALOG_DATA) public inputDate: any,
+    private postDialogRef: MatDialogRef<PostEventComponent>,
     private toastr: ToastrService,
+    private matDialog: MatDialog,
     private formBuilder: FormBuilder,
     private restService: RestService
     , private datePipe: DatePipe) {
@@ -112,6 +120,20 @@ export class AddEventDialogComponent {
         this.selectedGroup = this.myGroups[0]
       }
     })
+
+    this.restService.post<any>('Event/GetEventReviews', { 'eventId': this.inputEvent.eventId }).subscribe(
+      (response) => {
+        if (response['success']) {
+          console.log(response)
+          this.reviews = response['eventReviews']
+          console.log(this.reviews);
+        }
+        else {
+        }
+      },
+      (error) => {
+      }
+    )
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
@@ -165,6 +187,44 @@ export class AddEventDialogComponent {
       return hour + ':' + minutes;
     }
     return '12:00'
+  }
+
+
+  post() {
+    const eventId = this.inputEvent.eventId;
+
+    const dialogRef: MatDialogRef<any, any> = this.matDialog.open(PostEventComponent, {
+      data: eventId,
+      hasBackdrop: true,
+      autoFocus: false
+    })
+
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res) {
+        this.restService.post<any>('Event/GetEventReviews', { 'eventId': this.inputEvent.eventId }).subscribe(
+          (response) => {
+            if (response['success']) {
+              console.log(response)
+              this.reviews = response['eventReviews']
+              console.log(this.reviews);
+            }
+            else {
+            }
+          },
+          (error) => {
+            this.toastr.error('در لود نظرات مشکلی به وجود آمده است', 'خطا');
+          }
+        )
+      }
+    })
+  }
+
+  showPosts(){
+    const dialogRef: MatDialogRef<any, any> = this.matDialog.open(ShowPostComponent, {
+      data: this.reviews,
+      hasBackdrop: true,
+      autoFocus: false
+    })
   }
 
   CreateForm() {
@@ -279,4 +339,12 @@ export class AddEventDialogComponent {
         this.toastr.error('مشکلی پیش آمده دوباره تلاش کنید', 'خطا');
       })
   }
+}
+
+export interface Review {
+  eventId: string;
+  id: string
+  score: number;
+  text: string;
+  userId: string
 }
