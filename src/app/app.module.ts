@@ -48,6 +48,7 @@ import { EventDetailComponent } from './event-detail/event-detail.component';
 import { PostEventComponent } from './post-event/post-event.component';
 import { NgxStarRatingModule } from 'ngx-star-rating';
 import { EventPageComponent } from './event-page/event-page.component';
+import { ShowPostComponent } from './show-post/show-post.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { EventPageComponent } from './event-page/event-page.component';
     AddEventDialogComponent,
     ShowEventsComponent,
     EventDetailComponent,
-    EventPageComponent
+    EventPageComponent,
+    ShowPostComponent
   ],
   imports: [
     BrowserModule,

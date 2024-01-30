@@ -294,6 +294,18 @@
   span:first-child {
     margin-left: 0.5rem;
   }
+  .post-button
+  {
+      width: 85%;
+      height: 2rem;
+      background-color: #3a86ff;
+      color: #fff;
+      margin-inline-end: 1rem;
+      margin-bottom: 1rem;
+      margin-top: 1rem;
+      justify-items: center;
+      
+  }
 }
 
 .change-week-btn {
