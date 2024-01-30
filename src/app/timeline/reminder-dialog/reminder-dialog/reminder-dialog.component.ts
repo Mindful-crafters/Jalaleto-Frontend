@@ -100,7 +100,7 @@ export class ReminderDialogComponent implements OnInit {
 
     this.restService.post('Reminder/Create', v).subscribe((res) => {
       if (res['success']) {
-        this.toastr.success('رویداد با موفقیت ایجاد شد', 'موفقیت');
+        this.toastr.success('یادآوری با موفقیت ایجاد شد', 'موفقیت');
         this.dialogRef.close(v);
       }
       else {

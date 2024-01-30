@@ -85,7 +85,7 @@ export class ForgetPasswordComponent {
         console.log(response)
         if (response['success']) {
           this.router.navigate(['login']);
-          this.toastr.success('تغییر رمز عبور با موفقیت انجام شد.', 'خطا');
+          this.toastr.success('تغییر رمز عبور با موفقیت انجام شد.', 'موفقیت');
         }
         else if(response['message']=='Incorect verification code') {
           this.toastr.error('کد وارد شده صحیح نمی باشد.', 'خطا');

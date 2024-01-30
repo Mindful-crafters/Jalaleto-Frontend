@@ -100,15 +100,15 @@ export class AddEventDialogComponent {
       console.log(res);
       this.myGroups = res['data'];
       this.isMyGroupsLoading = false;
-      console.log('my groups : ',this.myGroups)
+      console.log('my groups : ', this.myGroups)
 
       this.myGroups.forEach(element => {
-        if(element.groupId == this.inputEvent.groupId){
+        if (element.groupId == this.inputEvent.groupId) {
           this.selectedGroup = element;
         }
       });
 
-      if(this.selectedGroup == null && this.myGroups.length > 0){
+      if (this.selectedGroup == null && this.myGroups.length > 0) {
         this.selectedGroup = this.myGroups[0]
       }
     })
@@ -174,7 +174,7 @@ export class AddEventDialogComponent {
         description: [this.inputEvent.description || null, Validators.required],
         startTime: [this.initHour(), Validators.required],
         memberLimit: [this.inputEvent.memberLimit, [this.numberValidator]],
-        groupSelected: [null , Validators.required]
+        groupSelected: [null, Validators.required]
       }
     )
   }
@@ -205,6 +205,11 @@ export class AddEventDialogComponent {
     //   return;
     // }
 
+    if (this.formGroup.get('memberLimit').value < 1) {
+      this.toastr.error('مقدار حداکثر اعضا را به درستی وارد کنید', 'خطا');
+      return
+    }
+
     const event: CreateEvent = {
       eventId: null,
       groupId: 0,
@@ -233,6 +238,7 @@ export class AddEventDialogComponent {
     //location
     const location = '';
     const memberLimit = this.formGroup.get('memberLimit').value;
+
     //when
     const startTimeValue = this.formGroup.get('startTime').value;
     const [h, m] = startTimeValue.split(":");
