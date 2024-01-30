@@ -45,10 +45,10 @@ export class SignUpComponent implements OnInit {
   ngOnInit(): void {
     this.signUpForm = this.formBuilder.group(
       {
-        mail: [null, [Validators.required, Validators.pattern(this.emailRegex)]],
-        lastName: [null, Validators.required],
         firstName: [null, Validators.required],
-        userName: [null, Validators.required, Validators.minLength(3)],
+        lastName: [null, Validators.required],
+        userName: [null, [Validators.required, Validators.minLength(3)]],
+        mail: [null, [Validators.required, Validators.pattern(this.emailRegex)]],
         password: [null, [Validators.required, Validators.pattern('^(?=.*[A-Z])(?=.*[0-9]).{8,}$')]],
         birthday: [null, [Validators.required, this.validateAge]]
       }
@@ -58,10 +58,24 @@ export class SignUpComponent implements OnInit {
   emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   Submit() {
-    if (this.signUpForm.invalid || this.signUpForm.get('birthday').value == null || !this.IsValidBirthDay(this.signUpForm.get('birthday').value)) {
+    if (this.signUpForm.invalid) {
       this.signUpForm.markAllAsTouched();
+      console.log(this.signUpForm.value)
+      console.log('is it out of sign')
       return;
     }
+
+    if (!this.IsValidBirthDay(this.signUpForm.get('birthday').value)) {
+      return;
+    }
+
+    if (this.signUpForm.get('birthday').value == null || !this.IsValidBirthDay(this.signUpForm.get('birthday').value)) {
+      this.signUpForm.markAllAsTouched();
+      console.log(this.signUpForm.value)
+      console.log('out of sign')
+      return;
+    }
+
     const email = {
       "email": this.signUpForm.get('mail').value
     }
@@ -89,8 +103,10 @@ export class SignUpComponent implements OnInit {
 
   IsValidBirthDay(BirthDay: Date): boolean {
     const currentDate = new Date();
+    const minDate = new Date();
+    minDate.setFullYear(currentDate.getFullYear() - 120);
 
-    return currentDate >= BirthDay;
+    return currentDate >= BirthDay && BirthDay >= minDate;
   }
 
   validateAge(control: AbstractControl): ValidationErrors | null {
@@ -140,13 +156,13 @@ export class SignUpComponent implements OnInit {
         console.log(res);
         if (res['success']) {
           this.toastr.success('حساب کاری با موفقیت ساخته شد.', 'موفقیت');
-          
+
           setTimeout(() => {
             this.Router.navigate(['login'])
           }, 1500)
 
         }
-        else if(res['message']=='Incorect verification code'){
+        else if (res['message'] == 'Incorect verification code') {
           this.toastr.error('کد وارد شده صحیح نمی باشد.', 'خطا');
         }
         else {

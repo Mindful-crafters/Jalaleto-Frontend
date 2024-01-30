@@ -217,6 +217,7 @@ button.profile-button {
   overflow: hidden;
   text-overflow: ellipsis;
   margin-right: 1.5rem;
+  margin-top: 0.5rem;
 }
 
 .notif {
@@ -225,12 +226,18 @@ button.profile-button {
 
   .name {
     font-size: 1rem;
+    margin-right: 0.5rem;
   }
 }
 
 .title {
   display: flex;
   align-items: center;
+}
+
+.noif-image {
+  height: 24px;
+  width: 24px;
 }
 
 .notifications {

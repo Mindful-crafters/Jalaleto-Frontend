@@ -33,7 +33,7 @@
         <div class="notif" *ngFor="let notification of notifications">
           <div class="title">
             <div class="image">
-              <img [src]="notification.icon" alt="Notification Icon" />
+              <img class="noif-image" [src]="notification.icon" alt="Notification Icon" />
             </div>
             <div class="name">
               {{ notification.title }}
