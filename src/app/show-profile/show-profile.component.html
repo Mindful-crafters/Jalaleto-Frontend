@@ -97,7 +97,7 @@
           <input [disabled]="true" [(ngModel)]="data.Birthday" matInput />
         </mat-form-field>
       </div> -->
-      <div class="Birthday"> 
+      <div  *ngIf="!isLoading" class="Birthday"> 
         <mat-form-field class="date-picker" appearance="outline" hideRequiredMarker style="width: 100%;">
             <mat-label>تاریخ تولد</mat-label>
             <input [(ngModel)]="data.Birthday" [disabled]="true" style="margin-top: 0.25rem; width: 100px;" matInput [matDatepicker]="datepicker" />
