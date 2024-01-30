@@ -62,7 +62,6 @@ export class SignUpComponent implements OnInit {
       this.signUpForm.markAllAsTouched();
       return;
     }
-
     const email = {
       "email": this.signUpForm.get('mail').value
     }

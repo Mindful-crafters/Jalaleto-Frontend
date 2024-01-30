@@ -87,7 +87,7 @@
         ></nz-skeleton-element>
       </div>
 
-      <div *ngIf="!isLoading">
+      <!-- <div *ngIf="!isLoading">
         <mat-form-field
           class="Birthday"
           appearance="outline"
@@ -95,10 +95,23 @@
         >
           <mat-label>تاریخ تولد</mat-label>
           <input [disabled]="true" [(ngModel)]="data.Birthday" matInput />
-          <!-- <mat-hint>YYYY/MM/DD</mat-hint> -->
         </mat-form-field>
-      </div>
-
+      </div> -->
+      <div  *ngIf="!isLoading" class="Birthday"> 
+        <mat-form-field class="date-picker" appearance="outline" hideRequiredMarker style="width: 100%;">
+            <mat-label>تاریخ تولد</mat-label>
+            <input [(ngModel)]="data.Birthday" [disabled]="true" style="margin-top: 0.25rem; width: 100px;" matInput [matDatepicker]="datepicker" />
+            <mat-datepicker-toggle [disableRipple]="" matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+            <mat-datepicker #datepicker>
+              <!-- <mat-datepicker-actions>
+                <button mat-button matDatepickerCancel>لغو</button>
+                <button mat-raised-button color="primary" matDatepickerApply>
+                  انتخاب
+                </button>
+              </mat-datepicker-actions> -->
+            </mat-datepicker>
+          </mat-form-field>
+      </div> 
       <div class="skeleton" *ngIf="isLoading">
         <nz-skeleton-element
           nzType="button"

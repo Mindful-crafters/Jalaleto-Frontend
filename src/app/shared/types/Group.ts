@@ -14,3 +14,9 @@ export class Group {
     imageFile: File = null;
     members: Member[]
   }
+
+export class Posts {
+  score: number = 0;
+  text: string = '';
+  eventId: number = 0;
+}  

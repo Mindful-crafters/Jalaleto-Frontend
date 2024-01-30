@@ -1,3 +1,4 @@
+import { ShowPostComponent } from '../show-post/show-post.component';
 import { EventObject } from './../shared/types/EventObject.type';
 import { persiancalendarservice } from './../shared/services/persiancalendarservice.service';
 import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
@@ -20,8 +21,10 @@ import {
 import { AddEventDialogComponent } from './add-event-dialog/add-event-dialog.component';
 import { HttpParams } from '@angular/common/http';
 import { HttpClient } from '@microsoft/signalr';
-import { Group } from '../shared/types/Group';
+import { Group, Posts } from '../shared/types/Group';
 import { group } from '@angular/animations';
+import { PostEventComponent } from '../post-event/post-event.component';
+import { ShowEventsComponent } from './../show-events/show-events.component';
 
 @Component({
   selector: 'app-timeline',
@@ -31,6 +34,7 @@ import { group } from '@angular/animations';
 })
 
 export class TimelineComponent implements OnInit {
+  selectedEvent: Posts = null;
   buttonActive = true;
   avatarActive = true;
   inputActive = true;
@@ -365,6 +369,22 @@ export class TimelineComponent implements OnInit {
         this.openBox(this.selectedBox);
       }
       else { }
+    })
+  }
+  post (post: Posts) { 
+    const dialogRef: MatDialogRef<any, any> = this.matDialog.open(PostEventComponent, {
+      disableClose: true,
+      hasBackdrop: true,
+      autoFocus: false,
+      data: post,
+    })
+  }
+
+  show () {
+    const dialogRef: MatDialogRef<any, any> = this.matDialog.open(ShowPostComponent, {
+      disableClose: true,
+      hasBackdrop: true,
+      autoFocus: false,
     })
   }
 

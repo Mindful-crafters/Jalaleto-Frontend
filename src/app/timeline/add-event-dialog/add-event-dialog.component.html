@@ -116,5 +116,7 @@
   <div class="footer">
     <button class="save-button" mat-button (click)="Submit()">ذخیره</button>
     <button class="cancel-button" mat-button (click)="close()">لغو</button>
+    <button *ngIf="inputEvent.eventId != null" class="post-button" (click)="post()" mat-button>ثبت نظر</button>
+    <button class="post-button" (click)="showPosts()" mat-button>دیدن نظرات</button>
   </div>
 </div>

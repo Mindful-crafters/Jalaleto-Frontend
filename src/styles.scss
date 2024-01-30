@@ -318,7 +318,8 @@ button.quick-make.mdc-button.mdc-button--raised.mat-mdc-raised-button.mat-unthem
   }
 }
 
-.reminder-panel , .event-panel {
+.reminder-panel,
+.event-panel {
   .ant-skeleton-element {
     display: inline-block !important;
     width: 100% !important;
@@ -330,11 +331,18 @@ button.quick-make.mdc-button.mdc-button--raised.mat-mdc-raised-button.mat-unthem
   }
 }
 
-.content{
-  .mat-mdc-standard-chip.mdc-evolution-chip--with-primary-graphic .mdc-evolution-chip__action--primary, .mat-mdc-standard-chip.mdc-evolution-chip--with-primary-graphic .mdc-evolution-chip__action--primary[dir=rtl] {
+.content {
+  .mat-mdc-standard-chip.mdc-evolution-chip--with-primary-graphic
+    .mdc-evolution-chip__action--primary,
+  .mat-mdc-standard-chip.mdc-evolution-chip--with-primary-graphic
+    .mdc-evolution-chip__action--primary[dir="rtl"] {
     width: 100% !important;
     padding-left: 0 !important;
+  }
 }
+
+.post-button.mat-mdc-button:not(:disabled) {
+  color: var(--blue) !important;
 }
 
 .historical-events {

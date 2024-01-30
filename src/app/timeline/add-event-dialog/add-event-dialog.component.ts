@@ -4,7 +4,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, Inject, ViewChild, inject } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatChipInputEvent, MatChipOption } from '@angular/material/chips';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { RestService } from 'src/app/shared/services/Rest.service';
 import { AddNewEventReminderComponent } from '../add-new-event-reminder/add-new-event-reminder.component';
@@ -20,6 +20,10 @@ import {
   NzSkeletonButtonSize,
   NzSkeletonInputSize
 } from 'ng-zorro-antd/skeleton';
+import { PostEventComponent } from 'src/app/post-event/post-event.component';
+import { Posts } from 'src/app/shared/types/Group';
+import { StreamInvocationMessage } from '@microsoft/signalr';
+import { ShowPostComponent } from 'src/app/show-post/show-post.component';
 
 @Component({
   selector: 'app-add-event-dialog',
@@ -48,6 +52,8 @@ export class AddEventDialogComponent {
   @ViewChild('check') reminde: ElementRef;
   @ViewChild('email') emailReminder: ElementRef;
   type: string;
+  reviews: Review[];
+
 
   separatorKeysCodes: number[] = [ENTER, COMMA];
   fruitCtrl = new FormControl('');
@@ -75,7 +81,9 @@ export class AddEventDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<AddNewEventReminderComponent>,
     @Inject(MAT_DIALOG_DATA) public inputDate: any,
+    private postDialogRef: MatDialogRef<PostEventComponent>,
     private toastr: ToastrService,
+    private matDialog: MatDialog,
     private formBuilder: FormBuilder,
     private restService: RestService
     , private datePipe: DatePipe) {
@@ -100,18 +108,32 @@ export class AddEventDialogComponent {
       console.log(res);
       this.myGroups = res['data'];
       this.isMyGroupsLoading = false;
-      console.log('my groups : ',this.myGroups)
+      console.log('my groups : ', this.myGroups)
 
       this.myGroups.forEach(element => {
-        if(element.groupId == this.inputEvent.groupId){
+        if (element.groupId == this.inputEvent.groupId) {
           this.selectedGroup = element;
         }
       });
 
-      if(this.selectedGroup == null && this.myGroups.length > 0){
+      if (this.selectedGroup == null && this.myGroups.length > 0) {
         this.selectedGroup = this.myGroups[0]
       }
     })
+
+    this.restService.post<any>('Event/GetEventReviews', { 'eventId': this.inputEvent.eventId }).subscribe(
+      (response) => {
+        if (response['success']) {
+          console.log(response)
+          this.reviews = response['eventReviews']
+          console.log(this.reviews);
+        }
+        else {
+        }
+      },
+      (error) => {
+      }
+    )
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
@@ -167,6 +189,44 @@ export class AddEventDialogComponent {
     return '12:00'
   }
 
+
+  post() {
+    const eventId = this.inputEvent.eventId;
+
+    const dialogRef: MatDialogRef<any, any> = this.matDialog.open(PostEventComponent, {
+      data: eventId,
+      hasBackdrop: true,
+      autoFocus: false
+    })
+
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res) {
+        this.restService.post<any>('Event/GetEventReviews', { 'eventId': this.inputEvent.eventId }).subscribe(
+          (response) => {
+            if (response['success']) {
+              console.log(response)
+              this.reviews = response['eventReviews']
+              console.log(this.reviews);
+            }
+            else {
+            }
+          },
+          (error) => {
+            this.toastr.error('در لود نظرات مشکلی به وجود آمده است', 'خطا');
+          }
+        )
+      }
+    })
+  }
+
+  showPosts(){
+    const dialogRef: MatDialogRef<any, any> = this.matDialog.open(ShowPostComponent, {
+      data: this.reviews,
+      hasBackdrop: true,
+      autoFocus: false
+    })
+  }
+
   CreateForm() {
     this.formGroup = this.formBuilder.group(
       {
@@ -174,7 +234,7 @@ export class AddEventDialogComponent {
         description: [this.inputEvent.description || null, Validators.required],
         startTime: [this.initHour(), Validators.required],
         memberLimit: [this.inputEvent.memberLimit, [this.numberValidator]],
-        groupSelected: [null , Validators.required]
+        groupSelected: [null, Validators.required]
       }
     )
   }
@@ -205,6 +265,11 @@ export class AddEventDialogComponent {
     //   return;
     // }
 
+    if (this.formGroup.get('memberLimit').value < 1) {
+      this.toastr.error('مقدار حداکثر اعضا را به درستی وارد کنید', 'خطا');
+      return
+    }
+
     const event: CreateEvent = {
       eventId: null,
       groupId: 0,
@@ -233,6 +298,7 @@ export class AddEventDialogComponent {
     //location
     const location = '';
     const memberLimit = this.formGroup.get('memberLimit').value;
+
     //when
     const startTimeValue = this.formGroup.get('startTime').value;
     const [h, m] = startTimeValue.split(":");
@@ -273,4 +339,12 @@ export class AddEventDialogComponent {
         this.toastr.error('مشکلی پیش آمده دوباره تلاش کنید', 'خطا');
       })
   }
+}
+
+export interface Review {
+  eventId: string;
+  id: string
+  score: number;
+  text: string;
+  userId: string
 }
