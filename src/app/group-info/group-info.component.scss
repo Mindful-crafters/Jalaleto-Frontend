@@ -5,7 +5,8 @@
     .header {
         display: flex;
         border-bottom: 1px solid #495867;
-        padding: 2%;
+        padding: 0.5rem;
+        align-items: center;
 
         .close-button {
             width: 4rem;
@@ -16,8 +17,6 @@
 
         .info {
             display: flex;
-            margin-right: 220px;
-            margin-top: 2%;
 
             .profile {
                 width: 100px;
@@ -29,8 +28,6 @@
             .title {
                 font-weight: bold;
                 font-size: 25px;
-                margin-top: 23%;
-                margin-left: 5%;
             }
         }
 

@@ -4,7 +4,8 @@
     overflow: hidden;
 
     .header {
-        border-bottom: 1px solid #495867;
+        border-bottom: 1px solid hsl(210, 17%, 35%);
+        display: flex;
 
         .close-button {
             width: 4rem;
