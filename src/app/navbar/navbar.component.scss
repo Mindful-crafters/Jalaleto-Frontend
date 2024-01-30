@@ -1,5 +1,5 @@
 @import "../../theme/common.styles.scss";
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 .navbar {
   display: flex;
@@ -51,8 +51,6 @@
     }
   }
 
-
-
   .notification-button {
     border: none;
     outline: none;
@@ -60,7 +58,6 @@
 
   .notification {
     background-color: white;
-
 
     .notification-icon {
       display: flex;
@@ -74,10 +71,17 @@
         height: 32px;
         border-radius: 50%;
         margin-right: 8px;
-
       }
     }
   }
+}
+
+button.closeNotifbtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1rem;
+  width: 1rem;
 }
 
 .separator-line {
@@ -116,8 +120,6 @@ button.profile-button {
     }
   }
 }
-
-
 
 .profile-info {
   display: flex;
@@ -162,7 +164,6 @@ button.profile-button {
   flex-direction: column;
   margin-bottom: 20px;
 
-
   .notification-icon {
     margin-right: -5px;
     margin-bottom: 40px;
@@ -175,7 +176,6 @@ button.profile-button {
   }
 
   .notification-info {
-
     // border-bottom: 1px solid black;
 
     h3 {
@@ -191,7 +191,7 @@ button.profile-button {
         transition: color 0.3s ease;
 
         &:hover {
-          color: #BDD5EA;
+          color: #bdd5ea;
         }
       }
     }
@@ -210,13 +210,49 @@ button.profile-button {
     .notification-icon {
       margin-inline-end: 0.5rem;
     }
-
-    .notif-description {
-      
-    }
   }
 }
 
+.description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 1.5rem;
+}
+
+.notif {
+  padding: 0.5rem;
+  border-bottom: 1px solid gainsboro;
+
+  .name {
+    font-size: 1rem;
+  }
+}
+
+.title {
+  display: flex;
+  align-items: center;
+}
+
+.notifications {
+  border-left: 1px solid gainsboro;
+  background-color: white;
+  position: absolute;
+  top: 4rem;
+  left: 4rem;
+  border-top: 1px solid gainsboro;
+  width: 17rem;
+  height: 20rem;
+}
+.notifBtn{
+  border: unset;
+}
+
+.notifs {
+  border: 1px solid gainsboro;
+  overflow: auto;
+  height: 20rem;
+  border-top: unset;
+}
 
 .red-circle {
   position: absolute;

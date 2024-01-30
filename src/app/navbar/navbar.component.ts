@@ -116,6 +116,14 @@ export class NavbarComponent implements OnInit {
 
   Events() {
 
+
+  }
+
+  clickedOnNotification = false;
+  
+  clickedOnNotif(){
+    this.hideRedCircle = true;
+    this.clickedOnNotification = true;
   }
 
   getNotifications() {

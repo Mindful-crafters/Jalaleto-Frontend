@@ -14,46 +14,50 @@
 
     <span class="spacer"></span>
 
-    <button nz-popover nzTitle="Notifications" nzTrigger="click" [nzPopoverContent]="notificationContent"
-      class="notification-button" nzPlacement="bottomRight" (click)="hideRedCircle = true">
-
+    <button class="notifBtn" (click)="clickedOnNotif()">
       <div class="notification" id="notification">
         <div class="notification-icon">
           <span class="red-circle" *ngIf="!hideRedCircle"></span>
-          <img src="../../assets/icons/notification-image.svg" alt="Notification Icon" />
+          <img
+            src="../../assets/icons/notification-image.svg"
+            alt="Notification Icon"
+          />
         </div>
       </div>
     </button>
 
-    <ng-template #notificationContent>
-      <div *ngIf="notifications.length > 0; else noNotifications">
-        <ul>
-          <li class="notif-dot" *ngFor="let notification of notifications">
-            <div class="notification-details">
-              <div class="notif-title">
-                <div class="notification-icon">
-                  <img [src]="notification.icon" alt="Notification Icon" />
-                </div>
+    <div *ngIf="clickedOnNotification" class="notifications">
+      <button class="closeNotifbtn" (click)="clickedOnNotification = false">x</button>
 
-                <a class="title-link" [routerLink]="notification.link">{{
-                  notification.title
-                  }}</a>
-              </div>
-
-              <span class="notif-description">{{
-                notification.description
-                }}</span>
+      <div class="notifs" *ngIf="notifications.length > 0; else noNotifications">
+        <div class="notif" *ngFor="let notification of notifications">
+          <div class="title">
+            <div class="image">
+              <img [src]="notification.icon" alt="Notification Icon" />
             </div>
-            <div class="notif_line"></div>
-          </li>
-        </ul>
+            <div class="name">
+              {{ notification.title }}
+            </div>
+          </div>
+          <div class="description">
+            {{
+              notification.description
+            }}
+          </div>
+        </div>
       </div>
       <ng-template #noNotifications>
         <p>اعلان خوانده‌نشده ندارید</p>
       </ng-template>
-    </ng-template>
 
-    <button [disabled]="!isLoggedIn" mat-icon-button [matMenuTriggerFor]="menu" class="profile-button">
+    </div>
+
+    <button
+      [disabled]="!isLoggedIn"
+      mat-icon-button
+      [matMenuTriggerFor]="menu"
+      class="profile-button"
+    >
       <div class="profile-icon">
         <img src="../../assets/icons/profile2.png" alt="Profile Icon" />
       </div>
@@ -62,11 +66,15 @@
     <mat-menu #menu="matMenu" class="menu">
       <ng-template matMenuContent>
         <div class="profile-info" *ngIf="userInfoLoaded">
-          <img [src]="
+          <img
+            [src]="
               userProfile.imagePath == ''
                 ? '../../assets/icons/icons8-test-account-48.png'
                 : userProfile.imagePath
-            " alt="Profile Image" class="profile-image" />
+            "
+            alt="Profile Image"
+            class="profile-image"
+          />
           <div class="user-details">
             <span class="username">{{ userProfile?.userName }}</span>
             <span class="email">{{ userProfile?.email }}</span>
