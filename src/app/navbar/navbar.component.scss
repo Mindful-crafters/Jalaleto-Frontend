@@ -234,6 +234,7 @@ button.profile-button {
 }
 
 .notifications {
+  z-index: 1;
   border-left: 1px solid gainsboro;
   background-color: white;
   position: absolute;
@@ -241,7 +242,7 @@ button.profile-button {
   left: 4rem;
   border-top: 1px solid gainsboro;
   width: 17rem;
-  height: 20rem;
+  height: 21rem;
 }
 .notifBtn{
   border: unset;
