@@ -14,7 +14,7 @@
                         alt="Profile Image">           
                     <input type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none;" #fileInput>
                     <div class="example-button-row">
-                        <button mat-stroked-button color="primary" (click)="fileInput.click()">ویرایش پروفایل</button>
+                        <button mat-stroked-button color="primary" (change)="onFileSelected($event)" (click)="fileInput.click()">ویرایش پروفایل</button>
                     </div>
                 </div>
             </div>
@@ -39,26 +39,49 @@
             </div>
             <div>
 
-                <mat-form-field class="password" appearance="outline" hideRequiredMarker>
+                <!-- <mat-form-field class="password" appearance="outline" hideRequiredMarker>
                     <mat-label>رمز عبور</mat-label>
                     <input [(ngModel)]="data.Password" matInput />
-                </mat-form-field>
+                </mat-form-field> -->
             </div>
             <!-- <button (click)="submit()" type="button" mat-button class="register-button primary-button">
                 ثبت تغییرات
             </button> -->
             <div>
 
-                <mat-form-field class="Birthday" appearance="outline" hideRequiredMarker>
+                <!-- <mat-form-field class="Birthday" appearance="outline" hideRequiredMarker>
                     <mat-label>تاریخ تولد</mat-label>
                     <input [(ngModel)]="data.Birthday" matInput />
-                    <!-- <mat-hint>YYYY/MM/DD</mat-hint> -->
-                </mat-form-field>
+                    <mat-datepicker-toggle [disableRipple]="" matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+                    <mat-datepicker #datepicker>
+                        <mat-datepicker-actions>
+                            <button mat-button matDatepickerCancel>لغو</button>
+                            <button mat-raised-button color="primary" matDatepickerApply>
+                            انتخاب
+                            </button>
+                        </mat-datepicker-actions>
+                    </mat-datepicker>
+                </mat-form-field> -->
+              <div class="Birthday"> 
+                <mat-form-field class="date-picker" appearance="outline" hideRequiredMarker style="width: 100%;">
+                    <mat-label>تاریخ تولد</mat-label>
+                    <input [(ngModel)]="data.Birthday" style="margin-top: 0.25rem; width: 100px;" matInput [matDatepicker]="datepicker" />
+                    <mat-datepicker-toggle [disableRipple]="" matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+                    <mat-datepicker #datepicker>
+                      <mat-datepicker-actions>
+                        <button mat-button matDatepickerCancel>لغو</button>
+                        <button mat-raised-button color="primary" matDatepickerApply>
+                          انتخاب
+                        </button>
+                      </mat-datepicker-actions>
+                    </mat-datepicker>
+                  </mat-form-field>
+              </div>    
             </div>
             
         </div> 
         <div class="footer">
-            <button class="save-button" mat-button (click)="submit()" (click)="close()">ایجاد</button>
+            <button class="save-button" mat-button (change)="onFileSelected($event)" (click)="submit()" (click)="close()">ایجاد</button>
             <button class="cancel-button" mat-button (click)="close()">لغو</button>
         </div>  
 </div>
